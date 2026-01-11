@@ -40,7 +40,7 @@ export interface FooterProps {
 
 export function Footer({ data }: FooterProps) {
   const {
-    companyName = "Shopifolio",
+    companyName = "Riajul",
     tagline = "Transforming Shopify stores into high-performance digital powerhouses.",
     email = "hello@shopifolio.com",
     location = "Global Remote",

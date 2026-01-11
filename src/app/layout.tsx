@@ -21,23 +21,23 @@ const geistMono = Geist_Mono({
 export const metadata: Metadata = {
   metadataBase: new URL(process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://shopifolio.vercel.app'),
   title: {
-    default: "Shopifolio | Shopify & Web Development Agency",
-    template: "%s | Shopifolio"
+    default: "Riajul | Shopify Developer & Web Designer",
+    template: "%s | Riajul"
   },
-  description: "Expert Shopify development and web design services. We build high-converting, beautiful e-commerce experiences and custom websites.",
+  description: "Expert Shopify development and web design services. I build high-converting, beautiful e-commerce experiences and custom websites.",
   keywords: [
-    "Shopify", "Web Development", "E-commerce", "React", "Next.js", 
-    "Portfolio", "Agency", "Web Design", "UI/UX", "Frontend Developer"
+    "Shopify Developer", "Web Designer", "E-commerce Expert", "React Developer", "Next.js", 
+    "Portfolio", "Freelancer", "UI/UX", "Frontend Developer"
   ],
-  authors: [{ name: "Siruajul", url: "https://shopifolio.vercel.app" }],
-  creator: "Siruajul",
+  authors: [{ name: "Riajul", url: "https://shopifolio.vercel.app" }],
+  creator: "Riajul",
   openGraph: {
-    type: "website",
+    type: "profile",
     locale: "en_US",
     url: "/",
-    title: "Shopifolio | Premium Shopify & Web Solutions",
+    title: "Riajul | Shopify Developer & Web Designer",
     description: "Expert Shopify development and web design services. Building standard-setting e-commerce experiences.",
-    siteName: "Shopifolio",
+    siteName: "Riajul Portfolio",
     images: [
       {
         url: "/og-image.jpg", // Ensure you have an og-image.jpg in your public folder
@@ -87,15 +87,21 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "Shopifolio",
+              "@type": "Person",
+              "name": "Riajul",
               "url": "https://shopifolio.vercel.app",
-              "logo": "https://shopifolio.vercel.app/logo.png",
+              "image": "https://shopifolio.vercel.app/og-image.jpg",
+              "jobTitle": "Shopify Developer & Web Designer",
               "description": "Expert Shopify development and web design services.",
               "address": {
                 "@type": "PostalAddress",
                 "addressCountry": "US"
-              }
+              },
+              "sameAs": [
+                "https://linkedin.com/in/yourprofile",
+                "https://twitter.com/yourhandle",
+                "https://github.com/yourusername"
+              ]
             })
           }}
         />

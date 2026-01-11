@@ -10,6 +10,12 @@ export const HOME_QUERY = defineQuery(`{
     experienceDate,
     title,
     description,
+    name,
+    role,
+    bio1,
+    bio2,
+    ctaText,
+    profileImage,
     stats
   },
   "marquee": *[_type == "marquee"][0]{

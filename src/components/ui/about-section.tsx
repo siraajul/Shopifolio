@@ -3,9 +3,42 @@ import { TimelineContent } from "@/components/ui/timeline-animation";
 import {VerticalCutReveal} from "@/components/ui/vertical-cut-reveal";
 import { ArrowRight } from "lucide-react";
 import { useRef } from "react";
+import { urlFor } from "@/sanity/lib/image";
 
-export default function AboutSection3() {
+interface AboutProps {
+  data?: {
+    experienceDate?: string;
+    title?: string;
+    description?: string; // Main heading
+    name?: string;
+    role?: string;
+    bio1?: string;
+    bio2?: string;
+    ctaText?: string;
+    profileImage?: any;
+    stats?: { value: string; label: string }[];
+  };
+}
+
+export default function AboutSection3({ data }: AboutProps) {
   const heroRef = useRef<HTMLElement>(null);
+  
+  // Default values / Fallbacks
+  const {
+    name = "RIAJUL",
+    role = "Shopify Developer | Technical Consultant",
+    description = "Crafting Words That Make a Difference.",
+    bio1 = "I specialize in building scalable Shopify stores, custom themes, and high-quality apps. My goal is to empower D2C brands with technology that drives growth.",
+    bio2 = "From complex migrations to headless commerce solutions, I bring deep technical expertise to every project. Let's build a store that converts.",
+    ctaText = "LET'S COLLABORATE",
+    stats = [],
+    profileImage
+  } = data || {};
+
+  const profileImageUrl = profileImage 
+    ? urlFor(profileImage).width(1200).url() 
+    : "https://images.unsplash.com/photo-1718601980986-0ce75101d52d?w=1200&auto=format&fit=crop";
+
   const revealVariants = {
     visible: (i: number) => ({
       y: 0,
@@ -135,7 +168,7 @@ export default function AboutSection3() {
                 preserveAspectRatio="xMidYMid slice"
                 width={"100%"}
                 height={"100%"}
-                xlinkHref="https://images.unsplash.com/photo-1718601980986-0ce75101d52d?w=1200&auto=format&fit=crop"
+                xlinkHref={profileImageUrl}
               ></image>
             </svg>
           </TimelineContent>
@@ -149,15 +182,27 @@ export default function AboutSection3() {
               customVariants={revealVariants}
               className="flex gap-4"
             >
-              <div className="flex items-center gap-2 mb-2 sm:text-base text-xs">
-                <span className="text-red-500 font-bold">5+</span>
-                <span className="text-gray-600 dark:text-gray-400">years in e-commerce</span>
-                <span className="text-gray-300 dark:text-gray-600">|</span>
-              </div>
-              <div className="flex items-center gap-2 mb-2 sm:text-base text-xs">
-                <span className="text-red-500 font-bold">$10M+</span>
-                <span className="text-gray-600 dark:text-gray-400">client sales</span>
-              </div>
+              {stats.length > 0 ? (
+                stats.map((stat, idx) => (
+                  <div key={idx} className="flex items-center gap-2 mb-2 sm:text-base text-xs">
+                    <span className="text-red-500 font-bold">{stat.value}</span>
+                    <span className="text-gray-600 dark:text-gray-400">{stat.label}</span>
+                    {idx < stats.length - 1 && <span className="text-gray-300 dark:text-gray-600">|</span>}
+                  </div>
+                ))
+              ) : (
+                <>
+                  <div className="flex items-center gap-2 mb-2 sm:text-base text-xs">
+                    <span className="text-red-500 font-bold">5+</span>
+                    <span className="text-gray-600 dark:text-gray-400">years in e-commerce</span>
+                    <span className="text-gray-300 dark:text-gray-600">|</span>
+                  </div>
+                  <div className="flex items-center gap-2 mb-2 sm:text-base text-xs">
+                    <span className="text-red-500 font-bold">$10M+</span>
+                    <span className="text-gray-600 dark:text-gray-400">client sales</span>
+                  </div>
+                </>
+              )}
             </TimelineContent>
             <div className="lg:absolute right-0 bottom-16 flex lg:flex-col flex-row-reverse lg:gap-0 gap-4">
               <TimelineContent
@@ -187,9 +232,6 @@ export default function AboutSection3() {
         {/* Main Content */}
         <div className="grid md:grid-cols-3 gap-8">
           <div className="md:col-span-2">
-            {/* <TimelineContent as="h1" animationNum={8} timelineRef={heroRef} customVariants={revealVariants} className="text-4xl md:text-5xl !leading-[110%] font-semibold text-gray-900 mb-8">
-              Crafting Words That Make a Difference.
-            </TimelineContent> */}
             <h1 className="sm:text-4xl md:text-5xl text-2xl !leading-[110%] font-semibold text-gray-900 dark:text-gray-100 mb-8">
               <VerticalCutReveal
                 splitBy="words"
@@ -203,7 +245,7 @@ export default function AboutSection3() {
                   delay: 3,
                 }}
               >
-                Crafting Words That Make a Difference.
+                {description}
               </VerticalCutReveal>
             </h1>
 
@@ -222,9 +264,7 @@ export default function AboutSection3() {
                 className="sm:text-base text-xs"
               >
                 <p className="leading-relaxed text-justify">
-                  I specialize in building scalable Shopify stores, custom themes,
-                  and high-quality apps. My goal is to empower D2C brands with
-                  technology that drives growth.
+                  {bio1}
                 </p>
               </TimelineContent>
               <TimelineContent
@@ -235,9 +275,7 @@ export default function AboutSection3() {
                 className="sm:text-base text-xs"
               >
                 <p className="leading-relaxed text-justify">
-                  From complex migrations to headless commerce solutions, I bring
-                  deep technical expertise to every project. Let's build a store
-                  that converts.
+                  {bio2}
                 </p>
               </TimelineContent>
             </TimelineContent>
@@ -252,7 +290,7 @@ export default function AboutSection3() {
                 customVariants={revealVariants}
                 className="text-red-500 text-2xl font-bold mb-2"
               >
-                SIRAJUL
+                {name.toUpperCase()}
               </TimelineContent>
               <TimelineContent
                 as="div"
@@ -261,7 +299,7 @@ export default function AboutSection3() {
                 customVariants={revealVariants}
                 className="text-gray-600 dark:text-gray-400 text-sm mb-8"
               >
-                Shopify Developer | Technical Consultant
+                {role}
               </TimelineContent>
 
               <TimelineContent
@@ -283,7 +321,7 @@ export default function AboutSection3() {
                 customVariants={revealVariants}
                 className="bg-neutral-900 dark:bg-white dark:text-black hover:bg-neutral-950 dark:hover:bg-gray-200 shadow-lg shadow-neutral-900/10 border border-neutral-700 dark:border-gray-200 flex w-fit ml-auto gap-2 hover:gap-4 transition-all duration-300 ease-in-out text-white px-5 py-3 rounded-lg cursor-pointer font-semibold"
               >
-                LET'S COLLABORATE <ArrowRight className="" />
+                {ctaText} <ArrowRight className="" />
               </TimelineContent>
             </div>
           </div>

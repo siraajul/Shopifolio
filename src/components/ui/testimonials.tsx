@@ -4,7 +4,7 @@ import { motion } from "motion/react";
 
 const testimonials = [
   {
-    text: "Sirajul transformed our sluggish store into a high-speed sales machine. Conversion rates jumped by 40% in just two weeks.",
+    text: "Riajul transformed our sluggish store into a high-speed sales machine. Conversion rates jumped by 40% in just two weeks.",
     image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80",
     name: "Sarah Jenkins",
     role: "Founder, Glow Organic",
@@ -16,7 +16,7 @@ const testimonials = [
     role: "CTO, Urban Gear",
   },
   {
-    text: "We needed a complex migration from Magento to Shopify Plus. Sirajul handled the data transfer without a single hiccup.",
+    text: "We needed a complex migration from Magento to Shopify Plus. Riajul handled the data transfer without a single hiccup.",
     image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80",
     name: "Emily Davis",
     role: "Ops Manager, Luxe Living",
@@ -52,7 +52,7 @@ const testimonials = [
     role: "Tech Lead, Future Wear",
   },
   {
-    text: "Reliable and fast. Whenever we have a launch day emergency, Sirajul is the first person we call.",
+    text: "Reliable and fast. Whenever we have a launch day emergency, Riajul is the first person we call.",
     image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=80",
     name: "Anita Roy",
     role: "Brand Manager",

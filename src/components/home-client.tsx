@@ -160,7 +160,7 @@ export default function HomeClient({ data }: { data: HomeProps }) {
         </motion.div>
       </section>
 
-      <AboutSection3 />
+      <AboutSection3 data={data.about} />
       
       <section className="py-8 bg-transparent text-foreground flex items-center overflow-hidden">
         <MarqueeAnimation
