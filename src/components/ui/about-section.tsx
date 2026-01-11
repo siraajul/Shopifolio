@@ -45,8 +45,8 @@ export default function AboutSection3({ data }: AboutProps) {
       opacity: 1,
       filter: "blur(0px)",
       transition: {
-        delay: i * 0.4,
-        duration: 0.5,
+        delay: i * 0.1,
+        duration: 0.3,
       },
     }),
     hidden: {
@@ -60,8 +60,8 @@ export default function AboutSection3({ data }: AboutProps) {
       opacity: 1,
       filter: "blur(0px)",
       transition: {
-        delay: i * 0.4,
-        duration: 0.5,
+        delay: i * 0.1,
+        duration: 0.3,
       },
     }),
     hidden: {
@@ -242,7 +242,7 @@ export default function AboutSection3({ data }: AboutProps) {
                   type: "spring",
                   stiffness: 250,
                   damping: 30,
-                  delay: 3,
+                  delay: 0.5,
                 }}
               >
                 {description}
