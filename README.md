@@ -1,36 +1,93 @@
-This is a [Next.js](https://nextjs.org) project bootstrapped with [`create-next-app`](https://nextjs.org/docs/app/api-reference/cli/create-next-app).
+# ⚡ Shopifolio - High-Performance Shopify Agency Portfolio
 
-## Getting Started
+**Shopifolio** is a premium, high-conversion portfolio website designed for a specialized Shopify agency/freelancer. It combines high-end aesthetics with "business-first" messaging to attract high-net-worth clients.
 
-First, run the development server:
+![Project Preview](/public/opengraph-image.png)
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
+## ✨ Key Features (The "Kickass" Suite)
+
+This project implements "Studio Quality" frontend techniques to elevate perceived value:
+
+*   **🌊 Smooth Scrolling (Lenis)**: Integrated `lenis` for a weighted, premium scroll feel.
+*   **🎞️ Cinematic Noise Overlay**: A subtle SVG turbulence filter adds organic texture, removing the "flat digital" look.
+*   **🖱️ Custom Cursor**: Interactive cursor that tracks movement with fluid spring physics.
+*   **⚡ High-Speed Preloader**: A punchy 1.5s entrance animation ("Loading High Performance Experience").
+*   **🧲 Magnetic Buttons**: CTA buttons physically pull towards the cursor for a tactile feel.
+*   **🌑 Dark Mode Default**: Forces a professional, high-contrast dark theme on load.
+
+## 🛠️ Tech Stack
+
+Built with the modern "T3-adjacent" stack for speed and scalability:
+
+*   **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+*   **Language**: [TypeScript](https://www.typescriptlang.org/)
+*   **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
+*   **Animation**: 
+    *   [Framer Motion](https://www.framer.com/motion/) (gestures, layout animations)
+    *   [Lenis](https://github.com/darkroomengineering/lenis) (smooth scroll)
+*   **Icons**: `react-icons`, `lucide-react`, `@phosphor-icons/react`
+
+## 🚀 Getting Started
+
+### Prerequisites
+
+- Node.js 18+
+- npm or pnpm
+
+### Installation
+
+1.  **Clone the repository:**
+    ```bash
+    git clone https://github.com/yourusername/shopifolio.git
+    cd shopifolio
+    ```
+
+2.  **Install dependencies:**
+    ```bash
+    npm install
+    # or
+    pnpm install
+    ```
+
+3.  **Run the development server:**
+    ```bash
+    npm run dev
+    ```
+
+4.  **Open locally:**
+    Visit `http://localhost:3000` to see the site.
+
+## 📂 Project Structure
+
+```
+src/
+├── app/
+│   ├── layout.tsx       # Root layout (SmoothScroll, Noise, Cursor, Preloader)
+│   ├── page.tsx         # Main landing page (Sections orchestration)
+│   └── globals.css      # Tailwind imports & custom animations
+├── components/
+│   └── ui/              # Reusable UI components
+│       ├── creative-pricing.tsx  # Value-based pricing tiers
+│       ├── industries.tsx        # 3D interactive cards
+│       ├── services-card.tsx     # 2x2 mobile grid services
+│       ├── magnetic-button.tsx   # Interactive buttons
+│       └── ...
+└── lib/                 # Utilities (cn, etc.)
 ```
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+## 🎨 Customization Guide
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Changing Pricing
+Edit `src/components/ui/pricing-section.tsx`. The data is structured in the `shopifyTiers` array.
 
-This project uses [`next/font`](https://nextjs.org/docs/app/building-your-application/optimizing/fonts) to automatically optimize and load [Geist](https://vercel.com/font), a new font family for Vercel.
+### Updating Services
+Edit `src/components/ui/services.tsx` and `services-card.tsx`.
 
-## Learn More
+### Improving SEO
+Update the metadata in `src/app/layout.tsx` or `page.tsx` with your actual agency details.
 
-To learn more about Next.js, take a look at the following resources:
+---
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+## 📄 License
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js) - your feedback and contributions are welcome!
-
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+This project is open source and available under the [MIT License](LICENSE).
