@@ -56,5 +56,13 @@ export const HOME_QUERY = defineQuery(`{
   "faq": *[_type == "faq"]{
     question,
     answer
+  },
+  "footer": *[_type == "footer"][0]{
+    companyName,
+    tagline,
+    email,
+    location,
+    socialLinks,
+    footerLinks
   }
 }`);

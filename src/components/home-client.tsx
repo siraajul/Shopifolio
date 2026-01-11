@@ -26,6 +26,7 @@ export interface HomeProps {
     rotatingWords: string[];
     subtext: string;
   };
+  footer?: any; // Replace 'any' with specific type if imported, but loose typing is fine for now
   // Add other sections as we go
   [key: string]: any; 
 }
@@ -216,7 +217,7 @@ export default function HomeClient({ data }: { data: HomeProps }) {
         <FAQSection />
       </div>
       <div id="contact">
-        <Footer />
+        <Footer data={data.footer} />
       </div>
 
       <div className="fixed bottom-6 left-1/2 -translate-x-1/2 z-50">
