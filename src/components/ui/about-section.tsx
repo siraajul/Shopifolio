@@ -315,7 +315,8 @@ export default function AboutSection3({ data }: AboutProps) {
               </TimelineContent>
 
               <TimelineContent
-                as="button"
+                as="a"
+                href="#contact"
                 animationNum={15}
                 timelineRef={heroRef}
                 customVariants={revealVariants}
