@@ -1,0 +1,135 @@
+"use client";
+
+import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
+import { useRef } from "react";
+import { cn } from "@/lib/utils";
+
+interface Card {
+  id: number;
+  title: string;
+  description: string;
+  image: string;
+  color: string;
+  darkColor?: string;
+}
+
+interface StackingCardsProps {
+  cards: Card[];
+  title?: string;
+  description?: string;
+}
+
+const Card = ({
+  i,
+  title,
+  description,
+  src,
+  color,
+  darkColor,
+  progress,
+  range,
+  targetScale,
+}: {
+  i: number;
+  title: string;
+  description: string;
+  src: string;
+  color: string;
+  darkColor?: string;
+  progress: MotionValue<number>;
+  range: number[];
+  targetScale: number;
+}) => {
+  const container = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start end", "start start"],
+  });
+
+  const imageScale = useTransform(scrollYProgress, [0, 1], [2, 1]);
+  const scale = useTransform(progress, range, [1, targetScale]);
+
+  return (
+    <div
+      ref={container}
+      className="h-screen flex items-center justify-center sticky top-0"
+    >
+      <motion.div
+        style={{
+          "--card-color": color,
+          "--card-dark-color": darkColor || "#171717", // Default to neutral-900 if undefined
+          scale,
+          top: `calc(-5vh + ${i * 25}px)`,
+        } as any}
+        className="flex flex-col-reverse md:flex-row relative -top-[10%] md:-top-[25%] h-[600px] md:h-[600px] w-[90vw] md:w-[1200px] rounded-3xl p-6 md:p-10 origin-top border border-neutral-200 dark:border-neutral-800 shadow-2xl bg-[var(--card-color)] dark:bg-[var(--card-dark-color)] transition-colors duration-300"
+      >
+        <div className="flex flex-col-reverse md:flex-row h-full gap-5 md:gap-10">
+          <div className="w-full md:w-[40%] flex flex-col justify-between h-full pt-4 md:pt-0">
+            <div>
+              <h2 className="text-2xl md:text-3xl font-bold mb-2 md:mb-4">{title}</h2>
+              <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-200">
+                {description}
+              </p>
+            </div>
+            <div className="text-lg md:text-xl font-medium opacity-40 mt-4 md:mt-0">Step 0{i + 1}</div>
+          </div>
+
+          <div className="relative w-full md:w-[60%] h-[300px] md:h-full rounded-2xl overflow-hidden shrink-0">
+            <motion.div
+              style={{ scale: imageScale }}
+              className="w-full h-full"
+            >
+              <img
+                src={src}
+                alt="image"
+                className="object-cover w-full h-full"
+              />
+            </motion.div>
+          </div>
+        </div>
+      </motion.div>
+    </div>
+  );
+};
+
+export function StackingCards({
+  cards,
+  title = "My Process",
+  description = "How we go from idea to launch.",
+}: StackingCardsProps) {
+  const container = useRef(null);
+  const { scrollYProgress } = useScroll({
+    target: container,
+    offset: ["start start", "end end"],
+  });
+
+  return (
+    <section ref={container} className="relative py-24 px-4 w-full">
+      <div className="max-w-7xl mx-auto mb-20 text-center">
+        <h2 className="text-4xl md:text-5xl font-bold mb-6 text-neutral-900 dark:text-neutral-100">
+          {title}
+        </h2>
+        <p className="text-xl text-neutral-600 dark:text-neutral-400 max-w-2xl mx-auto">
+          {description}
+        </p>
+      </div>
+      
+      {cards.map((card, i) => {
+        const targetScale = 1 - (cards.length - i) * 0.05;
+        return (
+          <Card
+            key={i}
+            i={i}
+            {...card}
+            src={card.image}
+            color={card.color}
+            darkColor={card.darkColor}
+            progress={scrollYProgress}
+            range={[i * 0.25, 1]}
+            targetScale={targetScale}
+          />
+        );
+      })}
+    </section>
+  );
+}

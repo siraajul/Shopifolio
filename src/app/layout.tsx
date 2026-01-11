@@ -1,6 +1,11 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
 import "./globals.css";
+import { ThemeProvider } from "@/components/theme-provider";
+import { ThemeToggle } from "@/components/ui/theme-toggle";
+import SmoothScroll from "@/components/ui/smooth-scroll";
+import { CustomCursor } from "@/components/ui/custom-cursor";
+import { Preloader } from "@/components/ui/preloader";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -23,11 +28,23 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
+    <html lang="en" suppressHydrationWarning>
       <body
         className={`${geistSans.variable} ${geistMono.variable} antialiased`}
       >
-        {children}
+        <ThemeProvider
+          attribute="class"
+          defaultTheme="dark"
+          enableSystem
+          disableTransitionOnChange
+        >
+          <SmoothScroll>
+            <CustomCursor />
+            <Preloader />
+            {children}
+          </SmoothScroll>
+          <ThemeToggle />
+        </ThemeProvider>
       </body>
     </html>
   );
