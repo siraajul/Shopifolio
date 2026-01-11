@@ -6,6 +6,7 @@ import { ThemeToggle } from "@/components/ui/theme-toggle";
 import SmoothScroll from "@/components/ui/smooth-scroll";
 import { CustomCursor } from "@/components/ui/custom-cursor";
 import { Preloader } from "@/components/ui/preloader";
+import { Analytics } from "@vercel/analytics/next";
 
 const geistSans = Geist({
   variable: "--font-geist-sans",
@@ -44,6 +45,7 @@ export default function RootLayout({
             {children}
           </SmoothScroll>
           <ThemeToggle />
+          <Analytics />
         </ThemeProvider>
       </body>
     </html>
