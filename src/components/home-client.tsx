@@ -124,7 +124,7 @@ export default function HomeClient({ data }: { data: HomeProps }) {
                   <GlobalIcon key="global" />,
                   <FastIcon key="fast" />,
                 ]}
-                mainClassName="text-white px-2 sm:px-2 md:px-5 bg-[var(--primary)] overflow-hidden py-0.5 sm:py-1 md:py-3 justify-center rounded-xl"
+                mainClassName="text-white px-3 sm:px-3 md:px-5 bg-[var(--primary)] overflow-hidden py-0.5 sm:py-1 md:py-3 justify-center rounded-xl whitespace-nowrap"
                 staggerFrom={"last"}
                 initial={{ y: "100%" }}
                 animate={{ y: 0 }}
