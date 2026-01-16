@@ -64,23 +64,23 @@ const Card = ({
           scale,
           top: `calc(-5vh + ${i * 25}px)`,
         } as any}
-        className="flex flex-col-reverse md:flex-row relative -top-[10%] md:-top-[25%] min-h-[400px] h-fit md:h-[600px] w-[90vw] md:w-[1200px] rounded-3xl p-6 md:p-10 origin-top border border-neutral-200 dark:border-neutral-800 shadow-2xl bg-[var(--card-color)] dark:bg-[var(--card-dark-color)] transition-colors duration-300"
+        className="flex flex-col-reverse md:flex-row relative -top-[5%] md:-top-[25%] min-h-[350px] h-fit md:h-[600px] w-[95vw] md:w-[1200px] rounded-2xl md:rounded-3xl p-4 md:p-10 origin-top border border-neutral-200 dark:border-neutral-800 shadow-2xl bg-[var(--card-color)] dark:bg-[var(--card-dark-color)] transition-colors duration-300"
       >
-        <div className="flex flex-col-reverse md:flex-row h-full gap-5 md:gap-10 w-full">
+        <div className="flex flex-col-reverse md:flex-row h-full gap-3 md:gap-10 w-full">
           <div className={cn(
-            "flex flex-col justify-between h-full pt-4 md:pt-0",
+            "flex flex-col justify-between h-full pt-2 md:pt-0",
              src ? "w-full md:w-[40%]" : "w-full"
           )}>
             <div>
-              <div className="flex flex-col items-start gap-4 mb-4 md:mb-6">
-                 {Icon && <Icon className="w-16 h-16 md:w-20 md:h-20 text-neutral-900 dark:text-neutral-100" />}
-                 <h2 className="text-3xl md:text-4xl font-bold leading-tight">{title}</h2>
+              <div className="flex flex-col items-start gap-2 md:gap-4 mb-2 md:mb-6">
+                 {Icon && <Icon className="w-12 h-12 md:w-20 md:h-20 text-neutral-900 dark:text-neutral-100" />}
+                 <h2 className="text-2xl md:text-4xl font-bold leading-tight">{title}</h2>
               </div>
-              <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-200 leading-relaxed">
+              <p className="text-base md:text-xl text-neutral-600 dark:text-neutral-200 leading-relaxed">
                 {description}
               </p>
             </div>
-            <div className="text-lg md:text-xl font-medium opacity-40 mt-4 md:mt-0">Step 0{i + 1}</div>
+            <div className="text-base md:text-xl font-medium opacity-40 mt-2 md:mt-0">Step 0{i + 1}</div>
           </div>
 
           {src && (

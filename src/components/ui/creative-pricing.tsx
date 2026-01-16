@@ -61,7 +61,7 @@ export function CreativePricing({
                 </p>
             </div>
 
-            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-8 px-1 md:px-0">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-2 md:gap-8 px-1 md:px-0">
                 {tiers.map((tier, index) => (
                     <div
                         key={tier.name}
