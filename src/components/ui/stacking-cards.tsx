@@ -72,11 +72,11 @@ const Card = ({
              src ? "w-full md:w-[40%]" : "w-full"
           )}>
             <div>
-              <div className="flex items-center gap-3 mb-2 md:mb-4">
-                 {Icon && <Icon className="w-8 h-8 md:w-10 md:h-10 text-neutral-900 dark:text-neutral-100" />}
-                 <h2 className="text-2xl md:text-3xl font-bold">{title}</h2>
+              <div className="flex flex-col items-start gap-4 mb-4 md:mb-6">
+                 {Icon && <Icon className="w-16 h-16 md:w-20 md:h-20 text-neutral-900 dark:text-neutral-100" />}
+                 <h2 className="text-3xl md:text-4xl font-bold leading-tight">{title}</h2>
               </div>
-              <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-200">
+              <p className="text-lg md:text-xl text-neutral-600 dark:text-neutral-200 leading-relaxed">
                 {description}
               </p>
             </div>
