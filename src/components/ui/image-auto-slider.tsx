@@ -273,7 +273,7 @@ export default function ImageAutoSlider() {
         <div className="relative z-10 w-full flex items-center justify-center py-8">
           {/* Mask container */}
           <div className="w-full max-w-[95rem] overflow-hidden [mask-image:linear-gradient(to_right,transparent,black_10%,black_90%,transparent)]">
-            <div className="infinite-scroll flex gap-8 w-max pl-8">
+            <div className="infinite-scroll flex gap-8 w-fit">
               {duplicatedProjects.map((project, index) => (
                 <FlipCard key={`${project.id}-${index}`} project={project} />
               ))}
