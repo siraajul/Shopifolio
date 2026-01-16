@@ -9,7 +9,7 @@ export interface Service {
   number: string;
   title: string;
   description: string;
-  icon: React.ElementType;
+  icon: React.ComponentType<any>;
   gradient: string;
 }
 
@@ -27,6 +27,7 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
     },
   };
 
+const Icon = service.icon;
   return (
     <motion.div
       variants={cardVariants}
@@ -40,7 +41,7 @@ const ServiceCard = ({ service, index }: { service: Service; index: number }) =>
         <span className="mb-8 text-sm font-mono text-foreground/50">
           ( {service.number} )
         </span>
-        <service.icon className="mb-auto h-12 w-12 text-foreground" />
+        <Icon className="mb-auto h-12 w-12 text-foreground" />
       </div>
       <div className="z-10">
         <h3 className="mb-2 text-lg font-semibold uppercase tracking-wider">

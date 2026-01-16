@@ -19,7 +19,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://shift2dynamic.vercel.app'),
+  metadataBase: new URL('https://www.shift2dynamic.com'),
   title: {
     default: "Shift2Dynamic | Shopify Developer & Web Designer",
     template: "%s | Shift2Dynamic"
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     "Shopify Developer", "Web Designer", "E-commerce Expert", "React Developer", "Next.js", 
     "Agency", "Shift2Dynamic", "UI/UX", "Frontend Developer"
   ],
-  authors: [{ name: "Shift2Dynamic", url: "https://shift2dynamic.vercel.app" }],
+  authors: [{ name: "Shift2Dynamic", url: "https://www.shift2dynamic.com" }],
   creator: "Shift2Dynamic",
   openGraph: {
     type: "website",
@@ -72,6 +72,10 @@ export const metadata: Metadata = {
   },
 };
 
+
+
+// ... existing imports
+
 export default function RootLayout({
   children,
 }: Readonly<{
@@ -89,8 +93,8 @@ export default function RootLayout({
               "@context": "https://schema.org",
               "@type": "Organization",
               "name": "Shift2Dynamic",
-              "url": "https://shift2dynamic.vercel.app",
-              "logo": "https://shift2dynamic.vercel.app/og-image.jpg",
+              "url": "https://www.shift2dynamic.com",
+              "logo": "https://www.shift2dynamic.com/og-image.jpg",
               "description": "Expert Shopify development and web design services.",
               "address": {
                 "@type": "PostalAddress",

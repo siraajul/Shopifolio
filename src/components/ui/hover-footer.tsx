@@ -124,7 +124,6 @@ export const TextHoverEffect = ({
         dominantBaseline="middle"
         stroke="url(#textGradient)"
         strokeWidth="0.3"
-        mask="url(#textMask)"
         className="fill-transparent font-[helvetica] font-bold"
         style={{ fontSize: "40px" }}
       >

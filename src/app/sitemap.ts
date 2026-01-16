@@ -1,9 +1,7 @@
 import { MetadataRoute } from 'next'
 
 export default function sitemap(): MetadataRoute.Sitemap {
-    const baseUrl = process.env.VERCEL_URL
-        ? `https://${process.env.VERCEL_URL}`
-        : 'https://shopifolio.vercel.app';
+    const baseUrl = 'https://www.shift2dynamic.com';
 
     return [
         {
