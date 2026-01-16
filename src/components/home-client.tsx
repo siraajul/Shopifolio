@@ -102,7 +102,7 @@ export default function HomeClient({ data }: { data: HomeProps }) {
   return (
     <main className="bg-background text-foreground min-h-screen w-full">
       <section id="home" className="relative h-screen flex flex-col items-center justify-center p-4">
-        <div className="w-full text-4xl max-[375px]:text-3xl sm:text-6xl md:text-8xl flex flex-col sm:flex-row flex-wrap items-center justify-center text-center font-bold font-sans bg-transparent text-foreground overflow-hidden">
+        <div className="w-full text-4xl max-[375px]:text-2xl sm:text-6xl md:text-8xl flex flex-col sm:flex-row flex-wrap items-center justify-center text-center font-bold font-sans bg-transparent text-foreground overflow-hidden">
           <LayoutGroup>
             <motion.div className="flex whitespace-pre" layout>
               <motion.span
