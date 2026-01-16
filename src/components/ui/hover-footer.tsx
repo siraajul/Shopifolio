@@ -99,7 +99,7 @@ export const TextHoverEffect = ({
         textAnchor="middle"
         dominantBaseline="middle"
         strokeWidth="0.3"
-        className="fill-transparent stroke-[#3ca2fa] font-[helvetica] font-bold dark:stroke-[#3ca2fa99]"
+        className="fill-transparent stroke-[hsl(var(--primary))] font-[helvetica] font-bold dark:stroke-[hsl(var(--primary))]"
         initial={{ strokeDashoffset: 1000, strokeDasharray: 1000 }}
         animate={{
           strokeDashoffset: 0,
@@ -138,14 +138,14 @@ export const FooterBackgroundGradient = () => {
         className="absolute inset-0 z-0 dark:block hidden"
         style={{
           background:
-            "radial-gradient(125% 125% at 50% 10%, #0F0F1166 50%, #3ca2fa33 100%)",
+            "radial-gradient(125% 125% at 50% 10%, #0F0F1166 50%, hsl(var(--primary)) 100%)",
         }}
       />
       <div
         className="absolute inset-0 z-0 block dark:hidden"
         style={{
           background:
-            "radial-gradient(125% 125% at 50% 10%, #F8FAFC 50%, #3ca2fa11 100%)",
+            "radial-gradient(125% 125% at 50% 10%, #F8FAFC 50%, hsl(var(--primary)/0.2) 100%)",
         }}
       />
     </>
