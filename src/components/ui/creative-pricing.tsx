@@ -61,7 +61,7 @@ export function CreativePricing({
                 </p>
             </div>
 
-            <div className="grid grid-cols-1 md:grid-cols-3 gap-6 md:gap-8 px-2 md:px-0">
+            <div className="grid grid-cols-2 md:grid-cols-3 gap-3 md:gap-8 px-1 md:px-0">
                 {tiers.map((tier, index) => (
                     <div
                         key={tier.name}
@@ -70,7 +70,7 @@ export function CreativePricing({
                             "transition-all duration-300",
                             index === 0 && "md:rotate-[-1deg]",
                             index === 1 && "md:rotate-[1deg]",
-                            index === 2 && "md:rotate-[-2deg]"
+                            index === 2 && "md:rotate-[-2deg] col-span-2 md:col-span-1"
                         )}
                     >
                         <div
@@ -85,19 +85,19 @@ export function CreativePricing({
                             )}
                         />
 
-                        <div className="relative p-6 flex flex-col h-full">
+                        <div className="relative p-3 md:p-6 flex flex-col h-full">
                             {tier.popular && (
                                 <div
-                                    className="absolute -top-4 -right-4 bg-primary text-white font-bold px-4 py-1 rounded-full rotate-12 text-sm border-2 border-zinc-900 shadow-sm"
+                                    className="absolute -top-3 -right-3 md:-top-4 md:-right-4 bg-primary text-white font-bold px-2 md:px-4 py-0.5 md:py-1 rounded-full rotate-12 text-xs md:text-sm border-2 border-zinc-900 shadow-sm z-10"
                                 >
                                     Most Popular!
                                 </div>
                             )}
 
-                            <div className="mb-6">
+                            <div className="mb-4 md:mb-6">
                                 <div
                                     className={cn(
-                                        "w-14 h-14 rounded-full mb-4",
+                                        "w-10 h-10 md:w-14 md:h-14 rounded-full mb-3 md:mb-4",
                                         "flex items-center justify-center",
                                         "border-2 border-zinc-900 dark:border-white",
                                         "bg-neutral-100 dark:bg-neutral-800 text-primary"
@@ -105,38 +105,38 @@ export function CreativePricing({
                                 >
                                     {tier.icon}
                                 </div>
-                                <h3 className="text-2xl font-bold text-zinc-900 dark:text-white mb-2">
+                                <h3 className="text-lg md:text-2xl font-bold text-zinc-900 dark:text-white mb-1 md:mb-2">
                                     {tier.name}
                                 </h3>
-                                <p className="text-zinc-600 dark:text-zinc-400 text-sm">
+                                <p className="text-zinc-600 dark:text-zinc-400 text-xs md:text-sm leading-tight md:leading-normal">
                                     {tier.description}
                                 </p>
                             </div>
 
                             {/* Price */}
-                            <div className="mb-6">
-                                <span className="text-4xl font-bold text-zinc-900 dark:text-white">
+                            <div className="mb-4 md:mb-6">
+                                <span className="text-2xl md:text-4xl font-bold text-zinc-900 dark:text-white">
                                     {typeof tier.price === 'number' ? `$${tier.price}` : tier.price}
                                 </span>
                                 {typeof tier.price === 'number' && (
-                                    <span className="text-zinc-600 dark:text-zinc-400">
+                                    <span className="text-zinc-600 dark:text-zinc-400 text-xs md:text-base ml-1">
                                         /project
                                     </span>
                                 )}
                             </div>
 
-                            <div className="space-y-4 mb-8 flex-grow">
+                            <div className="space-y-2 md:space-y-4 mb-6 md:mb-8 flex-grow">
                                 {tier.features.map((feature) => (
                                     <div
                                         key={feature}
-                                        className="flex items-start gap-3"
+                                        className="flex items-start gap-2 md:gap-3"
                                     >
                                         <div
-                                            className="mt-0.5 min-w-5 h-5 rounded-full border-2 border-zinc-900 dark:border-white flex items-center justify-center bg-primary text-white"
+                                            className="mt-0.5 min-w-4 w-4 h-4 md:min-w-5 md:h-5 rounded-full border-2 border-zinc-900 dark:border-white flex items-center justify-center bg-primary text-white shrink-0"
                                         >
-                                            <Check className="w-3 h-3 stroke-[3]" />
+                                            <Check className="w-2.5 h-2.5 md:w-3 md:h-3 stroke-[3]" />
                                         </div>
-                                        <span className="text-zinc-900 dark:text-white text-sm">
+                                        <span className="text-zinc-900 dark:text-white text-xs md:text-sm">
                                             {feature}
                                         </span>
                                     </div>
@@ -146,7 +146,7 @@ export function CreativePricing({
                             <MagneticButton className="w-full mt-auto">
                                 <Button
                                     className={cn(
-                                        "w-full h-12 text-lg font-bold relative",
+                                        "w-full h-10 md:h-12 text-sm md:text-lg font-bold relative",
                                         "border-2 border-zinc-900 dark:border-white",
                                         "transition-all duration-300",
                                         "shadow-[4px_4px_0px_0px] shadow-zinc-900 dark:shadow-white",
@@ -169,7 +169,8 @@ export function CreativePricing({
                                     )}
                                     onClick={() => setIsCalendlyOpen(true)}
                                 >
-                                    Book Strategy Call
+                                    <span className="block md:hidden">Book Now</span>
+                                    <span className="hidden md:block">Book Strategy Call</span>
                                 </Button>
                             </MagneticButton>
                         </div>
