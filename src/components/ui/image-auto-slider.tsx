@@ -113,7 +113,7 @@ const FlipCard = ({ project }: { project: Project }) => {
 
   return (
     <div 
-      className="relative w-64 h-80 md:w-80 md:h-96 lg:w-96 lg:h-[30rem] perspective-1000 cursor-pointer group"
+      className="relative w-[75vw] sm:w-64 h-80 md:w-80 md:h-96 lg:w-96 lg:h-[30rem] perspective-1000 cursor-pointer group"
       onClick={() => setIsFlipped(!isFlipped)}
     >
       <motion.div
