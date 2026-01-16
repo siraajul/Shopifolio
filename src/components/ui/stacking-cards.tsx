@@ -1,7 +1,8 @@
 "use client";
 
+import React, { useState, useRef } from "react";
+import NextImage from "next/image";
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
-import { useRef } from "react";
 import { cn } from "@/lib/utils";
 
 interface Card {
@@ -89,10 +90,12 @@ const Card = ({
                 style={{ scale: imageScale }}
                 className="w-full h-full"
               >
-                <img
+                <NextImage
                   src={src}
-                  alt="image"
-                  className="object-cover w-full h-full"
+                  alt={title || "Service demonstration"}
+                  fill
+                  sizes="(max-width: 768px) 100vw, 50vw"
+                  className="object-cover"
                 />
               </motion.div>
             </div>

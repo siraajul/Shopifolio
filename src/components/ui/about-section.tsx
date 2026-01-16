@@ -2,6 +2,7 @@
 import { TimelineContent } from "@/components/ui/timeline-animation";
 import {VerticalCutReveal} from "@/components/ui/vertical-cut-reveal";
 import { ArrowRight, Github } from "lucide-react";
+import NextImage from "next/image";
 import { useRef } from "react";
 import { urlFor } from "@/sanity/lib/image";
 import { BlurTextEffect } from "@/components/ui/blur-text-effect";
@@ -98,7 +99,7 @@ export default function AboutSection3({ data }: AboutProps) {
               rel="noopener noreferrer"
               className="w-8 h-8 md:w-10 md:h-10 border border-gray-200 bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-lg flex items-center justify-center cursor-pointer hover:scale-110 transition-transform"
             >
-              <img src="https://pro-section.ui-layouts.com/facebook.svg" alt="fb" className="w-5 h-5 md:w-6 md:h-6" />
+              <NextImage src="https://pro-section.ui-layouts.com/facebook.svg" alt="fb" width={24} height={24} className="w-5 h-5 md:w-6 md:h-6" />
             </TimelineContent>
             <TimelineContent
               as="a"
@@ -110,7 +111,7 @@ export default function AboutSection3({ data }: AboutProps) {
               rel="noopener noreferrer"
               className="w-8 h-8 md:w-10 md:h-10 border border-gray-200 bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-lg flex items-center justify-center cursor-pointer hover:scale-110 transition-transform"
             >
-              <img src="https://pro-section.ui-layouts.com/instagram.svg" alt="insta" className="w-5 h-5 md:w-6 md:h-6" />
+              <NextImage src="https://pro-section.ui-layouts.com/instagram.svg" alt="insta" width={24} height={24} className="w-5 h-5 md:w-6 md:h-6" />
             </TimelineContent>
             <TimelineContent
               as="a"
@@ -122,7 +123,7 @@ export default function AboutSection3({ data }: AboutProps) {
               rel="noopener noreferrer"
               className="w-8 h-8 md:w-10 md:h-10 border border-gray-200 bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-lg flex items-center justify-center cursor-pointer hover:scale-110 transition-transform"
             >
-              <img src="https://pro-section.ui-layouts.com/linkedin.svg" alt="linkedin" className="w-5 h-5 md:w-6 md:h-6" />
+              <NextImage src="https://pro-section.ui-layouts.com/linkedin.svg" alt="linkedin" width={24} height={24} className="w-5 h-5 md:w-6 md:h-6" />
             </TimelineContent>
             <TimelineContent
               as="a"
@@ -147,10 +148,13 @@ export default function AboutSection3({ data }: AboutProps) {
             customVariants={scaleVariants}
             className="relative group w-full aspect-[3/1] md:aspect-[2.5/1] overflow-hidden rounded-2xl"
           >
-            <img
+            <NextImage
               src={profileImageUrl}
               alt="Profile"
-              className="w-full h-full object-cover"
+              fill
+              className="object-cover"
+              sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
+              priority
             />
           </TimelineContent>
 

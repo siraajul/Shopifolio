@@ -4,6 +4,7 @@ import React, { useState } from 'react';
 import { motion, AnimatePresence } from "motion/react";
 import { ExternalLink, Layers, Clock, Palette, TrendingUp, MousePointerClick } from "lucide-react";
 import Link from "next/link";
+import NextImage from "next/image";
 
 interface Project {
   id: number;
@@ -125,11 +126,13 @@ const FlipCard = ({ project }: { project: Project }) => {
       >
         {/* Front Face */}
         <div className="absolute inset-0 w-full h-full backface-hidden rounded-xl overflow-hidden shadow-2xl border border-border">
-          <img
+          <NextImage
             src={project.image}
             alt={project.title}
-            className="w-full h-full object-cover"
-            loading="lazy"
+            fill
+            sizes="(max-width: 768px) 75vw, (max-width: 1200px) 33vw, 25vw"
+            className="object-cover"
+            priority={false}
           />
           <div className="absolute inset-0 bg-black/20 group-hover:bg-black/40 transition-colors" />
           
