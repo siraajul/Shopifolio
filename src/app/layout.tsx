@@ -4,7 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
 import { ThemeToggle } from "@/components/ui/theme-toggle";
 import SmoothScroll from "@/components/ui/smooth-scroll";
-import { CustomCursor } from "@/components/ui/custom-cursor";
+
 import { Preloader } from "@/components/ui/preloader";
 import { Analytics } from "@vercel/analytics/next";
 
@@ -19,37 +19,37 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata: Metadata = {
-  metadataBase: new URL(process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://shopifolio.vercel.app'),
+  metadataBase: new URL(process.env.VERCEL_URL ? `https://${process.env.VERCEL_URL}` : 'https://shift2dynamic.vercel.app'),
   title: {
-    default: "Riajul | Shopify Developer & Web Designer",
-    template: "%s | Riajul"
+    default: "Shift2Dynamic | Shopify Developer & Web Designer",
+    template: "%s | Shift2Dynamic"
   },
-  description: "Expert Shopify development and web design services. I build high-converting, beautiful e-commerce experiences and custom websites.",
+  description: "Expert Shopify development and web design services. We build high-converting, beautiful e-commerce experiences and custom websites.",
   keywords: [
     "Shopify Developer", "Web Designer", "E-commerce Expert", "React Developer", "Next.js", 
-    "Portfolio", "Freelancer", "UI/UX", "Frontend Developer"
+    "Agency", "Shift2Dynamic", "UI/UX", "Frontend Developer"
   ],
-  authors: [{ name: "Riajul", url: "https://shopifolio.vercel.app" }],
-  creator: "Riajul",
+  authors: [{ name: "Shift2Dynamic", url: "https://shift2dynamic.vercel.app" }],
+  creator: "Shift2Dynamic",
   openGraph: {
-    type: "profile",
+    type: "website",
     locale: "en_US",
     url: "/",
-    title: "Riajul | Shopify Developer & Web Designer",
+    title: "Shift2Dynamic | Shopify Developer & Web Designer",
     description: "Expert Shopify development and web design services. Building standard-setting e-commerce experiences.",
-    siteName: "Riajul Portfolio",
+    siteName: "Shift2Dynamic",
     images: [
       {
         url: "/og-image.jpg", // Ensure you have an og-image.jpg in your public folder
         width: 1200,
         height: 630,
-        alt: "Shopifolio Agency Showcase",
+        alt: "Shift2Dynamic Agency Showcase",
       },
     ],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Shopifolio | Premium Shopify & Web Solutions",
+    title: "Shift2Dynamic | Premium Shopify & Web Solutions",
     description: "Expert Shopify development and web design services.",
     images: ["/og-image.jpg"],
   },
@@ -87,20 +87,19 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{
             __html: JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Person",
-              "name": "Riajul",
-              "url": "https://shopifolio.vercel.app",
-              "image": "https://shopifolio.vercel.app/og-image.jpg",
-              "jobTitle": "Shopify Developer & Web Designer",
+              "@type": "Organization",
+              "name": "Shift2Dynamic",
+              "url": "https://shift2dynamic.vercel.app",
+              "logo": "https://shift2dynamic.vercel.app/og-image.jpg",
               "description": "Expert Shopify development and web design services.",
               "address": {
                 "@type": "PostalAddress",
                 "addressCountry": "US"
               },
               "sameAs": [
-                "https://linkedin.com/in/yourprofile",
-                "https://twitter.com/yourhandle",
-                "https://github.com/yourusername"
+                "https://linkedin.com/company/shift2dynamic",
+                "https://twitter.com/shift2dynamic",
+                "https://github.com/shift2dynamic"
               ]
             })
           }}
@@ -112,7 +111,7 @@ export default function RootLayout({
           disableTransitionOnChange
         >
           <SmoothScroll>
-            <CustomCursor />
+
             <Preloader />
             {children}
           </SmoothScroll>

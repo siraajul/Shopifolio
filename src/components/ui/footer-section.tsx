@@ -40,9 +40,9 @@ export interface FooterProps {
 
 export function Footer({ data }: FooterProps) {
   const {
-    companyName = "Riajul",
+    companyName = "Shift2Dynamic",
     tagline = "Transforming Shopify stores into high-performance digital powerhouses.",
-    email = "hello@shopifolio.com",
+    email = "hello@shift2dynamic.com",
     location = "Global Remote",
     socialLinks = [],
     footerLinks = [],
@@ -62,7 +62,7 @@ export function Footer({ data }: FooterProps) {
   return (
     <footer className="bg-secondary/20 dark:bg-[#0F0F11]/30 relative h-fit w-full overflow-hidden border-t border-border pb-28">
       {/* Text hover effect */}
-      <div className="lg:flex hidden h-[20rem] items-center justify-center w-full pointer-events-none xl:pointer-events-auto mt-10">
+      <div className="flex h-[10rem] sm:h-[15rem] lg:h-[20rem] items-center justify-center w-full pointer-events-none xl:pointer-events-auto mt-10">
         <TextHoverEffect text={companyName.toUpperCase()} className="z-50" />
       </div>
       <div className="max-w-7xl mx-auto px-6 py-10 md:p-14 z-40 relative">

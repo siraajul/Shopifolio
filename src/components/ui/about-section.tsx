@@ -4,6 +4,7 @@ import {VerticalCutReveal} from "@/components/ui/vertical-cut-reveal";
 import { ArrowRight } from "lucide-react";
 import { useRef } from "react";
 import { urlFor } from "@/sanity/lib/image";
+import { BlurTextEffect } from "@/components/ui/blur-text-effect";
 
 interface AboutProps {
   data?: {
@@ -25,11 +26,11 @@ export default function AboutSection3({ data }: AboutProps) {
   
   // Default values / Fallbacks
   const {
-    name = "RIAJUL",
-    role = "Shopify Developer | Technical Consultant",
-    description = "Crafting Words That Make a Difference.",
-    bio1 = "I specialize in building scalable Shopify stores, custom themes, and high-quality apps. My goal is to empower D2C brands with technology that drives growth.",
-    bio2 = "From complex migrations to headless commerce solutions, I bring deep technical expertise to every project. Let's build a store that converts.",
+    name = "SHIFT2DYNAMIC",
+    role = "Shopify Development Agency",
+    description = "Crafting Digital Experiences.",
+    bio1 = "We specialize in building scalable Shopify stores, custom themes, and high-quality apps. Our goal is to empower D2C brands with technology that drives growth.",
+    bio2 = "From complex migrations to headless commerce solutions, we bring deep technical expertise to every project. Let's build a store that converts.",
     ctaText = "LET'S COLLABORATE",
     stats = [],
     profileImage
@@ -185,7 +186,7 @@ export default function AboutSection3({ data }: AboutProps) {
               {stats.length > 0 ? (
                 stats.map((stat, idx) => (
                   <div key={idx} className="flex items-center gap-2 mb-2 sm:text-base text-xs">
-                    <span className="text-red-500 font-bold">{stat.value}</span>
+                    <BlurTextEffect className="text-red-500 font-bold">{stat.value}</BlurTextEffect>
                     <span className="text-gray-600 dark:text-gray-400">{stat.label}</span>
                     {idx < stats.length - 1 && <span className="text-gray-300 dark:text-gray-600">|</span>}
                   </div>
@@ -193,12 +194,12 @@ export default function AboutSection3({ data }: AboutProps) {
               ) : (
                 <>
                   <div className="flex items-center gap-2 mb-2 sm:text-base text-xs">
-                    <span className="text-red-500 font-bold">5+</span>
+                    <BlurTextEffect className="text-red-500 font-bold">5+</BlurTextEffect>
                     <span className="text-gray-600 dark:text-gray-400">years in e-commerce</span>
                     <span className="text-gray-300 dark:text-gray-600">|</span>
                   </div>
                   <div className="flex items-center gap-2 mb-2 sm:text-base text-xs">
-                    <span className="text-red-500 font-bold">$10M+</span>
+                    <BlurTextEffect className="text-red-500 font-bold">$10M+</BlurTextEffect>
                     <span className="text-gray-600 dark:text-gray-400">client sales</span>
                   </div>
                 </>
@@ -212,7 +213,7 @@ export default function AboutSection3({ data }: AboutProps) {
                 customVariants={revealVariants}
                 className="flex lg:text-4xl sm:text-3xl text-2xl items-center gap-2 mb-2"
               >
-                <span className="text-red-500 font-semibold">50+</span>
+                <BlurTextEffect className="text-red-500 font-semibold">50+</BlurTextEffect>
                 <span className="text-gray-600 dark:text-gray-400 uppercase">stores</span>
               </TimelineContent>
               <TimelineContent
@@ -222,7 +223,7 @@ export default function AboutSection3({ data }: AboutProps) {
                 customVariants={revealVariants}
                 className="flex items-center gap-2 mb-2 sm:text-base text-xs"
               >
-                <span className="text-red-500 font-bold">Top</span>
+                <BlurTextEffect className="text-red-500 font-bold">Top</BlurTextEffect>
                 <span className="text-gray-600 dark:text-gray-400">optimization expert</span>
                 <span className="text-gray-300 dark:text-gray-600 lg:hidden block">|</span>
               </TimelineContent>

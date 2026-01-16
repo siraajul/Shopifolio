@@ -42,7 +42,7 @@ export default function IndustriesSection() {
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <InteractiveSelector 
           options={industryOptions} 
-          title="Industries I Serve"
+          title="Industries We Serve"
           description="Specialized experience in key e-commerce sectors."
         />
       </div>

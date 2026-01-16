@@ -6,8 +6,11 @@ import { GlobalIcon, FastIcon, StoresIcon, ThemesIcon, AppsIcon, SalesIcon } fro
 import { Briefcase, Lightning, Star, CurrencyDollar, Question, Envelope } from "@phosphor-icons/react"
 import { SiShopify, SiReact, SiNextdotjs, SiRemix, SiGraphql, SiTypescript, SiJavascript, SiHtml5, SiCss3, SiTailwindcss, SiMongodb, SiNodedotjs, SiExpress } from "react-icons/si"
 import { TbApi } from "react-icons/tb"
+import { ArrowRight } from "lucide-react"
 import { LimelightNav } from "@/components/ui/limelight-nav"
 import { useState, useEffect, useRef } from "react"
+import { PopupModal } from "react-calendly"
+import { HyperText } from "@/components/ui/hyper-text"
 
 import AboutSection3 from "@/components/ui/about-section"
 import ServicesSection from "@/components/ui/services"
@@ -34,6 +37,15 @@ export interface HomeProps {
 export default function HomeClient({ data }: { data: HomeProps }) {
   const [activeTab, setActiveTab] = useState(0)
   const isManualScroll = useRef(false);
+  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
+  const [rootElement, setRootElement] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    // Wait for mount to set root element, avoids SSR issues and type errors
+    if (typeof document !== 'undefined') {
+       setRootElement(document.getElementById("home") || document.body);
+    }
+  }, []);
 
   const scrollToSection = (id: string, index: number) => {
     setActiveTab(index);
@@ -125,6 +137,53 @@ export default function HomeClient({ data }: { data: HomeProps }) {
             </motion.div>
           </LayoutGroup>
         </div>
+
+        <motion.div
+           initial={{ opacity: 0, y: 20 }}
+           animate={{ opacity: 1, y: 0 }}
+           transition={{ duration: 0.5, delay: 0.5 }}
+           className="mt-8 relative z-20 flex flex-col items-center gap-6"
+        >
+          {/* Stats Sub-heading */}
+          <div className="flex flex-wrap justify-center items-center gap-x-4 gap-y-2 text-sm sm:text-base text-gray-600 dark:text-gray-400">
+            <div className="flex items-center gap-2">
+               <HyperText className="text-red-500 font-bold" text="5+" />
+               <span>years in e-commerce</span>
+            </div>
+            <span className="text-gray-300 dark:text-gray-600 hidden sm:inline">|</span>
+            <div className="flex items-center gap-2">
+               <HyperText className="text-red-500 font-bold" text="$10M+" />
+               <span>client sales</span>
+            </div>
+            <span className="text-gray-300 dark:text-gray-600 hidden sm:inline">|</span>
+             <div className="flex items-center gap-2">
+               <HyperText className="text-red-500 font-bold" text="50+" />
+               <span>stores</span>
+            </div>
+             <span className="text-gray-300 dark:text-gray-600 hidden sm:inline">|</span>
+            <div className="flex items-center gap-2">
+               <HyperText className="text-red-500 font-bold" text="Top" />
+               <span>optimization experts</span>
+            </div>
+          </div>
+
+          <button 
+            onClick={() => setIsCalendlyOpen(true)}
+            className="group relative flex items-center gap-2 px-8 py-4 bg-primary text-primary-foreground rounded-full text-lg font-bold hover:scale-105 transition-all duration-300 shadow-[0_0_40px_-10px_rgba(var(--primary-rgb),0.5)] hover:shadow-[0_0_60px_-15px_rgba(var(--primary-rgb),0.7)]"
+          >
+            Book Strategy Call
+            <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+          </button>
+        </motion.div>
+        
+        {rootElement && (
+          <PopupModal
+            url="https://calendly.com/riajul"
+            onModalClose={() => setIsCalendlyOpen(false)}
+            open={isCalendlyOpen}
+            rootElement={rootElement}
+          />
+        )}
 
         <motion.div
           className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"

@@ -43,7 +43,7 @@ export default function ProcessSection() {
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <StackingCards 
           cards={cards}
-          title="My Workflow"
+          title="Our Workflow"
           description="A proven process to build high-converting Shopify stores."
         />
       </div>

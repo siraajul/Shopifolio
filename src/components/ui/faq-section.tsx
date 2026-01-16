@@ -13,29 +13,29 @@ const faqData = {
   "general": [
     {
       question: "Do you work with new stores or only established brands?",
-      answer: "I work with both! Whether you're launching your first store or scaling an 8-figure brand, I have packages tailored to your growth stage."
+      answer: "We work with both! Whether you're launching your first store or scaling an 8-figure brand, we have packages tailored to your growth stage."
     },
     {
       question: "Can you help with migration from WooCommerce/Magento?",
-      answer: "Yes, I specialize in complex data migrations. I ensure all your products, customers, and order history are transferred safely to Shopify without losing SEO rankings."
+      answer: "Yes, we specialize in complex data migrations. We ensure all your products, customers, and order history are transferred safely to Shopify without losing SEO rankings."
     },
     {
       question: "Do you provide ongoing support after launch?",
-      answer: "Absolutely. My 'Growth Partner' retainer is designed exactly for this. I handle updates, new features, and optimization so you can focus on marketing."
+      answer: "Absolutely. Our 'Growth Partner' retainer is designed exactly for this. We handle updates, new features, and optimization so you can focus on marketing."
     }
   ],
   "technical": [
     {
       question: "Do you use pre-made themes or build from scratch?",
-      answer: "It depends on your needs. For speed and budget, I customize premium themes (like Dawn or Prestige). For unique brand experiences, I build custom themes from scratch using Liquid and Tailwind."
+      answer: "It depends on your needs. For speed and budget, we customize premium themes (like Dawn or Prestige). For unique brand experiences, we build custom themes from scratch using Liquid and Tailwind."
     },
     {
       question: "Can you build custom private apps?",
-      answer: "Yes. If an existing app doesn't solve your problem, I build custom private apps using Node.js and React (Remix) to extend Shopify's functionality."
+      answer: "Yes. If an existing app doesn't solve your problem, we build custom private apps using Node.js and React (Remix) to extend Shopify's functionality."
     },
     {
       question: "How do you handle site speed optimization?",
-      answer: "I follow a strict performance checklist: lazy loading, image compression, code splitting, and minimizing third-party scripts. My goal is always a sub-2-second load time."
+      answer: "We follow a strict performance checklist: lazy loading, image compression, code splitting, and minimizing third-party scripts. Our goal is always a sub-2-second load time."
     }
   ],
   "process": [
@@ -45,17 +45,17 @@ const faqData = {
     },
     {
       question: "What do you need from me to get started?",
-      answer: "I'll need your branding assets (logo, fonts), product details, and access to your Shopify store. If you don't have a store yet, I can set up a development store for you."
+      answer: "We'll need your branding assets (logo, fonts), product details, and access to your Shopify store. If you don't have a store yet, we can set up a development store for you."
     },
     {
       question: "Do you handle the design as well?",
-      answer: "I am a technical developer first. While I have a good eye for UI/UX, for major rebrands, I prefer to collaborate with a dedicated designer. I can recommend some amazing ones if needed."
+      answer: "We are technical developers first. While we have a good eye for UI/UX, for major rebrands, we prefer to collaborate with dedicated designers. We can recommend some amazing ones if needed."
     }
   ],
   "pricing": [
     {
       question: "What is your hourly rate?",
-      answer: "I primarily work on a project-based or retainer model, which provides more value and predictability than hourly billing. However, for small tweaks, we can discuss an hourly arrangement."
+      answer: "We primarily work on a project-based or retainer model, which provides more value and predictability than hourly billing. However, for small tweaks, we can discuss an hourly arrangement."
     },
     {
       question: "Do you offer payment plans?",
@@ -63,7 +63,7 @@ const faqData = {
     },
     {
       question: "Is there a minimum project size?",
-      answer: "My minimum engagement for custom work starts at $1,000. For smaller tasks, I recommend grouping them into a 'day rate' sprint."
+      answer: "Our minimum engagement for custom work starts at $1,000. For smaller tasks, we recommend grouping them into a 'day rate' sprint."
     }
   ]
 };

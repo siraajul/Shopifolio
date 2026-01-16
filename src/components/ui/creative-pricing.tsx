@@ -4,6 +4,8 @@ import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { MagneticButton } from "@/components/ui/magnetic-button";
+import { useState, useEffect } from "react";
+import { PopupModal } from "react-calendly";
 
 export interface PricingTier {
     name: string;
@@ -26,6 +28,14 @@ export function CreativePricing({
     description?: string;
     tiers: PricingTier[];
 }) {
+    const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
+    const [rootElement, setRootElement] = useState<HTMLElement | null>(null);
+
+    useEffect(() => {
+        if (typeof document !== 'undefined') {
+            setRootElement(document.getElementById("pricing") || document.body);
+        }
+    }, []);
     return (
         <div className="w-full max-w-7xl mx-auto px-4 py-12 md:py-20 bg-transparent font-sans overflow-hidden md:overflow-visible">
             <div className="text-center space-y-6 mb-12 md:mb-16">
@@ -157,6 +167,7 @@ export function CreativePricing({
                                                   "active:bg-zinc-50 dark:active:bg-zinc-800",
                                               ]
                                     )}
+                                    onClick={() => setIsCalendlyOpen(true)}
                                 >
                                     Book Strategy Call
                                 </Button>
@@ -165,6 +176,15 @@ export function CreativePricing({
                     </div>
                 ))}
             </div>
+
+            {rootElement && (
+                <PopupModal
+                    url="https://calendly.com/riajul"
+                    onModalClose={() => setIsCalendlyOpen(false)}
+                    open={isCalendlyOpen}
+                    rootElement={rootElement}
+                />
+            )}
         </div>
     );
 }
