@@ -13,6 +13,7 @@ interface TimelineContentProps extends MotionProps {
   href?: string
   target?: string
   rel?: string
+  onClick?: React.MouseEventHandler<any>
 }
 
 export const TimelineContent = forwardRef<HTMLElement, TimelineContentProps>(

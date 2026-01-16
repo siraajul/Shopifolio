@@ -61,12 +61,16 @@ const Card = ({
       <motion.div
         style={{
           "--card-color": color,
-          "--card-dark-color": darkColor || "#171717", // Default to neutral-900 if undefined
           scale,
           top: `calc(-5vh + ${i * 25}px)`,
         } as any}
-        className="flex flex-col-reverse md:flex-row relative -top-[5%] md:-top-[25%] min-h-[350px] h-fit md:h-[600px] w-[95vw] md:w-[1200px] rounded-2xl md:rounded-3xl p-4 md:p-10 origin-top border border-neutral-200 dark:border-neutral-800 shadow-2xl bg-[var(--card-color)] dark:bg-[var(--card-dark-color)] transition-colors duration-300"
+        className="flex flex-col-reverse md:flex-row relative -top-[5%] md:-top-[25%] min-h-[350px] h-fit md:h-[600px] w-[95vw] md:w-[1200px] rounded-2xl md:rounded-3xl p-4 md:p-10 origin-top border border-white/10 dark:border-white/10 shadow-2xl bg-zinc-900/40 backdrop-blur-xl overflow-hidden group hover:border-primary/30 transition-colors duration-500"
       >
+        {/* Internal Glow Effect */}
+        <div 
+          className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--card-color)]/20 blur-[150px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/2 opacity-60 mix-blend-screen" 
+          aria-hidden="true"
+        />
         <div className="flex flex-col-reverse md:flex-row h-full gap-3 md:gap-10 w-full">
           <div className={cn(
             "flex flex-col justify-between h-full pt-2 md:pt-0",

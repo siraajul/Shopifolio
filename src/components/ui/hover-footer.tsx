@@ -50,15 +50,19 @@ export const TextHoverEffect = ({
           cy="50%"
           r="25%"
         >
-          {hovered && (
-            <>
-              <stop offset="0%" stopColor="#eab308" />
-              <stop offset="25%" stopColor="#ef4444" />
-              <stop offset="50%" stopColor="#80eeb4" />
-              <stop offset="75%" stopColor="#06b6d4" />
-              <stop offset="100%" stopColor="#8b5cf6" />
-            </>
-          )}
+          <stop offset="0%" stopColor="#eab308" />
+          <stop offset="25%" stopColor="#ef4444" />
+          <stop offset="50%" stopColor="#80eeb4" />
+          <stop offset="75%" stopColor="#06b6d4" />
+          <stop offset="100%" stopColor="#8b5cf6" />
+          <animateTransform
+            attributeName="gradientTransform"
+            type="rotate"
+            from="0 0.5 0.5"
+            to="360 0.5 0.5"
+            dur="4s"
+            repeatCount="indefinite"
+          />
         </linearGradient>
 
         <motion.radialGradient

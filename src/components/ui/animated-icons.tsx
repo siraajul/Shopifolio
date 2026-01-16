@@ -1,8 +1,77 @@
-"use client";
-
 import { motion } from "motion/react";
-import { Globe, Zap, ShoppingBag, Palette, AppWindow, TrendingUp } from "lucide-react";
+import { Globe, Zap, ShoppingBag, Palette, AppWindow, TrendingUp, Trophy, ShieldCheck, Gem, Layers } from "lucide-react";
 
+export const SevenFigureIcon = () => {
+  return (
+    <div className="flex items-center gap-2">
+      7-Figure
+      <motion.div
+        animate={{ rotateY: 360 }}
+        transition={{ duration: 3, repeat: Infinity, ease: "linear" }}
+      >
+        <Trophy className="w-5 h-5 max-[375px]:w-4 max-[375px]:h-4 sm:w-8 sm:h-8 md:w-12 md:h-12 text-white" />
+      </motion.div>
+    </div>
+  );
+};
+
+export const ProvenIcon = () => {
+  return (
+    <div className="flex items-center gap-2">
+      Proven
+      <motion.div
+        animate={{ scale: [1, 1.2, 1] }}
+        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <ShieldCheck className="w-5 h-5 max-[375px]:w-4 max-[375px]:h-4 sm:w-8 sm:h-8 md:w-12 md:h-12 text-white" />
+      </motion.div>
+    </div>
+  );
+};
+
+export const ConvertingIcon = () => {
+  return (
+    <div className="flex items-center gap-2">
+      Converting
+      <motion.div
+        animate={{ x: [-2, 2, -2], y: [1, -2, 1] }}
+        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <TrendingUp className="w-5 h-5 max-[375px]:w-4 max-[375px]:h-4 sm:w-8 sm:h-8 md:w-12 md:h-12 text-white" />
+      </motion.div>
+    </div>
+  );
+};
+
+export const PremiumIcon = () => {
+  return (
+    <div className="flex items-center gap-2">
+      Premium
+      <motion.div
+        animate={{ rotate: [-10, 10, -10], filter: ["brightness(1)", "brightness(1.5)", "brightness(1)"] }}
+        transition={{ duration: 2, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <Gem className="w-5 h-5 max-[375px]:w-4 max-[375px]:h-4 sm:w-8 sm:h-8 md:w-12 md:h-12 text-white" />
+      </motion.div>
+    </div>
+  );
+};
+
+export const ScalableIcon = () => {
+  return (
+    <div className="flex items-center gap-2">
+      Scalable
+      <motion.div
+        animate={{ y: [0, -4, 0] }}
+        transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
+      >
+        <Layers className="w-5 h-5 max-[375px]:w-4 max-[375px]:h-4 sm:w-8 sm:h-8 md:w-12 md:h-12 text-white" />
+      </motion.div>
+    </div>
+  );
+};
+
+// Keep old ones for fallback if needed, or remove them. keeping for safety but not exporting if unused is fine in TS usually, but better to keep exports valid.
 export const GlobalIcon = () => {
   return (
     <div className="flex items-center gap-2">

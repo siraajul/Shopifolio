@@ -43,7 +43,7 @@ const PROJECTS: Project[] = [
   },
   {
     id: 3,
-    image: "https://images.unsplash.com/photo-1596462502278-27bfdd403348?q=80&w=2070&auto=format&fit=crop",
+    image: "https://images.unsplash.com/photo-1629198688000-71f23e745b6e?q=80&w=2080&auto=format&fit=crop",
     title: "PureGlow",
     theme: "Sense",
     apps: ["Okendo", "Postscript", "Rebuy"],

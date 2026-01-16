@@ -20,43 +20,43 @@ interface AboutProps {
     profileImage?: any;
     stats?: { value: string; label: string }[];
   };
+  onCollaborateClick?: () => void;
 }
 
-export default function AboutSection3({ data }: AboutProps) {
+export default function AboutSection3({ data, onCollaborateClick }: AboutProps) {
   const heroRef = useRef<HTMLElement>(null);
   
   // Default values / Fallbacks
   const {
     name = "SHIFT2DYNAMIC",
-    role = "Shopify Development Agency",
-    description = "Crafting Digital Experiences.",
-    bio1 = "We specialize in building scalable Shopify stores, custom themes, and high-quality apps. Our goal is to empower D2C brands with technology that drives growth.",
-    bio2 = "From complex migrations to headless commerce solutions, we bring deep technical expertise to every project. Let's build a store that converts.",
+    role = "Shopify Experts", 
     ctaText = "LET'S COLLABORATE",
-    stats = [],
+    bio1 = "We are a team of expert developers and designers specializing in Shopify.",
+    bio2 = "We help brands scale with high-performance stores and custom solutions.",
+    description = "We craft digital experiences that convert.",
     profileImage
   } = data || {};
 
   const profileImageUrl = profileImage 
-    ? urlFor(profileImage).width(1200).url() 
-    : "https://images.unsplash.com/photo-1718601980986-0ce75101d52d?w=1200&auto=format&fit=crop";
+  ? urlFor(profileImage).url() 
+  : "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?q=80&w=1000&auto=format&fit=crop";
 
   const revealVariants = {
     visible: (i: number) => ({
-      y: 0,
       opacity: 1,
-      filter: "blur(0px)",
+      y: 0,
       transition: {
         delay: i * 0.1,
-        duration: 0.3,
+        duration: 0.5,
+        ease: "easeOut",
       },
     }),
     hidden: {
-      filter: "blur(10px)",
-      y: -20,
       opacity: 0,
+      y: 20,
     },
   };
+
   const scaleVariants = {
     visible: (i: number) => ({
       opacity: 1,
@@ -156,6 +156,27 @@ export default function AboutSection3({ data }: AboutProps) {
               sizes="(max-width: 768px) 100vw, (max-width: 1200px) 80vw, 1200px"
               priority
             />
+            
+            {/* Overlay: Revenue Dashboard Card */}
+            <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 bg-black/60 backdrop-blur-xl border border-white/10 p-4 rounded-xl shadow-2xl flex flex-col gap-2 w-48 md:w-64">
+               <div className="flex items-center justify-between">
+                  <span className="text-xs text-gray-400 uppercase tracking-widest font-semibold">Total Revenue</span>
+                  <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
+               </div>
+               <div className="text-2xl md:text-3xl font-bold text-white flex items-end gap-2">
+                 $10,240,500 <span className="text-xs text-green-400 mb-1">+24%</span>
+               </div>
+               {/* Simple CSS Graph */}
+               <div className="flex items-end gap-1 h-8 mt-1 opacity-80">
+                  <div className="w-full bg-green-500/20 rounded-sm h-[40%]"></div>
+                  <div className="w-full bg-green-500/30 rounded-sm h-[60%]"></div>
+                  <div className="w-full bg-green-500/40 rounded-sm h-[30%]"></div>
+                  <div className="w-full bg-green-500/50 rounded-sm h-[70%]"></div>
+                  <div className="w-full bg-green-500/60 rounded-sm h-[50%]"></div>
+                  <div className="w-full bg-green-500/80 rounded-sm h-[90%]"></div>
+                  <div className="w-full bg-green-500 rounded-sm h-[100%] shadow-[0_0_10px_theme(colors.green.500)]"></div>
+               </div>
+            </div>
           </TimelineContent>
 
           {/* Stats - Responsive Grid */}
@@ -261,8 +282,8 @@ export default function AboutSection3({ data }: AboutProps) {
               </TimelineContent>
 
               <TimelineContent
-                as="a"
-                href="#contact"
+                as="button"
+                onClick={onCollaborateClick}
                 animationNum={15}
                 timelineRef={heroRef}
                 customVariants={revealVariants}
