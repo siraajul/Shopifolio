@@ -105,26 +105,26 @@ export default function HomeClient({ data }: { data: HomeProps }) {
     <main className="bg-background text-foreground min-h-screen w-full">
       <section id="home" className="relative h-screen flex flex-col items-center justify-center p-4">
         {/* Cosmic Glow Background */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 blur-[120px] rounded-full pointer-events-none z-0 mix-blend-screen" />
+        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 blur-[120px] rounded-full pointer-events-none z-0 dark:mix-blend-screen mix-blend-multiply" />
 
         {/* Main Content */}
         <div className="relative z-10 w-full text-center flex flex-col items-center justify-center gap-8">
           <div className="flex flex-col items-center gap-4">
                {/* Trust Badge */}
-               <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-white/10 bg-white/5 backdrop-blur-md mb-4">
+               <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-neutral-200 dark:border-white/10 bg-neutral-100/50 dark:bg-white/5 backdrop-blur-md mb-4">
                   <div className="flex -space-x-2">
                     {[1,2,3].map(i => (
                       <div key={i} className="w-6 h-6 rounded-full bg-gray-600 border border-black" />
                     ))}
                   </div>
-                  <span className="text-sm text-gray-300 font-medium">Trusted by 50+ Brands</span>
+                  <span className="text-sm text-gray-600 dark:text-gray-300 font-medium">Trusted by 50+ Brands</span>
                </div>
 
               <div className="text-4xl max-[375px]:text-3xl sm:text-6xl md:text-8xl flex flex-col sm:flex-row flex-wrap items-center justify-center text-center font-bold font-sans bg-transparent text-foreground overflow-hidden">
                 <LayoutGroup>
                   <motion.div className="flex whitespace-pre" layout>
                     <motion.span
-                      className="pt-0.5 sm:pt-1 md:pt-3 text-white"
+                      className="pt-0.5 sm:pt-1 md:pt-3 text-foreground"
                       layout
                       transition={{ type: "spring", damping: 30, stiffness: 400 }}
                     >
@@ -140,7 +140,7 @@ export default function HomeClient({ data }: { data: HomeProps }) {
                           <ConvertingIcon key="converting" />,
                           <PremiumIcon key="premium" />,
                           <ScalableIcon key="scalable" />,
-                        ]}mainClassName="text-black px-3 sm:px-3 md:px-5 bg-primary overflow-hidden py-0.5 sm:py-1 md:py-3 justify-center rounded-xl whitespace-nowrap"
+                        ]}mainClassName="text-white dark:text-black px-3 sm:px-3 md:px-5 bg-primary overflow-hidden py-0.5 sm:py-1 md:py-3 justify-center rounded-xl whitespace-nowrap"
                       staggerFrom={"last"}
                       initial={{ y: "100%" }}
                       animate={{ y: 0 }}
@@ -154,34 +154,34 @@ export default function HomeClient({ data }: { data: HomeProps }) {
                 </LayoutGroup>
               </div>
 
-              <div className="text-4xl max-[375px]:text-3xl sm:text-6xl md:text-8xl font-bold font-sans text-white mt-2">
+              <div className="text-4xl max-[375px]:text-3xl sm:text-6xl md:text-8xl font-bold font-sans text-foreground mt-2">
                  Shopify Systems
               </div>
 
-              <p className="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto leading-relaxed mt-6">
+              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mt-6">
                 We build high-performance Shopify stores designed to scale. <br />
-                <span className="text-white font-semibold"> Launch in weeks, not months.</span>
+                <span className="text-foreground font-semibold"> Launch in weeks, not months.</span>
               </p>
 
               {/* Stats Sub-heading */}
               <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-sm md:text-base text-gray-400 font-medium mt-4">
                   <div className="flex items-center gap-1">
-                    <HyperText className="text-white font-bold" text="$10M+" />
+                    <HyperText className="text-foreground font-bold" text="$10M+" />
                     <span>Revenue</span>
                   </div>
-                  <div className="hidden md:block w-1 h-1 rounded-full bg-gray-600" />
+                  <div className="hidden md:block w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
                   <div className="flex items-center gap-1">
-                    <HyperText className="text-white font-bold" text="50+" />
+                    <HyperText className="text-foreground font-bold" text="50+" />
                     <span>Stores</span>
                   </div>
-                  <div className="hidden md:block w-1 h-1 rounded-full bg-gray-600" />
+                  <div className="hidden md:block w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
                   <div className="flex items-center gap-1">
-                    <HyperText className="text-white font-bold" text="5+" />
+                    <HyperText className="text-foreground font-bold" text="5+" />
                     <span>Years Exp</span>
                   </div>
-                  <div className="hidden md:block w-1 h-1 rounded-full bg-gray-600" />
+                  <div className="hidden md:block w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
                   <div className="flex items-center gap-1">
-                    <HyperText className="text-white font-bold" text="Top" />
+                    <HyperText className="text-foreground font-bold" text="Top" />
                     <span>Experts</span>
                   </div>
               </div>
@@ -195,7 +195,7 @@ export default function HomeClient({ data }: { data: HomeProps }) {
             >
               Start Your Growth <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
-            <Link href="#work" className="px-8 py-4 text-white hover:text-primary transition-colors font-semibold flex items-center gap-2">
+            <Link href="#work" className="px-8 py-4 text-foreground hover:text-primary transition-colors font-semibold flex items-center gap-2">
               View Selected Work
             </Link>
           </div>
