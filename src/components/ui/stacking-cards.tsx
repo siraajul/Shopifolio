@@ -8,7 +8,8 @@ interface Card {
   id: number;
   title: string;
   description: string;
-  image: string;
+  image?: string;
+  icon?: any;
   color: string;
   darkColor?: string;
 }
@@ -24,6 +25,7 @@ const Card = ({
   title,
   description,
   src,
+  icon: Icon,
   color,
   darkColor,
   progress,
@@ -33,7 +35,8 @@ const Card = ({
   i: number;
   title: string;
   description: string;
-  src: string;
+  src?: string;
+  icon?: any;
   color: string;
   darkColor?: string;
   progress: MotionValue<number>;
@@ -61,12 +64,18 @@ const Card = ({
           scale,
           top: `calc(-5vh + ${i * 25}px)`,
         } as any}
-        className="flex flex-col-reverse md:flex-row relative -top-[10%] md:-top-[25%] h-[600px] md:h-[600px] w-[90vw] md:w-[1200px] rounded-3xl p-6 md:p-10 origin-top border border-neutral-200 dark:border-neutral-800 shadow-2xl bg-[var(--card-color)] dark:bg-[var(--card-dark-color)] transition-colors duration-300"
+        className="flex flex-col-reverse md:flex-row relative -top-[10%] md:-top-[25%] min-h-[400px] h-fit md:h-[600px] w-[90vw] md:w-[1200px] rounded-3xl p-6 md:p-10 origin-top border border-neutral-200 dark:border-neutral-800 shadow-2xl bg-[var(--card-color)] dark:bg-[var(--card-dark-color)] transition-colors duration-300"
       >
-        <div className="flex flex-col-reverse md:flex-row h-full gap-5 md:gap-10">
-          <div className="w-full md:w-[40%] flex flex-col justify-between h-full pt-4 md:pt-0">
+        <div className="flex flex-col-reverse md:flex-row h-full gap-5 md:gap-10 w-full">
+          <div className={cn(
+            "flex flex-col justify-between h-full pt-4 md:pt-0",
+             src ? "w-full md:w-[40%]" : "w-full"
+          )}>
             <div>
-              <h2 className="text-2xl md:text-3xl font-bold mb-2 md:mb-4">{title}</h2>
+              <div className="flex items-center gap-3 mb-2 md:mb-4">
+                 {Icon && <Icon className="w-8 h-8 md:w-10 md:h-10 text-neutral-900 dark:text-neutral-100" />}
+                 <h2 className="text-2xl md:text-3xl font-bold">{title}</h2>
+              </div>
               <p className="text-base md:text-lg text-neutral-600 dark:text-neutral-200">
                 {description}
               </p>
@@ -74,18 +83,20 @@ const Card = ({
             <div className="text-lg md:text-xl font-medium opacity-40 mt-4 md:mt-0">Step 0{i + 1}</div>
           </div>
 
-          <div className="relative w-full md:w-[60%] h-[300px] md:h-full rounded-2xl overflow-hidden shrink-0">
-            <motion.div
-              style={{ scale: imageScale }}
-              className="w-full h-full"
-            >
-              <img
-                src={src}
-                alt="image"
-                className="object-cover w-full h-full"
-              />
-            </motion.div>
-          </div>
+          {src && (
+            <div className="relative w-full md:w-[60%] h-[300px] md:h-full rounded-2xl overflow-hidden shrink-0">
+              <motion.div
+                style={{ scale: imageScale }}
+                className="w-full h-full"
+              >
+                <img
+                  src={src}
+                  alt="image"
+                  className="object-cover w-full h-full"
+                />
+              </motion.div>
+            </div>
+          )}
         </div>
       </motion.div>
     </div>
@@ -122,6 +133,7 @@ export function StackingCards({
             i={i}
             {...card}
             src={card.image}
+            icon={card.icon}
             color={card.color}
             darkColor={card.darkColor}
             progress={scrollYProgress}

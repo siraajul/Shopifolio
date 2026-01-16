@@ -72,7 +72,7 @@ const ServicesSection = () => {
                   id: 1,
                   title: "Store Setup & Migration",
                   description: "Seamless migration to Shopify or setting up a brand new store with best practices.",
-                  image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
+                  icon: Rocket,
                   color: "#e9d5ff",
                   darkColor: "#581c87"
                 },
@@ -80,7 +80,7 @@ const ServicesSection = () => {
                   id: 2,
                   title: "Custom Theme Dev",
                   description: "Bespoke Liquid themes tailored to your brand's unique identity and requirements.",
-                  image: "https://images.unsplash.com/photo-1555099962-4199c345e5dd?auto=format&fit=crop&w=800&q=80",
+                  icon: Palette,
                   color: "#bbf7d0",
                   darkColor: "#14532d"
                 },
@@ -88,7 +88,7 @@ const ServicesSection = () => {
                   id: 3,
                   title: "App Development",
                   description: "Custom Shopify apps using Remix & Node to extend your store's functionality.",
-                  image: "https://images.unsplash.com/photo-1517694712202-14dd9538aa97?auto=format&fit=crop&w=800&q=80",
+                  icon: Code,
                   color: "#fecaca",
                   darkColor: "#7f1d1d" 
                 },
@@ -96,7 +96,7 @@ const ServicesSection = () => {
                   id: 4,
                   title: "Conversion Optimization",
                   description: "Data-driven strategies and performance tuning to maximize your sales.",
-                  image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
+                  icon: Search,
                   color: "#bfdbfe",
                   darkColor: "#1e3a8a"
                 }
