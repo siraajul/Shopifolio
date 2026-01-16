@@ -155,7 +155,7 @@ export default function AboutSection3({ data }: AboutProps) {
           </TimelineContent>
 
           {/* Stats - Responsive Grid */}
-          <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mt-6 md:mt-8 px-2">
+          <div className="grid grid-cols-2 md:flex md:justify-between w-full gap-4 md:gap-0 mt-6 md:mt-8 px-2 md:px-0">
             <TimelineContent
                as="div"
                animationNum={5}
