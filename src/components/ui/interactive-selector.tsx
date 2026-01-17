@@ -46,13 +46,13 @@ const InteractiveSelector = ({
   }, [options.length]);
 
   return (
-    <div className="relative flex flex-col items-center justify-center bg-transparent font-sans text-foreground py-16 snap-start"> 
+    <div className="relative flex flex-col items-center justify-center bg-transparent font-sans text-foreground py-10 md:py-16 snap-start"> 
       {/* Header Section */}
-      <div className="w-full max-w-2xl px-6 mb-8 text-center text-gray-900 dark:text-white">
-        <h2 className="text-4xl md:text-5xl font-extrabold mb-3 tracking-tight drop-shadow-lg animate-fadeInTop delay-300">
+      <div className="w-full max-w-2xl px-6 mb-4 md:mb-8 text-center text-gray-900 dark:text-white">
+        <h2 className="text-3xl md:text-5xl font-extrabold mb-3 tracking-tight drop-shadow-lg animate-fadeInTop delay-300">
           {title}
         </h2>
-        <p className="text-lg md:text-xl text-gray-600 dark:text-gray-300 font-medium max-w-xl mx-auto animate-fadeInTop delay-600">
+        <p className="text-base md:text-xl text-gray-600 dark:text-gray-300 font-medium max-w-xl mx-auto animate-fadeInTop delay-600">
           {description}
         </p>
       </div>
@@ -60,7 +60,7 @@ const InteractiveSelector = ({
       <div className="h-8"></div>
 
       {/* Options Container */}
-      <div className="options flex w-full max-w-[1000px] min-w-[300px] h-[500px] mx-auto items-stretch overflow-hidden relative px-4">
+      <div className="options flex flex-col md:flex-row w-full max-w-[1000px] min-w-[300px] h-[400px] md:h-[500px] mx-auto items-stretch overflow-hidden relative px-4">
         {options.map((option, index) => (
           <div
             key={index}
@@ -73,9 +73,10 @@ const InteractiveSelector = ({
               backgroundSize: activeIndex === index ? 'auto 100%' : 'auto 120%',
               backgroundPosition: 'center',
               flex: activeIndex === index ? '7 1 0%' : '1 1 0%',
-              margin: '0 2px',
+              margin: '2px', // Uniform margin
               borderRadius: '20px',
-              minWidth: '60px',
+              minWidth: '60px', // For horizontal (desktop)
+              minHeight: '50px', // For vertical (mobile)
               opacity: animatedOptions.includes(index) ? 1 : 0,
               transform: animatedOptions.includes(index) ? 'translateX(0)' : 'translateX(-60px)',
             }}
@@ -83,29 +84,32 @@ const InteractiveSelector = ({
           >
             {/* Shadow overlay */}
             <div 
-              className="absolute inset-0 transition-opacity duration-700"
-              style={{
-                background: activeIndex === index 
-                  ? `linear-gradient(to top, rgba(0,0,0,0.95) 0%, rgba(0,0,0,0.6) 40%, rgba(0,0,0,0.3) 100%)` 
-                  : `rgba(0,0,0,0.6)`,
-                opacity: 1 // Always visible to act as mask
-              }}
+              className={cn(
+                "absolute inset-0 transition-opacity duration-700",
+                activeIndex === index 
+                  ? "bg-[linear-gradient(to_top,rgba(0,0,0,0.95)_0%,rgba(0,0,0,0.6)_40%,rgba(0,0,0,0.3)_100%)]" 
+                  : "bg-black/60"
+              )}
+              style={{ opacity: 1 }}
             />
             
-            {/* Vertical text for collapsed state */}
+            {/* Vertical text for collapsed state */ }
             <div 
               className={cn(
                 "absolute inset-0 flex items-center justify-center transition-opacity duration-500",
                 activeIndex === index ? "opacity-0 pointer-events-none" : "opacity-100 delay-300"
               )}
             >
-              <span className="text-white font-bold tracking-widest text-lg uppercase [writing-mode:vertical-rl] rotate-180 whitespace-nowrap drop-shadow-md">
+              <span className="text-white font-bold tracking-widest text-lg uppercase whitespace-nowrap drop-shadow-md md:[writing-mode:vertical-rl] md:rotate-180">
                 {option.title}
               </span>
             </div>
 
             {/* Label with icon and info */}
-            <div className={`absolute bottom-5 left-4 right-4 flex items-center gap-3 transition-all duration-500 ${activeIndex === index ? 'opacity-100' : 'opacity-0'}`}>
+            <div className={cn(
+              "absolute bottom-5 left-4 right-4 flex items-center gap-3 transition-all duration-500",
+               activeIndex === index ? 'opacity-100' : 'opacity-0'
+            )}>
               <div className={cn(
                 "min-w-[44px] h-[44px] flex items-center justify-center rounded-full bg-white/20 backdrop-blur-md border border-white/30 text-white transition-all duration-300",
                 activeIndex === index ? "bg-white/30 scale-110" : ""

@@ -60,12 +60,12 @@ export function Footer({ data }: FooterProps) {
   };
 
   return (
-    <footer className="bg-secondary/20 dark:bg-[#0F0F11]/30 relative h-fit w-full overflow-hidden border-t border-border pb-28">
+    <footer className="bg-secondary/20 dark:bg-[#0F0F11]/30 relative h-fit w-full overflow-hidden border-t border-border pb-10 md:pb-28">
       {/* Text hover effect */}
-      <div className="flex h-[10rem] sm:h-[15rem] lg:h-[20rem] items-center justify-center w-full pointer-events-none xl:pointer-events-auto mt-10">
+      <div className="flex h-[6rem] sm:h-[15rem] lg:h-[20rem] items-center justify-center w-full pointer-events-none xl:pointer-events-auto mt-10">
         <TextHoverEffect text={companyName.toUpperCase()} className="z-50" />
       </div>
-      <div className="max-w-7xl mx-auto px-6 py-10 md:p-14 z-40 relative">
+      <div className="max-w-7xl mx-auto px-6 py-6 md:p-14 z-40 relative">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-16 pb-8 md:pb-12 text-center md:text-left">
           {/* Brand section */}
           <div className="col-span-1 sm:col-span-2 md:col-span-1 flex flex-col space-y-4 items-center md:items-start">

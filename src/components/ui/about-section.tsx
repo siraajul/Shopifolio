@@ -72,10 +72,10 @@ export default function AboutSection3({ data, onCollaborateClick }: AboutProps) 
     },
   };
   return (
-    <section className="flex flex-col justify-center py-10 md:py-16 px-4 bg-transparent" ref={heroRef}>
+    <section className="flex flex-col justify-center py-6 md:py-16 px-4 bg-transparent" ref={heroRef}>
       <div className="max-w-7xl mx-auto w-full">
         {/* Header with social icons - Mobile optimized */}
-        <div className="flex flex-col md:flex-row justify-between items-center mb-6 md:mb-8 gap-4 md:gap-0">
+        <div className="flex flex-col md:flex-row justify-between items-center mb-4 md:mb-8 gap-4 md:gap-0">
           <div className="flex items-center gap-2 text-xl">
             <span className="text-red-500 animate-spin">✱</span>
             <TimelineContent
@@ -140,7 +140,7 @@ export default function AboutSection3({ data, onCollaborateClick }: AboutProps) 
           </div>
         </div>
 
-        <div className="relative mb-10 md:mb-14">
+        <div className="relative mb-6 md:mb-14">
           <TimelineContent
             as="figure"
             animationNum={4}

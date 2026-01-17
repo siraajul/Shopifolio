@@ -65,14 +65,14 @@ const thirdColumn = testimonials.slice(6, 9);
 
 export default function TestimonialsSection() {
   return (
-    <section className="bg-transparent py-16 relative w-full overflow-hidden">
+    <section className="bg-transparent py-10 md:py-16 relative w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           transition={{ duration: 0.8, delay: 0.1, ease: [0.16, 1, 0.3, 1] }}
           viewport={{ once: true }}
-          className="flex flex-col items-center justify-center max-w-[800px] mx-auto mb-16"
+          className="flex flex-col items-center justify-center max-w-[800px] mx-auto mb-8 md:mb-16"
         >
           <div className="inline-flex items-center justify-center px-4 py-1.5 mb-6 text-sm font-medium border rounded-full border-gray-200 dark:border-gray-800 bg-gray-50 dark:bg-zinc-900 text-gray-900 dark:text-gray-100">
             Client Success Stories

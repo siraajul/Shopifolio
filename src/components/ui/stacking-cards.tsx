@@ -64,7 +64,7 @@ const Card = ({
           scale,
           top: `calc(-5vh + ${i * 25}px)`,
         } as any}
-        className="flex flex-col-reverse md:flex-row relative -top-[5%] md:-top-[25%] min-h-[350px] h-fit md:h-[600px] w-[95vw] md:w-[1200px] rounded-2xl md:rounded-3xl p-4 md:p-10 origin-top border border-white/10 dark:border-white/10 shadow-2xl bg-zinc-900/40 backdrop-blur-xl overflow-hidden group hover:border-primary/30 transition-colors duration-500"
+        className="flex flex-col-reverse md:flex-row relative -top-[5%] md:-top-[25%] min-h-[300px] h-fit md:h-[600px] w-[95vw] md:w-[1200px] rounded-2xl md:rounded-3xl p-3 md:p-10 origin-top border border-white/10 dark:border-white/10 shadow-2xl bg-zinc-900/40 backdrop-blur-xl overflow-hidden group hover:border-primary/30 transition-colors duration-500"
       >
         {/* Internal Glow Effect */}
         <div 
@@ -122,8 +122,8 @@ export function StackingCards({
   });
 
   return (
-    <section ref={container} className="relative py-24 px-4 w-full">
-      <div className="max-w-7xl mx-auto mb-20 text-center">
+    <section ref={container} className="relative py-12 md:py-24 px-4 w-full">
+      <div className="max-w-7xl mx-auto mb-10 md:mb-20 text-center">
         <h2 className="text-4xl md:text-5xl font-bold mb-6 text-neutral-900 dark:text-neutral-100">
           {title}
         </h2>
