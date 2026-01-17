@@ -1,93 +1,101 @@
-# ⚡ Shopifolio - High-Performance Shopify Agency Portfolio
+# Shift2Dynamic | Enterprise Shopify Solutions
 
-**Shopifolio** is a premium, high-conversion portfolio website designed for a specialized Shopify agency/freelancer. It combines high-end aesthetics with "business-first" messaging to attract high-net-worth clients.
+![Shift2Dynamic Banner](/public/opengraph-image.png)
 
-![Project Preview](/public/opengraph-image.png)
+**Where High-Performance Engineering meets Aesthetic Dominance.**
 
-## ✨ Key Features (The "Kickass" Suite)
+Shift2Dynamic is a premium digital agency codebase designed for **outcome-based** Shopify solutions. We don't just build stores; we engineer 7-figure digital ecosystems using bleeding-edge technology.
 
-This project implements "Studio Quality" frontend techniques to elevate perceived value:
+---
 
-*   **🌊 Smooth Scrolling (Lenis)**: Integrated `lenis` for a weighted, premium scroll feel.
-*   **🎞️ Cinematic Noise Overlay**: A subtle SVG turbulence filter adds organic texture, removing the "flat digital" look.
-*   **🖱️ Custom Cursor**: Interactive cursor that tracks movement with fluid spring physics.
-*   **⚡ High-Speed Preloader**: A punchy 1.5s entrance animation ("Loading High Performance Experience").
-*   **🧲 Magnetic Buttons**: CTA buttons physically pull towards the cursor for a tactile feel.
-*   **🌑 Dark Mode Default**: Forces a professional, high-contrast dark theme on load.
+## ⚡ The "Heavy Hitter" Tech Stack
 
-## 🛠️ Tech Stack
+Built for speed, scalability, and "wow" factor.
 
-Built with the modern "T3-adjacent" stack for speed and scalability:
-
-*   **Framework**: [Next.js 15](https://nextjs.org/) (App Router)
+*   **Core**: [Next.js 15](https://nextjs.org/) (App Router)
 *   **Language**: [TypeScript](https://www.typescriptlang.org/)
 *   **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
-*   **Animation**: 
-    *   [Framer Motion](https://www.framer.com/motion/) (gestures, layout animations)
-    *   [Lenis](https://github.com/darkroomengineering/lenis) (smooth scroll)
-*   **Icons**: `react-icons`, `lucide-react`, `@phosphor-icons/react`
+*   **CMS**: [Sanity.io](https://www.sanity.io/) (Headless Content Management)
+*   **Motion**: `framer-motion` + `lenis` (Smooth Scroll)
+*   **Deployment**: Vercel
+
+---
+
+## ✨ Key Features (Audited & Refined)
+
+This project has undergone a "Deadly Audit" to ensure maximum conversion and premium perception.
+
+### 1. 🎨 Visual Dominance
+*   **Cinematic Noise Overlay**: Eliminates the "flat digital" look.
+*   **Neon/Toxic Green Aesthetic**: A custom `oklch` color palette that pops against the deep black background.
+*   **3D Gallery**: Interactive, centered image showcase with "Black-Green Mix" matte gradients.
+*   **Typography**: `Syne` (Display) + `Manrope` (Body) for a distinct, non-template feel.
+
+### 2. 🧠 Outcome-Based Messaging
+We shifted from "Labor" language to "Value" language:
+*   *Store Setup* → **Enterprise Migration Systems**
+*   *Theme Dev* → **High-Performance Experience Design**
+*   *App Dev* → **Custom Functionality Engines**
+
+### 3. 🛡️ Trust & Conversion
+*   **No Fake Social Proof**: Testimonials use dynamic **Initials Badges** (e.g., "SJ") instead of stock photos to maintain 100% credibility.
+*   **Verification**: "Trusted by 50+ Brands" (integrated `AvatarCircles` with real user avatars).
+*   **Lead Magnets**: Footer "Strategy Call" trap to capture high-intent leads.
+
+---
 
 ## 🚀 Getting Started
 
 ### Prerequisites
-
 - Node.js 18+
-- npm or pnpm
+- Sanity CLI (`npm install -g sanity@latest`)
 
 ### Installation
 
-1.  **Clone the repository:**
+1.  **Clone the repo:**
     ```bash
-    git clone https://github.com/yourusername/shopifolio.git
-    cd shopifolio
+    git clone https://github.com/your-org/shift2dynamic.git
+    cd shift2dynamic
     ```
 
 2.  **Install dependencies:**
     ```bash
     npm install
-    # or
-    pnpm install
     ```
 
-3.  **Run the development server:**
+3.  **Setup Environment Variables:**
+    Create a `.env.local` file:
+    ```env
+    NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
+    NEXT_PUBLIC_SANITY_DATASET=production
+    NEXT_PUBLIC_BASE_URL=http://localhost:3000
+    ```
+
+4.  **Run Development Server:**
     ```bash
     npm run dev
     ```
+    Visit `http://localhost:3000`.
 
-4.  **Open locally:**
-    Visit `http://localhost:3000` to see the site.
+---
 
-## 📂 Project Structure
+## 📂 Architecture
 
 ```
 src/
 ├── app/
-│   ├── layout.tsx       # Root layout (SmoothScroll, Noise, Cursor, Preloader)
-│   ├── page.tsx         # Main landing page (Sections orchestration)
-│   └── globals.css      # Tailwind imports & custom animations
+│   ├── layout.tsx       # Root Layout (Fonts, Metadata, Providers)
+│   ├── globals.css      # Tailwind & Custom Variables
+│   └── page.tsx         # Home Route
 ├── components/
-│   └── ui/              # Reusable UI components
-│       ├── creative-pricing.tsx  # Value-based pricing tiers
-│       ├── industries.tsx        # 3D interactive cards
-│       ├── services-card.tsx     # 2x2 mobile grid services
-│       ├── magnetic-button.tsx   # Interactive buttons
-│       └── ...
-└── lib/                 # Utilities (cn, etc.)
+│   ├── home-client.tsx  # Main Client Orchestrator
+│   ├── sections/        # Major Page Sections (Hero, Services, Gallery...)
+│   └── ui/              # Reusable Atoms (AvatarCircles, Buttons...)
+└── lib/                 # Utilities
 ```
-
-## 🎨 Customization Guide
-
-### Changing Pricing
-Edit `src/components/ui/pricing-section.tsx`. The data is structured in the `shopifyTiers` array.
-
-### Updating Services
-Edit `src/components/ui/services.tsx` and `services-card.tsx`.
-
-### Improving SEO
-Update the metadata in `src/app/layout.tsx` or `page.tsx` with your actual agency details.
 
 ---
 
 ## 📄 License
 
-This project is open source and available under the [MIT License](LICENSE).
+Private Proprietary Software. All rights reserved.
