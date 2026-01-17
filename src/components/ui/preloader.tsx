@@ -65,7 +65,7 @@ export function Preloader() {
               animate={{ opacity: 1 }}
               transition={{ delay: 0.2 }}
             >
-              Loading High Performance Experience
+              System Initializing...
             </motion.div>
           </div>
         </motion.div>

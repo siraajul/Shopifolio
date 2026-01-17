@@ -4,27 +4,27 @@ import { motion } from "motion/react";
 
 const testimonials = [
   {
-    text: "Riajul transformed our sluggish store into a high-speed sales machine. Conversion rates jumped by 40% in just two weeks.",
+    text: "The team transformed our sluggish store into a high-speed sales machine. Conversion rates jumped by 40% in just two weeks.",
     name: "Antoine Dubois",
     role: "Founder, Maison Dubois 🇫🇷",
   },
   {
-    text: "The custom theme dev was flawless. He understood our brand aesthetic perfectly and delivered a pixel-perfect site.",
+    text: "The custom theme dev was flawless. They understood our brand aesthetic perfectly and delivered a pixel-perfect site.",
     name: "Klaus Weber",
     role: "Head of Digital, Weber Stahl 🇩🇪",
   },
   {
-    text: "We needed a complex migration from Magento to Shopify Plus. Riajul handled the data transfer without a single hiccup.",
+    text: "We needed a complex migration from Magento to Shopify Plus. Shift2Dynamic handled the data transfer without a single hiccup.",
     name: "Amir Al-Fayed",
     role: "COO, Oasis Ventures 🇦🇪",
   },
   {
-    text: "Best technical consultant we've worked with. He solved a Liquid cart issue that three other developers couldn't fix.",
+    text: "Best technical partners we've worked with. They solved a Liquid cart issue that three other developers couldn't fix.",
     name: "Lachlan O'Connor",
     role: "Director, Bond Creek 🇦🇺",
   },
   {
-    text: "The private app he built saved our warehouse team 20 hours a week. Incredible ROI.",
+    text: "The private app they built saved our warehouse team 20 hours a week. Incredible ROI.",
     name: "Elena Sokolov",
     role: "Founder, Kinetik Labs 🇷🇺",
   },
@@ -34,17 +34,17 @@ const testimonials = [
     role: "Marketing Lead, Sol & Luna 🇲🇽",
   },
   {
-    text: "Our AOV increased significantly after he implemented the custom upsell features. Highly recommended.",
+    text: "Our AOV increased significantly after they implemented the custom upsell features. Highly recommended.",
     name: "Hiroshi Tanaka",
     role: "Owner, Zen Living 🇯🇵",
   },
   {
-    text: "He's not just a developer, he's a Shopify architect. He structured our entire headless build for scalability.",
+    text: "Not just developers, but Shopify architects. They structured our entire headless build for scalability.",
     name: "Sofia Rossi",
     role: "CTO, Milano Mode 🇮🇹",
   },
   {
-    text: "Reliable and fast. Whenever we have a launch day emergency, Riajul is the first person we call.",
+    text: "Reliable and fast. Whenever we have a launch day emergency, Shift2Dynamic is the first team we call.",
     name: "Magnus Jensen",
     role: "Brand Manager, Nord 🇩🇰",
   },

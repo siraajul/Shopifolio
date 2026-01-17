@@ -72,7 +72,7 @@ export default function FAQSection() {
   return (
     <FAQ 
       title="Common Questions"
-      subtitle="Objection Handling"
+      subtitle="Everything you need to know"
       categories={categories}
       faqData={faqData}
       className="bg-transparent"

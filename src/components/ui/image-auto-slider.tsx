@@ -22,7 +22,7 @@ const PROJECTS: Project[] = [
   {
     id: 1,
     image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070&auto=format&fit=crop",
-    title: "Vogue Kith",
+    title: "Streetwear Icon",
     theme: "Prestige (Custom)",
     apps: ["Klaviyo", "Yotpo", "Gorgias"],
     timeline: "3 Weeks",
