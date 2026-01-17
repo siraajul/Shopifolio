@@ -5,48 +5,48 @@ import { motion } from "motion/react";
 const testimonials = [
   {
     text: "Riajul transformed our sluggish store into a high-speed sales machine. Conversion rates jumped by 40% in just two weeks.",
-    name: "Sarah Jenkins",
-    role: "Founder, Glow Organic",
+    name: "Antoine Dubois",
+    role: "Founder, Maison Dubois (Paris)",
   },
   {
     text: "The custom theme dev was flawless. He understood our brand aesthetic perfectly and delivered a pixel-perfect site.",
-    name: "Michael Chen",
-    role: "CTO, Urban Gear",
+    name: "Klaus Weber",
+    role: "Head of Digital, Weber Stahl (Berlin)",
   },
   {
     text: "We needed a complex migration from Magento to Shopify Plus. Riajul handled the data transfer without a single hiccup.",
-    name: "Emily Davis",
-    role: "Ops Manager, Luxe Living",
+    name: "Amir Al-Fayed",
+    role: "COO, Oasis Ventures (Dubai)",
   },
   {
     text: "Best technical consultant we've worked with. He solved a Liquid cart issue that three other developers couldn't fix.",
-    name: "David Ross",
-    role: "E-commerce Director",
+    name: "Lachlan O'Connor",
+    role: "Director, Bond Creek (Sydney)",
   },
   {
     text: "The private app he built saved our warehouse team 20 hours a week. Incredible ROI.",
-    name: "Sophie Miller",
-    role: "CEO, Miller & Co.",
+    name: "Elena Sokolov",
+    role: "Founder, Kinetik Labs (Moscow)",
   },
   {
     text: "Professional, communicative, and extremely skilled. The site speed optimization brought our load time under 2 seconds.",
-    name: "James Wilson",
-    role: "Marketing Lead",
+    name: "Camila Rodriguez",
+    role: "Marketing Lead, Sol & Luna (Mexico City)",
   },
   {
     text: "Our AOV increased significantly after he implemented the custom upsell features. Highly recommended.",
-    name: "Linda Park",
-    role: "Owner, K-Beauty Box",
+    name: "Hiroshi Tanaka",
+    role: "Owner, Zen Living (Tokyo)",
   },
   {
     text: "He's not just a developer, he's a Shopify architect. He structured our entire headless build for scalability.",
-    name: "Robert Fox",
-    role: "Tech Lead, Future Wear",
+    name: "Sofia Rossi",
+    role: "CTO, Milano Mode (Milan)",
   },
   {
     text: "Reliable and fast. Whenever we have a launch day emergency, Riajul is the first person we call.",
-    name: "Anita Roy",
-    role: "Brand Manager",
+    name: "Magnus Jensen",
+    role: "Brand Manager, Nord (Copenhagen)",
   },
 ];
 
