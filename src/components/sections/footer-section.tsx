@@ -10,7 +10,7 @@ import {
   Instagram,
   LucideIcon
 } from "lucide-react";
-import { FooterBackgroundGradient, TextHoverEffect } from "@/components/ui/hover-footer";
+import { FooterBackgroundGradient, TextHoverEffect } from "@/components/sections/hover-footer";
 
 interface FooterLink {
   label: string;

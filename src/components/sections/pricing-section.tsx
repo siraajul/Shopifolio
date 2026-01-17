@@ -1,7 +1,7 @@
 "use client";
 
 import { useState } from "react";
-import { CreativePricing, PricingTier } from "@/components/ui/creative-pricing";
+import { CreativePricing, PricingTier } from "@/components/sections/creative-pricing";
 import { Zap, Rocket, Crown, Package, Globe, TrendingUp } from "lucide-react";
 import { motion } from "motion/react";
 import { cn } from "@/lib/utils";

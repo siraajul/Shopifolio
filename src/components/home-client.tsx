@@ -13,17 +13,17 @@ import { PopupModal } from "react-calendly"
 import { HyperText } from "@/components/ui/hyper-text"
 import Link from "next/link";
 
-import AboutSection3 from "@/components/ui/about-section"
-import { GallerySection } from "@/components/ui/gallery-section"
-import ServicesSection from "@/components/ui/services"
+import AboutSection3 from "@/components/sections/about-section"
+import { GallerySection } from "@/components/sections/gallery-section"
+import ServicesSection from "@/components/sections/services"
 import { MarqueeAnimation } from "@/components/ui/marquee-effect"
-import ProcessSection from "@/components/ui/process-section"
-import IndustriesSection from "@/components/ui/industries"
-import TestimonialsSection from "@/components/ui/testimonials"
-import PricingSection from "@/components/ui/pricing-section"
+import ProcessSection from "@/components/sections/process-section"
+import IndustriesSection from "@/components/sections/industries"
+import TestimonialsSection from "@/components/sections/testimonials"
+import PricingSection from "@/components/sections/pricing-section"
 import ImageAutoSlider from "@/components/ui/image-auto-slider"
-import FAQSection from "@/components/ui/faq-section"
-import { Footer } from "@/components/ui/footer-section"
+import FAQSection from "@/components/sections/faq-section"
+import { Footer } from "@/components/sections/footer-section"
 
 export interface HomeProps {
   hero?: {

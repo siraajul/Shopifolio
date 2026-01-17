@@ -1,5 +1,5 @@
 "use client";
-import { TestimonialsColumn } from "@/components/ui/testimonials-columns";
+import { TestimonialsColumn } from "@/components/sections/testimonials-columns";
 import { motion } from "motion/react";
 
 const testimonials = [

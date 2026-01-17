@@ -3,7 +3,7 @@
 import { ChevronRightIcon, InstagramLogoIcon, LinkedInLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
-import { FlickeringGrid } from "./flickering-grid";
+import { FlickeringGrid } from "@/components/ui/flickering-grid";
 
 export function useMediaQuery(query: string) {
   const [value, setValue] = useState(false);
