@@ -6,47 +6,47 @@ const testimonials = [
   {
     text: "Riajul transformed our sluggish store into a high-speed sales machine. Conversion rates jumped by 40% in just two weeks.",
     name: "Antoine Dubois",
-    role: "Founder, Maison Dubois (Paris)",
+    role: "Founder, Maison Dubois 🇫🇷",
   },
   {
     text: "The custom theme dev was flawless. He understood our brand aesthetic perfectly and delivered a pixel-perfect site.",
     name: "Klaus Weber",
-    role: "Head of Digital, Weber Stahl (Berlin)",
+    role: "Head of Digital, Weber Stahl 🇩🇪",
   },
   {
     text: "We needed a complex migration from Magento to Shopify Plus. Riajul handled the data transfer without a single hiccup.",
     name: "Amir Al-Fayed",
-    role: "COO, Oasis Ventures (Dubai)",
+    role: "COO, Oasis Ventures 🇦🇪",
   },
   {
     text: "Best technical consultant we've worked with. He solved a Liquid cart issue that three other developers couldn't fix.",
     name: "Lachlan O'Connor",
-    role: "Director, Bond Creek (Sydney)",
+    role: "Director, Bond Creek 🇦🇺",
   },
   {
     text: "The private app he built saved our warehouse team 20 hours a week. Incredible ROI.",
     name: "Elena Sokolov",
-    role: "Founder, Kinetik Labs (Moscow)",
+    role: "Founder, Kinetik Labs 🇷🇺",
   },
   {
     text: "Professional, communicative, and extremely skilled. The site speed optimization brought our load time under 2 seconds.",
     name: "Camila Rodriguez",
-    role: "Marketing Lead, Sol & Luna (Mexico City)",
+    role: "Marketing Lead, Sol & Luna 🇲🇽",
   },
   {
     text: "Our AOV increased significantly after he implemented the custom upsell features. Highly recommended.",
     name: "Hiroshi Tanaka",
-    role: "Owner, Zen Living (Tokyo)",
+    role: "Owner, Zen Living 🇯🇵",
   },
   {
     text: "He's not just a developer, he's a Shopify architect. He structured our entire headless build for scalability.",
     name: "Sofia Rossi",
-    role: "CTO, Milano Mode (Milan)",
+    role: "CTO, Milano Mode 🇮🇹",
   },
   {
     text: "Reliable and fast. Whenever we have a launch day emergency, Riajul is the first person we call.",
     name: "Magnus Jensen",
-    role: "Brand Manager, Nord (Copenhagen)",
+    role: "Brand Manager, Nord 🇩🇰",
   },
 ];
 
