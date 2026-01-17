@@ -70,5 +70,9 @@ export const HOME_QUERY = defineQuery(`{
     location,
     socialLinks,
     footerLinks
+  },
+  "gallery": *[_type == "gallery"][0]{
+    title,
+    images
   }
 }`);

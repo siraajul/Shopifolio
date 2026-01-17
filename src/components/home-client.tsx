@@ -247,7 +247,7 @@ export default function HomeClient({ data }: { data: HomeProps }) {
       </motion.div>
       </section>
 
-      <GallerySection />
+      <GallerySection data={data.gallery} />
       
       <AboutSection3 data={data.about} onCollaborateClick={() => setIsCalendlyOpen(true)} />
       

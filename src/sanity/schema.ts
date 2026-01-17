@@ -11,7 +11,8 @@ import project from './schemas/project'
 import testimonial from './schemas/testimonial'
 import faq from './schemas/faq'
 import footer from './schemas/footer'
+import gallery from './schemas/gallery'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-    types: [hero, about, marquee, service, process, industry, pricing, project, testimonial, faq, footer],
+    types: [hero, about, marquee, service, process, industry, pricing, project, testimonial, faq, footer, gallery],
 }
