@@ -71,7 +71,7 @@ export const GallerySection = ({ data }: GallerySectionProps) => {
               {col1.map((imageUrl, index) => (
                 <img
                   key={index}
-                  className="aspect-[4/5] block h-auto max-h-full w-full rounded-xl object-cover shadow-2xl border border-white/10"
+                  className="aspect-[4/5] block h-auto max-h-full w-full rounded-xl object-contain bg-gradient-to-b from-black to-primary/20 shadow-2xl border border-primary/10"
                   src={imageUrl}
                   alt="gallery item"
                 />
@@ -81,7 +81,7 @@ export const GallerySection = ({ data }: GallerySectionProps) => {
               {col2.map((imageUrl, index) => (
                 <img
                   key={index}
-                  className="aspect-[4/5] block h-auto max-h-full w-full rounded-xl object-cover shadow-2xl border border-white/10"
+                  className="aspect-[4/5] block h-auto max-h-full w-full rounded-xl object-contain bg-gradient-to-b from-black to-primary/20 shadow-2xl border border-primary/10"
                   src={imageUrl}
                   alt="gallery item"
                 />
@@ -91,7 +91,7 @@ export const GallerySection = ({ data }: GallerySectionProps) => {
               {col3.map((imageUrl, index) => (
                 <img
                   key={index}
-                  className="aspect-[4/5] block h-auto max-h-full w-full rounded-xl object-cover shadow-2xl border border-white/10"
+                  className="aspect-[4/5] block h-auto max-h-full w-full rounded-xl object-contain bg-gradient-to-b from-black to-primary/20 shadow-2xl border border-primary/10"
                   src={imageUrl}
                   alt="gallery item"
                 />

@@ -124,16 +124,16 @@ export default function HomeClient({ data }: { data: HomeProps }) {
                 <LayoutGroup>
                   <motion.div className="flex whitespace-pre" layout>
                     <motion.span
-                      className="pt-0.5 sm:pt-1 md:pt-3 text-foreground"
+                      className="pt-0.5 sm:pt-1 md:pt-3 text-foreground font-display"
                       layout
                       transition={{ type: "spring", damping: 30, stiffness: 400 }}
                     >
-                      {data.hero?.title || "We Build"}{" "}
+                      {data.hero?.title || "We Engineer"}{" "}
                     </motion.span>
                     <TextRotate
                       texts={
                         data.hero?.rotatingWords?.map((word, i) => (
-                          <span key={i} className="font-bold">{word}</span>
+                          <span key={i} className="font-bold font-display">{word}</span>
                         )) || [
                           <SevenFigureIcon key="7figure" />,
                           <ProvenIcon key="proven" />,
@@ -154,35 +154,30 @@ export default function HomeClient({ data }: { data: HomeProps }) {
                 </LayoutGroup>
               </div>
 
-              <div className="text-4xl max-[375px]:text-3xl sm:text-6xl md:text-8xl font-bold font-sans text-foreground mt-2">
-                 Shopify Systems
+              <div className="text-4xl max-[375px]:text-3xl sm:text-6xl md:text-8xl font-bold font-display text-foreground mt-2">
+                 Shopify Ecosystems
               </div>
 
-              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mt-6">
-                We build high-performance Shopify stores designed to scale. <br />
-                <span className="text-foreground font-semibold"> Launch in weeks, not months.</span>
+              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mt-6 font-medium">
+                Stop settling for templates. We build high-performance, custom Shopify experiences that crush benchmarks.<br />
+                <span className="text-foreground font-semibold"> We don&apos;t just build. We dominate.</span>
               </p>
 
               {/* Stats Sub-heading */}
               <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-sm md:text-base text-gray-400 font-medium mt-4">
                   <div className="flex items-center gap-1">
-                    <HyperText className="text-foreground font-bold" text="$10M+" />
-                    <span>Revenue</span>
+                    <HyperText className="text-foreground font-bold" text="$30M+" />
+                    <span>Revenue Generated</span>
                   </div>
                   <div className="hidden md:block w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
                   <div className="flex items-center gap-1">
-                    <HyperText className="text-foreground font-bold" text="50+" />
-                    <span>Stores</span>
+                    <HyperText className="text-foreground font-bold" text="45%" />
+                    <span>Avg. Conv. Uplift</span>
                   </div>
                   <div className="hidden md:block w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
                   <div className="flex items-center gap-1">
-                    <HyperText className="text-foreground font-bold" text="5+" />
-                    <span>Years Exp</span>
-                  </div>
-                  <div className="hidden md:block w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
-                  <div className="flex items-center gap-1">
-                    <HyperText className="text-foreground font-bold" text="Top" />
-                    <span>Experts</span>
+                    <HyperText className="text-foreground font-bold" text="0.4s" />
+                    <span>Load Times</span>
                   </div>
               </div>
           </div>
@@ -193,13 +188,13 @@ export default function HomeClient({ data }: { data: HomeProps }) {
               onClick={() => setIsCalendlyOpen(true)}
               className="group relative px-8 py-4 bg-primary text-black rounded-full font-bold text-lg hover:shadow-[0_0_40px_-5px_hsl(var(--primary)/0.6)] transition-all duration-300 flex items-center gap-2"
             >
-              Start Your Growth <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
+              Audit My Brand <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
             <button 
               onClick={() => scrollToSection("work", 0)} 
-              className="px-8 py-4 text-foreground hover:text-primary transition-colors font-semibold flex items-center gap-2"
+              className="px-8 py- font-semibold text-foreground hover:text-primary transition-colors flex items-center gap-2"
             >
-              View Selected Work
+              View Proof
             </button>
           </div>
         </div>

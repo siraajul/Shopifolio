@@ -68,6 +68,24 @@ export function Footer({ data }: FooterProps) {
       <div className="max-w-7xl mx-auto px-6 py-6 md:p-14 z-40 relative">
         <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-16 pb-8 md:pb-12 text-center md:text-left">
           {/* Brand section */}
+          <div className="col-span-1 sm:col-span-2 lg:col-span-4 flex flex-col items-center justify-center text-center mb-12 p-8 border border-white/10 rounded-3xl bg-white/5 backdrop-blur-sm relative overflow-hidden group">
+              <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-purple-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+              <h3 className="text-3xl md:text-5xl font-bold font-display text-foreground mb-4 relative z-10">
+                Ready to Dominate?
+              </h3>
+              <p className="text-muted-foreground mb-8 text-lg max-w-xl mx-auto relative z-10">
+                Most agencies build stores. We build empires. Book your 30-minute strategy call and let's find your first $100k month.
+              </p>
+              <a 
+                href="https://calendly.com/riajul" 
+                target="_blank" 
+                rel="noreferrer"
+                className="relative z-10 px-8 py-4 bg-primary text-black font-bold rounded-full hover:shadow-[0_0_30px_-5px_hsl(var(--primary)/0.5)] transition-all duration-300"
+              >
+                Book Strategy Call
+              </a>
+          </div>
+
           <div className="col-span-1 sm:col-span-2 md:col-span-1 flex flex-col space-y-4 items-center md:items-start">
             <div className="flex items-center space-x-2">
               <span className="text-primary text-3xl font-extrabold">
