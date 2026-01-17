@@ -5,55 +5,46 @@ import { motion } from "motion/react";
 const testimonials = [
   {
     text: "Riajul transformed our sluggish store into a high-speed sales machine. Conversion rates jumped by 40% in just two weeks.",
-    image: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?auto=format&fit=crop&w=150&q=80",
     name: "Sarah Jenkins",
     role: "Founder, Glow Organic",
   },
   {
     text: "The custom theme dev was flawless. He understood our brand aesthetic perfectly and delivered a pixel-perfect site.",
-    image: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?auto=format&fit=crop&w=150&q=80",
     name: "Michael Chen",
     role: "CTO, Urban Gear",
   },
   {
     text: "We needed a complex migration from Magento to Shopify Plus. Riajul handled the data transfer without a single hiccup.",
-    image: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?auto=format&fit=crop&w=150&q=80",
     name: "Emily Davis",
     role: "Ops Manager, Luxe Living",
   },
   {
     text: "Best technical consultant we've worked with. He solved a Liquid cart issue that three other developers couldn't fix.",
-    image: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?auto=format&fit=crop&w=150&q=80",
     name: "David Ross",
     role: "E-commerce Director",
   },
   {
     text: "The private app he built saved our warehouse team 20 hours a week. Incredible ROI.",
-    image: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?auto=format&fit=crop&w=150&q=80",
     name: "Sophie Miller",
     role: "CEO, Miller & Co.",
   },
   {
     text: "Professional, communicative, and extremely skilled. The site speed optimization brought our load time under 2 seconds.",
-    image: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?auto=format&fit=crop&w=150&q=80",
     name: "James Wilson",
     role: "Marketing Lead",
   },
   {
     text: "Our AOV increased significantly after he implemented the custom upsell features. Highly recommended.",
-    image: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?auto=format&fit=crop&w=150&q=80",
     name: "Linda Park",
     role: "Owner, K-Beauty Box",
   },
   {
     text: "He's not just a developer, he's a Shopify architect. He structured our entire headless build for scalability.",
-    image: "https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&w=150&q=80",
     name: "Robert Fox",
     role: "Tech Lead, Future Wear",
   },
   {
     text: "Reliable and fast. Whenever we have a launch day emergency, Riajul is the first person we call.",
-    image: "https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=150&q=80",
     name: "Anita Roy",
     role: "Brand Manager",
   },

@@ -10,33 +10,33 @@ const ServicesSection = () => {
   const services: Service[] = [
     {
       number: "01",
-      title: "Store Setup & Migration",
+      title: "Enterprise Migration Systems",
       description:
-        "Seamless migration to Shopify or setting up a brand new store with best practices.",
+        "Zero-downtime re-platforming to Shopify. We preserve your SEO and data while upgrading your infrastructure for scale.",
       icon: Rocket,
       gradient: "from-purple-100 to-purple-200 dark:from-purple-900/50 dark:to-purple-800/50",
     },
     {
       number: "02",
-      title: "Custom Theme Dev",
+      title: "High-Performance Design",
       description:
-        "Bespoke Liquid themes tailored to your brand's unique identity and requirements.",
+        "Bespoke, lightweight interfaces designed for speed and conversion. No bloat, just pure brand dominance.",
       icon: Palette,
       gradient: "from-green-100 to-green-200 dark:from-green-900/50 dark:to-green-800/50",
     },
     {
       number: "03",
-      title: "App Development",
+      title: "Custom Functionality Engines",
       description:
-        "Custom Shopify apps using Remix & Node to extend your store's functionality.",
+        "Proprietary features built on Remix & Node. We engineer logic that standard apps can't handle.",
       icon: Code,
       gradient: "from-red-100 to-red-200 dark:from-red-900/50 dark:to-red-800/50",
     },
     {
         number: "04",
-        title: "Conversion Optimization",
+        title: "Revenue Optimization Architecture",
         description:
-          "Data-driven strategies and performance tuning to maximize your sales.",
+          "A scientific approach to increasing AOV and LTV. We turn traffic into repeatable revenue.",
         icon: Search,
         gradient: "from-blue-100 to-blue-200 dark:from-blue-900/50 dark:to-blue-800/50",
     },
@@ -70,32 +70,32 @@ const ServicesSection = () => {
               cards={[
                 {
                   id: 1,
-                  title: "Store Setup & Migration",
-                  description: "Seamless migration to Shopify or setting up a brand new store with best practices.",
+                  title: "Enterprise Migration Systems",
+                  description: "Zero-downtime re-platforming to Shopify. We preserve your SEO and data while upgrading your infrastructure for scale.",
                   icon: Rocket,
                   color: "#e9d5ff",
                   darkColor: "#581c87"
                 },
                 {
                   id: 2,
-                  title: "Custom Theme Dev",
-                  description: "Bespoke Liquid themes tailored to your brand's unique identity and requirements.",
+                  title: "High-Performance Design",
+                  description: "Bespoke, lightweight interfaces designed for speed and conversion. No bloat, just pure brand dominance.",
                   icon: Palette,
                   color: "#bbf7d0",
                   darkColor: "#14532d"
                 },
                 {
                   id: 3,
-                  title: "App Development",
-                  description: "Custom Shopify apps using Remix & Node to extend your store's functionality.",
+                  title: "Custom Functionality Engines",
+                  description: "Proprietary features built on Remix & Node. We engineer logic that standard apps can't handle.",
                   icon: Code,
                   color: "#fecaca",
                   darkColor: "#7f1d1d" 
                 },
                 {
                   id: 4,
-                  title: "Conversion Optimization",
-                  description: "Data-driven strategies and performance tuning to maximize your sales.",
+                  title: "Revenue Optimization Architecture",
+                  description: "A scientific approach to increasing AOV and LTV. We turn traffic into repeatable revenue.",
                   icon: Search,
                   color: "#bfdbfe",
                   darkColor: "#1e3a8a"
