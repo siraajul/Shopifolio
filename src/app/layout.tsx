@@ -125,9 +125,9 @@ export default function RootLayout({
 
             <Preloader />
             {children}
+            <SpeedInsights />
           </SmoothScroll>
           <Analytics />
-          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>
