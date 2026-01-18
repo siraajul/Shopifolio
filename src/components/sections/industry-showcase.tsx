@@ -1,7 +1,9 @@
 "use client";
 
-import React, { useState } from "react";
+import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
+import { PopupModal } from "react-calendly";
+import { StarButton } from "@/components/ui/star-button";
 import { 
   Package, 
   Shirt, 
@@ -21,7 +23,7 @@ import { cn } from "@/lib/utils";
 
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
-import { useEffect } from "react";
+
 
 // --- Data: Industry Categories & Projects ---
 
@@ -70,6 +72,16 @@ export default function IndustryShowcase() {
   const [activeTab, setActiveTab] = useState<IndustryKey>("fashion");
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+  
+  // Calendly State
+  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
+  const [rootElement, setRootElement] = useState<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (typeof document !== 'undefined') {
+       setRootElement(document.getElementById("home") || document.body);
+    }
+  }, []);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -220,11 +232,22 @@ export default function IndustryShowcase() {
         </div>
         
         {/* Bottom CTA */}
-        <div className="mt-16 text-center">
-             <a href="https://calendly.com/riajul" target="_blank" className="inline-flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors font-medium">
-                 Want to build something like this? <ArrowRight size={16} />
-             </a>
+        <div className="mt-16 text-center flex flex-col items-center gap-4">
+             <div onClick={() => setIsCalendlyOpen(true)} className="cursor-pointer">
+                 <StarButton className="h-12 px-8 rounded-full text-base">
+                     Want to build something like this?
+                 </StarButton>
+             </div>
         </div>
+
+        {rootElement && (
+            <PopupModal
+                url="https://calendly.com/riajul"
+                onModalClose={() => setIsCalendlyOpen(false)}
+                open={isCalendlyOpen}
+                rootElement={rootElement}
+            />
+        )}
 
       </div>
     </section>

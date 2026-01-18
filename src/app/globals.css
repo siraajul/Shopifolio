@@ -118,6 +118,31 @@
   --sidebar-ring: oklch(0.85 0.25 140);
 }
 
+@theme inline {
+  --animate-star-btn: star-btn calc(var(--duration)*1s) linear infinite;
+  --animate-fadeInTop: fadeInTop 0.5s ease-out forwards;
+}
+
+@keyframes star-btn {
+  0% {
+    offset-distance: 0%;
+  }
+  100% {
+    offset-distance: 100%;
+  }
+}
+
+@keyframes fadeInTop {
+  from {
+    opacity: 0;
+    transform: translateY(20px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;

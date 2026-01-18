@@ -21,6 +21,35 @@ Built for speed, scalability, and "wow" factor.
 
 ---
 
+## 💎 Dynamic Content Management (Sanity CMS)
+
+This project is **100% connected** to Sanity CMS. Every section of the homepage can be edited without touching the code.
+
+To manage content, run:
+```bash
+npm run dev
+# Go to: http://localhost:3000/studio
+```
+
+### 🎛️ Content Schemas
+| Schema Name | Section | What You Can Edit |
+| :--- | :--- | :--- |
+| **Hero** | Top Section | Title, Dynamic Rotating Words, Subtext. |
+| **Gallery** | 3D Showcase | The 3 floating images in the circular gallery. |
+| **Impact** | Stats Bar | Revenue numbers, Speed metrics, Client counts. |
+| **Industries** | Accordion List | The list of sectors (Fashion, Beauty, etc.) + Images. |
+| **Showcase Project** | Recent Work | Detailed case study cards with "View Live" links. |
+| **About** | Personal Bio | Name, Role, Bio paragraphs, Profile Image, Signature. |
+| **Services** | Service Grid | The 4 main pillars (Migration, Design, etc.) + Icons. |
+| **Testimonials** | Reviews | Client Name, Role, Company, Quote, Avatar. |
+| **Process** | Workflow Cards | "Discovery", "Build", "Launch" steps + colors. |
+| **Pricing** | Pricing Tables | Brand vs Dropshipping tiers, prices, features. |
+| **FAQ** | Q&A | Questions, Answers, Categories (General, Technical, etc.). |
+| **Footer** | Contact Info | Email, Social Links, Address, Navigation Links. |
+| **Marquee** | Scrolling Text | The infinite scrolling keywords band. |
+
+---
+
 ## ✨ Key Features (Audited & Refined)
 
 This project has undergone a "Deadly Audit" to ensure maximum conversion and premium perception.
@@ -38,7 +67,8 @@ We shifted from "Labor" language to "Value" language:
 *   *App Dev* → **Custom Functionality Engines**
 
 ### 3. 🛡️ Trust & Conversion
-*   **No Fake Social Proof**: Testimonials use dynamic **Initials Badges** (e.g., "SJ") instead of stock photos to maintain 100% credibility.
+*   **Real Data Integration**: All stats, pricing, and reviews flow directly from Sanity.
+*   **Interactive Pricing**: Toggle between "Brand" and "Dropshipping" models dynamically.
 *   **Verification**: "Trusted by 50+ Brands" (integrated `AvatarCircles` with real user avatars).
 *   **Lead Magnets**: Footer "Strategy Call" trap to capture high-intent leads.
 
@@ -75,7 +105,8 @@ We shifted from "Labor" language to "Value" language:
     ```bash
     npm run dev
     ```
-    Visit `http://localhost:3000`.
+    - Website: `http://localhost:3000`
+    - Content Studio: `http://localhost:3000/studio`
 
 ---
 
@@ -86,12 +117,14 @@ src/
 ├── app/
 │   ├── layout.tsx       # Root Layout (Fonts, Metadata, Providers)
 │   ├── globals.css      # Tailwind & Custom Variables
-│   └── page.tsx         # Home Route
+│   └── page.tsx         # Home Route (Fetches COMPLETE Sanity Data)
 ├── components/
-│   ├── home-client.tsx  # Main Client Orchestrator
-│   ├── sections/        # Major Page Sections (Hero, Services, Gallery...)
+│   ├── home-client.tsx  # Main Client Orchestrator (Receives Data)
+│   ├── sections/        # Dynamic Sections (Services, Pricing, etc.)
 │   └── ui/              # Reusable Atoms (AvatarCircles, Buttons...)
-└── lib/                 # Utilities
+└── sanity/
+    ├── schemas/         # Content Models (The Brain)
+    └── lib/             # Client & Queries
 ```
 
 ---
