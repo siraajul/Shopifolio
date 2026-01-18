@@ -41,7 +41,7 @@ export default async function Home() {
 
       <IndustriesSection data={data?.industries} />
 
-      <IndustryShowcase />
+      <IndustryShowcase limit={9} />
 
       <AboutSection3 data={data?.about} />
       

@@ -73,7 +73,7 @@ interface Project {
   industry: IndustryKey;
 }
 
-export default function IndustryShowcase() {
+export default function IndustryShowcase({ limit, title }: { limit?: number | null; title?: string }) {
   const [activeTab, setActiveTab] = useState<IndustryKey>("fashion");
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
@@ -122,6 +122,10 @@ export default function IndustryShowcase() {
 
   // Filter projects by active tab
   const activeProjects = projects.filter(p => p.industry === activeTab);
+  
+  // Apply limit if provided
+  const displayedProjects = limit ? activeProjects.slice(0, limit) : activeProjects;
+  const showViewMore = limit && activeProjects.length > limit;
 
   // Fallback for empty states (optional: keep placeholders if no data?)
   // For now, if no data, we might show a message or just empty grid.
@@ -135,7 +139,7 @@ export default function IndustryShowcase() {
         {/* Header */}
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            Curated Work
+            {title || "Curated Work"}
           </h2>
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Browse our portfolio by industry. Real live stores, real results.
@@ -183,54 +187,68 @@ export default function IndustryShowcase() {
                     animate={{ opacity: 1, y: 0 }}
                     exit={{ opacity: 0, y: -20 }}
                     transition={{ duration: 0.4 }}
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8"
+                    className="flex flex-col gap-12"
                 >
-                    {/* Active Category Title (Optional context) */}
-                    <div className="col-span-full mb-4 flex items-center gap-2 text-primary font-medium opacity-80">
-                    {INDUSTRIES.find(i => i.id === activeTab)?.icon}
-                    <span>{INDUSTRIES.find(i => i.id === activeTab)?.label} Projects</span>
+                    <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-8">
+                      {/* Active Category Title (Optional context) */}
+                      <div className="col-span-full mb-4 flex items-center gap-2 text-primary font-medium opacity-80">
+                      {INDUSTRIES.find(i => i.id === activeTab)?.icon}
+                      <span>{INDUSTRIES.find(i => i.id === activeTab)?.label} Projects</span>
+                      </div>
+
+                      {displayedProjects.length > 0 ? (
+                          displayedProjects.map((project, index) => (
+                              <motion.a
+                                  href={project.link}
+                                  target="_blank"
+                                  rel="noopener noreferrer"
+                                  key={project.id}
+                                  initial={{ opacity: 0, scale: 0.95 }}
+                                  animate={{ opacity: 1, scale: 1 }}
+                                  transition={{ delay: index * 0.05 }}
+                                  className="group relative aspect-[4/3] rounded-2xl overflow-hidden bg-muted border border-border/50 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 cursor-pointer"
+                              >
+                                  <Image
+                                      src={project.image}
+                                      alt={project.title}
+                                      fill
+                                      className="object-cover transition-transform duration-700 group-hover:scale-110"
+                                  />
+                                  
+                                  {/* Overlay */}
+                                  <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
+                                      <h3 className="text-xl font-bold text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
+                                          {project.title}
+                                      </h3>
+                                      <div className="flex items-center gap-2 text-primary mt-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">
+                                          <span className="font-semibold text-sm">View Live Site</span>
+                                          <ExternalLink size={14} />
+                                      </div>
+                                  </div>
+
+                                  {/* Top Right Arrow Icon (always visible hint) */}
+                                  <div className="absolute top-4 right-4 w-8 h-8 bg-black/50 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all duration-300 scale-0 group-hover:scale-100">
+                                      <ArrowRight size={14} className="-rotate-45" />
+                                  </div>
+                              </motion.a>
+                          ))
+                      ) : (
+                          <div className="col-span-full py-12 text-center text-muted-foreground border border-dashed border-border rounded-xl">
+                              No projects found for this category yet.
+                          </div>
+                      )}
                     </div>
-
-                    {activeProjects.length > 0 ? (
-                        activeProjects.map((project, index) => (
-                            <motion.a
-                                href={project.link}
-                                target="_blank"
-                                rel="noopener noreferrer"
-                                key={project.id}
-                                initial={{ opacity: 0, scale: 0.95 }}
-                                animate={{ opacity: 1, scale: 1 }}
-                                transition={{ delay: index * 0.05 }}
-                                className="group relative aspect-[4/3] rounded-2xl overflow-hidden bg-muted border border-border/50 shadow-sm hover:shadow-xl transition-all duration-500 hover:-translate-y-2 cursor-pointer"
-                            >
-                                <Image
-                                    src={project.image}
-                                    alt={project.title}
-                                    fill
-                                    className="object-cover transition-transform duration-700 group-hover:scale-110"
-                                />
-                                
-                                {/* Overlay */}
-                                <div className="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex flex-col justify-end p-6">
-                                    <h3 className="text-xl font-bold text-white translate-y-4 group-hover:translate-y-0 transition-transform duration-500">
-                                        {project.title}
-                                    </h3>
-                                    <div className="flex items-center gap-2 text-primary mt-2 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-75">
-                                        <span className="font-semibold text-sm">View Live Site</span>
-                                        <ExternalLink size={14} />
-                                    </div>
-                                </div>
-
-                                {/* Top Right Arrow Icon (always visible hint) */}
-                                <div className="absolute top-4 right-4 w-8 h-8 bg-black/50 backdrop-blur-md rounded-full flex items-center justify-center text-white opacity-0 group-hover:opacity-100 transition-all duration-300 scale-0 group-hover:scale-100">
-                                    <ArrowRight size={14} className="-rotate-45" />
-                                </div>
-                            </motion.a>
-                        ))
-                    ) : (
-                        <div className="col-span-full py-12 text-center text-muted-foreground border border-dashed border-border rounded-xl">
-                            No projects found for this category yet.
-                        </div>
+                    
+                    {/* View More Button */}
+                    {showViewMore && (
+                      <div className="flex justify-center mt-8">
+                        <StarButton 
+                          onClick={() => window.location.href = '/work'}
+                          className="h-12 px-8 rounded-full text-base"
+                        >
+                          View More {INDUSTRIES.find(i => i.id === activeTab)?.label} Projects
+                        </StarButton>
+                      </div>
                     )}
                 </motion.div>
              )}
