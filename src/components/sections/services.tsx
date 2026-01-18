@@ -4,10 +4,25 @@ import { ServiceGrid, type Service } from "@/components/ui/services-card";
 import { Palette, Code, Search, Rocket } from "lucide-react";
 import { StackingCards } from "@/components/ui/stacking-cards";
 
+// Helper to map icon names (if stored as string in Sanity) or just cycle through default icons
+const getIcon = (index: number) => {
+    const icons = [Rocket, Palette, Code, Search];
+    return icons[index % icons.length];
+};
+
 // Main component for the Services Section
-const ServicesSection = () => {
+const ServicesSection = ({ data }: { data?: any[] }) => {
   // Data for the service cards
-  const services: Service[] = [
+  const services: Service[] = data?.length ? data.map((item, index) => ({
+      number: `0${index + 1}`,
+      title: item.title,
+      description: item.description,
+      icon: getIcon(index),
+      gradient: index === 0 ? "from-purple-100 to-purple-200 dark:from-purple-900/50 dark:to-purple-800/50" :
+                index === 1 ? "from-green-100 to-green-200 dark:from-green-900/50 dark:to-green-800/50" :
+                index === 2 ? "from-red-100 to-red-200 dark:from-red-900/50 dark:to-red-800/50" :
+                "from-blue-100 to-blue-200 dark:from-blue-900/50 dark:to-blue-800/50"
+  })) : [
     {
       number: "01",
       title: "Enterprise Migration Systems",

@@ -35,6 +35,11 @@ export interface HomeProps {
   };
   footer?: any; // Replace 'any' with specific type if imported, but loose typing is fine for now
   // Add other sections as we go
+  industries?: any[];
+  pricing?: any[];
+  workflow?: any[];
+  services?: any[];
+  impact?: any;
   [key: string]: any; 
 }
 
@@ -260,9 +265,9 @@ export default function HomeClient({ data }: { data: HomeProps }) {
         <GallerySection data={data.gallery} />
       </div>
       
-      <ImpactSection />
+      <ImpactSection data={data.impact} />
 
-      <IndustriesSection />
+      <IndustriesSection data={data.industries} />
 
       <IndustryShowcase />
 
@@ -310,19 +315,19 @@ export default function HomeClient({ data }: { data: HomeProps }) {
 
 
       <div id="services">
-        <ServicesSection />
+        <ServicesSection data={data.services} />
       </div>
       <div id="testimonials">
-        <TestimonialsSection />
+        <TestimonialsSection data={data.testimonials} />
       </div>
       <div id="process">
-        <ProcessSection />
+        <ProcessSection data={data.workflow} />
       </div>
       <div id="pricing">
-        <PricingSection />
+        <PricingSection data={data.pricing} />
       </div>
       <div id="faq">
-        <FAQSection />
+        <FAQSection data={data.faq} />
       </div>
       <div id="contact">
         <Footer data={data.footer} />

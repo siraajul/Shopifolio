@@ -68,13 +68,22 @@ const faqData = {
   ]
 };
 
-export default function FAQSection() {
+export default function FAQSection({ data }: { data?: any[] }) {
+  
+  // Transform Sanity data into valid structure or use fallback
+  const finalFaqData = data && data.length > 0 ? {
+    "general": data.filter(item => item.category === "general").map(i => ({ question: i.question, answer: i.answer })),
+    "technical": data.filter(item => item.category === "technical").map(i => ({ question: i.question, answer: i.answer })),
+    "process": data.filter(item => item.category === "process").map(i => ({ question: i.question, answer: i.answer })),
+    "pricing": data.filter(item => item.category === "pricing").map(i => ({ question: i.question, answer: i.answer })),
+  } : faqData;
+
   return (
     <FAQ 
       title="Common Questions"
       subtitle="Everything you need to know"
       categories={categories}
-      faqData={faqData}
+      faqData={finalFaqData}
       className="bg-transparent"
     />
   )

@@ -43,7 +43,8 @@ export const HOME_QUERY = defineQuery(`{
     description,
     color,
     popular,
-    features
+    features,
+    category
   },
   "projects": *[_type == "project"]{
     title,
@@ -61,7 +62,8 @@ export const HOME_QUERY = defineQuery(`{
   },
   "faq": *[_type == "faq"]{
     question,
-    answer
+    answer,
+    category
   },
   "footer": *[_type == "footer"][0]{
     companyName,
@@ -74,5 +76,10 @@ export const HOME_QUERY = defineQuery(`{
   "gallery": *[_type == "gallery"][0]{
     title,
     images
+  },
+  "impact": *[_type == "impact"][0]{
+    title,
+    description,
+    stats
   }
 }`);

@@ -1,77 +1,52 @@
 "use client"
 
-import InteractiveSelector from "@/components/ui/interactive-selector"
-import { Shirt, Smartphone, Armchair, Sparkles, Utensils, Gem, Baby, Dumbbell, PawPrint, BookOpen, Package } from "lucide-react"
+import React from "react";
+import InteractiveSelector from "@/components/ui/interactive-selector";
+import { Shirt, Smartphone, Armchair, Sparkles, Utensils, Gem, Baby, Dumbbell, PawPrint, Package } from "lucide-react";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 
-const industryOptions = [
-  {
-    title: "SINGLE PRODUCT",
-    description: "High-conversion landing pages for flagship products.",
-    image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&w=800&q=80",
-    icon: <Package size={24} />
-  },
-  {
-    title: "FASHION & APPAREL",
-    description: "Lookbooks, sizing guides, and style-focused UX.",
-    image: "https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=800&q=80",
-    icon: <Shirt size={24} />
-  },
-  {
-    title: "BEAUTY & WELLNESS",
-    description: "Cosmetics, hair care, and wellness subscription models.",
-    image: "https://images.unsplash.com/photo-1612817288484-6f916006741a?auto=format&fit=crop&w=800&q=80",
-    icon: <Sparkles size={24} />
-  },
-  {
-    title: "JEWELRY & LUXURY",
-    description: "Elegant showcases for high-ticket items.",
-    image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&w=800&q=80",
-    icon: <Gem size={24} />
-  },
-  {
-    title: "FOOD & GROCERY",
-    description: "Fresh delivery logistics and appetite-appeal designs.",
-    image: "https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=800&q=80",
-    icon: <Utensils size={24} />
-  },
-  {
-    title: "ELECTRONICS",
-    description: "Tech specs, comparisons, and gadget showcases.",
-    image: "https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=800&q=80",
-    icon: <Smartphone size={24} />
-  },
-  {
-    title: "KIDS & BABY",
-    description: "Playful, safe, and family-oriented store designs.",
-    image: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&w=800&q=80",
-    icon: <Baby size={24} />
-  },
-  {
-    title: "HOME & DECOR",
-    description: "Interior visualization and lifestyle aesthetics.",
-    image: "https://images.unsplash.com/photo-1616486338812-3dadae4b4f9d?auto=format&fit=crop&w=800&q=80",
-    icon: <Armchair size={24} />
-  },
-  {
-    title: "FITNESS & SPORTS",
-    description: "Energy, performance, and gear-focused layouts.",
-    image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&w=800&q=80",
-    icon: <Dumbbell size={24} />
-  },
-  {
-    title: "PET SUPPLIES",
-    description: "Caring, fun, and trust-building pet brand stores.",
-    image: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&w=800&q=80",
-    icon: <PawPrint size={24} />
-  },
-];
+// Helper to match icon by name
+const getIndustryIcon = (name: string) => {
+    const n = name.toLowerCase();
+    if (n.includes("fashion")) return <Shirt size={24} />;
+    if (n.includes("beauty")) return <Sparkles size={24} />;
+    if (n.includes("tech") || n.includes("electronics")) return <Smartphone size={24} />;
+    if (n.includes("home")) return <Armchair size={24} />;
+    if (n.includes("food")) return <Utensils size={24} />;
+    if (n.includes("kids") || n.includes("baby")) return <Baby size={24} />;
+    if (n.includes("fitness") || n.includes("sports")) return <Dumbbell size={24} />;
+    if (n.includes("jewelry") || n.includes("luxury")) return <Gem size={24} />;
+    if (n.includes("pet")) return <PawPrint size={24} />;
+    if (n.includes("single")) return <Package size={24} />;
+    return <Package size={24} />;
+};
 
-export default function IndustriesSection() {
+export default function IndustriesSection({ data }: { data?: any[] }) {
+  
+  const categories = data?.length ? data.map(item => ({
+      title: item.name,
+      description: item.description || "Comprehensive solutions.", // Fallback if description is missing in schema, or add it to schema
+      image: item.image ? urlFor(item.image).width(800).url() : "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=800",
+      icon: getIndustryIcon(item.name)
+  })) : [
+    { title: "Fashion", description: "Trendsetting digital storefronts.", image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=800", icon: <Shirt size={24} /> },
+    { title: "Beauty & Cosmetics", description: "Radiant designs for skincare.", image: "https://images.unsplash.com/photo-1596462502278-27bfdd403ea6?auto=format&fit=crop&q=80&w=800", icon: <Sparkles size={24} /> },
+    { title: "Electronics", description: "High-spec tech showcases.", image: "https://images.unsplash.com/photo-1550009158-9ebf69173e03?auto=format&fit=crop&q=80&w=800", icon: <Smartphone size={24} /> },
+    { title: "Home & Decor", description: "Curated aesthetic spaces.", image: "https://images.unsplash.com/photo-1618221195710-dd6b41faaea6?auto=format&fit=crop&q=80&w=800", icon: <Armchair size={24} /> },
+    { title: "Food & Beverage", description: "Mouth-watering interfaces.", image: "https://images.unsplash.com/photo-1504674900247-0877df9cc836?auto=format&fit=crop&q=80&w=800", icon: <Utensils size={24} /> },
+    { title: "Kids & Baby", description: "Playful, safe, and engaging.", image: "https://images.unsplash.com/photo-1515488042361-ee00e0ddd4e4?auto=format&fit=crop&q=80&w=800", icon: <Baby size={24} /> },
+    { title: "Fitness & Gym", description: "High-energy performance.", image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=800", icon: <Dumbbell size={24} /> },
+    { title: "Jewelry", description: "Luxurious detail viewing.", image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=800", icon: <Gem size={24} /> },
+    { title: "Pet Supplies", description: "For our furry friends.", image: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&q=80&w=800", icon: <PawPrint size={24} /> },
+    { title: "Single Product", description: "Focused conversion funnels.", image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=800", icon: <Package size={24} /> },
+  ];
+  
   return (
     <div className="bg-transparent w-full">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <InteractiveSelector 
-          options={industryOptions} 
+          options={categories} 
           title="Industries We Scale"
           description="From single-product launches to enterprise catalogs, we specialize in your niche."
         />

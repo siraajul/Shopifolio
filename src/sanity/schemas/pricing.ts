@@ -6,8 +6,21 @@ export default defineType({
     type: 'document',
     fields: [
         defineField({
+            name: 'category',
+            title: 'Category',
+            type: 'string',
+            options: {
+                list: [
+                    { title: 'Brand Store', value: 'brand' },
+                    { title: 'Dropshipping', value: 'dropshipping' },
+                ],
+                layout: 'radio',
+            },
+            validation: (Rule) => Rule.required(),
+        }),
+        defineField({
             name: 'name',
-            title: 'Tier Name',
+            title: 'Plan Name',
             type: 'string',
         }),
         defineField({

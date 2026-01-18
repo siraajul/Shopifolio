@@ -98,8 +98,40 @@ const dropshippingTiers: PricingTier[] = [
     },
 ];
 
-export default function PricingSection() {
+export default function PricingSection({ data }: { data?: any[] }) {
     const [activeTab, setActiveTab] = useState<'brand' | 'dropshipping'>('brand');
+
+    // Helper to map icons based on tier name (loose matching)
+    const getIcon = (name: string) => {
+        const n = name.toLowerCase();
+        if (n.includes("growth") || n.includes("validation")) return <Zap className="w-6 h-6" />; // or Package
+        if (n.includes("scale") || n.includes("expansion")) return <Rocket className="w-6 h-6" />; // or Globe
+        if (n.includes("enterprise") || n.includes("dominance")) return <Crown className="w-6 h-6" />; // or TrendingUp
+        return <Zap className="w-6 h-6" />;
+    };
+
+    const dynamicBrandTiers: PricingTier[] = data?.filter(i => i.category === 'brand').map(item => ({
+        name: item.name,
+        icon: getIcon(item.name),
+        price: item.price,
+        description: item.description,
+        color: item.color || "amber",
+        features: item.features || [],
+        popular: item.popular
+    })) || [];
+
+    const dynamicDropshippingTiers: PricingTier[] = data?.filter(i => i.category === 'dropshipping').map(item => ({
+        name: item.name,
+        icon: getIcon(item.name),
+        price: item.price,
+        description: item.description,
+        color: item.color || "emerald",
+        features: item.features || [],
+        popular: item.popular
+    })) || [];
+
+    const finalBrandTiers = dynamicBrandTiers.length > 0 ? dynamicBrandTiers : brandTiers;
+    const finalDropshippingTiers = dynamicDropshippingTiers.length > 0 ? dynamicDropshippingTiers : dropshippingTiers;
 
     return (
         <section className="bg-transparent w-full overflow-hidden relative">
@@ -150,7 +182,7 @@ export default function PricingSection() {
                 </div>
 
                 <CreativePricing 
-                    tiers={activeTab === 'brand' ? brandTiers : dropshippingTiers} 
+                    tiers={activeTab === 'brand' ? finalBrandTiers : finalDropshippingTiers} 
                     title={activeTab === 'brand' ? "Brand Store Packages" : "Dropshipping Packages"}
                     tag={activeTab === 'brand' ? "Long Term Growth" : "Rapid Launch"}
                     description={

@@ -50,11 +50,18 @@ const testimonials = [
   },
 ];
 
-const firstColumn = testimonials.slice(0, 3);
-const secondColumn = testimonials.slice(3, 6);
-const thirdColumn = testimonials.slice(6, 9);
+export default function TestimonialsSection({ data }: { data?: any[] }) {
+  // Use Sanity data if available, otherwise fallback to static list
+  const testimonialsData = data?.length ? data.map(t => ({
+      text: t.quote,
+      name: t.name,
+      role: `${t.role}${t.company ? `, ${t.company}` : ''}`, // formatting role
+  })) : testimonials;
 
-export default function TestimonialsSection() {
+  const firstColumn = testimonialsData.slice(0, 3);
+  const secondColumn = testimonialsData.slice(3, 6);
+  const thirdColumn = testimonialsData.slice(6, 9);
+
   return (
     <section className="bg-transparent py-10 md:py-16 relative w-full overflow-hidden">
       <div className="max-w-7xl mx-auto px-4 md:px-8">

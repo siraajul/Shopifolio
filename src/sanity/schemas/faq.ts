@@ -15,5 +15,19 @@ export default defineType({
             title: 'Answer',
             type: 'text',
         }),
+        defineField({
+            name: 'category',
+            title: 'Category',
+            type: 'string',
+            options: {
+                list: [
+                    { title: 'General', value: 'general' },
+                    { title: 'Technical', value: 'technical' },
+                    { title: 'Process', value: 'process' },
+                    { title: 'Pricing', value: 'pricing' },
+                ],
+            },
+            validation: (Rule) => Rule.required(),
+        }),
     ],
 })

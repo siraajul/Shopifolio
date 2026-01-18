@@ -1,6 +1,7 @@
 "use client"
 
 import { StackingCards } from "@/components/ui/stacking-cards"
+import { client } from "@/sanity/lib/client";
 
 const cards = [
   {
@@ -37,12 +38,31 @@ const cards = [
   }
 ];
 
-export default function ProcessSection() {
+import { urlFor } from "@/sanity/lib/image";
+
+// Helper to get fallback images if sanity image is missing or valid URL
+const getImage = (item: any) => {
+    if (item.image) return urlFor(item.image).width(800).url();
+    return "https://images.unsplash.com/photo-1531403009284-440f080d1e12?auto=format&fit=crop&w=800&q=80";
+}
+
+export default function ProcessSection({ data }: { data?: any[] }) {
+  
+  const processCards = data?.length ? data.map((item, index) => ({
+      id: index + 1,
+      title: item.title,
+      description: item.description,
+      image: getImage(item),
+      // Cycle colors if not provided (or if we want to stick to the theme)
+      color: index === 0 ? "#e9d5ff" : index === 1 ? "#bbf7d0" : index === 2 ? "#fecaca" : "#bfdbfe",
+      darkColor: index === 0 ? "#581c87" : index === 1 ? "#14532d" : index === 2 ? "#7f1d1d" : "#1e3a8a"
+  })) : cards;
+
   return (
     <div className="bg-transparent w-full">
       <div className="max-w-7xl mx-auto px-4 md:px-8">
         <StackingCards 
-          cards={cards}
+          cards={processCards}
           title="Our Workflow"
           description="A proven process to build high-converting Shopify stores."
         />
