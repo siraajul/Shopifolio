@@ -94,7 +94,7 @@ export default function OnboardingForm() {
   const [currentStep, setCurrentStep] = useState(0);
   const [direction, setDirection] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { addToast } = useToasts();
+  const { success, error: errorToast } = useToasts();
 
   // Helper to update fields
   const updateField = (field: keyof FormData, value: any) => {
@@ -178,15 +178,15 @@ export default function OnboardingForm() {
       const data = await response.json();
 
       if (response.ok) {
-        addToast({ title: "Inquiry Sent!", description: "We'll be in touch with a proposal shortly.", type: "success" });
+        success("Inquiry Sent! We'll be in touch shortly.");
         // Optional: Reset form or redirect
       } else {
         console.error("Submission error:", data);
-        addToast({ title: "Error", description: "Something went wrong. Please try again or email us directly.", type: "error" });
+        errorToast("Something went wrong. Please try again.");
       }
     } catch (error) {
       console.error("Network error:", error);
-      addToast({ title: "Network Error", description: "Please check your connection.", type: "error" });
+      errorToast("Please check your internet connection.");
     } finally {
       setIsSubmitting(false);
     }
