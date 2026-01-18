@@ -43,7 +43,12 @@ const ServicesSection = () => {
   ];
 
   return (
-    <section className="bg-transparent w-full flex items-center justify-center font-sans">
+    <section className="bg-transparent w-full flex items-center justify-center font-sans relative overflow-hidden">
+        {/* Ambient Green Glow */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+            <div className="absolute top-1/3 left-0 w-[500px] h-[500px] bg-emerald-900/10 rounded-full blur-[120px] mix-blend-screen" />
+            <div className="absolute bottom-0 right-1/4 w-[600px] h-[600px] bg-green-900/10 rounded-full blur-[100px] mix-blend-screen" />
+        </div>
       <div className="py-16 px-4 sm:px-6 w-full">
         <div className="max-w-7xl mx-auto">
           {/* Desktop/Tablet View - Grid */}

@@ -60,7 +60,7 @@ const InteractiveSelector = ({
       <div className="h-8"></div>
 
       {/* Options Container */}
-      <div className="options flex flex-col md:flex-row w-full max-w-[1000px] min-w-[300px] h-[400px] md:h-[500px] mx-auto items-stretch overflow-hidden relative px-4">
+      <div className="options flex flex-col md:flex-row w-full max-w-[1000px] min-w-[300px] h-[750px] md:h-[600px] mx-auto items-stretch overflow-hidden relative px-4">
         {options.map((option, index) => (
           <div
             key={index}
@@ -118,13 +118,13 @@ const InteractiveSelector = ({
               </div>
               
               <div className={cn(
-                "overflow-hidden whitespace-nowrap transition-all duration-700 ease-in-out",
-                 activeIndex === index ? "max-w-[500px] opacity-100 translate-x-0" : "max-w-0 opacity-0 translate-x-10"
+                "overflow-hidden transition-all duration-700 ease-in-out",
+                 activeIndex === index ? "w-full opacity-100 translate-x-0" : "w-0 opacity-0 translate-x-10"
               )}>
-                <div className="font-bold text-xl text-white mb-1">
+                <div className="font-bold text-xl text-white mb-1 leading-tight">
                   {option.title}
                 </div>
-                <div className="text-sm text-gray-200">
+                <div className="text-sm text-gray-200 leading-snug">
                   {option.description}
                 </div>
               </div>

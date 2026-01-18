@@ -16,15 +16,16 @@ import Link from "next/link";
 
 import AboutSection3 from "@/components/sections/about-section"
 import { GallerySection } from "@/components/sections/gallery-section"
+import IndustryShowcase from "@/components/sections/industry-showcase"
 import ServicesSection from "@/components/sections/services"
 import { MarqueeAnimation } from "@/components/ui/marquee-effect"
 import ProcessSection from "@/components/sections/process-section"
 import IndustriesSection from "@/components/sections/industries"
 import TestimonialsSection from "@/components/sections/testimonials"
 import PricingSection from "@/components/sections/pricing-section"
-import ImageAutoSlider from "@/components/ui/image-auto-slider"
 import FAQSection from "@/components/sections/faq-section"
 import { Footer } from "@/components/sections/footer-section"
+import ImpactSection from "@/components/sections/impact-section"
 
 export interface HomeProps {
   hero?: {
@@ -106,7 +107,11 @@ export default function HomeClient({ data }: { data: HomeProps }) {
     <main className="bg-background text-foreground min-h-screen w-full">
       <section id="home" className="relative h-screen flex flex-col items-center justify-center p-4">
         {/* Cosmic Glow Background */}
-        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-primary/20 blur-[120px] rounded-full pointer-events-none z-0 dark:mix-blend-screen mix-blend-multiply" />
+        {/* Ambient Green Glow */}
+        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
+            <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-emerald-900/20 rounded-full blur-[120px] -translate-y-1/2 mix-blend-screen" />
+            <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-green-900/10 rounded-full blur-[100px] mix-blend-screen" />
+        </div>
 
         {/* Main Content */}
         <div className="relative z-10 w-full text-center flex flex-col items-center justify-center gap-8">
@@ -249,8 +254,18 @@ export default function HomeClient({ data }: { data: HomeProps }) {
       </motion.div>
       </section>
 
-      <GallerySection data={data.gallery} />
+
+
+      <div id="work">
+        <GallerySection data={data.gallery} />
+      </div>
       
+      <ImpactSection />
+
+      <IndustriesSection />
+
+      <IndustryShowcase />
+
       <AboutSection3 data={data.about} onCollaborateClick={() => setIsCalendlyOpen(true)} />
       
       <section className="py-8 bg-transparent text-foreground flex items-center overflow-hidden">
@@ -293,9 +308,7 @@ export default function HomeClient({ data }: { data: HomeProps }) {
         </MarqueeAnimation>
       </section>
 
-      <div id="work">
-        <ImageAutoSlider />
-      </div>
+
       <div id="services">
         <ServicesSection />
       </div>
@@ -305,7 +318,6 @@ export default function HomeClient({ data }: { data: HomeProps }) {
       <div id="process">
         <ProcessSection />
       </div>
-      <IndustriesSection />
       <div id="pricing">
         <PricingSection />
       </div>

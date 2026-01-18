@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Syne, Manrope } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
-import { ThemeToggle } from "@/components/ui/theme-toggle";
 import SmoothScroll from "@/components/ui/smooth-scroll";
 
 import { Preloader } from "@/components/ui/preloader";
@@ -111,7 +110,8 @@ export default function RootLayout({
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
-          enableSystem
+          forcedTheme="dark"
+          enableSystem={false}
           disableTransitionOnChange
         >
           <SmoothScroll>
@@ -119,7 +119,6 @@ export default function RootLayout({
             <Preloader />
             {children}
           </SmoothScroll>
-          <ThemeToggle />
           <Analytics />
         </ThemeProvider>
       </body>

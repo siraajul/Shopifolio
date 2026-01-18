@@ -102,7 +102,12 @@ export default function PricingSection() {
     const [activeTab, setActiveTab] = useState<'brand' | 'dropshipping'>('brand');
 
     return (
-        <section className="bg-transparent w-full overflow-hidden">
+        <section className="bg-transparent w-full overflow-hidden relative">
+            {/* Ambient Green Glow */}
+            <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none">
+                 <div className="absolute top-1/4 right-0 w-[400px] h-[400px] bg-emerald-900/10 rounded-full blur-[100px] mix-blend-screen" />
+                 <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-green-900/10 rounded-full blur-[100px] mix-blend-screen" />
+            </div>
             <div className="max-w-7xl mx-auto px-4 md:px-8">
                 {/* Toggle Switch */}
                 <div className="flex justify-center mb-8">
