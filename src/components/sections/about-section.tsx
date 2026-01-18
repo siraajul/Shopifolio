@@ -158,13 +158,13 @@ export default function AboutSection3({ data, onCollaborateClick }: AboutProps) 
             />
             
             {/* Overlay: Revenue Dashboard Card */}
-            <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 bg-black/60 backdrop-blur-xl border border-white/10 p-4 rounded-xl shadow-2xl flex flex-col gap-2 w-48 md:w-64">
-               <div className="flex items-center justify-between">
-                  <span className="text-xs text-gray-400 uppercase tracking-widest font-semibold">Total Revenue</span>
+            <div className="absolute bottom-4 right-4 md:bottom-8 md:right-8 bg-black/60 backdrop-blur-xl border border-white/10 p-3 md:p-4 rounded-xl shadow-2xl flex flex-col gap-2 w-fit min-w-[140px] md:w-64">
+               <div className="flex items-center justify-between gap-2">
+                  <span className="text-[10px] sm:text-xs text-gray-400 uppercase tracking-widest font-semibold">Total Revenue</span>
                   <div className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></div>
                </div>
-               <div className="text-2xl md:text-3xl font-bold text-white flex items-end gap-2">
-                 $10,240,500 <span className="text-xs text-green-400 mb-1">+24%</span>
+               <div className="text-lg sm:text-2xl md:text-3xl font-bold text-white flex items-end gap-2">
+                 $10,240,500 <span className="text-[10px] sm:text-xs text-green-400 mb-1">+24%</span>
                </div>
                {/* Simple CSS Graph */}
                <div className="flex items-end gap-1 h-8 mt-1 opacity-80">
