@@ -120,17 +120,42 @@ export default function IndustryShowcase({ limit, title }: { limit?: number | nu
     fetchProjects();
   }, []);
 
+  // Responsive Limit Logic
+  const [responsiveLimit, setResponsiveLimit] = useState<number | null>(null);
+
+  useEffect(() => {
+    const handleResize = () => {
+      const width = window.innerWidth;
+      if (width < 768) {
+        setResponsiveLimit(3); // Mobile
+      } else if (width < 1024) {
+        setResponsiveLimit(6); // Tablet (Portrait)
+      } else {
+        setResponsiveLimit(null); // Desktop (use default limit)
+      }
+    };
+
+    // Initial check
+    handleResize();
+
+    window.addEventListener('resize', handleResize);
+    return () => window.removeEventListener('resize', handleResize);
+  }, []);
+
   // Filter projects by active tab
   const activeProjects = projects.filter(p => p.industry === activeTab);
   
-  // Apply limit if provided
-  const displayedProjects = limit ? activeProjects.slice(0, limit) : activeProjects;
-  const showViewMore = limit && activeProjects.length > limit;
+  // Apply limit if provided, considering responsive overrides
+  // If responsiveLimit is set, use it. Otherwise use the prop limit.
+  // Actually, usually we want the stricter limit. 
+  // But here user specifically said "mobile 3, tablet 6". 
+  // So we use responsiveLimit if it exists (mobile/tablet), otherwise fall back to prop limit.
+  
+  const effectiveLimit = responsiveLimit !== null ? responsiveLimit : limit;
+  const displayedProjects = effectiveLimit ? activeProjects.slice(0, effectiveLimit) : activeProjects;
+  const showViewMore = effectiveLimit ? activeProjects.length > effectiveLimit : false;
 
   // Fallback for empty states (optional: keep placeholders if no data?)
-  // For now, if no data, we might show a message or just empty grid.
-  // Actually, let's keep the user's "no sugar coating" vibe and show empty if empty.
-  // BUT to avoid broken UI during dev before they add content, let's add a robust check.
 
   return (
     <section className="relative w-full py-24">
