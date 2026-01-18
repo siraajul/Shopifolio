@@ -19,6 +19,7 @@ import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
 import { Check, ChevronRight, ChevronLeft, Loader2, Sparkles } from "lucide-react";
 import { useToasts } from "@/components/ui/toast";
+import { sendGAEvent } from "@next/third-parties/google";
 
 // ----------------------------------------------------------------------
 // FORM DATA TYPE
@@ -215,6 +216,13 @@ export default function OnboardingForm() {
 
       if (response.ok) {
         success("Inquiry Sent! We'll be in touch shortly.");
+        
+        // Track Conversion in GA4
+        sendGAEvent('event', 'generate_lead', { 
+            value: formData.budget, 
+            currency: 'USD',
+            project_type: formData.projectType 
+        });
         // Optional: Reset form or redirect
       } else {
         console.error("Submission error:", data);

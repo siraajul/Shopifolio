@@ -11,6 +11,8 @@ import { CookieBanner } from "@/components/ui/cookie-banner";
 import { WhatsAppWidget } from "@/components/ui/whatsapp-widget";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
+import { GoogleAnalytics } from "@next/third-parties/google";
+import { Clarity } from "@/components/analytics/clarity";
 
 const syne = Syne({
   variable: "--font-syne",
@@ -135,6 +137,8 @@ export default function RootLayout({
               <SpeedInsights />
             </SmoothScroll>
             <Analytics />
+            <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ""} />
+            <Clarity />
           </CalendlyProvider>
         </ThemeProvider>
       </body>
