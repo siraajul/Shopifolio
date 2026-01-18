@@ -6,6 +6,7 @@ import { TextRotate } from "@/components/ui/text-rotate"
 import { AvatarCircles } from "@/components/ui/avatar-circles"
 import { SevenFigureIcon, ProvenIcon, ConvertingIcon, PremiumIcon, ScalableIcon } from "@/components/ui/animated-icons"
 import { ArrowRight } from "lucide-react"
+
 import { HyperText } from "@/components/ui/hyper-text"
 import dynamic from "next/dynamic"
 
