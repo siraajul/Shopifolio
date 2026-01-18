@@ -7,6 +7,7 @@ import SmoothScroll from "@/components/ui/smooth-scroll";
 
 import { Preloader } from "@/components/ui/preloader";
 import { GlobalBackground } from "@/components/ui/global-background";
+import { WhatsAppWidget } from "@/components/ui/whatsapp-widget";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -128,6 +129,7 @@ export default function RootLayout({
               <Preloader />
               <GlobalBackground />
               {children}
+              <WhatsAppWidget />
               <SpeedInsights />
             </SmoothScroll>
             <Analytics />
