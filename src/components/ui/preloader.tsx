@@ -32,7 +32,7 @@ export function Preloader() {
     const timer = setTimeout(() => {
       setIsLoading(false);
       sessionStorage.setItem("hasLoaded", "true");
-    }, 1500);
+    }, 500);
 
     return () => {
       clearInterval(interval);
