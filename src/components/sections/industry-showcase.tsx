@@ -241,13 +241,14 @@ export default function IndustryShowcase({ limit, title }: { limit?: number | nu
                     
                     {/* View More Button */}
                     {showViewMore && (
-                      <div className="flex justify-center mt-8">
-                        <StarButton 
+                      <div className="flex justify-center mt-2">
+                        <button 
                           onClick={() => window.location.href = '/work'}
-                          className="h-12 px-8 rounded-full text-base"
+                          className="group flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-300"
                         >
-                          View More {INDUSTRIES.find(i => i.id === activeTab)?.label} Projects
-                        </StarButton>
+                          <span className="font-medium">View All {INDUSTRIES.find(i => i.id === activeTab)?.label} Projects</span>
+                          <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
+                        </button>
                       </div>
                     )}
                 </motion.div>
