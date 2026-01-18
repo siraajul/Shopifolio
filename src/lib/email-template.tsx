@@ -62,12 +62,12 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
                <div style={{ color: '#fff', fontWeight: '600' }}>{formData.name}</div>
             </div>
              <div style={{ backgroundColor: '#27272a', padding: '16px', borderRadius: '8px' }}>
-               <div style={{ color: '#71717a', fontSize: '12px', marginBottom: '4px' }}>ROLE</div>
-               <div style={{ color: '#fff', fontWeight: '600' }}>{formData.profession}</div>
+               <div style={{ color: '#71717a', fontSize: '12px', marginBottom: '4px' }}>PROJECT TYPE</div>
+               <div style={{ color: '#fff', fontWeight: '600' }}>{formData.projectType}</div>
             </div>
              <div style={{ backgroundColor: '#27272a', padding: '16px', borderRadius: '8px' }}>
-               <div style={{ color: '#71717a', fontSize: '12px', marginBottom: '4px' }}>INDUSTRY</div>
-               <div style={{ color: '#fff', fontWeight: '600' }}>{formData.industry}</div>
+               <div style={{ color: '#71717a', fontSize: '12px', marginBottom: '4px' }}>NICHE</div>
+               <div style={{ color: '#fff', fontWeight: '600' }}>{formData.niche}</div>
             </div>
              <div style={{ backgroundColor: '#27272a', padding: '16px', borderRadius: '8px' }}>
                <div style={{ color: '#71717a', fontSize: '12px', marginBottom: '4px' }}>BUDGET</div>
@@ -87,23 +87,25 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
             paddingBottom: '10px',
             marginBottom: '16px'
           }}>
-            Project Details
+            Store Details
           </h2>
           
            <div style={{ marginBottom: '16px' }}>
-             <div style={{ color: '#71717a', fontSize: '13px', marginBottom: '4px' }}>PRIMARY GOAL</div>
-             <div style={{ color: '#e4e4e7', fontSize: '15px' }}>{formData.primaryGoal}</div>
+             <div style={{ color: '#71717a', fontSize: '13px', marginBottom: '4px' }}>PRODUCT COUNT</div>
+             <div style={{ color: '#e4e4e7', fontSize: '15px' }}>{formData.productCount}</div>
            </div>
            
-           <div style={{ marginBottom: '16px' }}>
-             <div style={{ color: '#71717a', fontSize: '13px', marginBottom: '4px' }}>STYLE PREFERENCE</div>
-             <div style={{ color: '#e4e4e7', fontSize: '15px' }}>{formData.stylePreference}</div>
-           </div>
-
            <div style={{ marginBottom: '16px' }}>
              <div style={{ color: '#71717a', fontSize: '13px', marginBottom: '4px' }}>TIMELINE</div>
              <div style={{ color: '#e4e4e7', fontSize: '15px' }}>{formData.timeline}</div>
            </div>
+
+           {formData.referenceStores && (
+             <div style={{ marginBottom: '16px' }}>
+               <div style={{ color: '#71717a', fontSize: '13px', marginBottom: '4px' }}>DESIGN REFERENCES</div>
+               <div style={{ color: '#e4e4e7', fontSize: '15px', whiteSpace: 'pre-wrap' }}>{formData.referenceStores}</div>
+             </div>
+           )}
         </div>
 
         {/* Features Pills */}

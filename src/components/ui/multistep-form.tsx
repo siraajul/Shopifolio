@@ -2,20 +2,12 @@
 
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
-import { ChevronLeft, ChevronRight, Check, Loader2 } from "lucide-react";
 import { Button } from "@/components/ui/button";
-import {
-  Card,
-  CardContent,
-  CardDescription,
-  CardFooter,
-  CardHeader,
-  CardTitle,
-} from "@/components/ui/card";
 import { Input } from "@/components/ui/input";
 import { Label } from "@/components/ui/label";
+import { Card } from "@/components/ui/card";
 import { RadioGroup, RadioGroupItem } from "@/components/ui/radio-group";
-import { Textarea } from "@/components/ui/textarea";
+import { Checkbox } from "@/components/ui/checkbox";
 import {
   Select,
   SelectContent,
@@ -23,95 +15,150 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
-import { Checkbox } from "@/components/ui/checkbox";
-import { useToasts } from "@/components/ui/toast";
+import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
+import { Check, ChevronRight, ChevronLeft, Loader2, Sparkles } from "lucide-react";
+import { useToasts } from "@/components/ui/toast";
 
-const steps = [
-  { id: "personal", title: "Personal Info" },
-  { id: "professional", title: "Professional" },
-  { id: "goals", title: "Website Goals" },
-  { id: "design", title: "Design" },
-  { id: "budget", title: "Budget" },
-  { id: "requirements", title: "Requirements" },
-];
-
-interface FormData {
+// ----------------------------------------------------------------------
+// FORM DATA TYPE
+// ----------------------------------------------------------------------
+export type FormData = {
+  // Personal
   name: string;
   email: string;
   company: string;
-  profession: string;
-  experience: string;
-  industry: string;
-  primaryGoal: string;
-  targetAudience: string;
-  contentTypes: string[];
-  colorPreference: string;
-  stylePreference: string;
-  inspirations: string;
+  
+  // Step 1: Project Type
+  projectType: string;
+
+  // Step 2: Store Details
+  niche: string;
+  productCount: string;
+  referenceStores: string; // "Make it look like Gymshark"
+
+  // Step 3: Features
+  features: string[];
+  
+  // Step 4: Budget & Timeline
   budget: string;
   timeline: string;
-  features: string[];
+  
+  // Extra
   additionalInfo: string;
-}
-
-const fadeInUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0, transition: { duration: 0.3 } },
 };
 
-const contentVariants = {
-  hidden: { opacity: 0, x: 50 },
-  visible: { opacity: 1, x: 0, transition: { duration: 0.3 } },
-  exit: { opacity: 0, x: -50, transition: { duration: 0.2 } },
+const INITIAL_DATA: FormData = {
+  name: "",
+  email: "",
+  company: "",
+  projectType: "",
+  niche: "",
+  productCount: "",
+  referenceStores: "",
+  features: [],
+  budget: "",
+  timeline: "",
+  additionalInfo: "",
 };
 
-const OnboardingForm = () => {
+
+// ----------------------------------------------------------------------
+// ANIMATION VARIANTS
+// ----------------------------------------------------------------------
+const slideVariants = {
+  enter: (direction: number) => ({
+    x: direction > 0 ? 50 : -50,
+    opacity: 0,
+    filter: "blur(10px)",
+  }),
+  center: {
+    zIndex: 1,
+    x: 0,
+    opacity: 1,
+    filter: "blur(0px)",
+  },
+  exit: (direction: number) => ({
+    zIndex: 0,
+    x: direction < 0 ? 50 : -50,
+    opacity: 0,
+    filter: "blur(10px)",
+  }),
+};
+
+// ----------------------------------------------------------------------
+// MAIN COMPONENT
+// ----------------------------------------------------------------------
+export default function OnboardingForm() {
+  const [formData, setFormData] = useState<FormData>(INITIAL_DATA);
   const [currentStep, setCurrentStep] = useState(0);
+  const [direction, setDirection] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
-  const { success } = useToasts();
-  const [formData, setFormData] = useState<FormData>({
-    name: "",
-    email: "",
-    company: "",
-    profession: "",
-    experience: "",
-    industry: "",
-    primaryGoal: "",
-    targetAudience: "",
-    contentTypes: [],
-    colorPreference: "",
-    stylePreference: "",
-    inspirations: "",
-    budget: "",
-    timeline: "",
-    features: [],
-    additionalInfo: "",
-  });
+  const { addToast } = useToasts();
 
-  const updateFormData = (field: keyof FormData, value: string) => {
+  // Helper to update fields
+  const updateField = (field: keyof FormData, value: any) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
   const toggleFeature = (feature: string) => {
     setFormData((prev) => {
-      const features = [...prev.features];
-      if (features.includes(feature)) {
-        return { ...prev, features: features.filter((f) => f !== feature) };
+      const exists = prev.features.includes(feature);
+      if (exists) {
+        return { ...prev, features: prev.features.filter((f) => f !== feature) };
       } else {
-        return { ...prev, features: [...features, feature] };
+        return { ...prev, features: [...prev.features, feature] };
       }
     });
   };
 
+  // Steps Configuration
+  const steps = [
+    {
+      id: "intro",
+      title: "Project Type",
+      description: "What are we building today?",
+      isValid: () => !!formData.projectType,
+    },
+    {
+      id: "details",
+      title: "Store Details",
+      description: "Tell us about your brand & products.",
+      isValid: () => !!formData.niche && !!formData.productCount,
+    },
+    {
+      id: "features",
+      title: "Features",
+      description: "What special powers does your store need?",
+      isValid: () => true, // Optional
+    },
+    {
+      id: "logistics",
+      title: "Budget & Timeline",
+      description: "Help us understand your scope.",
+      isValid: () => !!formData.budget && !!formData.timeline,
+    },
+    {
+      id: "contact",
+      title: "Contact Info",
+      description: "Where should we send the proposal?",
+      isValid: () => !!formData.name && !!formData.email,
+    },
+  ];
+
+  // Navigation
   const nextStep = () => {
     if (currentStep < steps.length - 1) {
+      setDirection(1);
       setCurrentStep((prev) => prev + 1);
+    } else {
+      handleSubmit();
     }
   };
 
   const prevStep = () => {
     if (currentStep > 0) {
+      setDirection(-1);
       setCurrentStep((prev) => prev - 1);
     }
   };
@@ -131,636 +178,359 @@ const OnboardingForm = () => {
       const data = await response.json();
 
       if (response.ok) {
-        success("Project request sent! We'll be in touch shortly.");
+        addToast({ title: "Inquiry Sent!", description: "We'll be in touch with a proposal shortly.", type: "success" });
         // Optional: Reset form or redirect
       } else {
         console.error("Submission error:", data);
-        success("Something went wrong. Please try again or email us directly."); // Using success/toast system for error generic msg
+        addToast({ title: "Error", description: "Something went wrong. Please try again or email us directly.", type: "error" });
       }
     } catch (error) {
       console.error("Network error:", error);
-      success("Network error. Please try again.");
+      addToast({ title: "Network Error", description: "Please check your connection.", type: "error" });
     } finally {
       setIsSubmitting(false);
     }
   };
 
-  // Check if step is valid for next button
-  const isStepValid = () => {
-    switch (currentStep) {
-      case 0:
-        return formData.name.trim() !== "" && formData.email.trim() !== "";
-      case 1:
-        return formData.profession.trim() !== "" && formData.industry !== "";
-      case 2:
-        return formData.primaryGoal !== "";
-      case 3:
-        return formData.stylePreference !== "";
-      case 4:
-        return formData.budget !== "" && formData.timeline !== "";
+  // UI Components per Step
+  const renderStepContent = (stepId: string) => {
+    switch (stepId) {
+      // -------------------------------------------------------------
+      // STEP 1: PROJECT TYPE
+      // -------------------------------------------------------------
+      case "intro":
+        return (
+          <div className="space-y-6">
+            <RadioGroup
+              value={formData.projectType}
+              onValueChange={(val) => updateField("projectType", val)}
+              className="grid grid-cols-1 md:grid-cols-2 gap-4"
+            >
+              {[
+                { value: "New Store", label: "New Store Setup", desc: "Starting from scratch" },
+                { value: "Redesign", label: "Redesign / Revamp", desc: "Improve existing store" },
+                { value: "Migration", label: "Migration", desc: "Moving from Wix/WordPress" },
+                { value: "Custom Dev", label: "Custom Development", desc: "Specific features or Liquid code" },
+              ].map((opt) => (
+                <div key={opt.value}>
+                  <RadioGroupItem value={opt.value} id={opt.value} className="peer sr-only" />
+                  <Label
+                    htmlFor={opt.value}
+                    className="flex flex-col justify-between p-6 h-full bg-muted/30 border-2 border-transparent peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/5 hover:bg-muted/50 rounded-xl cursor-pointer transition-all"
+                  >
+                    <span className="font-semibold text-lg">{opt.label}</span>
+                    <span className="text-muted-foreground font-normal mt-2">{opt.desc}</span>
+                  </Label>
+                </div>
+              ))}
+            </RadioGroup>
+          </div>
+        );
+
+      // -------------------------------------------------------------
+      // STEP 2: STORE DETAILS
+      // -------------------------------------------------------------
+      case "details":
+        return (
+          <div className="space-y-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+              <div className="space-y-3">
+                <Label>Industry / Niche</Label>
+                <Select
+                  value={formData.niche}
+                  onValueChange={(val) => updateField("niche", val)}
+                >
+                  <SelectTrigger className="h-12">
+                    <SelectValue placeholder="Select Industry" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="Fashion & Apparel">Fashion & Apparel</SelectItem>
+                    <SelectItem value="Beauty & Cosmetics">Beauty & Cosmetics</SelectItem>
+                    <SelectItem value="Electronics">Electronics & Gadgets</SelectItem>
+                    <SelectItem value="Home & Decor">Home & Decor</SelectItem>
+                    <SelectItem value="Food & Beverage">Food & Beverage</SelectItem>
+                    <SelectItem value="Other">Other</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+
+               <div className="space-y-3">
+                <Label>Product Count</Label>
+                <Select
+                  value={formData.productCount}
+                  onValueChange={(val) => updateField("productCount", val)}
+                >
+                  <SelectTrigger className="h-12">
+                    <SelectValue placeholder="Approx. Catalog Size" />
+                  </SelectTrigger>
+                  <SelectContent>
+                    <SelectItem value="1-10">1 - 10 Products</SelectItem>
+                    <SelectItem value="10-100">10 - 100 Products</SelectItem>
+                    <SelectItem value="100-1000">100 - 1,000 Products</SelectItem>
+                    <SelectItem value="1000+">1,000+ Products</SelectItem>
+                  </SelectContent>
+                </Select>
+              </div>
+            </div>
+
+            <div className="space-y-3">
+              <Label>Design References (Optional)</Label>
+              <Textarea 
+                placeholder="Show us what you like. Paste standard URLs (e.g. apple.com, gymshark.com) or describe the vibe (minimal, bold, luxury)."
+                className="min-h-[100px] bg-background/50"
+                value={formData.referenceStores}
+                onChange={(e) => updateField("referenceStores", e.target.value)}
+              />
+            </div>
+          </div>
+        );
+
+      // -------------------------------------------------------------
+      // STEP 3: FEATURES
+      // -------------------------------------------------------------
+      case "features":
+        return (
+          <div className="space-y-6">
+             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+              {[
+                "Subscriptions",
+                "Bundles / Upsells",
+                "B2B / Wholesale Portal",
+                "Multi-Currency / Language",
+                "Advanced Filtering",
+                "Mega Menu",
+                "Loyalty Program",
+                "Migrate Reviews/Data",
+              ].map((feature) => (
+                <div
+                  key={feature}
+                  onClick={() => toggleFeature(feature)}
+                  className={cn(
+                    "flex items-center space-x-3 p-4 rounded-xl border-2 cursor-pointer transition-all",
+                    formData.features.includes(feature)
+                      ? "border-primary bg-primary/5"
+                      : "border-border bg-muted/20 hover:bg-muted/40"
+                  )}
+                >
+                  <Checkbox 
+                     checked={formData.features.includes(feature)}
+                     onCheckedChange={() => toggleFeature(feature)} 
+                     className="pointer-events-none" // Handled by parent div
+                  />
+                  <span className="font-medium text-sm md:text-base">{feature}</span>
+                </div>
+              ))}
+            </div>
+             <div className="text-sm text-muted-foreground text-center">
+                Anything else? You can add details in the final step.
+            </div>
+          </div>
+        );
+
+      // -------------------------------------------------------------
+      // STEP 4: BUDGET & TIMELINE
+      // -------------------------------------------------------------
+      case "logistics":
+        return (
+          <div className="space-y-8">
+            <div className="space-y-4">
+              <Label className="text-lg font-semibold">What is your estimated budget?</Label>
+              <RadioGroup
+                value={formData.budget}
+                onValueChange={(val) => updateField("budget", val)}
+                className="grid grid-cols-1 sm:grid-cols-3 gap-4"
+              >
+                {["$1k - $3k", "$3k - $8k", "$8k +"].map((opt) => (
+                  <div key={opt}>
+                    <RadioGroupItem value={opt} id={`budget-${opt}`} className="peer sr-only" />
+                    <Label
+                      htmlFor={`budget-${opt}`}
+                      className="flex items-center justify-center p-4 border-2 border-transparent peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/5 bg-muted/30 hover:bg-muted/50 rounded-xl cursor-pointer transition-all font-medium"
+                    >
+                      {opt}
+                    </Label>
+                  </div>
+                ))}
+              </RadioGroup>
+            </div>
+
+            <div className="space-y-4">
+              <Label className="text-lg font-semibold">How soon do you need this?</Label>
+              <RadioGroup
+                value={formData.timeline}
+                onValueChange={(val) => updateField("timeline", val)}
+                className="grid grid-cols-1 sm:grid-cols-3 gap-4"
+              >
+                {["ASAP (< 2 weeks)", "2-4 Weeks", "1 Month +"].map((opt) => (
+                  <div key={opt}>
+                    <RadioGroupItem value={opt} id={`time-${opt}`} className="peer sr-only" />
+                    <Label
+                      htmlFor={`time-${opt}`}
+                      className="flex items-center justify-center p-4 border-2 border-transparent peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/5 bg-muted/30 hover:bg-muted/50 rounded-xl cursor-pointer transition-all font-medium"
+                    >
+                      {opt}
+                    </Label>
+                  </div>
+                ))}
+              </RadioGroup>
+            </div>
+            
+            <div className="space-y-3">
+               <Label>Additional Notes (Optional)</Label>
+               <Textarea
+                 value={formData.additionalInfo}
+                 onChange={(e) => updateField("additionalInfo", e.target.value)}
+                 placeholder="Any specific functionalities or questions?"
+                 className="min-h-[80px]"
+               />
+            </div>
+          </div>
+        );
+
+      // -------------------------------------------------------------
+      // STEP 5: CONTACT
+      // -------------------------------------------------------------
+      case "contact":
+        return (
+          <div className="space-y-6">
+            <div className="space-y-4 text-center mb-8">
+               <div className="w-16 h-16 bg-primary/10 rounded-full flex items-center justify-center mx-auto mb-4">
+                  <Sparkles className="w-8 h-8 text-primary" />
+               </div>
+               <h3 className="text-2xl font-bold">Almost there!</h3>
+               <p className="text-muted-foreground">Where should we send your custom proposal?</p>
+            </div>
+
+            <div className="space-y-4">
+              <div className="space-y-2">
+                <Label>Project / Company Name (Optional)</Label>
+                <Input
+                  value={formData.company}
+                  onChange={(e) => updateField("company", e.target.value)}
+                  placeholder="e.g. My Brand LLC"
+                  className="h-12 bg-background/50"
+                  autoFocus
+                />
+              </div>
+              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                <div className="space-y-2">
+                    <Label>Your Name</Label>
+                    <Input
+                    value={formData.name}
+                    onChange={(e) => updateField("name", e.target.value)}
+                    placeholder="John Doe"
+                    className="h-12 bg-background/50"
+                    />
+                </div>
+                <div className="space-y-2">
+                    <Label>Email Address</Label>
+                    <Input
+                    type="email"
+                    value={formData.email}
+                    onChange={(e) => updateField("email", e.target.value)}
+                    placeholder="john@example.com"
+                    className="h-12 bg-background/50"
+                    />
+                </div>
+              </div>
+            </div>
+          </div>
+        );
+      
       default:
-        return true;
+        return null;
     }
   };
 
+
   return (
-    <div className="w-full max-w-lg mx-auto py-8">
-      {/* Progress indicator */}
-      <motion.div
-        className="mb-8"
-        initial={{ opacity: 0, y: -20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
-      >
-        <div className="flex justify-between mb-2">
-          {steps.map((step, index) => (
-            <motion.div
-              key={index}
-              className="flex flex-col items-center"
-              whileHover={{ scale: 1.1 }}
-            >
-              <motion.div
+    <div className="w-full max-w-3xl mx-auto">
+      {/* Progress Bar (Optional) */}
+      <div className="mb-8 flex items-center justify-between px-2">
+        {steps.map((s, i) => (
+           <div key={s.id} className="flex flex-col items-center gap-2 relative z-10">
+              <div 
                 className={cn(
-                  "w-4 h-4 rounded-full cursor-pointer transition-colors duration-300",
-                  index < currentStep
-                    ? "bg-primary"
-                    : index === currentStep
-                      ? "bg-primary ring-4 ring-primary/20"
-                      : "bg-muted",
-                )}
-                onClick={() => {
-                  // Only allow going back or to completed steps
-                  if (index <= currentStep) {
-                    setCurrentStep(index);
-                  }
-                }}
-                whileTap={{ scale: 0.95 }}
-              />
-              <motion.span
-                className={cn(
-                  "text-xs mt-1.5 hidden sm:block font-medium",
-                  index === currentStep
-                    ? "text-primary"
-                    : "text-muted-foreground",
+                    "w-8 h-8 rounded-full flex items-center justify-center text-xs font-bold transition-all duration-300 border-2",
+                    i <= currentStep ? "bg-primary border-primary text-black" : "bg-background border-muted text-muted-foreground"
                 )}
               >
-                {step.title}
-              </motion.span>
-            </motion.div>
-          ))}
-        </div>
-        <div className="w-full bg-muted/30 h-1.5 rounded-full overflow-hidden mt-2">
-          <motion.div
-            className="h-full bg-primary"
-            initial={{ width: 0 }}
-            animate={{ width: `${(currentStep / (steps.length - 1)) * 100}%` }}
-            transition={{ duration: 0.3 }}
-          />
-        </div>
-      </motion.div>
+                  {i < currentStep ? <Check className="w-4 h-4" /> : i + 1}
+              </div>
+              <span className={cn(
+                  "text-[10px] md:text-xs font-medium uppercase tracking-wider absolute -bottom-6 w-32 text-center transition-colors duration-300",
+                   i === currentStep ? "text-primary" : "text-muted-foreground/50"
+              )}>
+                  {s.title}
+              </span>
+           </div>
+        ))}
+        {/* Progress Line Background */}
+        <div className="absolute top-4 left-0 w-full h-[2px] bg-muted -z-0 hidden md:block" />
+      </div>
 
-      {/* Form card */}
-      <motion.div
-        initial={{ opacity: 0, y: 20 }}
-        animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5, delay: 0.2 }}
-      >
-        <Card className="border shadow-2xl shadow-primary/5 rounded-3xl overflow-hidden bg-background">
-          <div>
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={currentStep}
-                initial="hidden"
-                animate="visible"
-                exit="exit"
-                variants={contentVariants}
+      <Card className="p-1 border-white/5 bg-black/40 backdrop-blur-xl shadow-2xl relative overflow-hidden mt-12">
+        {/* Step Content Container */}
+        <div className="p-6 md:p-10 min-h-[400px] flex flex-col relative">
+           
+           <div className="mb-8">
+              <h2 className="text-2xl md:text-3xl font-bold mb-2">{steps[currentStep].title}</h2>
+              <p className="text-muted-foreground text-lg">{steps[currentStep].description}</p>
+           </div>
+
+            {/* Animated Step Content */}
+            <div className="flex-grow relative">
+                <AnimatePresence mode="wait" custom={direction}>
+                    <motion.div
+                        key={currentStep}
+                        custom={direction}
+                        variants={slideVariants}
+                        initial="enter"
+                        animate="center"
+                        exit="exit"
+                        transition={{ duration: 0.3, ease: "easeInOut" }}
+                        className="w-full h-full"
+                    >
+                        {renderStepContent(steps[currentStep].id)}
+                    </motion.div>
+                </AnimatePresence>
+            </div>
+
+           {/* Navigation Buttons */}
+           <div className="mt-12 flex items-center justify-between pt-6 border-t border-white/5">
+              <Button
+                variant="ghost"
+                onClick={prevStep}
+                disabled={currentStep === 0 || isSubmitting}
+                className={cn("text-muted-foreground hover:text-foreground pl-0 hover:bg-transparent", currentStep === 0 && "invisible")}
               >
-                {/* Step 1: Personal Info */}
-                {currentStep === 0 && (
-                  <>
-                    <CardHeader>
-                      <CardTitle className="text-2xl md:text-3xl">Tell us about yourself</CardTitle>
-                      <CardDescription className="text-base">
-                        Let&apos;s start with some basic information
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-6">
-                      <motion.div variants={fadeInUp} className="space-y-2">
-                        <Label htmlFor="name" className="text-base">Full Name</Label>
-                        <Input
-                          id="name"
-                          placeholder="John Doe"
-                          value={formData.name}
-                          onChange={(e) =>
-                            updateFormData("name", e.target.value)
-                          }
-                          className="h-12 text-base transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:border-primary"
-                        />
-                      </motion.div>
-                      <motion.div variants={fadeInUp} className="space-y-2">
-                        <Label htmlFor="email" className="text-base">Email Address</Label>
-                        <Input
-                          id="email"
-                          type="email"
-                          placeholder="john@example.com"
-                          value={formData.email}
-                          onChange={(e) =>
-                            updateFormData("email", e.target.value)
-                          }
-                          className="h-12 text-base transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:border-primary"
-                        />
-                      </motion.div>
-                      <motion.div variants={fadeInUp} className="space-y-2">
-                        <Label htmlFor="company" className="text-base">
-                          Company/Organization (Optional)
-                        </Label>
-                        <Input
-                          id="company"
-                          placeholder="Your Company"
-                          value={formData.company}
-                          onChange={(e) =>
-                            updateFormData("company", e.target.value)
-                          }
-                          className="h-12 text-base transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:border-primary"
-                        />
-                      </motion.div>
-                    </CardContent>
-                  </>
-                )}
+                <ChevronLeft className="w-4 h-4 mr-2" />
+                Back
+              </Button>
 
-                {/* Step 2: Professional Background */}
-                {currentStep === 1 && (
-                  <>
-                    <CardHeader>
-                      <CardTitle className="text-2xl md:text-3xl">Professional Background</CardTitle>
-                      <CardDescription className="text-base">
-                        Tell us about your professional experience
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-6">
-                      <motion.div variants={fadeInUp} className="space-y-2">
-                        <Label htmlFor="profession" className="text-base">
-                          What&apos;s your profession?
-                        </Label>
-                        <Input
-                          id="profession"
-                          placeholder="e.g. Designer, Developer, Marketer"
-                          value={formData.profession}
-                          onChange={(e) =>
-                            updateFormData("profession", e.target.value)
-                          }
-                          className="h-12 text-base transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:border-primary"
-                        />
-                      </motion.div>
-
-                      <motion.div variants={fadeInUp} className="space-y-2">
-                        <Label htmlFor="industry" className="text-base">
-                          What industry do you work in?
-                        </Label>
-                        <Select
-                          value={formData.industry}
-                          onValueChange={(value) =>
-                            updateFormData("industry", value)
-                          }
-                        >
-                          <SelectTrigger
-                            id="industry"
-                            className="h-12 text-base transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:border-primary"
-                          >
-                            <SelectValue placeholder="Select an industry" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="technology">
-                              Technology
-                            </SelectItem>
-                            <SelectItem value="healthcare">
-                              Healthcare
-                            </SelectItem>
-                            <SelectItem value="education">Education</SelectItem>
-                            <SelectItem value="finance">Finance</SelectItem>
-                            <SelectItem value="retail">Retail</SelectItem>
-                            <SelectItem value="creative">
-                              Creative Arts
-                            </SelectItem>
-                            <SelectItem value="other">Other</SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </motion.div>
-                    </CardContent>
-                  </>
-                )}
-
-                {/* Step 3: Website Goals */}
-                {currentStep === 2 && (
-                  <>
-                    <CardHeader>
-                      <CardTitle className="text-2xl md:text-3xl">Website Goals</CardTitle>
-                      <CardDescription className="text-base">
-                        What are you trying to achieve with your website?
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-6">
-                      <motion.div variants={fadeInUp} className="space-y-2">
-                        <Label className="text-base">
-                          What&apos;s the primary goal of your website?
-                        </Label>
-                        <RadioGroup
-                          value={formData.primaryGoal}
-                          onValueChange={(value) =>
-                            updateFormData("primaryGoal", value)
-                          }
-                          className="space-y-2"
-                        >
-                          {[
-                            {
-                              value: "showcase",
-                              label: "Showcase portfolio/work",
-                            },
-                            { value: "sell", label: "Sell products/services" },
-                            {
-                              value: "generate-leads",
-                              label: "Generate leads/inquiries",
-                            },
-                            {
-                              value: "provide-info",
-                              label: "Provide information",
-                            },
-                            { value: "blog", label: "Blog/content publishing" },
-                          ].map((goal, index) => (
-                            <motion.div
-                              key={goal.value}
-                              className={cn(
-                                "flex items-center space-x-2 rounded-xl border p-4 cursor-pointer hover:bg-accent/50 transition-colors",
-                                formData.primaryGoal === goal.value ? "border-primary bg-primary/5" : ""
-                              )}
-                              whileHover={{ scale: 1.01 }}
-                              transition={{ duration: 0.2 }}
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{
-                                opacity: 1,
-                                x: 0,
-                                transition: {
-                                  delay: 0.1 * index,
-                                  duration: 0.3,
-                                },
-                              }}
-                              onClick={() => updateFormData("primaryGoal", goal.value)}
-                            >
-                              <RadioGroupItem
-                                value={goal.value}
-                                id={`goal-${index + 1}`}
-                              />
-                              <Label
-                                htmlFor={`goal-${index + 1}`}
-                                className="cursor-pointer w-full text-base ml-2"
-                              >
-                                {goal.label}
-                              </Label>
-                            </motion.div>
-                          ))}
-                        </RadioGroup>
-                      </motion.div>
-                      <motion.div variants={fadeInUp} className="space-y-2">
-                        <Label htmlFor="targetAudience" className="text-base">
-                          Who is your target audience?
-                        </Label>
-                        <Textarea
-                          id="targetAudience"
-                          placeholder="Describe your ideal visitors/customers"
-                          value={formData.targetAudience}
-                          onChange={(e) =>
-                            updateFormData("targetAudience", e.target.value)
-                          }
-                          className="min-h-[100px] text-base transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:border-primary"
-                        />
-                      </motion.div>
-                    </CardContent>
-                  </>
-                )}
-
-                {/* Step 4: Design Preferences */}
-                {currentStep === 3 && (
-                  <>
-                    <CardHeader>
-                      <CardTitle className="text-2xl md:text-3xl">Design Preferences</CardTitle>
-                      <CardDescription className="text-base">
-                        Tell us about your aesthetic preferences
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-6">
-                      <motion.div variants={fadeInUp} className="space-y-2">
-                        <Label className="text-base">
-                          What style do you prefer for your website?
-                        </Label>
-                        <RadioGroup
-                          value={formData.stylePreference}
-                          onValueChange={(value) =>
-                            updateFormData("stylePreference", value)
-                          }
-                          className="space-y-2"
-                        >
-                          {[
-                            { value: "modern", label: "Modern & Sleek" },
-                            { value: "minimalist", label: "Minimalist" },
-                            { value: "bold", label: "Bold & Creative" },
-                            {
-                              value: "corporate",
-                              label: "Corporate & Professional",
-                            },
-                          ].map((style, index) => (
-                            <motion.div
-                              key={style.value}
-                              className={cn(
-                                "flex items-center space-x-2 rounded-xl border p-4 cursor-pointer hover:bg-accent/50 transition-colors",
-                                formData.stylePreference === style.value ? "border-primary bg-primary/5" : ""
-                              )}
-                              whileHover={{ scale: 1.01 }}
-                              transition={{ duration: 0.2 }}
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{
-                                opacity: 1,
-                                y: 0,
-                                transition: {
-                                  delay: 0.1 * index,
-                                  duration: 0.3,
-                                },
-                              }}
-                              onClick={() => updateFormData("stylePreference", style.value)}
-                            >
-                              <RadioGroupItem
-                                value={style.value}
-                                id={`style-${index + 1}`}
-                              />
-                              <Label
-                                htmlFor={`style-${index + 1}`}
-                                className="cursor-pointer w-full text-base ml-2"
-                              >
-                                {style.label}
-                              </Label>
-                            </motion.div>
-                          ))}
-                        </RadioGroup>
-                      </motion.div>
-                      <motion.div variants={fadeInUp} className="space-y-2">
-                        <Label htmlFor="inspirations" className="text-base">
-                          Any websites you like for inspiration?
-                        </Label>
-                        <Textarea
-                          id="inspirations"
-                          placeholder="List websites you admire or want to emulate"
-                          value={formData.inspirations}
-                          onChange={(e) =>
-                            updateFormData("inspirations", e.target.value)
-                          }
-                          className="min-h-[100px] text-base transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:border-primary"
-                        />
-                      </motion.div>
-                    </CardContent>
-                  </>
-                )}
-
-                {/* Step 5: Budget & Timeline */}
-                {currentStep === 4 && (
-                  <>
-                    <CardHeader>
-                      <CardTitle className="text-2xl md:text-3xl">Budget & Timeline</CardTitle>
-                      <CardDescription className="text-base">
-                        Let&apos;s talk about your investment and timeline
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-6">
-                      <motion.div variants={fadeInUp} className="space-y-2">
-                        <Label htmlFor="budget" className="text-base">
-                          What&apos;s your budget range? (USD)
-                        </Label>
-                        <Select
-                          value={formData.budget}
-                          onValueChange={(value) =>
-                            updateFormData("budget", value)
-                          }
-                        >
-                          <SelectTrigger
-                            id="budget"
-                            className="h-12 text-base transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:border-primary"
-                          >
-                            <SelectValue placeholder="Select your budget" />
-                          </SelectTrigger>
-                          <SelectContent>
-                            <SelectItem value="under-1000">
-                              Under $1,000
-                            </SelectItem>
-                            <SelectItem value="1000-3000">
-                              $1,000 - $3,000
-                            </SelectItem>
-                            <SelectItem value="3000-5000">
-                              $3,000 - $5,000
-                            </SelectItem>
-                            <SelectItem value="5000-10000">
-                              $5,000 - $10,000
-                            </SelectItem>
-                            <SelectItem value="over-10000">
-                              Over $10,000
-                            </SelectItem>
-                          </SelectContent>
-                        </Select>
-                      </motion.div>
-                      <motion.div variants={fadeInUp} className="space-y-2">
-                        <Label className="text-base">What&apos;s your expected timeline?</Label>
-                        <RadioGroup
-                          value={formData.timeline}
-                          onValueChange={(value) =>
-                            updateFormData("timeline", value)
-                          }
-                          className="space-y-2"
-                        >
-                          {[
-                            { value: "asap", label: "ASAP" },
-                            { value: "1-month", label: "Within 1 month" },
-                            { value: "3-months", label: "1-3 months" },
-                            { value: "flexible", label: "Flexible" },
-                          ].map((time, index) => (
-                            <motion.div
-                              key={time.value}
-                              className={cn(
-                                "flex items-center space-x-2 rounded-xl border p-4 cursor-pointer hover:bg-accent/50 transition-colors",
-                                formData.timeline === time.value ? "border-primary bg-primary/5" : ""
-                              )}
-                              whileHover={{ scale: 1.01 }}
-                              transition={{ duration: 0.2 }}
-                              initial={{ opacity: 0, x: -10 }}
-                              animate={{
-                                opacity: 1,
-                                x: 0,
-                                transition: {
-                                  delay: 0.1 * index,
-                                  duration: 0.3,
-                                },
-                              }}
-                              onClick={() => updateFormData("timeline", time.value)}
-                            >
-                              <RadioGroupItem
-                                value={time.value}
-                                id={`time-${index + 1}`}
-                              />
-                              <Label
-                                htmlFor={`time-${index + 1}`}
-                                className="cursor-pointer w-full text-base ml-2"
-                              >
-                                {time.label}
-                              </Label>
-                            </motion.div>
-                          ))}
-                        </RadioGroup>
-                      </motion.div>
-                    </CardContent>
-                  </>
-                )}
-
-                {/* Step 6: Additional Requirements */}
-                {currentStep === 5 && (
-                  <>
-                    <CardHeader>
-                      <CardTitle className="text-2xl md:text-3xl">Additional Requirements</CardTitle>
-                      <CardDescription className="text-base">
-                        Any other specific needs for your website?
-                      </CardDescription>
-                    </CardHeader>
-                    <CardContent className="space-y-6">
-                      <motion.div variants={fadeInUp} className="space-y-2">
-                        <Label className="text-base">Which features do you need?</Label>
-                        <div className="grid grid-cols-1 md:grid-cols-2 gap-3">
-                          {[
-                            "Contact Form",
-                            "Blog/News",
-                            "E-commerce",
-                            "User Accounts",
-                            "Search Functionality",
-                            "Social Media Integration",
-                            "Newsletter Signup",
-                            "Analytics",
-                          ].map((feature, index) => (
-                            <motion.div
-                              key={feature}
-                              className={cn(
-                                "flex items-center space-x-2 rounded-xl border p-3 cursor-pointer hover:bg-accent/50 transition-colors",
-                                formData.features.includes(feature.toLowerCase()) ? "border-primary bg-primary/5" : ""
-                              )}
-                              whileHover={{ scale: 1.01 }}
-                              transition={{ duration: 0.2 }}
-                              initial={{ opacity: 0, y: 10 }}
-                              animate={{
-                                opacity: 1,
-                                y: 0,
-                                transition: {
-                                  delay: 0.05 * index,
-                                  duration: 0.3,
-                                },
-                              }}
-                              onClick={() =>
-                                toggleFeature(feature.toLowerCase())
-                              }
-                            >
-                              <Checkbox
-                                id={`feature-${feature}`}
-                                checked={formData.features.includes(
-                                  feature.toLowerCase(),
-                                )}
-                                onCheckedChange={() =>
-                                  toggleFeature(feature.toLowerCase())
-                                }
-                              />
-                              <Label
-                                htmlFor={`feature-${feature}`}
-                                className="cursor-pointer w-full ml-2 text-sm md:text-base font-medium"
-                              >
-                                {feature}
-                              </Label>
-                            </motion.div>
-                          ))}
-                        </div>
-                      </motion.div>
-                      <motion.div variants={fadeInUp} className="space-y-2">
-                        <Label htmlFor="additionalInfo" className="text-base">
-                          Anything else we should know?
-                        </Label>
-                        <Textarea
-                          id="additionalInfo"
-                          placeholder="Any additional requirements or information"
-                          value={formData.additionalInfo}
-                          onChange={(e) =>
-                            updateFormData("additionalInfo", e.target.value)
-                          }
-                          className="min-h-[100px] text-base transition-all duration-300 focus:ring-2 focus:ring-primary/20 focus:border-primary"
-                        />
-                      </motion.div>
-                    </CardContent>
-                  </>
-                )}
-              </motion.div>
-            </AnimatePresence>
-
-            <CardFooter className="flex justify-between pt-6 pb-4">
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
+              <Button
+                onClick={nextStep}
+                disabled={!steps[currentStep].isValid() || isSubmitting}
+                className="rounded-full px-8 h-12 text-base font-semibold shadow-lg shadow-primary/20"
+                size="lg"
               >
-                <Button
-                  type="button"
-                  variant="outline"
-                  onClick={prevStep}
-                  disabled={currentStep === 0}
-                  className="flex items-center gap-2 transition-all duration-300 rounded-full h-11 px-6 border-border/60"
-                >
-                  <ChevronLeft className="h-4 w-4" /> Back
-                </Button>
-              </motion.div>
-              <motion.div
-                whileHover={{ scale: 1.05 }}
-                whileTap={{ scale: 0.95 }}
-              >
-                <Button
-                  type="button"
-                  onClick={
-                    currentStep === steps.length - 1 ? handleSubmit : nextStep
-                  }
-                  disabled={!isStepValid() || isSubmitting}
-                  className={cn(
-                    "flex items-center gap-2 transition-all duration-300 rounded-full h-11 px-8",
-                    currentStep === steps.length - 1 ? "bg-primary text-primary-foreground hover:bg-primary/90" : "bg-primary text-primary-foreground hover:bg-primary/90",
-                  )}
-                >
-                  {isSubmitting ? (
+                {isSubmitting ? (
                     <>
-                      <Loader2 className="h-4 w-4 animate-spin" /> Submitting...
+                    <Loader2 className="w-4 h-4 mr-2 animate-spin" />
+                    Sending...
                     </>
-                  ) : (
+                ) : currentStep === steps.length - 1 ? (
+                    "Submit Request"
+                ) : (
                     <>
-                      {currentStep === steps.length - 1 ? "Submit Project" : "Next Step"}
-                      {currentStep === steps.length - 1 ? (
-                        <Check className="h-4 w-4" />
-                      ) : (
-                        <ChevronRight className="h-4 w-4" />
-                      )}
+                    Next Step
+                    <ChevronRight className="w-4 h-4 ml-2" />
                     </>
-                  )}
-                </Button>
-              </motion.div>
-            </CardFooter>
-          </div>
-        </Card>
-      </motion.div>
-
-      {/* Step indicator */}
-      <motion.div
-        className="mt-6 text-center text-sm font-medium text-muted-foreground"
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ duration: 0.5, delay: 0.4 }}
-      >
-        Step {currentStep + 1} of {steps.length}: <span className="text-foreground">{steps[currentStep].title}</span>
-      </motion.div>
+                )}
+              </Button>
+           </div>
+        </div>
+      </Card>
     </div>
   );
-};
-
-export default OnboardingForm;
+}
