@@ -23,7 +23,7 @@ export const WhatsAppWidget = () => {
       initial={{ scale: 0, opacity: 0 }}
       animate={{ scale: isVisible ? 1 : 0, opacity: isVisible ? 1 : 0 }}
       transition={{ type: "spring", stiffness: 260, damping: 20 }}
-      className="fixed bottom-6 right-6 z-50"
+      className="fixed bottom-24 right-6 md:bottom-6 z-50"
     >
       <a
         href={whatsappUrl}
