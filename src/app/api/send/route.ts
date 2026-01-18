@@ -18,19 +18,22 @@ export async function POST(request: Request) {
         }
 
         const data = await resend.emails.send({
-            from: 'Shopifolio Leads <onboarding@resend.dev>', // Verify domain or use resend.dev for testing
-            to: ['hello@shift2dynamic.com'],
+            from: 'Shift2Dynamic Leads <onboarding@resend.dev>', // Verify domain or use resend.dev for testing
+            // to: ['hello@shift2dynamic.com'], // TODO: Use this after verifying domain on Resend
+            to: ['shirajulislamparvez@gmail.com'], // For testing (must match Resend signup email)
             subject: `New Project Inquiry from ${name}`,
-            react: EmailTemplate({ formData: body }),
+            react: await EmailTemplate({ formData: body }),
             replyTo: email,
         });
 
         if (data.error) {
+            console.error("Resend Error:", data.error);
             return NextResponse.json({ error: data.error }, { status: 500 });
         }
 
         return NextResponse.json({ success: true, data });
     } catch (error) {
+        console.error("Internal API Error:", error);
         return NextResponse.json({ error: 'Internal Server Error' }, { status: 500 });
     }
 }

@@ -15,7 +15,7 @@ export const WhatsAppWidget = () => {
 
   // Replace with actual number
   const phoneNumber = "8801318402075"; 
-  const message = encodeURIComponent("Hi, I'm interested in your Shopifolio services!");
+  const message = encodeURIComponent("Hi, I'm interested in your Shift2Dynamic services!");
   const whatsappUrl = `https://wa.me/${phoneNumber}?text=${message}`;
 
   return (

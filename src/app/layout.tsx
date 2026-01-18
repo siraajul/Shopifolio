@@ -39,8 +39,8 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_US",
     url: "/",
-    title: "Shift2Dynamic | Shopify Developer & Web Designer",
-    description: "Expert Shopify development and web design services. Building standard-setting e-commerce experiences.",
+    title: "Shift2Dynamic | High-Performance Shopify Agency",
+    description: "We build Shopify giants. High-performance, pixel-perfect, and conversion-focused e-commerce experiences.",
     siteName: "Shift2Dynamic",
     images: [
       {

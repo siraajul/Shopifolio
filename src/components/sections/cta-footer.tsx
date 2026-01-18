@@ -65,7 +65,7 @@ export default function CTAFooter() {
         <div className="flex flex-col items-start justify-start gap-y-5 max-w-xs mx-0 mb-8 md:mb-0">
           <Link href="/" className="flex items-center gap-2">
             <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[var(--primary)] to-emerald-500">
-              Shopifolio
+              Shift2Dynamic
             </span>
           </Link>
           <p className="tracking-tight text-gray-500 dark:text-gray-400 font-medium">
