@@ -86,12 +86,13 @@ export function Footer({ data }: FooterProps) {
                   </p>
                   {/* Call to Action */}
                   <div className="relative z-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-                     <StarButton 
-                        onClick={openCalendly} 
-                        className="h-14 px-8 rounded-full text-lg cursor-pointer"
-                     >
-                          Ready to Dominate?
-                     </StarButton>
+                     <Link href="/planner">
+                       <StarButton 
+                          className="h-14 px-8 rounded-full text-lg cursor-pointer"
+                       >
+                            Start Your Project
+                       </StarButton>
+                     </Link>
                   </div>
               </div>
         </div>

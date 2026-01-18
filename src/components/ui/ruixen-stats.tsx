@@ -139,7 +139,7 @@ export default function RuixenStats() {
 
                 {/* Chart Section */}
                 <div className="h-16 relative w-full min-w-0">
-                    <ResponsiveContainer width="100%" height="100%" minWidth={0}>
+                    <ResponsiveContainer width="99%" height="100%" minWidth={0}>
                       <LineChart
                         data={card.data}
                         margin={{ top: 5, right: 0, left: 0, bottom: 5 }}
