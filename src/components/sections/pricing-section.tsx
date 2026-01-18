@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+
 import { CreativePricing, PricingTier } from "@/components/sections/creative-pricing";
 import { Zap, Rocket, Crown, Package, Globe, TrendingUp } from "lucide-react";
 import { motion } from "motion/react";
@@ -52,55 +52,9 @@ const brandTiers: PricingTier[] = [
     },
 ];
 
-const dropshippingTiers: PricingTier[] = [
-    {
-        name: "Validation",
-        icon: <Package className="w-6 h-6" />,
-        price: 2499,
-        description: "Rapid high-fidelity testing launchpad.",
-        color: "emerald",
-        features: [
-            "High-Converting One Product Store",
-            "Ad Creative Strategy",
-            "Supplier Sourcing",
-            "Conversion Copywriting",
-            "Speed Optimization",
-        ],
-    },
-    {
-        name: "Expansion",
-        icon: <Globe className="w-6 h-6" />,
-        price: 4999,
-        description: "Scaling winners to established brands.",
-        color: "cyan",
-        features: [
-            "Niche Store Authority Build",
-            "Custom Branding & Packaging",
-            "UGC Content Strategy",
-            "Influencer Outreach Scripts",
-            "Automated Fulfillment System",
-        ],
-        popular: true,
-    },
-    {
-        name: "Dominance",
-        icon: <TrendingUp className="w-6 h-6" />,
-        price: 9999,
-        description: "Full brand acquisition model.",
-        color: "violet",
-        features: [
-            "Private Label Manufacturing",
-            "3PL Logistics Setup",
-            "Omnichannel Expansion",
-            "Exit Strategy Planning",
-            "Dedicated Growth Team",
-        ],
-    },
-];
+
 
 export default function PricingSection({ data }: { data?: any[] }) {
-    const [activeTab, setActiveTab] = useState<'brand' | 'dropshipping'>('brand');
-
     // Helper to map icons based on tier name (loose matching)
     const getIcon = (name: string) => {
         const n = name.toLowerCase();
@@ -120,18 +74,7 @@ export default function PricingSection({ data }: { data?: any[] }) {
         popular: item.popular
     })) || [];
 
-    const dynamicDropshippingTiers: PricingTier[] = data?.filter(i => i.category === 'dropshipping').map(item => ({
-        name: item.name,
-        icon: getIcon(item.name),
-        price: item.price,
-        description: item.description,
-        color: item.color || "emerald",
-        features: item.features || [],
-        popular: item.popular
-    })) || [];
-
     const finalBrandTiers = dynamicBrandTiers.length > 0 ? dynamicBrandTiers : brandTiers;
-    const finalDropshippingTiers = dynamicDropshippingTiers.length > 0 ? dynamicDropshippingTiers : dropshippingTiers;
 
     return (
         <section className="bg-transparent w-full overflow-hidden relative">
@@ -141,55 +84,11 @@ export default function PricingSection({ data }: { data?: any[] }) {
                  <div className="absolute bottom-0 left-1/4 w-[500px] h-[500px] bg-green-900/10 rounded-full blur-[100px] mix-blend-screen" />
             </div>
             <div className="max-w-7xl mx-auto px-4 md:px-8">
-                {/* Toggle Switch */}
-                <div className="flex justify-center mb-8">
-                    <div className="bg-zinc-100 dark:bg-zinc-800 p-1.5 rounded-full inline-flex relative shadow-inner">
-                         {/* Sliding Background */}
-                        <motion.div
-                            className="absolute top-1.5 bottom-1.5 rounded-full bg-white dark:bg-zinc-700 shadow-md z-0"
-                            initial={false}
-                            animate={{
-                                left: activeTab === 'brand' ? '6px' : '50%',
-                                x: activeTab === 'brand' ? 0 : 0, 
-                                width: 'calc(50% - 6px)' 
-                            }}
-                            transition={{ type: "spring", stiffness: 300, damping: 30 }}
-                        />
-                        
-                        <button
-                            onClick={() => setActiveTab('brand')}
-                            className={cn(
-                                "relative z-10 px-6 py-2.5 rounded-full text-sm font-bold transition-colors duration-200",
-                                activeTab === 'brand' 
-                                    ? "text-zinc-900 dark:text-white" 
-                                    : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300"
-                            )}
-                        >
-                            Shopify Brand Store
-                        </button>
-                        <button
-                            onClick={() => setActiveTab('dropshipping')}
-                            className={cn(
-                                "relative z-10 px-6 py-2.5 rounded-full text-sm font-bold transition-colors duration-200",
-                                activeTab === 'dropshipping' 
-                                    ? "text-zinc-900 dark:text-white" 
-                                    : "text-zinc-500 dark:text-zinc-400 hover:text-zinc-700 dark:hover:text-zinc-300"
-                            )}
-                        >
-                            Dropshipping Store
-                        </button>
-                    </div>
-                </div>
-
                 <CreativePricing 
-                    tiers={activeTab === 'brand' ? finalBrandTiers : finalDropshippingTiers} 
-                    title={activeTab === 'brand' ? "Brand Store Packages" : "Dropshipping Packages"}
-                    tag={activeTab === 'brand' ? "Long Term Growth" : "Rapid Launch"}
-                    description={
-                        activeTab === 'brand' 
-                        ? "Custom engineered stores for established businesses and scaling brands." 
-                        : "Turnkey dropshipping businesses built for speed and sales."
-                    }
+                    tiers={finalBrandTiers} 
+                    title="Partnership Models" // Renamed from "Brand Store Packages"
+                    tag="Long Term Growth"
+                    description="Custom engineered stores for established businesses and scaling brands."
                 />
             </div>
         </section>

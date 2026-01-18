@@ -31,9 +31,9 @@ export default function AboutSection3({ data, onCollaborateClick }: AboutProps) 
     name = "SHIFT2DYNAMIC",
     role = "Shopify Experts", 
     ctaText = "LET'S COLLABORATE",
-    bio1 = "We are a team of expert developers and designers specializing in Shopify.",
-    bio2 = "We help brands scale with high-performance stores and custom solutions.",
-    description = "We craft digital experiences that convert.",
+    bio1 = "Expert developers and designers specializing in Shopify high-performance builds.",
+    bio2 = "Helping brands scale with custom solutions and data-driven optimization.",
+    description = "Crafting digital experiences that convert.",
     profileImage
   } = data || {};
 
