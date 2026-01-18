@@ -6,6 +6,7 @@ import HomeNavigation from "@/components/home-navigation";
 
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { Suspense } from "react";
 
 export const revalidate = 60;
 
@@ -28,7 +29,9 @@ export default async function WorkPage() {
         Back
       </Link>
       <div className="pt-20">
-        <IndustryShowcase title="All Projects" />
+        <Suspense fallback={<div className="h-96 w-full flex items-center justify-center">Loading...</div>}>
+          <IndustryShowcase title="All Projects" />
+        </Suspense>
       </div>
       
       <div id="contact">
