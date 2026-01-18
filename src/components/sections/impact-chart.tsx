@@ -263,7 +263,7 @@ export default function ImpactChart() {
 
                   {/* Center - Mini Chart */}
                   <div className="flex-1 h-14 mx-6 relative min-w-0">
-                    <ResponsiveContainer width="100%" height="100%">
+                    <ResponsiveContainer width="100%" height="100%" minWidth={0}>
                       <LineChart
                         data={card.data}
                         margin={{
