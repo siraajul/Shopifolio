@@ -4,7 +4,6 @@ import { ChevronRightIcon, InstagramLogoIcon, LinkedInLogoIcon, TwitterLogoIcon 
 import Link from "next/link";
 import React, { useEffect, useState } from "react";
 import { FlickeringGrid } from "@/components/ui/flickering-grid";
-import { useCalendly } from "@/context/calendly-context";
 
 export function useMediaQuery(query: string) {
   const [value, setValue] = useState(false);
@@ -57,7 +56,6 @@ const footerLinks = [
 
 export default function CTAFooter() {
   const tablet = useMediaQuery("(max-width: 1024px)");
-  const { openCalendly } = useCalendly();
 
   return (
     <footer id="footer" className="w-full pb-0 border-t border-gray-100 dark:border-gray-800">
@@ -108,9 +106,9 @@ export default function CTAFooter() {
         </div>
       </div>
       
-      <div 
-        className="w-full h-64 md:h-80 relative mt-12 z-0 overflow-hidden cursor-pointer group"
-        onClick={openCalendly}
+      <Link 
+        href="/planner"
+        className="w-full h-64 md:h-80 relative mt-12 z-0 overflow-hidden cursor-pointer group block"
       >
         <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent dark:from-black dark:via-transparent dark:to-transparent z-10 h-full" />
         <div className="absolute inset-0">
@@ -125,7 +123,7 @@ export default function CTAFooter() {
             flickerChance={0.3}
           />
         </div>
-      </div>
+      </Link>
     </footer>
   );
 };

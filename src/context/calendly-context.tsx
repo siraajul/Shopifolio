@@ -34,7 +34,7 @@ export function CalendlyProvider({ children }: { children: React.ReactNode }) {
       {children}
       {rootElement && (
         <PopupModal
-          url="https://calendly.com/riajul"
+          url="https://calendly.com/start-scalling"
           onModalClose={() => setIsOpen(false)}
           open={isOpen}
           rootElement={rootElement}

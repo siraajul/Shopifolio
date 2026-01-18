@@ -17,7 +17,9 @@ import {
 } from "@/components/ui/select";
 import { Textarea } from "@/components/ui/textarea";
 import { cn } from "@/lib/utils";
-import { Check, ChevronRight, ChevronLeft, Loader2, Sparkles } from "lucide-react";
+import { Check, ChevronRight, ChevronLeft, Loader2, Sparkles, Calendar, Home } from "lucide-react";
+import { useCalendly } from "@/context/calendly-context";
+import Link from "next/link";
 import { useToasts } from "@/components/ui/toast";
 import { sendGAEvent } from "@next/third-parties/google";
 
@@ -121,6 +123,8 @@ export default function OnboardingForm() {
   const [currentStep, setCurrentStep] = useState(0);
   const [direction, setDirection] = useState(0);
   const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
+  const { openCalendly } = useCalendly();
   const { success, error: errorToast } = useToasts();
 
   // Helper to update fields
@@ -216,6 +220,7 @@ export default function OnboardingForm() {
 
       if (response.ok) {
         success("Inquiry Sent! We'll be in touch shortly.");
+        setIsSubmitted(true);
         
         // Track Conversion in GA4
         sendGAEvent('event', 'generate_lead', { 
@@ -622,6 +627,57 @@ export default function OnboardingForm() {
     }
   };
 
+
+  // ----------------------------------------------------------------------
+  // SUCCESS VIEW
+  // ----------------------------------------------------------------------
+  if (isSubmitted) {
+    return (
+      <div className="w-full max-w-3xl mx-auto">
+        <Card className="p-10 border-white/5 bg-black/40 backdrop-blur-xl shadow-2xl relative overflow-hidden mt-12 text-center min-h-[400px] flex flex-col items-center justify-center space-y-8">
+           <motion.div 
+              initial={{ scale: 0.8, opacity: 0 }}
+              animate={{ scale: 1, opacity: 1 }}
+              transition={{ duration: 0.5 }}
+              className="w-20 h-20 bg-green-500/10 rounded-full flex items-center justify-center mb-4"
+           >
+              <Check className="w-10 h-10 text-green-500" />
+           </motion.div>
+           
+           <div className="space-y-4 max-w-lg">
+               <h2 className="text-3xl md:text-4xl font-bold font-display">Inquiry Received!</h2>
+               <p className="text-muted-foreground text-lg">
+                   Thanks, {formData.name.split(' ')[0]}. We&apos;ve received your details. 
+                   Want to skip the back-and-forth emails?
+               </p>
+           </div>
+
+           <div className="flex flex-col sm:flex-row gap-4 w-full justify-center">
+               <Button 
+                   onClick={openCalendly}
+                   size="lg"
+                   className="h-14 px-8 text-base font-semibold shadow-lg shadow-primary/20 gap-2"
+               >
+                   <Calendar className="w-5 h-5" />
+                   Book a Discovery Call
+               </Button>
+               
+               <Button 
+                   variant="outline"
+                   asChild
+                   size="lg"
+                   className="h-14 px-8 text-base border-white/10 hover:bg-white/5 gap-2"
+               >
+                   <Link href="/">
+                       <Home className="w-5 h-5" />
+                       Back to Home
+                   </Link>
+               </Button>
+           </div>
+        </Card>
+      </div>
+    );
+  }
 
   return (
     <div className="w-full max-w-3xl mx-auto">

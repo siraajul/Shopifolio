@@ -5,7 +5,6 @@ import { Card, CardContent } from '@/components/ui/card';
 import { Line, LineChart, ReferenceLine, ResponsiveContainer, Tooltip, YAxis } from 'recharts';
 
 import Link from "next/link";
-import { useCalendly } from "@/context/calendly-context";
 
 // --- Data Constants from Impact Chart ---
 
@@ -94,7 +93,6 @@ const businessCards = [
 ];
 
 export default function RuixenStats() {
-  const { openCalendly } = useCalendly();
   return (
     <section className="w-full max-w-7xl mx-auto px-4 py-20 grid lg:grid-cols-2 gap-12 items-center">
       {/* Left: Text & CTA */}
@@ -109,12 +107,12 @@ export default function RuixenStats() {
             Our data-driven approach ensures every pixel serves a purpose: 
             maximizing your ROI and elevating your brand authority.
         </p>
-        <button 
-          onClick={openCalendly}
+        <Link 
+          href="/planner"
           className="mt-4 group relative px-8 py-3 bg-primary text-black rounded-full font-bold text-lg hover:shadow-[0_0_40px_-5px_hsl(var(--primary)/0.6)] transition-all duration-300 flex items-center gap-2 w-fit"
         >
           Start Scaling <span className="group-hover:translate-x-1 transition-transform">↗</span>
-        </button>
+        </Link>
       </div>
 
       {/* Right: Impact Charts Grid */}

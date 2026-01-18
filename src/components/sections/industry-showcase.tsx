@@ -2,12 +2,6 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import dynamic from "next/dynamic"
-
-const PopupModal = dynamic(
-  () => import("react-calendly").then((mod) => mod.PopupModal),
-  { ssr: false }
-)
 import { StarButton } from "@/components/ui/star-button";
 import { 
   Package, 
@@ -75,6 +69,7 @@ interface Project {
   industry: IndustryKey;
 }
 
+
 export default function IndustryShowcase({ limit, title }: { limit?: number | null; title?: string }) {
   const [activeTab, setActiveTab] = useState<IndustryKey>("fashion");
   const [projects, setProjects] = useState<Project[]>([]);
@@ -90,15 +85,6 @@ export default function IndustryShowcase({ limit, title }: { limit?: number | nu
     }
   }, [searchParams]);
   
-  // Calendly State
-  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
-  const [rootElement, setRootElement] = useState<HTMLElement | null>(null);
-
-  useEffect(() => {
-    if (typeof document !== 'undefined') {
-       setRootElement(document.getElementById("home") || document.body);
-    }
-  }, []);
 
   useEffect(() => {
     const fetchProjects = async () => {
@@ -294,21 +280,12 @@ export default function IndustryShowcase({ limit, title }: { limit?: number | nu
         
         {/* Bottom CTA */}
         <div className="mt-16 text-center flex flex-col items-center gap-4">
-             <div onClick={() => setIsCalendlyOpen(true)} className="cursor-pointer">
+             <Link href="/planner" className="cursor-pointer">
                  <StarButton className="h-12 px-8 rounded-full text-base">
                      Want to build something like this?
                  </StarButton>
-             </div>
+             </Link>
         </div>
-
-        {rootElement && (
-            <PopupModal
-                url="https://calendly.com/riajul"
-                onModalClose={() => setIsCalendlyOpen(false)}
-                open={isCalendlyOpen}
-                rootElement={rootElement}
-            />
-        )}
 
       </div>
     </section>

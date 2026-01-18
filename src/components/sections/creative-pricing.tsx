@@ -5,7 +5,7 @@ import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { MagneticButton } from "@/components/ui/magnetic-button";
 import { useState, useEffect } from "react";
-import { PopupModal } from "react-calendly";
+import Link from "next/link";
 
 export interface PricingTier {
     name: string;
@@ -28,14 +28,7 @@ export function CreativePricing({
     description?: string;
     tiers: PricingTier[];
 }) {
-    const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
-    const [rootElement, setRootElement] = useState<HTMLElement | null>(null);
 
-    useEffect(() => {
-        if (typeof document !== 'undefined') {
-            setRootElement(document.getElementById("pricing") || document.body);
-        }
-    }, []);
     return (
         <div className="w-full max-w-7xl mx-auto px-4 py-12 md:py-20 bg-transparent font-sans overflow-hidden md:overflow-visible">
             <div className="text-center space-y-6 mb-12 md:mb-16">
@@ -144,48 +137,41 @@ export function CreativePricing({
                             </div>
 
                             <MagneticButton className="w-full mt-auto">
-                                <Button
-                                    className={cn(
-                                        "w-full h-10 md:h-12 text-sm md:text-lg font-bold relative",
-                                        "border-2 border-zinc-900 dark:border-white",
-                                        "transition-all duration-300",
-                                        "shadow-[4px_4px_0px_0px] shadow-zinc-900 dark:shadow-white",
-                                        "hover:shadow-[6px_6px_0px_0px]",
-                                        "hover:translate-x-[-2px] hover:translate-y-[-2px]",
-                                        tier.popular
-                                            ? [
-                                                  "bg-primary text-white",
-                                                  "hover:bg-primary/90",
-                                                  "active:bg-primary",
-                                                  "dark:hover:bg-primary/90",
-                                                  "dark:active:bg-primary",
-                                              ]
-                                            : [
-                                                  "bg-zinc-50 dark:bg-zinc-800",
-                                                  "text-zinc-900 dark:text-white",
-                                                  "hover:bg-white dark:hover:bg-zinc-700",
-                                                  "active:bg-zinc-50 dark:active:bg-zinc-800",
-                                              ]
-                                    )}
-                                    onClick={() => setIsCalendlyOpen(true)}
-                                >
-                                    <span className="block md:hidden">Book Now</span>
-                                    <span className="hidden md:block">Book Strategy Call</span>
-                                </Button>
+                                    <Button
+                                        asChild
+                                        className={cn(
+                                            "w-full h-10 md:h-12 text-sm md:text-lg font-bold relative",
+                                            "border-2 border-zinc-900 dark:border-white",
+                                            "transition-all duration-300",
+                                            "shadow-[4px_4px_0px_0px] shadow-zinc-900 dark:shadow-white",
+                                            "hover:shadow-[6px_6px_0px_0px]",
+                                            "hover:translate-x-[-2px] hover:translate-y-[-2px]",
+                                            tier.popular
+                                                ? [
+                                                      "bg-primary text-white",
+                                                      "hover:bg-primary/90",
+                                                      "active:bg-primary",
+                                                      "dark:hover:bg-primary/90",
+                                                      "dark:active:bg-primary",
+                                                  ]
+                                                : [
+                                                      "bg-zinc-50 dark:bg-zinc-800",
+                                                      "text-zinc-900 dark:text-white",
+                                                      "hover:bg-white dark:hover:bg-zinc-700",
+                                                      "active:bg-zinc-50 dark:active:bg-zinc-800",
+                                                  ]
+                                        )}
+                                    >
+                                        <Link href="/planner">
+                                            <span className="block md:hidden">Book Now</span>
+                                            <span className="hidden md:block">Book Strategy Call</span>
+                                        </Link>
+                                    </Button>
                             </MagneticButton>
                         </div>
                     </div>
                 ))}
             </div>
-
-            {rootElement && (
-                <PopupModal
-                    url="https://calendly.com/riajul"
-                    onModalClose={() => setIsCalendlyOpen(false)}
-                    open={isCalendlyOpen}
-                    rootElement={rootElement}
-                />
-            )}
         </div>
     );
 }

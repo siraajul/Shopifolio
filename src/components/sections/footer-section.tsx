@@ -14,7 +14,6 @@ import Link from "next/link";
 import { FooterBackgroundGradient, TextHoverEffect } from "@/components/sections/hover-footer";
 import { StarButton } from "@/components/ui/star-button";
 import { useState, useEffect } from "react";
-import { useCalendly } from "@/context/calendly-context"
 
 interface FooterLink {
   label: string;
@@ -51,8 +50,6 @@ export function Footer({ data }: FooterProps) {
     socialLinks = [],
     footerLinks = [],
   } = data || {};
-
-  const { openCalendly } = useCalendly();
 
   // Helper to map platform string to icon
   const getSocialIcon = (platform: string): LucideIcon => {

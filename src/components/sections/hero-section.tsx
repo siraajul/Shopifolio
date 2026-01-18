@@ -10,7 +10,7 @@ import { SevenFigureIcon, ProvenIcon, ConvertingIcon, PremiumIcon, ScalableIcon 
 import { ArrowRight } from "lucide-react"
 
 import { HyperText } from "@/components/ui/hyper-text"
-import { useCalendly } from "@/context/calendly-context"
+import Link from "next/link";
 
 interface HeroProps {
   heroData?: {
@@ -21,7 +21,6 @@ interface HeroProps {
 }
 
 export default function HeroSection({ heroData }: HeroProps) {
-  const { openCalendly } = useCalendly();
 
   const scrollToWork = () => {
     const element = document.getElementById("work");
@@ -110,12 +109,12 @@ export default function HeroSection({ heroData }: HeroProps) {
 
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
-            <button 
-              onClick={openCalendly}
+            <Link 
+              href="/planner"
               className="group relative px-6 py-3 sm:px-8 sm:py-4 bg-primary text-black rounded-full font-bold text-lg hover:shadow-[0_0_40px_-5px_hsl(var(--primary)/0.6)] transition-all duration-300 flex items-center gap-2"
             >
               Audit My Brand <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
-            </button>
+            </Link>
             <button 
               onClick={scrollToWork} 
               className="px-6 py-3 sm:px-8 sm:py-4 font-semibold text-foreground hover:text-primary transition-colors flex items-center gap-2"

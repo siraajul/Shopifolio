@@ -3,6 +3,7 @@ import { TimelineContent } from "@/components/ui/timeline-animation";
 import {VerticalCutReveal} from "@/components/ui/vertical-cut-reveal";
 import { ArrowRight, Github } from "lucide-react";
 import NextImage from "next/image";
+import Link from "next/link";
 import { useRef } from "react";
 import { urlFor } from "@/sanity/lib/image";
 import { BlurTextEffect } from "@/components/ui/blur-text-effect";
@@ -282,8 +283,8 @@ export default function AboutSection3({ data, onCollaborateClick }: AboutProps) 
               </TimelineContent>
 
               <TimelineContent
-                as="button"
-                onClick={onCollaborateClick}
+                as={Link}
+                href="/planner"
                 animationNum={15}
                 timelineRef={heroRef}
                 customVariants={revealVariants}
