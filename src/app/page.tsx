@@ -1,3 +1,4 @@
+import { Suspense } from "react";
 import { client } from "@/sanity/lib/client";
 import { HOME_QUERY } from "@/sanity/lib/queries";
 import { MarqueeAnimation } from "@/components/ui/marquee-effect";
@@ -41,7 +42,9 @@ export default async function Home() {
 
       <IndustriesSection data={data?.industries} />
 
-      <IndustryShowcase limit={9} />
+      <Suspense fallback={<div className="h-96 w-full flex items-center justify-center">Loading...</div>}>
+        <IndustryShowcase limit={9} />
+      </Suspense>
 
       <AboutSection3 data={data?.about} />
       
