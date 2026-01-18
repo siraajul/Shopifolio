@@ -7,6 +7,7 @@ import { ContainerAnimated,
   GalleryCol,
   GalleryContainer } from "@/components/ui/animated-gallery"
 import { Button } from "@/components/ui/button"
+import Image from "next/image"
 import { VideoIcon } from "lucide-react"
 import { urlFor } from "@/sanity/lib/image"
 
@@ -69,31 +70,37 @@ export const GallerySection = ({ data }: GallerySectionProps) => {
           <GalleryContainer className="max-w-7xl mx-auto px-4">
             <GalleryCol yRange={["-20%", "-5%"]} className="-mt-2">
               {col1.map((imageUrl, index) => (
-                <img
+                <Image
                   key={index}
                   className="aspect-[4/5] block h-auto max-h-full w-full rounded-xl object-contain bg-gradient-to-b from-black to-primary/20 shadow-2xl border border-primary/10"
                   src={imageUrl}
                   alt="gallery item"
+                  width={800}
+                  height={1000}
                 />
               ))}
             </GalleryCol>
             <GalleryCol className="mt-[10%]" yRange={["-40%", "-15%"]}>
               {col2.map((imageUrl, index) => (
-                <img
+                <Image
                   key={index}
                   className="aspect-[4/5] block h-auto max-h-full w-full rounded-xl object-contain bg-gradient-to-b from-black to-primary/20 shadow-2xl border border-primary/10"
                   src={imageUrl}
                   alt="gallery item"
+                  width={800}
+                  height={1000}
                 />
               ))}
             </GalleryCol>
             <GalleryCol yRange={["-20%", "-5%"]} className="-mt-2">
               {col3.map((imageUrl, index) => (
-                <img
+                <Image
                   key={index}
                   className="aspect-[4/5] block h-auto max-h-full w-full rounded-xl object-contain bg-gradient-to-b from-black to-primary/20 shadow-2xl border border-primary/10"
                   src={imageUrl}
                   alt="gallery item"
+                  width={800}
+                  height={1000}
                 />
               ))}
             </GalleryCol>

@@ -1,6 +1,7 @@
 "use client";
 
 import React, { useState, useEffect, useMemo, useRef } from "react";
+import Image from "next/image";
 import { motion, useTransform, useSpring, useMotionValue, useScroll } from "motion/react";
 
 // --- Types ---
@@ -62,10 +63,11 @@ function FlipCard({
                     className="absolute inset-0 h-full w-full overflow-hidden rounded-xl shadow-lg bg-gray-200"
                     style={{ backfaceVisibility: "hidden" }}
                 >
-                    <img
+                    <Image
                         src={src}
                         alt={`hero-${index}`}
-                        className="h-full w-full object-cover"
+                        fill
+                        className="object-cover"
                     />
                     <div className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-transparent" />
                 </div>
