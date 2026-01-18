@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { motion, LayoutGroup } from "motion/react"
 import { TextRotate } from "@/components/ui/text-rotate"
 import { AvatarCircles } from "@/components/ui/avatar-circles"
+import { SparklesText } from "@/components/ui/sparkles-text"
 import { TrustBadge } from "@/components/ui/trust-badge"
 import { SevenFigureIcon, ProvenIcon, ConvertingIcon, PremiumIcon, ScalableIcon } from "@/components/ui/animated-icons"
 import { ArrowRight } from "lucide-react"
@@ -83,10 +84,14 @@ export default function HeroSection({ heroData }: HeroProps) {
                  Shopify Ecosystems
               </div>
 
-              <p className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mt-6 font-medium">
-                Stop settling for templates. We build high-performance, custom Shopify experiences that crush benchmarks.<br />
-                <span className="text-foreground font-semibold"> We don&apos;t just build. We dominate.</span>
-              </p>
+              <div className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mt-6 font-medium">
+                Stop settling for templates. Build high-performance, custom Shopify experiences that crush benchmarks.<br />
+                <SparklesText 
+                  text="Don't just build. Dominate." 
+                  className="text-foreground font-semibold text-lg md:text-xl inline-block" 
+                  colors={{ first: '#10b981', second: '#14b8a6' }}
+                />
+              </div>
 
               {/* Stats Sub-heading */}
               <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-sm md:text-base text-gray-400 font-medium mt-4">
