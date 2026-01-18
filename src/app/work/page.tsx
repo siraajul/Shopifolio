@@ -10,6 +10,19 @@ import { Suspense } from "react";
 
 export const revalidate = 60;
 
+export const metadata = {
+  title: "Our Work | Shift2Dynamic - Premium Shopify Experiences",
+  description: "Explore our portfolio of high-converting Shopify stores, custom headless eCommerce, and brand redesigns.",
+  openGraph: {
+    title: "Our Work | Shift2Dynamic",
+    description: "Explore our portfolio of high-converting Shopify stores and custom web experiences.",
+    url: 'https://www.shift2dynamic.com/work',
+    siteName: 'Shift2Dynamic',
+    locale: 'en_US',
+    type: 'website',
+  },
+};
+
 export default async function WorkPage() {
   let data;
   try {

@@ -3,8 +3,16 @@ import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 
 export const metadata = {
-  title: "Start Your Project - Shift2Dynamic",
-  description: "Tell us about your project and let's build something amazing together.",
+  title: "Start Your Project | Shift2Dynamic",
+  description: "Tell us about your vision. We build high-performance Shopify stores that scale.",
+  openGraph: {
+    title: "Start Your Project | Shift2Dynamic",
+    description: "Tell us about your vision. We build high-performance Shopify stores that scale.",
+    url: 'https://www.shift2dynamic.com/planner',
+    siteName: 'Shift2Dynamic',
+    locale: 'en_US',
+    type: 'website',
+  },
 };
 
 export default function PlannerPage() {

@@ -108,6 +108,22 @@ export default async function Home() {
       </div>
 
       <HomeNavigation />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "WebSite",
+            "name": "Shift2Dynamic",
+            "url": "https://www.shift2dynamic.com",
+            "potentialAction": {
+              "@type": "SearchAction",
+              "target": "https://www.shift2dynamic.com/services?q={search_term_string}",
+              "query-input": "required name=search_term_string"
+            }
+          })
+        }}
+      />
     </main>
   );
 }
