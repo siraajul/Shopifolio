@@ -1,6 +1,6 @@
 # Shift2Dynamic | Enterprise Shopify Solutions
 
-![Shift2Dynamic Banner](/public/opengraph-image.png)
+![Shift2Dynamic Banner](/public/og-image.jpg)
 
 **Where High-Performance Engineering meets Aesthetic Dominance.**
 
@@ -17,114 +17,76 @@ Built for speed, scalability, and "wow" factor.
 *   **Styling**: [Tailwind CSS v4](https://tailwindcss.com/)
 *   **CMS**: [Sanity.io](https://www.sanity.io/) (Headless Content Management)
 *   **Motion**: `framer-motion` + `lenis` (Smooth Scroll)
+*   **Email**: [Resend](https://resend.com/) + React Email
+*   **Analytics**: Google Analytics 4 + Microsoft Clarity + Contentsquare
 *   **Deployment**: Vercel
 
 ---
 
-## 💎 Dynamic Content Management (Sanity CMS)
+## 🚀 Key Features
 
-This project is **100% connected** to Sanity CMS. Every section of the homepage can be edited without touching the code.
+### 1. 🎨 Premium "Dark Mode" Aesthetic
+*   **Cinematic Noise Overlay**: Eliminates the "flat digital" look.
+*   **Neon/Toxic Green Aesthetic**: Custom `oklch` palette.
+*   **3D Gallery**: Interactive, centered image showcase.
+*   **Typography**: `Syne` (Display) + `Manrope` (Body).
 
-To manage content, run:
-```bash
-npm run dev
-# Go to: http://localhost:3000/studio
+### 2. 📋 Intelligent Project Planner
+A dedicated multi-step form (`/planner`) that adapts to the client:
+*   **Dynamic Logic**: Questions change based on "Migration", "Redesign", or "Marketing" selection.
+*   **Phone capture**: Integrated into contact step.
+*   **Email Notifications**: Styled HTML emails sent via Resend API.
+
+### 3. 📊 Full Analytics Suite
+*   **Google Analytics 4**: Tracks conversions (`generate_lead`).
+*   **Microsoft Clarity**: Session recordings & heatmaps.
+*   **Contentsquare**: Enterprise UX insights.
+
+### 4. 🔍 SEO Optimized
+*   **Auto-generated Sitemap**: `/sitemap.xml`
+*   **Robots.txt**: configured for crawling.
+*   **Rich Metadata**: Unique titles, descriptions, and OpenGraph tags for every page (`/work`, `/planner`, etc.).
+*   **JSON-LD**: `WebSite` and `Organization` schema for Google Graph.
+
+---
+
+## 🛠️ Environment Variables
+
+To run this project, you need the following in your `.env.local`:
+
+```env
+# Sanity CMS
+NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
+NEXT_PUBLIC_SANITY_DATASET=production
+
+# Email (Resend)
+RESEND_API_KEY=re_your_api_key
+
+# Analytics IDs (Public)
+NEXT_PUBLIC_GA_ID=G-XXXXXXXXXX
+NEXT_PUBLIC_CLARITY_ID=your_clarity_id
 ```
 
-### 🎛️ Content Schemas
-| Schema Name | Section | What You Can Edit |
-| :--- | :--- | :--- |
-| **Hero** | Top Section | Title, Dynamic Rotating Words, Subtext. |
-| **Gallery** | 3D Showcase | The 3 floating images in the circular gallery. |
-| **Impact** | Stats Bar | Revenue numbers, Speed metrics, Client counts. |
-| **Industries** | Accordion List | The list of sectors (Fashion, Beauty, etc.) + Images. |
-| **Showcase Project** | Recent Work | Detailed case study cards with "View Live" links. |
-| **About** | Personal Bio | Name, Role, Bio paragraphs, Profile Image, Signature. |
-| **Services** | Service Grid | The 4 main pillars (Migration, Design, etc.) + Icons. |
-| **Testimonials** | Reviews | Client Name, Role, Company, Quote, Avatar. |
-| **Process** | Workflow Cards | "Discovery", "Build", "Launch" steps + colors. |
-| **Pricing** | Pricing Tables | Brand vs Dropshipping tiers, prices, features. |
-| **FAQ** | Q&A | Questions, Answers, Categories (General, Technical, etc.). |
-| **Footer** | Contact Info | Email, Social Links, Address, Navigation Links. |
-| **Marquee** | Scrolling Text | The infinite scrolling keywords band. |
-
 ---
 
-## ✨ Key Features (Audited & Refined)
-
-This project has undergone a "Deadly Audit" to ensure maximum conversion and premium perception.
-
-### 1. 🎨 Visual Dominance
-*   **Cinematic Noise Overlay**: Eliminates the "flat digital" look.
-*   **Neon/Toxic Green Aesthetic**: A custom `oklch` color palette that pops against the deep black background.
-*   **3D Gallery**: Interactive, centered image showcase with "Black-Green Mix" matte gradients.
-*   **Typography**: `Syne` (Display) + `Manrope` (Body) for a distinct, non-template feel.
-
-### 2. 🧠 Outcome-Based Messaging
-We shifted from "Labor" language to "Value" language:
-*   *Store Setup* → **Enterprise Migration Systems**
-*   *Theme Dev* → **High-Performance Experience Design**
-*   *App Dev* → **Custom Functionality Engines**
-
-### 3. 🛡️ Trust & Conversion
-*   **Real Data Integration**: All stats, pricing, and reviews flow directly from Sanity.
-*   **Interactive Pricing**: Toggle between "Brand" and "Dropshipping" models dynamically.
-*   **Verification**: "Trusted by 50+ Brands" (integrated `AvatarCircles` with real user avatars).
-*   **Lead Magnets**: Footer "Strategy Call" trap to capture high-intent leads.
-
----
-
-## 🚀 Getting Started
-
-### Prerequisites
-- Node.js 18+
-- Sanity CLI (`npm install -g sanity@latest`)
-
-### Installation
-
-1.  **Clone the repo:**
-    ```bash
-    git clone https://github.com/your-org/shift2dynamic.git
-    cd shift2dynamic
-    ```
-
-2.  **Install dependencies:**
-    ```bash
-    npm install
-    ```
-
-3.  **Setup Environment Variables:**
-    Create a `.env.local` file:
-    ```env
-    NEXT_PUBLIC_SANITY_PROJECT_ID=your_project_id
-    NEXT_PUBLIC_SANITY_DATASET=production
-    NEXT_PUBLIC_BASE_URL=http://localhost:3000
-    ```
-
-4.  **Run Development Server:**
-    ```bash
-    npm run dev
-    ```
-    - Website: `http://localhost:3000`
-    - Content Studio: `http://localhost:3000/studio`
-
----
-
-## 📂 Architecture
+## 📂 Project Structure
 
 ```
 src/
 ├── app/
-│   ├── layout.tsx       # Root Layout (Fonts, Metadata, Providers)
-│   ├── globals.css      # Tailwind & Custom Variables
-│   └── page.tsx         # Home Route (Fetches COMPLETE Sanity Data)
+│   ├── layout.tsx       # Root (Providers, Analytics, Fonts)
+│   ├── page.tsx         # Home (Sanity Data Fetching)
+│   ├── planner/         # Multi-step Form Page
+│   ├── work/            # Portfolio Grid Page
+│   └── privacy/         # Legal Pages
 ├── components/
-│   ├── home-client.tsx  # Main Client Orchestrator (Receives Data)
-│   ├── sections/        # Dynamic Sections (Services, Pricing, etc.)
-│   └── ui/              # Reusable Atoms (AvatarCircles, Buttons...)
-└── sanity/
-    ├── schemas/         # Content Models (The Brain)
-    └── lib/             # Client & Queries
+│   ├── ui/              # Shadcn Primitives (Forms, Toasts, Cards)
+│   ├── sections/        # Homepage Sections (Hero, Impact, Services)
+│   └── analytics/       # Tracking Scripts (Clarity, Contentsquare)
+├── lib/
+│   ├── email-template.tsx # React Email Component
+│   └── utils.ts         # Helpers
+└── sanity/              # Content Schemas
 ```
 
 ---
