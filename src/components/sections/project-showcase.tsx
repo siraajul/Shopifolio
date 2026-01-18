@@ -227,7 +227,7 @@ export default function ProjectShowcase() {
 
     return (
         // Height 400vh to allow enough scroll space for the animation
-        <div ref={containerRef} className="relative w-full h-[400vh] bg-white dark:bg-black">
+        <div ref={containerRef} className="relative w-full h-[400vh]">
             {/* Sticky Container for visual content */}
             <div ref={stickyRef} className="sticky top-0 h-screen w-full overflow-hidden flex flex-col items-center justify-center perspective-1000 py-10">
 

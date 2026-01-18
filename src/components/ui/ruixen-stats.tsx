@@ -98,7 +98,7 @@ export default function RuixenStats() {
   return (
     <section className="w-full max-w-7xl mx-auto px-4 py-20 grid lg:grid-cols-2 gap-12 items-center">
       {/* Left: Text & CTA */}
-      <div className="flex flex-col justify-center gap-6">
+      <div className="flex flex-col justify-center gap-6 items-center md:items-start text-center md:text-left">
         <h3 className="text-4xl md:text-5xl font-bold tracking-tight text-foreground leading-tight">
             We Don't Just Build.<br />
             <span className="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-green-400 to-teal-400">

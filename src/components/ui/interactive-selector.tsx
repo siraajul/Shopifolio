@@ -16,6 +16,22 @@ interface InteractiveSelectorProps {
   description?: string;
 }
 
+// Curated palette for varied card colors (Extended Rainbow)
+const CARD_COLORS = [
+  '#EF4444', // Red 500
+  '#F97316', // Orange 500
+  '#EAB308', // Yellow 500
+  '#84CC16', // Lime 500
+  '#22C55E', // Green 500
+  '#10B981', // Emerald 500
+  '#06B6D4', // Cyan 500
+  '#3B82F6', // Blue 500
+  '#6366F1', // Indigo 500
+  '#8B5CF6', // Violet 500
+  '#A855F7', // Purple 500
+  '#EC4899', // Pink 500
+];
+
 const InteractiveSelector = ({ 
   options, 
   title = "Industries", 
@@ -69,8 +85,9 @@ const InteractiveSelector = ({
               activeIndex === index ? 'active' : ''
             )}
             style={{
-              backgroundImage: `url('${option.image}')`,
-              backgroundSize: activeIndex === index ? 'auto 100%' : 'auto 120%',
+              backgroundImage: activeIndex === index ? `url('${option.image}')` : 'none',
+              backgroundColor: activeIndex === index ? 'transparent' : CARD_COLORS[index % CARD_COLORS.length],
+              backgroundSize: 'auto 100%',
               backgroundPosition: 'center',
               flex: activeIndex === index ? '7 1 0%' : '1 1 0%',
               margin: '2px', // Uniform margin
@@ -100,7 +117,12 @@ const InteractiveSelector = ({
                 activeIndex === index ? "opacity-0 pointer-events-none" : "opacity-100 delay-300"
               )}
             >
-              <span className="text-white font-bold tracking-widest text-lg uppercase whitespace-nowrap drop-shadow-md md:[writing-mode:vertical-rl] md:rotate-180">
+              <span 
+                className="font-black tracking-widest text-2xl uppercase whitespace-nowrap drop-shadow-sm md:[writing-mode:vertical-rl] md:rotate-180 bg-clip-text text-transparent bg-center bg-cover"
+                style={{
+                  backgroundImage: `url('${option.image}')`
+                }}
+              >
                 {option.title}
               </span>
             </div>

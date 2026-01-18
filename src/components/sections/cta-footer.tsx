@@ -60,7 +60,7 @@ export default function CTAFooter() {
   const { openCalendly } = useCalendly();
 
   return (
-    <footer id="footer" className="w-full pb-0 bg-white dark:bg-black border-t border-gray-100 dark:border-gray-800">
+    <footer id="footer" className="w-full pb-0 border-t border-gray-100 dark:border-gray-800">
       <div className="flex flex-col md:flex-row md:justify-between p-10 max-w-7xl mx-auto">
         <div className="flex flex-col items-start justify-start gap-y-5 max-w-xs mx-0 mb-8 md:mb-0">
           <Link href="/" className="flex items-center gap-2">

@@ -133,7 +133,7 @@ export default function IndustryShowcase({ limit, title }: { limit?: number | nu
   // BUT to avoid broken UI during dev before they add content, let's add a robust check.
 
   return (
-    <section className="relative w-full py-24 bg-background">
+    <section className="relative w-full py-24">
       <div className="max-w-7xl mx-auto px-4 sm:px-6">
         
         {/* Header */}
@@ -148,7 +148,7 @@ export default function IndustryShowcase({ limit, title }: { limit?: number | nu
 
         {/* Icon Toggle Bar */}
         <div className="flex justify-center mb-12">
-            <div className="inline-flex flex-wrap justify-center gap-2 p-2 bg-neutral-100 dark:bg-neutral-900 rounded-full border border-border/50">
+            <div className="inline-flex flex-nowrap overflow-x-auto no-scrollbar justify-start md:justify-center gap-2 p-2 bg-neutral-100 dark:bg-neutral-900 rounded-full border border-border/50 max-w-full">
                 {INDUSTRIES.map((industry) => (
                     <button
                         key={industry.id}

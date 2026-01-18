@@ -6,6 +6,7 @@ import { CalendlyProvider } from "@/context/calendly-context";
 import SmoothScroll from "@/components/ui/smooth-scroll";
 
 import { Preloader } from "@/components/ui/preloader";
+import { GlobalBackground } from "@/components/ui/global-background";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -88,7 +89,7 @@ export default function RootLayout({
         <link rel="preconnect" href="https://nl13gjir.apicdn.sanity.io" />
       </head>
       <body
-        className={`${syne.variable} ${manrope.variable} antialiased`}
+        className={`${syne.variable} ${manrope.variable} antialiased bg-transparent`}
       >
         <script
           type="application/ld+json"
@@ -125,6 +126,7 @@ export default function RootLayout({
           <CalendlyProvider>
             <SmoothScroll>
               <Preloader />
+              <GlobalBackground />
               {children}
               <SpeedInsights />
             </SmoothScroll>

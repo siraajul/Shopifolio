@@ -33,20 +33,16 @@ export default function HeroSection({ heroData }: HeroProps) {
   };
 
   return (
-    <section id="home" className="relative h-screen flex flex-col items-center justify-center p-4">
-        {/* Cosmic Glow Background */}
-        <div className="absolute top-0 left-0 w-full h-full overflow-hidden pointer-events-none z-0">
-            <div className="absolute top-1/2 left-1/4 w-[500px] h-[500px] bg-emerald-900/20 rounded-full blur-[120px] -translate-y-1/2 mix-blend-screen" />
-            <div className="absolute bottom-0 right-0 w-[600px] h-[600px] bg-green-900/10 rounded-full blur-[100px] mix-blend-screen" />
-        </div>
+    <section id="home" className="relative h-screen flex flex-col items-center justify-center p-2 sm:p-4">
+
 
         {/* Main Content */}
-        <div className="relative z-10 w-full text-center flex flex-col items-center justify-center gap-8">
+        <div className="relative z-10 w-full text-center flex flex-col items-center justify-center gap-4 sm:gap-8">
           <div className="flex flex-col items-center gap-4">
                {/* Trust Badge */}
                 <TrustBadge className="mb-4" />
 
-              <div className="text-4xl max-[375px]:text-3xl sm:text-6xl md:text-8xl flex flex-col sm:flex-row flex-wrap items-center justify-center text-center font-bold font-sans bg-transparent text-foreground overflow-hidden">
+              <div className="text-3xl max-[375px]:text-3xl sm:text-6xl md:text-8xl flex flex-col sm:flex-row flex-wrap items-center justify-center text-center font-bold font-sans bg-transparent text-foreground overflow-hidden">
                 <LayoutGroup>
                   <motion.div className="flex flex-wrap justify-center whitespace-pre-wrap" layout>
                     <motion.span
@@ -80,12 +76,12 @@ export default function HeroSection({ heroData }: HeroProps) {
                 </LayoutGroup>
               </div>
 
-              <div className="text-4xl max-[375px]:text-3xl sm:text-6xl md:text-8xl font-bold font-display text-foreground mt-2">
+              <div className="text-3xl max-[375px]:text-3xl sm:text-6xl md:text-8xl font-bold font-display text-foreground mt-2">
                  Shopify Ecosystems
               </div>
 
-              <div className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mt-6 font-medium">
-                Stop settling for templates. Build high-performance, custom Shopify experiences that crush benchmarks.<br />
+              <div className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mt-4 sm:mt-6 font-medium">
+                <span className="hidden sm:inline">Stop settling for templates. Build high-performance, custom Shopify experiences that crush benchmarks.<br /></span>
                 <SparklesText 
                   text="Don't just build. Dominate." 
                   className="text-foreground font-semibold text-lg md:text-xl inline-block" 
@@ -94,20 +90,20 @@ export default function HeroSection({ heroData }: HeroProps) {
               </div>
 
               {/* Stats Sub-heading */}
-              <div className="flex flex-wrap items-center justify-center gap-4 md:gap-8 text-sm md:text-base text-gray-400 font-medium mt-4">
+              <div className="flex flex-nowrap items-center justify-center gap-2 md:gap-8 text-[10px] sm:text-xs md:text-base text-gray-400 font-medium mt-2 sm:mt-4 whitespace-nowrap">
                   <div className="flex items-center gap-1">
                     <HyperText className="text-foreground font-bold" text="$30M+" />
-                    <span>Revenue Generated</span>
+                    <span>Revenue</span>
                   </div>
-                  <div className="hidden md:block w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
+                  <div className="block w-0.5 h-0.5 md:w-1 md:h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
                   <div className="flex items-center gap-1">
                     <HyperText className="text-foreground font-bold" text="45%" />
-                    <span>Avg. Conv. Uplift</span>
+                    <span>Uplift</span>
                   </div>
-                  <div className="hidden md:block w-1 h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
+                  <div className="block w-0.5 h-0.5 md:w-1 md:h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
                   <div className="flex items-center gap-1">
                     <HyperText className="text-foreground font-bold" text="0.4s" />
-                    <span>Load Times</span>
+                    <span>Speed</span>
                   </div>
               </div>
           </div>
@@ -116,13 +112,13 @@ export default function HeroSection({ heroData }: HeroProps) {
           <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
             <button 
               onClick={openCalendly}
-              className="group relative px-8 py-4 bg-primary text-black rounded-full font-bold text-lg hover:shadow-[0_0_40px_-5px_hsl(var(--primary)/0.6)] transition-all duration-300 flex items-center gap-2"
+              className="group relative px-6 py-3 sm:px-8 sm:py-4 bg-primary text-black rounded-full font-bold text-lg hover:shadow-[0_0_40px_-5px_hsl(var(--primary)/0.6)] transition-all duration-300 flex items-center gap-2"
             >
               Audit My Brand <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
             </button>
             <button 
               onClick={scrollToWork} 
-              className="px-8 py- font-semibold text-foreground hover:text-primary transition-colors flex items-center gap-2"
+              className="px-6 py-3 sm:px-8 sm:py-4 font-semibold text-foreground hover:text-primary transition-colors flex items-center gap-2"
             >
               View Proof
             </button>
