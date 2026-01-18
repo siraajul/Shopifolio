@@ -100,9 +100,12 @@ export default function RootLayout({
                 "addressCountry": "US"
               },
               "sameAs": [
-                "https://linkedin.com/company/shift2dynamic",
-                "https://twitter.com/shift2dynamic",
-                "https://github.com/shift2dynamic"
+                "https://www.linkedin.com/company/shift2dynamic",
+                "https://x.com/shift2dynamic",
+                "https://github.com/shift2dynamic",
+                "https://www.facebook.com/shift2dynamic",
+                "https://www.instagram.com/shift2dynamic",
+                "https://www.reddit.com/user/shift2dynamic"
               ]
             })
           }}
