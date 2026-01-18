@@ -6,6 +6,7 @@ import SmoothScroll from "@/components/ui/smooth-scroll";
 
 import { Preloader } from "@/components/ui/preloader";
 import { Analytics } from "@vercel/analytics/next";
+import { SpeedInsights } from "@vercel/speed-insights/next";
 
 const syne = Syne({
   variable: "--font-syne",
@@ -126,6 +127,7 @@ export default function RootLayout({
             {children}
           </SmoothScroll>
           <Analytics />
+          <SpeedInsights />
         </ThemeProvider>
       </body>
     </html>
