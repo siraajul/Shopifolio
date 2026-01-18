@@ -27,6 +27,7 @@ export type FormData = {
   // Personal
   name: string;
   email: string;
+  phone: string;
   company: string;
   
   // Step 1: Project Type
@@ -65,6 +66,7 @@ export type FormData = {
 const INITIAL_DATA: FormData = {
   name: "",
   email: "",
+  phone: "",
   company: "",
   projectType: "",
   
@@ -589,6 +591,16 @@ export default function OnboardingForm() {
                     value={formData.email}
                     onChange={(e) => updateField("email", e.target.value)}
                     placeholder="john@example.com"
+                    className="h-12 bg-background/50"
+                    />
+                </div>
+                 <div className="space-y-2 md:col-span-2">
+                    <Label>Phone Number</Label>
+                    <Input
+                    type="tel"
+                    value={formData.phone}
+                    onChange={(e) => updateField("phone", e.target.value)}
+                    placeholder="+1 (555) 000-0000"
                     className="h-12 bg-background/50"
                     />
                 </div>

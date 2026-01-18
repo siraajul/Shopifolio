@@ -222,7 +222,7 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
             Reply to {formData.name.split(' ')[0]}
          </a>
          <div style={{ marginTop: '16px', fontSize: '12px', color: '#52525b' }}>
-            {formData.email} • {formData.company || 'No Company'}
+            {formData.email} • {formData.phone ? `${formData.phone} • ` : ''}{formData.company || 'No Company'}
          </div>
       </div>
     </div>
