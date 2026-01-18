@@ -4,6 +4,7 @@ import { useState, useEffect } from "react"
 import { motion, LayoutGroup } from "motion/react"
 import { TextRotate } from "@/components/ui/text-rotate"
 import { AvatarCircles } from "@/components/ui/avatar-circles"
+import { TrustBadge } from "@/components/ui/trust-badge"
 import { SevenFigureIcon, ProvenIcon, ConvertingIcon, PremiumIcon, ScalableIcon } from "@/components/ui/animated-icons"
 import { ArrowRight } from "lucide-react"
 
@@ -54,25 +55,7 @@ export default function HeroSection({ heroData }: HeroProps) {
         <div className="relative z-10 w-full text-center flex flex-col items-center justify-center gap-8">
           <div className="flex flex-col items-center gap-4">
                {/* Trust Badge */}
-               <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-neutral-200 dark:border-white/10 bg-neutral-100/50 dark:bg-white/5 backdrop-blur-md mb-4 min-h-[52px]">
-                  <AvatarCircles 
-                    numPeople={99} 
-                    avatarUrls={[
-                      "https://images.unsplash.com/photo-1599566150163-29194dcaad36?q=80&w=100&auto=format&fit=crop", 
-                      "https://images.unsplash.com/photo-1535713875002-d1d0cf377fde?q=80&w=100&auto=format&fit=crop",
-                      "https://images.unsplash.com/photo-1580489944761-15a19d654956?q=80&w=100&auto=format&fit=crop",
-                      "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?q=80&w=100&auto=format&fit=crop"
-                    ]}
-                    className="mr-2"
-                    onMoreClick={() => {
-                        const element = document.getElementById("testimonials");
-                        if (element) {
-                            element.scrollIntoView({ behavior: 'smooth' });
-                        }
-                    }}
-                  />
-                  <span className="text-sm text-gray-600 dark:text-gray-300 font-medium">Trusted by 50+ Brands</span>
-               </div>
+                <TrustBadge className="mb-4" />
 
               <div className="text-4xl max-[375px]:text-3xl sm:text-6xl md:text-8xl flex flex-col sm:flex-row flex-wrap items-center justify-center text-center font-bold font-sans bg-transparent text-foreground overflow-hidden">
                 <LayoutGroup>
