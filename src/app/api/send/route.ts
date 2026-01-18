@@ -18,9 +18,8 @@ export async function POST(request: Request) {
         }
 
         const data = await resend.emails.send({
-            from: 'Shift2Dynamic Leads <onboarding@resend.dev>', // Verify domain or use resend.dev for testing
-            // to: ['hello@shift2dynamic.com'], // TODO: Use this after verifying domain on Resend
-            to: ['shirajulislamparvez@gmail.com'], // For testing (must match Resend signup email)
+            from: 'Shift2Dynamic Leads <leads@shift2dynamic.com>',
+            to: ['shirajulislamparvez@gmail.com'],
             subject: `New Project Inquiry from ${name}`,
             react: await EmailTemplate({ formData: body }),
             replyTo: email,
