@@ -14,7 +14,12 @@ import Link from "next/link";
 import { FooterBackgroundGradient, TextHoverEffect } from "@/components/sections/hover-footer";
 import { StarButton } from "@/components/ui/star-button";
 import { useState, useEffect } from "react";
-import { PopupModal } from "react-calendly";
+import dynamic from "next/dynamic"
+
+const PopupModal = dynamic(
+  () => import("react-calendly").then((mod) => mod.PopupModal),
+  { ssr: false }
+)
 
 interface FooterLink {
   label: string;

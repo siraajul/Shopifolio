@@ -2,7 +2,12 @@
 
 import React, { useState, useEffect } from "react";
 import { motion, AnimatePresence } from "motion/react";
-import { PopupModal } from "react-calendly";
+import dynamic from "next/dynamic"
+
+const PopupModal = dynamic(
+  () => import("react-calendly").then((mod) => mod.PopupModal),
+  { ssr: false }
+)
 import { StarButton } from "@/components/ui/star-button";
 import { 
   Package, 

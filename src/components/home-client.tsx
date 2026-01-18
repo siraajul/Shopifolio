@@ -10,7 +10,12 @@ import { TbApi } from "react-icons/tb"
 import { Globe, ArrowRight } from "lucide-react";
 import { LimelightNav } from "@/components/ui/limelight-nav"
 import { useState, useEffect, useRef } from "react"
-import { PopupModal } from "react-calendly"
+import dynamic from "next/dynamic"
+
+const PopupModal = dynamic(
+  () => import("react-calendly").then((mod) => mod.PopupModal),
+  { ssr: false }
+)
 import { HyperText } from "@/components/ui/hyper-text"
 import Link from "next/link";
 
