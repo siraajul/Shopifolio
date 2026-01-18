@@ -13,6 +13,7 @@ import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Clarity } from "@/components/analytics/clarity";
+import { Contentsquare } from "@/components/analytics/contentsquare";
 
 const syne = Syne({
   variable: "--font-syne",
@@ -139,6 +140,7 @@ export default function RootLayout({
             <Analytics />
             <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ""} />
             <Clarity />
+            <Contentsquare />
           </CalendlyProvider>
         </ThemeProvider>
       </body>
