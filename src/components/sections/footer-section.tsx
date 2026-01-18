@@ -181,7 +181,11 @@ export function Footer({ data }: FooterProps) {
 
           {/* Copyright */}
           <p className="text-center md:text-left text-muted-foreground">
-            &copy; {new Date().getFullYear()} {companyName}. All rights reserved.
+            &copy; {new Date().getFullYear()} {companyName}. All rights reserved. 
+            <span className="mx-2">|</span>
+            <Link href="/privacy" className="hover:text-primary transition-colors">
+              Privacy Policy
+            </Link>
           </p>
         </div>
       </div>
