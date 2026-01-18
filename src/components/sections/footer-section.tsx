@@ -14,12 +14,7 @@ import Link from "next/link";
 import { FooterBackgroundGradient, TextHoverEffect } from "@/components/sections/hover-footer";
 import { StarButton } from "@/components/ui/star-button";
 import { useState, useEffect } from "react";
-import dynamic from "next/dynamic"
-
-const PopupModal = dynamic(
-  () => import("react-calendly").then((mod) => mod.PopupModal),
-  { ssr: false }
-)
+import { useCalendly } from "@/context/calendly-context"
 
 interface FooterLink {
   label: string;
@@ -57,15 +52,7 @@ export function Footer({ data }: FooterProps) {
     footerLinks = [],
   } = data || {};
 
-  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
-  const [rootElement, setRootElement] = useState<HTMLElement | null>(null);
-
-  useEffect(() => {
-    // Wait for mount to set root element, avoids SSR issues
-    if (typeof document !== 'undefined') {
-       setRootElement(document.getElementById("home") || document.body);
-    }
-  }, []);
+  const { openCalendly } = useCalendly();
 
   // Helper to map platform string to icon
   const getSocialIcon = (platform: string): LucideIcon => {
@@ -100,21 +87,12 @@ export function Footer({ data }: FooterProps) {
                   {/* Call to Action */}
                   <div className="relative z-10 flex flex-col sm:flex-row items-center justify-center gap-4">
                      <StarButton 
-                        onClick={() => setIsCalendlyOpen(true)} 
+                        onClick={openCalendly} 
                         className="h-14 px-8 rounded-full text-lg cursor-pointer"
                      >
                           Ready to Dominate?
                      </StarButton>
                   </div>
-                  
-                  {rootElement && (
-                    <PopupModal
-                      url="https://calendly.com/riajul"
-                      onModalClose={() => setIsCalendlyOpen(false)}
-                      open={isCalendlyOpen}
-                      rootElement={rootElement}
-                    />
-                  )}
               </div>
         </div>
 

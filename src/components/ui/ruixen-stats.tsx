@@ -3,8 +3,9 @@
 import React from 'react';
 import { Card, CardContent } from '@/components/ui/card';
 import { Line, LineChart, ReferenceLine, ResponsiveContainer, Tooltip, YAxis } from 'recharts';
-import { Button } from "@/components/ui/button";
+
 import Link from "next/link";
+import { useCalendly } from "@/context/calendly-context";
 
 // --- Data Constants from Impact Chart ---
 
@@ -93,6 +94,7 @@ const businessCards = [
 ];
 
 export default function RuixenStats() {
+  const { openCalendly } = useCalendly();
   return (
     <section className="w-full max-w-7xl mx-auto px-4 py-20 grid lg:grid-cols-2 gap-12 items-center">
       {/* Left: Text & CTA */}
@@ -107,9 +109,12 @@ export default function RuixenStats() {
             Our data-driven approach ensures every pixel serves a purpose: 
             maximizing your ROI and elevating your brand authority.
         </p>
-        <Button size="lg" className="mt-4 w-fit">
-          <Link href="https://ruixen.com/" target="_blank">Start Scaling ↗</Link>
-        </Button>
+        <button 
+          onClick={openCalendly}
+          className="mt-4 group relative px-8 py-3 bg-primary text-black rounded-full font-bold text-lg hover:shadow-[0_0_40px_-5px_hsl(var(--primary)/0.6)] transition-all duration-300 flex items-center gap-2 w-fit"
+        >
+          Start Scaling <span className="group-hover:translate-x-1 transition-transform">↗</span>
+        </button>
       </div>
 
       {/* Right: Impact Charts Grid */}
@@ -133,7 +138,7 @@ export default function RuixenStats() {
                 </div>
 
                 {/* Chart Section */}
-                <div className="h-16 relative w-full">
+                <div className="h-16 relative w-full min-w-0">
                     <ResponsiveContainer width="100%" height="100%">
                       <LineChart
                         data={card.data}

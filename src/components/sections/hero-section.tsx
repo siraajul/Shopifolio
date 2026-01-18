@@ -9,12 +9,7 @@ import { SevenFigureIcon, ProvenIcon, ConvertingIcon, PremiumIcon, ScalableIcon 
 import { ArrowRight } from "lucide-react"
 
 import { HyperText } from "@/components/ui/hyper-text"
-import dynamic from "next/dynamic"
-
-const PopupModal = dynamic(
-  () => import("react-calendly").then((mod) => mod.PopupModal),
-  { ssr: false }
-)
+import { useCalendly } from "@/context/calendly-context"
 
 interface HeroProps {
   heroData?: {
@@ -25,14 +20,7 @@ interface HeroProps {
 }
 
 export default function HeroSection({ heroData }: HeroProps) {
-  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
-  const [rootElement, setRootElement] = useState<HTMLElement | null>(null);
-
-  useEffect(() => {
-    if (typeof document !== 'undefined') {
-       setRootElement(document.getElementById("home") || document.body);
-    }
-  }, []);
+  const { openCalendly } = useCalendly();
 
   const scrollToWork = () => {
     const element = document.getElementById("work");
@@ -122,7 +110,7 @@ export default function HeroSection({ heroData }: HeroProps) {
           {/* CTA Buttons */}
           <div className="flex flex-col sm:flex-row items-center gap-4 mt-4">
             <button 
-              onClick={() => setIsCalendlyOpen(true)}
+              onClick={openCalendly}
               className="group relative px-8 py-4 bg-primary text-black rounded-full font-bold text-lg hover:shadow-[0_0_40px_-5px_hsl(var(--primary)/0.6)] transition-all duration-300 flex items-center gap-2"
             >
               Audit My Brand <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
@@ -135,15 +123,6 @@ export default function HeroSection({ heroData }: HeroProps) {
             </button>
           </div>
         </div>
-        
-        {rootElement && (
-          <PopupModal
-            url="https://calendly.com/riajul"
-            onModalClose={() => setIsCalendlyOpen(false)}
-            open={isCalendlyOpen}
-            rootElement={rootElement}
-          />
-        )}
 
         <motion.div
           className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-2"

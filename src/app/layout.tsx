@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Syne, Manrope } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/theme-provider";
+import { CalendlyProvider } from "@/context/calendly-context";
 import SmoothScroll from "@/components/ui/smooth-scroll";
 
 import { Preloader } from "@/components/ui/preloader";
@@ -121,13 +122,14 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          <SmoothScroll>
-
-            <Preloader />
-            {children}
-            <SpeedInsights />
-          </SmoothScroll>
-          <Analytics />
+          <CalendlyProvider>
+            <SmoothScroll>
+              <Preloader />
+              {children}
+              <SpeedInsights />
+            </SmoothScroll>
+            <Analytics />
+          </CalendlyProvider>
         </ThemeProvider>
       </body>
     </html>
