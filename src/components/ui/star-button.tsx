@@ -38,7 +38,7 @@ function StarBackground({ color }: StarBackgroundProps) {
   );
 }
 
-interface StarButtonProps {
+interface StarButtonProps extends React.ButtonHTMLAttributes<HTMLButtonElement> {
   children: ReactNode;
   lightWidth?: number;
   duration?: number;

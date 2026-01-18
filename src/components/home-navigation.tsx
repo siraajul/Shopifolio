@@ -26,12 +26,12 @@ export default function HomeNavigation() {
   }
 
   const navItems = [
-    { id: "work", icon: <Briefcase weight="fill" />, label: "Work", onClick: () => scrollToSection("work", 0) },
-    { id: "services", icon: <Lightning weight="fill" />, label: "Services", onClick: () => scrollToSection("services", 1) },
-    { id: "testimonials", icon: <Star weight="fill" />, label: "Reviews", onClick: () => scrollToSection("testimonials", 2) },
-    { id: "pricing", icon: <CurrencyDollar weight="fill" />, label: "Pricing", onClick: () => scrollToSection("pricing", 3) },
-    { id: "faq", icon: <Question weight="fill" />, label: "FAQ", onClick: () => scrollToSection("faq", 4) },
-    { id: "contact", icon: <Envelope weight="fill" />, label: "Contact", onClick: () => scrollToSection("contact", 5) },
+    { id: "work", icon: <Briefcase weight="fill" />, label: "Work", href: "#work", onClick: () => scrollToSection("work", 0) },
+    { id: "services", icon: <Lightning weight="fill" />, label: "Services", href: "#services", onClick: () => scrollToSection("services", 1) },
+    { id: "testimonials", icon: <Star weight="fill" />, label: "Reviews", href: "#testimonials", onClick: () => scrollToSection("testimonials", 2) },
+    { id: "pricing", icon: <CurrencyDollar weight="fill" />, label: "Pricing", href: "#pricing", onClick: () => scrollToSection("pricing", 3) },
+    { id: "faq", icon: <Question weight="fill" />, label: "FAQ", href: "#faq", onClick: () => scrollToSection("faq", 4) },
+    { id: "contact", icon: <Envelope weight="fill" />, label: "Contact", href: "#contact", onClick: () => scrollToSection("contact", 5) },
   ]
 
   useEffect(() => {

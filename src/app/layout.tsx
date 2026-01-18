@@ -82,6 +82,9 @@ export default function RootLayout({
 }>) {
   return (
     <html lang="en" suppressHydrationWarning>
+      <head>
+        <link rel="preconnect" href="https://nl13gjir.apicdn.sanity.io" />
+      </head>
       <body
         className={`${syne.variable} ${manrope.variable} antialiased`}
       >

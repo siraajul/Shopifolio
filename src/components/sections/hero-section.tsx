@@ -53,7 +53,7 @@ export default function HeroSection({ heroData }: HeroProps) {
         <div className="relative z-10 w-full text-center flex flex-col items-center justify-center gap-8">
           <div className="flex flex-col items-center gap-4">
                {/* Trust Badge */}
-               <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-neutral-200 dark:border-white/10 bg-neutral-100/50 dark:bg-white/5 backdrop-blur-md mb-4">
+               <div className="flex items-center gap-2 px-4 py-2 rounded-full border border-neutral-200 dark:border-white/10 bg-neutral-100/50 dark:bg-white/5 backdrop-blur-md mb-4 min-h-[52px]">
                   <AvatarCircles 
                     numPeople={99} 
                     avatarUrls={[

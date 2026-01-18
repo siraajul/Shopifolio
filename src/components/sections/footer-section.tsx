@@ -99,11 +99,12 @@ export function Footer({ data }: FooterProps) {
                   </p>
                   {/* Call to Action */}
                   <div className="relative z-10 flex flex-col sm:flex-row items-center justify-center gap-4">
-                     <div onClick={() => setIsCalendlyOpen(true)} className="cursor-pointer">
-                         <StarButton className="h-14 px-8 rounded-full text-lg">
+                     <StarButton 
+                        onClick={() => setIsCalendlyOpen(true)} 
+                        className="h-14 px-8 rounded-full text-lg cursor-pointer"
+                     >
                           Ready to Dominate?
-                        </StarButton>
-                     </div>
+                     </StarButton>
                   </div>
                   
                   {rootElement && (

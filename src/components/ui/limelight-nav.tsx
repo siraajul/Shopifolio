@@ -10,6 +10,7 @@ export type NavItem = {
   id: string | number;
   icon: React.ReactElement;
   label?: string;
+  href?: string;
   onClick?: () => void;
 };
 
@@ -85,12 +86,16 @@ export const LimelightNav = ({
 
   return (
     <nav className={`relative inline-flex items-center h-16 rounded-full bg-white/80 dark:bg-black/80 backdrop-blur-md border border-neutral-200 dark:border-white/10 px-2 shadow-lg max-w-[95vw] overflow-x-auto no-scrollbar ${className}`}>
-      {items.map(({ id, icon, label, onClick }, index) => (
+      {items.map(({ id, icon, label, onClick, href }, index) => (
           <a
             key={id}
+            href={href || `#${id}`}
             ref={el => {navItemRefs.current[index] = el}}
             className={`relative z-20 flex h-full cursor-pointer items-center justify-center p-3 sm:p-5 ${iconContainerClassName}`}
-            onClick={() => handleItemClick(index, onClick)}
+            onClick={(e) => {
+               if (!href) e.preventDefault();
+               handleItemClick(index, onClick);
+            }}
             aria-label={label}
           >
             {cloneElement(icon as React.ReactElement<any>, {
