@@ -24,6 +24,8 @@ import {
   ArrowRight
 } from "lucide-react";
 import Image from "next/image";
+import Link from "next/link";
+import { useSearchParams } from "next/navigation";
 import { cn } from "@/lib/utils";
 
 import { client } from "@/sanity/lib/client";
@@ -77,6 +79,16 @@ export default function IndustryShowcase({ limit, title }: { limit?: number | nu
   const [activeTab, setActiveTab] = useState<IndustryKey>("fashion");
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
+  
+  const searchParams = useSearchParams();
+
+  // Sync active tab with URL param if present
+  useEffect(() => {
+    const categoryParam = searchParams.get('category');
+    if (categoryParam && INDUSTRIES.some(i => i.id === categoryParam)) {
+        setActiveTab(categoryParam as IndustryKey);
+    }
+  }, [searchParams]);
   
   // Calendly State
   const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
@@ -267,13 +279,13 @@ export default function IndustryShowcase({ limit, title }: { limit?: number | nu
                     {/* View More Button */}
                     {showViewMore && (
                       <div className="flex justify-center mt-2">
-                        <button 
-                          onClick={() => window.location.href = '/work'}
+                        <Link 
+                          href={`/work?category=${activeTab}`}
                           className="group flex items-center gap-2 text-muted-foreground hover:text-primary transition-colors duration-300"
                         >
                           <span className="font-medium">View All {INDUSTRIES.find(i => i.id === activeTab)?.label} Projects</span>
                           <ArrowRight size={16} className="transition-transform duration-300 group-hover:translate-x-1" />
-                        </button>
+                        </Link>
                       </div>
                     )}
                 </motion.div>
