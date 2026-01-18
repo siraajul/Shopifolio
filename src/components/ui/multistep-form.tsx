@@ -32,12 +32,26 @@ export type FormData = {
   // Step 1: Project Type
   projectType: string;
 
-  // Step 2: Store Details
+  // Step 2: Dynamic Details
+  // Common
   niche: string;
+  // New Store
   productCount: string;
   referenceStores: string; // "Make it look like Gymshark"
+  // Migration
+  currentPlatform: string;
+  migrationScope: string[]; // Products, Orders, Reviews etc
+  // Redesign / Speed
+  currentUrl: string;
+  painPoint: string; // "Slow speed", "Bad UX"
+  // Marketing
+  growthGoal: string; // "SEO", "Ads"
+  marketingBudget: string;
+  // Custom Dev
+  devScope: string; // "App integration", "Custom section"
+  hasDesign: string; // "Yes", "No"
 
-  // Step 3: Features
+  // Step 3: Features (For New Store / Redesign / Custom)
   features: string[];
   
   // Step 4: Budget & Timeline
@@ -53,9 +67,19 @@ const INITIAL_DATA: FormData = {
   email: "",
   company: "",
   projectType: "",
+  
   niche: "",
   productCount: "",
   referenceStores: "",
+  currentPlatform: "",
+  migrationScope: [],
+  currentUrl: "",
+  painPoint: "",
+  growthGoal: "",
+  marketingBudget: "",
+  devScope: "",
+  hasDesign: "",
+
   features: [],
   budget: "",
   timeline: "",
@@ -101,13 +125,14 @@ export default function OnboardingForm() {
     setFormData((prev) => ({ ...prev, [field]: value }));
   };
 
-  const toggleFeature = (feature: string) => {
+  const toggleFeature = (listName: 'features' | 'migrationScope', feature: string) => {
     setFormData((prev) => {
-      const exists = prev.features.includes(feature);
+      const list = prev[listName] as string[];
+      const exists = list.includes(feature);
       if (exists) {
-        return { ...prev, features: prev.features.filter((f) => f !== feature) };
+        return { ...prev, [listName]: list.filter((f) => f !== feature) };
       } else {
-        return { ...prev, features: [...prev.features, feature] };
+        return { ...prev, [listName]: [...list, feature] };
       }
     });
   };
@@ -122,14 +147,23 @@ export default function OnboardingForm() {
     },
     {
       id: "details",
-      title: "Store Details",
-      description: "Tell us about your brand & products.",
-      isValid: () => !!formData.niche && !!formData.productCount,
+      title: "Project Details",
+      description: "Tell us about your requirements.",
+      isValid: () => {
+        const pt = formData.projectType;
+        if (pt === "New Store") return !!formData.niche && !!formData.productCount;
+        if (pt === "Migration") return !!formData.currentPlatform;
+        if (pt === "Redesign") return !!formData.currentUrl && !!formData.painPoint;
+        if (pt === "Speed Optimization") return !!formData.currentUrl;
+        if (pt === "Marketing") return !!formData.growthGoal;
+        if (pt === "Custom Dev") return !!formData.devScope;
+        return false;
+      },
     },
     {
       id: "features",
-      title: "Features",
-      description: "What special powers does your store need?",
+      title: "Features & Scope",
+      description: "Specific needs for your store.",
       isValid: () => true, // Optional
     },
     {
@@ -207,10 +241,12 @@ export default function OnboardingForm() {
               className="grid grid-cols-1 md:grid-cols-2 gap-4"
             >
               {[
-                { value: "New Store", label: "New Store Setup", desc: "Starting from scratch" },
-                { value: "Redesign", label: "Redesign / Revamp", desc: "Improve existing store" },
-                { value: "Migration", label: "Migration", desc: "Moving from Wix/WordPress" },
-                { value: "Custom Dev", label: "Custom Development", desc: "Specific features or Liquid code" },
+                { value: "New Store", label: "New Store Setup", desc: "Build a brand new Shopify store." },
+                { value: "Redesign", label: "Redesign / Revamp", desc: "Improve design & conversion." },
+                { value: "Migration", label: "Migration", desc: "Move from Wix/Woo/Etsy." },
+                { value: "Speed Optimization", label: "Speed Optimization", desc: "Fix Core Web Vitals & Loading." },
+                { value: "Marketing", label: "Marketing / SEO", desc: "Ads, Email, & Organic Growth." },
+                { value: "Custom Dev", label: "Custom Development", desc: "Specific features or Liquid code." },
               ].map((opt) => (
                 <div key={opt.value}>
                   <RadioGroupItem value={opt.value} id={opt.value} className="peer sr-only" />
@@ -219,7 +255,7 @@ export default function OnboardingForm() {
                     className="flex flex-col justify-between p-6 h-full bg-muted/30 border-2 border-transparent peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/5 hover:bg-muted/50 rounded-xl cursor-pointer transition-all"
                   >
                     <span className="font-semibold text-lg">{opt.label}</span>
-                    <span className="text-muted-foreground font-normal mt-2">{opt.desc}</span>
+                    <span className="text-muted-foreground font-normal mt-2 text-sm">{opt.desc}</span>
                   </Label>
                 </div>
               ))}
@@ -228,83 +264,208 @@ export default function OnboardingForm() {
         );
 
       // -------------------------------------------------------------
-      // STEP 2: STORE DETAILS
+      // STEP 2: DYNAMIC DETAILS
       // -------------------------------------------------------------
       case "details":
+        const pt = formData.projectType;
+
+        // --- NEW STORE ---
+        if (pt === "New Store") {
+             return (
+              <div className="space-y-6">
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
+                  <div className="space-y-3">
+                    <Label>Industry / Niche</Label>
+                    <Select value={formData.niche} onValueChange={(val) => updateField("niche", val)}>
+                      <SelectTrigger className="h-12"><SelectValue placeholder="Select Industry" /></SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="Fashion">Fashion & Apparel</SelectItem>
+                        <SelectItem value="Beauty">Beauty & Cosmetics</SelectItem>
+                        <SelectItem value="Electronics">Electronics</SelectItem>
+                        <SelectItem value="Home">Home & Decor</SelectItem>
+                        <SelectItem value="Food">Food & Beverage</SelectItem>
+                        <SelectItem value="Other">Other</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                  <div className="space-y-3">
+                    <Label>Product Count</Label>
+                    <Select value={formData.productCount} onValueChange={(val) => updateField("productCount", val)}>
+                      <SelectTrigger className="h-12"><SelectValue placeholder="Catalog Size" /></SelectTrigger>
+                      <SelectContent>
+                        <SelectItem value="1-10">1 - 10 Products</SelectItem>
+                        <SelectItem value="10-100">10 - 100 Products</SelectItem>
+                        <SelectItem value="100+">100+ Products</SelectItem>
+                      </SelectContent>
+                    </Select>
+                  </div>
+                </div>
+                <div className="space-y-3">
+                  <Label>Design References</Label>
+                  <Textarea 
+                    placeholder="Reference URLs (e.g. gymshark.com) or describe the vibe."
+                    className="min-h-[100px] bg-background/50"
+                    value={formData.referenceStores}
+                    onChange={(e) => updateField("referenceStores", e.target.value)}
+                  />
+                </div>
+              </div>
+            );
+        }
+
+        // --- MIGRATION ---
+        if (pt === "Migration") {
+            return (
+                <div className="space-y-6">
+                     <div className="space-y-3">
+                        <Label>Current Platform</Label>
+                        <Select value={formData.currentPlatform} onValueChange={(val) => updateField("currentPlatform", val)}>
+                            <SelectTrigger className="h-12"><SelectValue placeholder="Where are you moving from?" /></SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="WordPress/Woo">WordPress / WooCommerce</SelectItem>
+                                <SelectItem value="Wix">Wix</SelectItem>
+                                <SelectItem value="Squarespace">Squarespace</SelectItem>
+                                <SelectItem value="Magento">Magento / Adobe Commerce</SelectItem>
+                                <SelectItem value="Etsy">Etsy</SelectItem>
+                                <SelectItem value="Other">Other</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
+                     <div className="space-y-3">
+                        <Label>What data needs to move?</Label>
+                        <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                            {["Products", "Customer Data", "Orders History", "Blog Posts", "Reviews"].map((item) => (
+                                <div key={item} onClick={() => toggleFeature('migrationScope', item)}
+                                   className={cn(
+                                    "flex items-center space-x-3 p-4 rounded-xl border-2 cursor-pointer transition-all",
+                                    formData.migrationScope?.includes(item) ? "border-primary bg-primary/5" : "border-border bg-muted/20"
+                                  )}
+                                >
+                                    <Checkbox checked={formData.migrationScope?.includes(item)} className="pointer-events-none"/>
+                                    <span>{item}</span>
+                                </div>
+                            ))}
+                        </div>
+                    </div>
+                </div>
+            );
+        }
+
+        // --- REDESIGN / SPEED ---
+        if (pt === "Redesign" || pt === "Speed Optimization") {
+             return (
+                <div className="space-y-6">
+                     <div className="space-y-3">
+                        <Label>Current Store URL</Label>
+                        <Input 
+                            value={formData.currentUrl} 
+                            onChange={(e) => updateField("currentUrl", e.target.value)}
+                            placeholder="https://mystore.com"
+                            className="h-12 bg-background/50"
+                        />
+                    </div>
+                    <div className="space-y-3">
+                        <Label>{pt === "Redesign" ? "Main Pain Point" : "Current Performance Issue"}</Label>
+                        <Textarea 
+                            placeholder={pt === "Redesign" 
+                                ? "e.g. Conversion rate is low, Design looks outdated, Mobile UX is bad..." 
+                                : "e.g. Failed Core Web Vitals, Slow checkout, High bounce rate..."}
+                            className="min-h-[120px] bg-background/50"
+                            value={formData.painPoint}
+                            onChange={(e) => updateField("painPoint", e.target.value)}
+                        />
+                    </div>
+                </div>
+             )
+        }
+        
+        // --- MARKETING ---
+        if (pt === "Marketing") {
+             return (
+                <div className="space-y-6">
+                    <div className="space-y-3">
+                        <Label>Primary Focus</Label>
+                        <Select value={formData.growthGoal} onValueChange={(val) => updateField("growthGoal", val)}>
+                            <SelectTrigger className="h-12"><SelectValue placeholder="Select Goal" /></SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="SEO">SEO Ranking</SelectItem>
+                                <SelectItem value="Ads">Facebook / Instagram Ads</SelectItem>
+                                <SelectItem value="Email">Email Marketing (Klaviyo)</SelectItem>
+                                <SelectItem value="Strategy">Full Strategy</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
+                     <div className="space-y-3">
+                        <Label>Monthly Ad/Marketing Budget</Label>
+                         <Select value={formData.marketingBudget} onValueChange={(val) => updateField("marketingBudget", val)}>
+                            <SelectTrigger className="h-12"><SelectValue placeholder="Per Month" /></SelectTrigger>
+                            <SelectContent>
+                                <SelectItem value="< $1k">Less than $1,000</SelectItem>
+                                <SelectItem value="$1k - $3k">$1,000 - $3,000</SelectItem>
+                                <SelectItem value="$3k - $10k">$3,000 - $10,000</SelectItem>
+                                <SelectItem value="$10k+">$10,000+</SelectItem>
+                            </SelectContent>
+                        </Select>
+                    </div>
+                </div>
+             )
+        }
+
+        // --- CUSTOM DEV ---
         return (
-          <div className="space-y-6">
-            <div className="grid grid-cols-1 md:grid-cols-2 gap-6">
-              <div className="space-y-3">
-                <Label>Industry / Niche</Label>
-                <Select
-                  value={formData.niche}
-                  onValueChange={(val) => updateField("niche", val)}
-                >
-                  <SelectTrigger className="h-12">
-                    <SelectValue placeholder="Select Industry" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="Fashion & Apparel">Fashion & Apparel</SelectItem>
-                    <SelectItem value="Beauty & Cosmetics">Beauty & Cosmetics</SelectItem>
-                    <SelectItem value="Electronics">Electronics & Gadgets</SelectItem>
-                    <SelectItem value="Home & Decor">Home & Decor</SelectItem>
-                    <SelectItem value="Food & Beverage">Food & Beverage</SelectItem>
-                    <SelectItem value="Other">Other</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
-
-               <div className="space-y-3">
-                <Label>Product Count</Label>
-                <Select
-                  value={formData.productCount}
-                  onValueChange={(val) => updateField("productCount", val)}
-                >
-                  <SelectTrigger className="h-12">
-                    <SelectValue placeholder="Approx. Catalog Size" />
-                  </SelectTrigger>
-                  <SelectContent>
-                    <SelectItem value="1-10">1 - 10 Products</SelectItem>
-                    <SelectItem value="10-100">10 - 100 Products</SelectItem>
-                    <SelectItem value="100-1000">100 - 1,000 Products</SelectItem>
-                    <SelectItem value="1000+">1,000+ Products</SelectItem>
-                  </SelectContent>
-                </Select>
-              </div>
+            <div className="space-y-6">
+                <div className="space-y-3">
+                    <Label>Scope of Work</Label>
+                    <Textarea 
+                        placeholder="Describe the feature, section, or app integration you need..."
+                        className="min-h-[120px] bg-background/50"
+                        value={formData.devScope}
+                        onChange={(e) => updateField("devScope", e.target.value)}
+                    />
+                </div>
+                 <div className="space-y-3">
+                    <Label>Do you have designs ready?</Label>
+                    <RadioGroup
+                        value={formData.hasDesign}
+                        onValueChange={(val) => updateField("hasDesign", val)}
+                        className="grid grid-cols-1 sm:grid-cols-3 gap-4"
+                    >
+                        {["Yes (Figma/XD)", "Partial / Ideas", "No, I need Design"].map((opt) => (
+                             <div key={opt}>
+                                <RadioGroupItem value={opt} id={opt} className="peer sr-only" />
+                                <Label htmlFor={opt} className="flex items-center justify-center p-4 border-2 border-transparent peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/5 bg-muted/30 hover:bg-muted/50 rounded-xl cursor-pointer font-medium text-sm text-center">
+                                    {opt}
+                                </Label>
+                             </div>
+                        ))}
+                    </RadioGroup>
+                </div>
             </div>
-
-            <div className="space-y-3">
-              <Label>Design References (Optional)</Label>
-              <Textarea 
-                placeholder="Show us what you like. Paste standard URLs (e.g. apple.com, gymshark.com) or describe the vibe (minimal, bold, luxury)."
-                className="min-h-[100px] bg-background/50"
-                value={formData.referenceStores}
-                onChange={(e) => updateField("referenceStores", e.target.value)}
-              />
-            </div>
-          </div>
         );
 
       // -------------------------------------------------------------
-      // STEP 3: FEATURES
+      // STEP 3: FEATURES (Context Aware)
       // -------------------------------------------------------------
       case "features":
+        // Skip features step for purely service based things if needed, or show relevant ones
+        const featuresList = [
+            "Subscriptions",
+            "Bundles / Upsells",
+            "B2B / Wholesale",
+            "Multi-Currency",
+            "Mega Menu",
+            "Loyalty Program",
+            "Advanced Search",
+            "Pre-Orders"
+        ];
+        
         return (
           <div className="space-y-6">
              <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
-              {[
-                "Subscriptions",
-                "Bundles / Upsells",
-                "B2B / Wholesale Portal",
-                "Multi-Currency / Language",
-                "Advanced Filtering",
-                "Mega Menu",
-                "Loyalty Program",
-                "Migrate Reviews/Data",
-              ].map((feature) => (
+              {featuresList.map((feature) => (
                 <div
                   key={feature}
-                  onClick={() => toggleFeature(feature)}
+                  onClick={() => toggleFeature('features', feature)}
                   className={cn(
                     "flex items-center space-x-3 p-4 rounded-xl border-2 cursor-pointer transition-all",
                     formData.features.includes(feature)
@@ -314,15 +475,14 @@ export default function OnboardingForm() {
                 >
                   <Checkbox 
                      checked={formData.features.includes(feature)}
-                     onCheckedChange={() => toggleFeature(feature)} 
-                     className="pointer-events-none" // Handled by parent div
+                     className="pointer-events-none" 
                   />
                   <span className="font-medium text-sm md:text-base">{feature}</span>
                 </div>
               ))}
             </div>
              <div className="text-sm text-muted-foreground text-center">
-                Anything else? You can add details in the final step.
+                Select any that apply. This helps us estimate complexity.
             </div>
           </div>
         );
@@ -334,13 +494,13 @@ export default function OnboardingForm() {
         return (
           <div className="space-y-8">
             <div className="space-y-4">
-              <Label className="text-lg font-semibold">What is your estimated budget?</Label>
+              <Label className="text-lg font-semibold">One-time Project Budget</Label>
               <RadioGroup
                 value={formData.budget}
                 onValueChange={(val) => updateField("budget", val)}
                 className="grid grid-cols-1 sm:grid-cols-3 gap-4"
               >
-                {["$1k - $3k", "$3k - $8k", "$8k +"].map((opt) => (
+                {["$500 - $1k", "$1k - $3k", "$3k - $8k", "$8k+"].map((opt) => (
                   <div key={opt}>
                     <RadioGroupItem value={opt} id={`budget-${opt}`} className="peer sr-only" />
                     <Label
@@ -355,7 +515,7 @@ export default function OnboardingForm() {
             </div>
 
             <div className="space-y-4">
-              <Label className="text-lg font-semibold">How soon do you need this?</Label>
+              <Label className="text-lg font-semibold">Target Timeline</Label>
               <RadioGroup
                 value={formData.timeline}
                 onValueChange={(val) => updateField("timeline", val)}
@@ -458,7 +618,7 @@ export default function OnboardingForm() {
                   {i < currentStep ? <Check className="w-4 h-4" /> : i + 1}
               </div>
               <span className={cn(
-                  "text-[10px] md:text-xs font-medium uppercase tracking-wider absolute -bottom-6 w-32 text-center transition-colors duration-300",
+                  "text-[10px] md:text-xs font-medium uppercase tracking-wider absolute -bottom-6 w-32 text-center transition-colors duration-300 hidden md:block",
                    i === currentStep ? "text-primary" : "text-muted-foreground/50"
               )}>
                   {s.title}

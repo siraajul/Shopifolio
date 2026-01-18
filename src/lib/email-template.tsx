@@ -65,19 +65,26 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
                <div style={{ color: '#71717a', fontSize: '12px', marginBottom: '4px' }}>PROJECT TYPE</div>
                <div style={{ color: '#fff', fontWeight: '600' }}>{formData.projectType}</div>
             </div>
+             {/* Dynamic Grid Item 3 */}
              <div style={{ backgroundColor: '#27272a', padding: '16px', borderRadius: '8px' }}>
-               <div style={{ color: '#71717a', fontSize: '12px', marginBottom: '4px' }}>NICHE</div>
-               <div style={{ color: '#fff', fontWeight: '600' }}>{formData.niche}</div>
+               <div style={{ color: '#71717a', fontSize: '12px', marginBottom: '4px' }}>
+                  {formData.projectType === 'Marketing' ? 'FOCUS' : 'DETAILS'}
+               </div>
+               <div style={{ color: '#fff', fontWeight: '600' }}>
+                 {formData.niche || formData.growthGoal || formData.currentPlatform || formData.devScope || '-'}
+               </div>
             </div>
              <div style={{ backgroundColor: '#27272a', padding: '16px', borderRadius: '8px' }}>
                <div style={{ color: '#71717a', fontSize: '12px', marginBottom: '4px' }}>BUDGET</div>
-               <div style={{ color: '#10b981', fontWeight: '600' }}>{formData.budget}</div>
+               <div style={{ color: '#10b981', fontWeight: '600' }}>
+                   {formData.budget || formData.marketingBudget}
+               </div>
             </div>
         </div>
 
-        {/* Project Vision */}
+        {/* Project Details Section (Conditional) */}
         <div style={{ marginBottom: '32px' }}>
-          <h2 style={{ 
+            <h2 style={{ 
             fontSize: '16px', 
             fontWeight: '600', 
             color: '#a1a1aa', 
@@ -86,21 +93,69 @@ export const EmailTemplate: React.FC<Readonly<EmailTemplateProps>> = ({
             borderBottom: '1px solid #27272a',
             paddingBottom: '10px',
             marginBottom: '16px'
-          }}>
-            Store Details
-          </h2>
-          
-           <div style={{ marginBottom: '16px' }}>
-             <div style={{ color: '#71717a', fontSize: '13px', marginBottom: '4px' }}>PRODUCT COUNT</div>
-             <div style={{ color: '#e4e4e7', fontSize: '15px' }}>{formData.productCount}</div>
-           </div>
-           
-           <div style={{ marginBottom: '16px' }}>
-             <div style={{ color: '#71717a', fontSize: '13px', marginBottom: '4px' }}>TIMELINE</div>
-             <div style={{ color: '#e4e4e7', fontSize: '15px' }}>{formData.timeline}</div>
-           </div>
+            }}>
+            Scope & Details
+            </h2>
 
-           {formData.referenceStores && (
+            {/* New Store / Redesign / Speed */}
+            {(formData.productCount) && (
+            <div style={{ marginBottom: '16px' }}>
+                <div style={{ color: '#71717a', fontSize: '13px', marginBottom: '4px' }}>PRODUCT COUNT</div>
+                <div style={{ color: '#e4e4e7', fontSize: '15px' }}>{formData.productCount}</div>
+            </div>
+            )}
+
+            {/* Migration */}
+            {(formData.currentPlatform) && (
+             <div style={{ marginBottom: '16px' }}>
+                <div style={{ color: '#71717a', fontSize: '13px', marginBottom: '4px' }}>MIGRATION FROM</div>
+                <div style={{ color: '#e4e4e7', fontSize: '15px' }}>{formData.currentPlatform}</div>
+            </div>
+            )}
+             {(formData.migrationScope?.length > 0) && (
+             <div style={{ marginBottom: '16px' }}>
+                <div style={{ color: '#71717a', fontSize: '13px', marginBottom: '4px' }}>DATA TO MIGRATE</div>
+                <div style={{ color: '#e4e4e7', fontSize: '15px' }}>{formData.migrationScope.join(', ')}</div>
+            </div>
+            )}
+
+            {/* Speed / Redesign */}
+            {(formData.currentUrl) && (
+            <div style={{ marginBottom: '16px' }}>
+                <div style={{ color: '#71717a', fontSize: '13px', marginBottom: '4px' }}>CURRENT URL</div>
+                <div style={{ color: '#2563eb', fontSize: '15px' }}>{formData.currentUrl}</div>
+            </div>
+            )}
+             {(formData.painPoint) && (
+            <div style={{ marginBottom: '16px' }}>
+                <div style={{ color: '#71717a', fontSize: '13px', marginBottom: '4px' }}>ISSUE / PAIN POINT</div>
+                <div style={{ color: '#e4e4e7', fontSize: '15px' }}>{formData.painPoint}</div>
+            </div>
+            )}
+            
+            {/* Custom Dev */}
+            {(formData.devScope) && (
+                <div style={{ marginBottom: '16px' }}>
+                    <div style={{ color: '#71717a', fontSize: '13px', marginBottom: '4px' }}>SCOPE</div>
+                    <div style={{ color: '#e4e4e7', fontSize: '15px' }}>{formData.devScope}</div>
+                </div>
+            )}
+             {(formData.hasDesign) && (
+                <div style={{ marginBottom: '16px' }}>
+                    <div style={{ color: '#71717a', fontSize: '13px', marginBottom: '4px' }}>DESIGN READY?</div>
+                    <div style={{ color: '#e4e4e7', fontSize: '15px' }}>{formData.hasDesign}</div>
+                </div>
+            )}
+
+            {/* Common */}
+            {(formData.timeline) && (
+            <div style={{ marginBottom: '16px' }}>
+                <div style={{ color: '#71717a', fontSize: '13px', marginBottom: '4px' }}>TIMELINE</div>
+                <div style={{ color: '#e4e4e7', fontSize: '15px' }}>{formData.timeline}</div>
+            </div>
+            )}
+
+             {formData.referenceStores && (
              <div style={{ marginBottom: '16px' }}>
                <div style={{ color: '#71717a', fontSize: '13px', marginBottom: '4px' }}>DESIGN REFERENCES</div>
                <div style={{ color: '#e4e4e7', fontSize: '15px', whiteSpace: 'pre-wrap' }}>{formData.referenceStores}</div>
