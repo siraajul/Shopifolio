@@ -89,6 +89,55 @@ src/
 └── sanity/              # Content Schemas
 ```
 
+## 🏗️ Architecture & Data Flow
+
+```mermaid
+graph TD
+    subgraph "Client Side"
+        Browser[User Browser]
+        Page[Next.js App Router]
+        Planner[Project Planner Form]
+    end
+
+    subgraph "Data & CMS"
+        Sanity[(Sanity CMS)]
+        Query["GROQ Queries"]
+    end
+
+    subgraph "Integrations"
+        Resend[Resend API]
+        GA4[Google Analytics]
+        Clarity[Microsoft Clarity]
+        CS[Contentsquare]
+        Email[User Email]
+    end
+
+    %% Flows
+    Browser --> |Visits| Page
+    Page --> |Fetches Content| Query
+    Query --> |Returns JSON| Sanity
+    
+    Browser --> |Interacts| Planner
+    Planner --> |Submits Form| Resend
+    Resend --> |Sends Notification| Email
+    
+    Browser --> |Tracking Events| GA4
+    Browser --> |Session Recording| Clarity
+    Browser --> |UX Insights| CS
+
+    %% Structure
+    Page -- Components --> Sections[Sections/Components]
+    Sections --> Hero[Hero Section]
+    Sections --> About[About Section]
+    Sections --> Services[Services Section]
+    Sections --> Work[Work Section]
+    Sections --> Impact[Impact Section]
+
+    style Sanity fill:#f03e2f,color:#fff,stroke:#333,stroke-width:2px
+    style Resend fill:#000,color:#fff,stroke:#333,stroke-width:2px
+    style Page fill:#000,color:#fff,stroke:#333,stroke-width:2px
+```
+
 ---
 
 ## 📄 License
