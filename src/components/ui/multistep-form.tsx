@@ -22,6 +22,8 @@ import { useCalendly } from "@/context/calendly-context";
 import Link from "next/link";
 import { useToasts } from "@/components/ui/toast";
 import { sendGAEvent } from "@next/third-parties/google";
+import "react-phone-number-input/style.css";
+import PhoneInput from "react-phone-number-input";
 
 // ----------------------------------------------------------------------
 // FORM DATA TYPE
@@ -635,12 +637,12 @@ export default function OnboardingForm() {
                 </div>
                  <div className="space-y-2 md:col-span-2">
                     <Label>Phone Number</Label>
-                    <Input
-                    type="tel"
-                    value={formData.phone}
-                    onChange={(e) => updateField("phone", e.target.value)}
-                    placeholder="+1 (555) 000-0000"
-                    className="h-12 bg-background/50"
+                    <PhoneInput
+                      placeholder="Enter phone number"
+                      value={formData.phone}
+                      onChange={(value) => updateField("phone", value)}
+                      defaultCountry="US"
+                      className="flex h-12 w-full rounded-md border border-input bg-background/50 px-3 py-2 text-sm ring-offset-background file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-ring focus-visible:ring-offset-2 disabled:cursor-not-allowed disabled:opacity-50 [&>input]:bg-transparent [&>input]:outline-none [&>input]:h-full"
                     />
                 </div>
               </div>

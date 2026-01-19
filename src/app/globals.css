@@ -150,6 +150,46 @@
   }
 }
 
+/* Phone Input Overrides */
+.PhoneInput {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+.PhoneInputCountry {
+  margin-right: 0.5rem;
+}
+.PhoneInputCountrySelect {
+  display: block;
+  position: absolute;
+  top: 0;
+  left: 0;
+  height: 100%;
+  width: 100%;
+  z-index: 1;
+  border: 0;
+  opacity: 0;
+  cursor: pointer;
+}
+.PhoneInputCountryIcon {
+  width: 1.5rem;
+  height: 1rem;
+  display: block;
+}
+.PhoneInputCountryIcon--border {
+  background-color: transparent;
+  box-shadow: 0 0 0 1px rgba(255, 255, 255, 0.5);
+}
+.PhoneInputInput {
+  flex: 1;
+  background: transparent;
+  border: none;
+  outline: none;
+  color: inherit;
+  font-size: inherit;
+  font-family: inherit;
+}
+
 @layer base {
   * {
     @apply border-border outline-ring/50;
