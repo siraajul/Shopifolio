@@ -1,4 +1,6 @@
-import React, { useState, useRef, useLayoutEffect, cloneElement, useEffect } from 'react';
+"use client";
+
+import React, { useState, useRef, useLayoutEffect, cloneElement, useEffect, isValidElement } from 'react';
 
 // --- Internal Types and Defaults ---
 
@@ -8,7 +10,7 @@ const DefaultBellIcon = (props: React.SVGProps<SVGSVGElement>) => <svg {...props
 
 export type NavItem = {
   id: string | number;
-  icon: React.ReactElement;
+  icon: React.ReactNode;
   label?: string;
   href?: string;
   onClick?: () => void;
@@ -98,11 +100,11 @@ export const LimelightNav = ({
             }}
             aria-label={label}
           >
-            {cloneElement(icon as React.ReactElement<any>, {
+            {isValidElement(icon) ? cloneElement(icon as React.ReactElement<any>, {
               className: `w-5 h-5 sm:w-6 sm:h-6 transition-opacity duration-300 ease-in-out ${
                 activeIndex === index ? 'opacity-100 text-foreground' : 'opacity-50 hover:opacity-100 text-muted-foreground'
               } ${(icon.props as any).className || ''} ${iconClassName || ''}`,
-            })}
+            }) : icon}
           </a>
       ))}
 

@@ -4,18 +4,11 @@ import { Button } from "@/components/ui/button";
 import { Check } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { MagneticButton } from "@/components/ui/magnetic-button";
-import { useState, useEffect } from "react";
+import { useRef, useState } from "react";
 import Link from "next/link";
+import { PricingTier } from "@/types";
 
-export interface PricingTier {
-    name: string;
-    icon: React.ReactNode;
-    price: string | number;
-    description: string;
-    features: string[];
-    popular?: boolean;
-    color: string;
-}
+// Removed local interface PricingTier in favor of import
 
 export function CreativePricing({
     tag = "Simple Pricing",
