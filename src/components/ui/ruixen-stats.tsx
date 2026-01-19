@@ -93,6 +93,12 @@ const businessCards = [
 ];
 
 export default function RuixenStats() {
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
   return (
     <section className="w-full max-w-7xl mx-auto px-4 py-20 grid lg:grid-cols-2 gap-12 items-center">
       {/* Left: Text & CTA */}
@@ -137,36 +143,40 @@ export default function RuixenStats() {
 
                 {/* Chart Section */}
                 <div className="h-16 w-full" style={{ width: '100%', height: 64 }}>
-                    <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
-                      <LineChart
-                        data={card.data}
-                        margin={{ top: 5, right: 0, left: 0, bottom: 5 }}
-                      >
-                        <YAxis domain={['dataMin', 'dataMax']} hide={true} />
-                        <ReferenceLine y={0} stroke="var(--border)" strokeWidth={1} strokeDasharray="3 3" />
-                         <Tooltip
-                          cursor={{ stroke: card.color, strokeWidth: 1, strokeDasharray: '2 2' }}
-                          content={({ active, payload }) => {
-                             if (active && payload && payload.length) {
-                                  return (
-                                    <div className="bg-popover border border-border rounded px-2 py-1 text-xs text-popover-foreground shadow-md">
-                                        {payload[0].value}
-                                    </div>
-                                  )
-                             }
-                             return null;
-                          }}
-                         />
-                        <Line
-                          type="monotone"
-                          dataKey="value"
-                          stroke={card.color}
-                          strokeWidth={2}
-                          dot={false}
-                          activeDot={{ r: 4, fill: card.color, stroke: 'var(--background)' }}
-                        />
-                      </LineChart>
-                    </ResponsiveContainer>
+                    {mounted ? (
+                        <ResponsiveContainer width="100%" height="100%" minWidth={0} minHeight={0}>
+                        <LineChart
+                            data={card.data}
+                            margin={{ top: 5, right: 0, left: 0, bottom: 5 }}
+                        >
+                            <YAxis domain={['dataMin', 'dataMax']} hide={true} />
+                            <ReferenceLine y={0} stroke="var(--border)" strokeWidth={1} strokeDasharray="3 3" />
+                            <Tooltip
+                            cursor={{ stroke: card.color, strokeWidth: 1, strokeDasharray: '2 2' }}
+                            content={({ active, payload }) => {
+                                if (active && payload && payload.length) {
+                                    return (
+                                        <div className="bg-popover border border-border rounded px-2 py-1 text-xs text-popover-foreground shadow-md">
+                                            {payload[0].value}
+                                        </div>
+                                    )
+                                }
+                                return null;
+                            }}
+                            />
+                            <Line
+                            type="monotone"
+                            dataKey="value"
+                            stroke={card.color}
+                            strokeWidth={2}
+                            dot={false}
+                            activeDot={{ r: 4, fill: card.color, stroke: 'var(--background)' }}
+                            />
+                        </LineChart>
+                        </ResponsiveContainer>
+                    ) : (
+                        <div className="w-full h-full animate-pulse bg-muted/20 rounded-md" />
+                    )}
                 </div>
               </CardContent>
             </Card>

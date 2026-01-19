@@ -237,6 +237,14 @@ const businessCards = [
 ];
 
 export default function ImpactChart() {
+  const [mounted, setMounted] = React.useState(false);
+
+  React.useEffect(() => {
+    setMounted(true);
+  }, []);
+
+  if (!mounted) return null;
+
   return (
     <div className="w-full h-full flex items-center justify-center p-6 lg:p-12">
       {/* Container */}
