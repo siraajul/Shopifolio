@@ -533,20 +533,20 @@ export default function OnboardingForm() {
       // -------------------------------------------------------------
       case "logistics":
         return (
-          <div className="space-y-8">
-            <div className="space-y-4">
-              <Label className="text-lg font-semibold">One-time Project Budget</Label>
+          <div className="space-y-6">
+            <div className="space-y-3">
+              <Label className="text-base md:text-lg font-semibold">One-time Project Budget</Label>
               <RadioGroup
                 value={formData.budget}
                 onValueChange={(val) => updateField("budget", val)}
-                className="grid grid-cols-1 sm:grid-cols-3 gap-4"
+                className="grid grid-cols-2 sm:grid-cols-3 gap-3"
               >
                 {["$500 - $1k", "$1k - $3k", "$3k - $8k", "$8k+"].map((opt) => (
                   <div key={opt}>
                     <RadioGroupItem value={opt} id={`budget-${opt}`} className="peer sr-only" />
                     <Label
                       htmlFor={`budget-${opt}`}
-                      className="flex items-center justify-center p-4 border-2 border-transparent peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/5 bg-muted/30 hover:bg-muted/50 rounded-xl cursor-pointer transition-all font-medium"
+                      className="flex items-center justify-center p-3 border-2 border-transparent peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/5 bg-muted/30 hover:bg-muted/50 rounded-xl cursor-pointer transition-all font-medium text-sm md:text-base"
                     >
                       {opt}
                     </Label>
@@ -555,19 +555,19 @@ export default function OnboardingForm() {
               </RadioGroup>
             </div>
 
-            <div className="space-y-4">
-              <Label className="text-lg font-semibold">Target Timeline</Label>
+            <div className="space-y-3">
+              <Label className="text-base md:text-lg font-semibold">Target Timeline</Label>
               <RadioGroup
                 value={formData.timeline}
                 onValueChange={(val) => updateField("timeline", val)}
-                className="grid grid-cols-1 sm:grid-cols-3 gap-4"
+                className="grid grid-cols-2 sm:grid-cols-3 gap-3"
               >
                 {["ASAP (< 2 weeks)", "2-4 Weeks", "1 Month +"].map((opt) => (
                   <div key={opt}>
                     <RadioGroupItem value={opt} id={`time-${opt}`} className="peer sr-only" />
                     <Label
                       htmlFor={`time-${opt}`}
-                      className="flex items-center justify-center p-4 border-2 border-transparent peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/5 bg-muted/30 hover:bg-muted/50 rounded-xl cursor-pointer transition-all font-medium"
+                      className="flex items-center justify-center p-3 border-2 border-transparent peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/5 bg-muted/30 hover:bg-muted/50 rounded-xl cursor-pointer transition-all font-medium text-sm md:text-base"
                     >
                       {opt}
                     </Label>
@@ -576,7 +576,7 @@ export default function OnboardingForm() {
               </RadioGroup>
             </div>
             
-            <div className="space-y-3">
+            <div className="space-y-2">
                <Label>Additional Notes (Optional)</Label>
                <Textarea
                  value={formData.additionalInfo}
