@@ -21,6 +21,8 @@ interface HeroProps {
   };
 }
 
+import ProceduralGroundBackground from "@/components/ui/procedural-ground-background";
+
 export default function HeroSection({ heroData }: HeroProps) {
 
   const scrollToWork = () => {
@@ -33,7 +35,8 @@ export default function HeroSection({ heroData }: HeroProps) {
   };
 
   return (
-    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center p-2 sm:p-4 pt-10 pb-20">
+    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center p-2 sm:p-4 pt-10 pb-20 overflow-hidden">
+        <ProceduralGroundBackground className="hidden md:block" />
 
 
         {/* Main Content */}
