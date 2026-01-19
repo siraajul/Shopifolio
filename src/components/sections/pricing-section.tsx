@@ -8,46 +8,49 @@ import { cn } from "@/lib/utils";
 
 const brandTiers: PricingTier[] = [
     {
-        name: "Growth",
+        name: "Starter",
         icon: <Zap className="w-6 h-6" />,
-        price: 4999,
-        description: "Professional store setup & migration for new brands.",
+        price: 299,
+        description: "Essential launchpad for dropshipping & new stores.",
         color: "amber",
         features: [
-            "Custom Theme Development",
-            "Data Migration (Magento/Woo)",
-            "Conversion Rate Optimization",
-            "Email Marketing Setup",
-            "30 Days Support",
+            "Upload 5 Winning Products",
+            "5 Essential Pages Setup",
+            "3 App Integrations",
+            "Premium Theme Installation",
+            "Basic SEO Optimization",
+            "Social Media Integration"
         ],
     },
     {
-        name: "Scale",
+        name: "Professional",
         icon: <Rocket className="w-6 h-6" />,
-        price: 9999,
-        description: "High-performance ecosystem for scaling brands.",
+        price: 599,
+        description: "Advanced setup for growing brands ready to scale.",
         color: "blue",
         features: [
-            "Headless or Hydrogen Build",
-            "Custom App Development",
-            "Advanced Analytics & Tracking",
-            "A/B Testing Framework",
-            "Dedicated Project Manager",
+            "Upload 15 Winning Products",
+            "7 Professional Pages Setup",
+            "6 App Integrations",
+            "Advanced Theme Customization",
+            "Complete SEO Service",
+            "Speed Optimization (90+)"
         ],
         popular: true,
     },
     {
-        name: "Enterprise",
+        name: "Authority",
         icon: <Crown className="w-6 h-6" />,
-        price: 19999,
-        description: "Full-service digital dominance partner.",
+        price: 999,
+        description: "Premium ecosystem for market dominance.",
         color: "purple",
         features: [
-            "Global Internationalization",
-            "Custom ERP/CRM Integration",
-            "AI-Powered Personalization",
-            "24/7 Priority SLA Support",
-            "Quarterly Strategy Audits",
+            "Upload 30+ Winning Products",
+            "10 Custom Pages Design",
+            "10+ Advanced Integrations",
+            "CRO & Sales Funnel Setup",
+            "Comprehensive SEO Suite",
+            "30 Days Dedicated Support"
         ],
     },
 ];
@@ -58,9 +61,9 @@ export default function PricingSection({ data }: { data?: any[] }) {
     // Helper to map icons based on tier name (loose matching)
     const getIcon = (name: string) => {
         const n = name.toLowerCase();
-        if (n.includes("growth") || n.includes("validation")) return <Zap className="w-6 h-6" />; // or Package
-        if (n.includes("scale") || n.includes("expansion")) return <Rocket className="w-6 h-6" />; // or Globe
-        if (n.includes("enterprise") || n.includes("dominance")) return <Crown className="w-6 h-6" />; // or TrendingUp
+        if (n.includes("growth") || n.includes("validation") || n.includes("starter")) return <Zap className="w-6 h-6" />; // or Package
+        if (n.includes("scale") || n.includes("expansion") || n.includes("professional")) return <Rocket className="w-6 h-6" />; // or Globe
+        if (n.includes("enterprise") || n.includes("dominance") || n.includes("authority")) return <Crown className="w-6 h-6" />; // or TrendingUp
         return <Zap className="w-6 h-6" />;
     };
 
