@@ -12,9 +12,8 @@ import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Clarity } from "@/components/analytics/clarity";
 import { Contentsquare } from "@/components/analytics/contentsquare";
-import dynamic from "next/dynamic";
-
 import { DynamicLayoutComponents } from "@/components/ui/dynamic-layout-components";
+import { AdPixels } from "@/components/analytics/ad-pixels";
 
 const syne = Syne({
   variable: "--font-syne",
@@ -134,13 +133,14 @@ export default function RootLayout({
               <Preloader />
               <GlobalBackground />
               {children}
-<DynamicLayoutComponents />
+              <DynamicLayoutComponents />
               <SpeedInsights />
             </SmoothScroll>
             <Analytics />
             <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ""} />
             <Clarity />
             <Contentsquare />
+            <AdPixels />
           </CalendlyProvider>
         </ThemeProvider>
       </body>
