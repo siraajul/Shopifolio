@@ -33,7 +33,7 @@ export default function HeroSection({ heroData }: HeroProps) {
   };
 
   return (
-    <section id="home" className="relative h-screen flex flex-col items-center justify-center p-2 sm:p-4">
+    <section id="home" className="relative min-h-screen flex flex-col items-center justify-center p-2 sm:p-4 pt-10 pb-20">
 
 
         {/* Main Content */}
@@ -41,7 +41,7 @@ export default function HeroSection({ heroData }: HeroProps) {
           <div className="flex flex-col items-center gap-4">
 {/* Logo */}
               <div 
-                className="relative w-60 h-20 mb-8 sm:w-80 sm:h-24 cursor-pointer"
+                className="relative w-60 h-20 mb-2 sm:w-80 sm:h-24 cursor-pointer"
                 onClick={() => window.location.reload()}
               >
                 <Image
@@ -94,13 +94,15 @@ export default function HeroSection({ heroData }: HeroProps) {
                  Shopify Ecosystems
               </div>
 
-              <div className="text-lg md:text-xl text-muted-foreground max-w-2xl mx-auto leading-relaxed mt-4 sm:mt-6 font-medium">
-                <span className="hidden sm:inline">Stop settling for templates. Build high-performance, custom Shopify experiences that crush benchmarks.<br /></span>
-                <SparklesText 
-                  text="Don't just build. Dominate." 
-                  className="text-foreground font-semibold text-lg md:text-xl inline-block" 
-                  colors={{ first: '#10b981', second: '#14b8a6' }}
-                />
+              <div className="text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mt-4 sm:mt-6 font-medium">
+                <span className="hidden sm:inline">Stop settling for templates. Build high-performance, custom Shopify experiences that crush benchmarks.</span>
+                <div className="mt-2">
+                  <SparklesText 
+                    text="Don't just build. Dominate." 
+                    className="text-foreground font-semibold text-lg md:text-xl inline-block" 
+                    colors={{ first: '#10b981', second: '#14b8a6' }}
+                  />
+                </div>
               </div>
 
               {/* Stats Sub-heading */}
