@@ -707,7 +707,7 @@ export default function OnboardingForm() {
 
       <Card className="p-1 border-white/5 bg-black/40 backdrop-blur-xl shadow-2xl relative overflow-hidden mt-12">
         {/* Step Content Container */}
-        <div className="p-6 md:p-10 min-h-[400px] flex flex-col relative">
+        <div className="p-4 sm:p-6 md:p-10 min-h-[400px] flex flex-col relative">
            
            <div className="mb-8">
               <h2 className="text-2xl md:text-3xl font-bold mb-2">{steps[currentStep].title}</h2>

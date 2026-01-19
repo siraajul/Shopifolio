@@ -4,6 +4,7 @@ import React, { useState, useRef } from "react";
 import NextImage from "next/image";
 import { motion, useScroll, useTransform, MotionValue } from "framer-motion";
 import { cn } from "@/lib/utils";
+import { BorderBeam } from "@/components/ui/border-beam";
 
 interface Card {
   id: number;
@@ -66,6 +67,7 @@ const Card = ({
         } as any}
         className="flex flex-col-reverse md:flex-row relative -top-[5%] md:-top-[25%] min-h-[300px] h-fit md:h-[600px] w-[95vw] md:w-[1200px] rounded-2xl md:rounded-3xl p-3 md:p-10 origin-top border border-white/10 dark:border-white/10 shadow-2xl bg-zinc-900/40 backdrop-blur-xl overflow-hidden group hover:border-primary/30 transition-colors duration-500"
       >
+        <BorderBeam size={250} duration={12} delay={9 + (i * 2)} />
         {/* Internal Glow Effect */}
         <div 
           className="absolute top-0 right-0 w-[500px] h-[500px] bg-[var(--card-color)]/20 blur-[150px] rounded-full pointer-events-none -translate-y-1/2 translate-x-1/2 opacity-60 mix-blend-screen" 

@@ -32,7 +32,7 @@ export default function PlannerPage() {
         Back to Home
       </Link>
 
-      <div className="relative z-10 max-w-4xl mx-auto px-6 py-20 md:py-32">
+      <div className="relative z-10 max-w-4xl mx-auto px-4 sm:px-6 py-20 md:py-32">
         <div className="text-center mb-12 space-y-4">
             <h1 className="text-4xl md:text-6xl font-bold tracking-tight font-display">
                 Start Your Project

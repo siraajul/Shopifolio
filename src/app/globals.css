@@ -121,6 +121,7 @@
 @theme inline {
   --animate-star-btn: star-btn calc(var(--duration)*1s) linear infinite;
   --animate-fadeInTop: fadeInTop 0.5s ease-out forwards;
+  --animate-border-beam: border-beam calc(var(--duration)*1s) infinite linear;
 }
 
 @keyframes star-btn {
@@ -140,6 +141,12 @@
   to {
     opacity: 1;
     transform: translateY(0);
+  }
+}
+
+@keyframes border-beam {
+  100% {
+    offset-distance: 100%;
   }
 }
 
