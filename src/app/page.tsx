@@ -7,18 +7,22 @@ import { LazyLoad } from "@/components/ui/lazy-load";
 
 // Components
 import HeroSection from "@/components/sections/hero-section";
-import { GallerySection } from "@/components/sections/gallery-section";
-import ImpactSection from "@/components/sections/impact-section";
-import IndustriesSection from "@/components/sections/industries";
-import IndustryShowcase from "@/components/sections/industry-showcase";
-import AboutSection3 from "@/components/sections/about-section";
-import ServicesSection from "@/components/sections/services";
-import TestimonialsSection from "@/components/sections/testimonials";
-import ProcessSection from "@/components/sections/process-section";
-import PricingSection from "@/components/sections/pricing-section";
-import FAQSection from "@/components/sections/faq-section";
-import { Footer } from "@/components/sections/footer-section";
+import dynamic from "next/dynamic";
 import HomeNavigation from "@/components/home-navigation";
+
+// Dynamically import heavy sections
+// By default, dynamic imports are SSR'd which is good for SEO
+const GallerySection = dynamic(() => import("@/components/sections/gallery-section").then(mod => mod.GallerySection));
+const ImpactSection = dynamic(() => import("@/components/sections/impact-section"));
+const IndustriesSection = dynamic(() => import("@/components/sections/industries"));
+const IndustryShowcase = dynamic(() => import("@/components/sections/industry-showcase"));
+const AboutSection3 = dynamic(() => import("@/components/sections/about-section"));
+const ServicesSection = dynamic(() => import("@/components/sections/services"));
+const TestimonialsSection = dynamic(() => import("@/components/sections/testimonials"));
+const ProcessSection = dynamic(() => import("@/components/sections/process-section"));
+const PricingSection = dynamic(() => import("@/components/sections/pricing-section"));
+const FAQSection = dynamic(() => import("@/components/sections/faq-section"));
+const Footer = dynamic(() => import("@/components/sections/footer-section").then(mod => mod.Footer));
 
 export const revalidate = 60; // Revalidate every 60 seconds
 

@@ -7,13 +7,14 @@ import SmoothScroll from "@/components/ui/smooth-scroll";
 
 import { Preloader } from "@/components/ui/preloader";
 import { GlobalBackground } from "@/components/ui/global-background";
-import { CookieBanner } from "@/components/ui/cookie-banner";
-import { WhatsAppWidget } from "@/components/ui/whatsapp-widget";
 import { Analytics } from "@vercel/analytics/next";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 import { GoogleAnalytics } from "@next/third-parties/google";
 import { Clarity } from "@/components/analytics/clarity";
 import { Contentsquare } from "@/components/analytics/contentsquare";
+import dynamic from "next/dynamic";
+
+import { DynamicLayoutComponents } from "@/components/ui/dynamic-layout-components";
 
 const syne = Syne({
   variable: "--font-syne",
@@ -133,8 +134,7 @@ export default function RootLayout({
               <Preloader />
               <GlobalBackground />
               {children}
-              <CookieBanner />
-              <WhatsAppWidget />
+<DynamicLayoutComponents />
               <SpeedInsights />
             </SmoothScroll>
             <Analytics />
