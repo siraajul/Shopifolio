@@ -36,7 +36,7 @@ export function TrustBadge({ className }: TrustBadgeProps) {
                     />
                 </div>
             </div>
-            <p className="ml-2 font-medium text-muted-foreground">Trusted by 10,000+ people</p>
+            <p className="ml-2 font-medium text-muted-foreground">Trusted by 250+ Businesses</p>
         </div>
     );
 }
