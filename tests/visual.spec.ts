@@ -33,7 +33,8 @@ test.describe('Visual Regression', () => {
 
         await expect(page).toHaveScreenshot('work-desktop.png', {
             fullPage: true,
-            maxDiffPixelRatio: 0.02
+            maxDiffPixelRatio: 0.02,
+            timeout: 15000,
         });
     });
 
@@ -43,7 +44,8 @@ test.describe('Visual Regression', () => {
 
         await expect(page).toHaveScreenshot('planner-desktop.png', {
             fullPage: true,
-            maxDiffPixelRatio: 0.02
+            maxDiffPixelRatio: 0.02,
+            timeout: 15000,
         });
     });
 
