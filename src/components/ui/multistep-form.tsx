@@ -253,7 +253,7 @@ export default function OnboardingForm() {
             <RadioGroup
               value={formData.projectType}
               onValueChange={(val) => updateField("projectType", val)}
-              className="grid grid-cols-1 md:grid-cols-2 gap-4"
+              className="grid grid-cols-2 gap-3 md:gap-4"
             >
               {[
                 { value: "New Store", label: "New Store Setup", desc: "Build a brand new Shopify store." },
@@ -267,7 +267,7 @@ export default function OnboardingForm() {
                   <RadioGroupItem value={opt.value} id={opt.value} className="peer sr-only" />
                   <Label
                     htmlFor={opt.value}
-                    className="flex flex-col justify-between p-6 h-full bg-muted/30 border-2 border-transparent peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/5 hover:bg-muted/50 rounded-xl cursor-pointer transition-all"
+                    className="flex flex-col justify-between p-3 sm:p-6 h-full bg-muted/30 border-2 border-transparent peer-data-[state=checked]:border-primary peer-data-[state=checked]:bg-primary/5 hover:bg-muted/50 rounded-xl cursor-pointer transition-all"
                   >
                     <span className="font-semibold text-lg">{opt.label}</span>
                     <span className="text-muted-foreground font-normal mt-2 text-sm">{opt.desc}</span>
@@ -295,10 +295,19 @@ export default function OnboardingForm() {
                       <SelectTrigger className="h-12"><SelectValue placeholder="Select Industry" /></SelectTrigger>
                       <SelectContent>
                         <SelectItem value="Fashion">Fashion & Apparel</SelectItem>
+                        <SelectItem value="Jewelry">Jewelry & Accessories</SelectItem>
                         <SelectItem value="Beauty">Beauty & Cosmetics</SelectItem>
-                        <SelectItem value="Electronics">Electronics</SelectItem>
+                        <SelectItem value="Health">Health & Wellness</SelectItem>
                         <SelectItem value="Home">Home & Decor</SelectItem>
                         <SelectItem value="Food">Food & Beverage</SelectItem>
+                        <SelectItem value="Pets">Pets & Animal Care</SelectItem>
+                        <SelectItem value="Electronics">Electronics & Gadgets</SelectItem>
+                        <SelectItem value="Sports">Sports & Outdoors</SelectItem>
+                        <SelectItem value="Toys">Toys & Games</SelectItem>
+                        <SelectItem value="Art">Art & Collectibles</SelectItem>
+                        <SelectItem value="Automotive">Automotive</SelectItem>
+                        <SelectItem value="B2B">B2B / Wholesale</SelectItem>
+                        <SelectItem value="Digital">Digital Products</SelectItem>
                         <SelectItem value="Other">Other</SelectItem>
                       </SelectContent>
                     </Select>
@@ -465,24 +474,34 @@ export default function OnboardingForm() {
         // Skip features step for purely service based things if needed, or show relevant ones
         const featuresList = [
             "Subscriptions",
-            "Bundles / Upsells",
             "B2B / Wholesale",
-            "Multi-Currency",
+            "Bundles / Upsells",
+            "Pre-Orders",
             "Mega Menu",
-            "Loyalty Program",
             "Advanced Search",
-            "Pre-Orders"
+            "Loyalty / Rewards",
+            "Reviews (Yotpo/Judge.me)",
+            "Wishlist",
+            "Global Markets (Currency/Lang)",
+            "Store Locator",
+            "Gift Cards",
+            "Back-in-Stock Alerts",
+            "Size Charts",
+            "Live Chat",
+            "Product Customizer",
+            "Blog / Editorial",
+            "Instagram Feed / Social"
         ];
         
         return (
           <div className="space-y-6">
-             <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+             <div className="grid grid-cols-2 xs:grid-cols-3 md:grid-cols-3 gap-2 overflow-y-auto max-h-[50vh] pr-1">
               {featuresList.map((feature) => (
                 <div
                   key={feature}
                   onClick={() => toggleFeature('features', feature)}
                   className={cn(
-                    "flex items-center space-x-3 p-4 rounded-xl border-2 cursor-pointer transition-all",
+                    "flex flex-col items-center justify-center text-center p-2 h-20 rounded-xl border-2 cursor-pointer transition-all gap-1",
                     formData.features.includes(feature)
                       ? "border-primary bg-primary/5"
                       : "border-border bg-muted/20 hover:bg-muted/40"
@@ -490,15 +509,22 @@ export default function OnboardingForm() {
                 >
                   <Checkbox 
                      checked={formData.features.includes(feature)}
-                     className="pointer-events-none" 
+                     className="pointer-events-none mb-1 h-3 w-3" 
                   />
-                  <span className="font-medium text-sm md:text-base">{feature}</span>
+                  <span className="font-medium text-[10px] sm:text-xs leading-tight">{feature}</span>
                 </div>
               ))}
             </div>
-             <div className="text-sm text-muted-foreground text-center">
-                Select any that apply. This helps us estimate complexity.
-            </div>
+             
+             <div className="space-y-3 pt-4 border-t border-white/5">
+                <Label>Any specific feature not listed?</Label>
+                <Textarea 
+                     placeholder="Describe any custom requirements..."
+                     className="min-h-[80px] bg-background/50"
+                     value={formData.additionalInfo} // We can reuse additionalInfo or add a new field, but additionalInfo is safe.
+                     onChange={(e) => updateField("additionalInfo", e.target.value)}
+                />
+             </div>
           </div>
         );
 
