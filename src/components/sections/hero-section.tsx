@@ -40,7 +40,10 @@ export default function HeroSection({ heroData }: HeroProps) {
         <div className="relative z-10 w-full text-center flex flex-col items-center justify-center gap-4 sm:gap-8">
           <div className="flex flex-col items-center gap-4">
 {/* Logo */}
-              <div className="relative w-48 h-16 mb-6 sm:w-64 sm:h-20">
+              <div 
+                className="relative w-60 h-20 mb-8 sm:w-80 sm:h-24 cursor-pointer"
+                onClick={() => window.location.reload()}
+              >
                 <Image
                   src="/shift2dynamic_bg_remove_logo.png"
                   alt="Shift2Dynamic"
