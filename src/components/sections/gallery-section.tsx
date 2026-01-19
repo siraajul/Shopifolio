@@ -10,6 +10,7 @@ import { Button } from "@/components/ui/button"
 import Image from "next/image"
 import { VideoIcon } from "lucide-react"
 import { urlFor } from "@/sanity/lib/image"
+import { SanityGalleryItem, SanityImage } from "@/types"
 
 // Unsplash IDs extracted from the demo URLs (Fallback)
 const IMAGES_1 = [
@@ -32,16 +33,14 @@ const IMAGES_3 = [
 ]
 
 interface GallerySectionProps {
-  data?: {
-    images?: any[]
-  }
+  data?: SanityGalleryItem
 }
 
 export const GallerySection = ({ data }: GallerySectionProps) => {
   // Use Sanity images if available, otherwise fallback
   // Add Sanity CDN optimizations: auto format for WebP, resize width, crop fit, and quality
   const images = data?.images 
-    ? data.images.map(img => urlFor(img).auto('format').fit('crop').width(800).quality(80).url()) 
+    ? data.images.map((img: SanityImage) => urlFor(img).auto('format').fit('crop').width(800).quality(80).url()) 
     : [...IMAGES_1, ...IMAGES_2, ...IMAGES_3];
   
   // Split images into 3 columns

@@ -5,6 +5,7 @@ import InteractiveSelector from "@/components/ui/interactive-selector";
 import { Shirt, Smartphone, Armchair, Sparkles, Utensils, Gem, Baby, Dumbbell, PawPrint, Package } from "lucide-react";
 import { client } from "@/sanity/lib/client";
 import { urlFor } from "@/sanity/lib/image";
+import { SanityIndustryItem } from "@/types";
 
 // Helper to match icon by name
 const getIndustryIcon = (name: string) => {
@@ -22,12 +23,14 @@ const getIndustryIcon = (name: string) => {
     return <Package size={24} />;
 };
 
-export default function IndustriesSection({ data }: { data?: any[] }) {
+export default function IndustriesSection({ data }: { data?: SanityIndustryItem[] }) {
   
   const categories = data?.length ? data.map(item => ({
       title: item.name,
       description: item.description || "Comprehensive solutions.", // Fallback if description is missing in schema, or add it to schema
-      image: item.image ? urlFor(item.image).width(800).url() : "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=800",
+      image: item.image 
+        ? (typeof item.image === 'object' && 'asset' in item.image ? urlFor(item.image).width(800).url() : item.image as string) 
+        : "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=800",
       icon: getIndustryIcon(item.name)
   })) : [
     { title: "Fashion", description: "Trendsetting digital storefronts.", image: "https://images.unsplash.com/photo-1441986300917-64674bd600d8?auto=format&fit=crop&q=80&w=800", icon: <Shirt size={24} /> },

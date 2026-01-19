@@ -115,8 +115,7 @@ export default function RootLayout({
                 "https://x.com/shift2dynamic",
                 "https://github.com/shift2dynamic",
                 "https://www.facebook.com/shift2dynamic",
-                "https://www.instagram.com/shift2dynamic",
-                "https://www.reddit.com/user/shift2dynamic"
+                "https://www.instagram.com/shift2dynamic"
               ]
             })
           }}

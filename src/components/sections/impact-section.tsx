@@ -5,8 +5,9 @@ import { useRef } from "react";
 import { TrendingUp, Users, Zap, ArrowUpRight } from "lucide-react";
 import { BlurTextEffect } from "@/components/ui/blur-text-effect";
 import RuixenStats from "@/components/ui/ruixen-stats";
+import { SanityImpactStat } from "@/types";
 
-export default function ImpactSection({ data }: { data?: any }) {
+export default function ImpactSection({ data }: { data?: { stats?: SanityImpactStat[] } }) {
   const containerRef = useRef<HTMLDivElement>(null);
   const { scrollYProgress } = useScroll({
     target: containerRef,
