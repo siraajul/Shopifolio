@@ -95,7 +95,7 @@ export default function AboutSection3({ data, onCollaborateClick }: AboutProps) 
               animationNum={0}
               timelineRef={heroRef}
               customVariants={revealVariants}
-              href="https://www.facebook.com/"
+              href="https://www.facebook.com/shift2dynamic"
               target="_blank"
               rel="noopener noreferrer"
               className="w-8 h-8 md:w-10 md:h-10 border border-gray-200 bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-lg flex items-center justify-center cursor-pointer hover:scale-110 transition-transform"
@@ -107,7 +107,7 @@ export default function AboutSection3({ data, onCollaborateClick }: AboutProps) 
               animationNum={1}
               timelineRef={heroRef}
               customVariants={revealVariants}
-              href="https://www.instagram.com/"
+              href="https://www.instagram.com/shift2dynamic"
               target="_blank"
               rel="noopener noreferrer"
               className="w-8 h-8 md:w-10 md:h-10 border border-gray-200 bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-lg flex items-center justify-center cursor-pointer hover:scale-110 transition-transform"
@@ -119,7 +119,7 @@ export default function AboutSection3({ data, onCollaborateClick }: AboutProps) 
               animationNum={2}
               timelineRef={heroRef}
               customVariants={revealVariants}
-              href="https://www.linkedin.com/in/riajul-islam-shopify-expert/"
+              href="https://www.linkedin.com/company/shift2dynamic/"
               target="_blank"
               rel="noopener noreferrer"
               className="w-8 h-8 md:w-10 md:h-10 border border-gray-200 bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-lg flex items-center justify-center cursor-pointer hover:scale-110 transition-transform"
@@ -131,7 +131,7 @@ export default function AboutSection3({ data, onCollaborateClick }: AboutProps) 
               animationNum={3}
               timelineRef={heroRef}
               customVariants={revealVariants}
-              href="https://github.com/"
+              href="https://github.com/shift2dynamic"
               target="_blank"
               rel="noopener noreferrer"
               className="w-8 h-8 md:w-10 md:h-10 border border-gray-200 bg-gray-100 dark:bg-gray-800 dark:border-gray-700 rounded-lg flex items-center justify-center cursor-pointer hover:scale-110 transition-transform"
