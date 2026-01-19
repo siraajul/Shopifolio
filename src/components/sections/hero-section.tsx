@@ -108,7 +108,7 @@ export default function HeroSection({ heroData }: HeroProps) {
               {/* Stats Sub-heading */}
               <div className="flex flex-nowrap items-center justify-center gap-2 md:gap-8 text-[10px] sm:text-xs md:text-base text-gray-400 font-medium mt-2 sm:mt-4 whitespace-nowrap">
                   <div className="flex items-center gap-1">
-                    <HyperText className="text-foreground font-bold" text="$30M+" />
+                    <HyperText className="text-foreground font-bold" text="$10M+" />
                     <span>Revenue</span>
                   </div>
                   <div className="block w-0.5 h-0.5 md:w-1 md:h-1 rounded-full bg-gray-300 dark:bg-gray-600" />

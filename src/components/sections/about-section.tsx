@@ -189,7 +189,7 @@ export default function AboutSection3({ data, onCollaborateClick }: AboutProps) 
                customVariants={revealVariants}
                className="flex flex-col items-center md:items-start"
             >
-               <BlurTextEffect className="text-red-500 font-bold text-2xl md:text-3xl">5+</BlurTextEffect>
+               <BlurTextEffect className="text-red-500 font-bold text-2xl md:text-3xl">4+</BlurTextEffect>
                <span className="text-gray-600 dark:text-gray-400 text-sm md:text-base text-center md:text-left">Years Experience</span>
             </TimelineContent>
             
@@ -211,7 +211,7 @@ export default function AboutSection3({ data, onCollaborateClick }: AboutProps) 
                customVariants={revealVariants}
                className="flex flex-col items-center md:items-start"
             >
-               <BlurTextEffect className="text-red-500 font-bold text-2xl md:text-3xl">50+</BlurTextEffect>
+               <BlurTextEffect className="text-red-500 font-bold text-2xl md:text-3xl">270+</BlurTextEffect>
                <span className="text-gray-600 dark:text-gray-400 text-sm md:text-base text-center md:text-left">Stores Built</span>
             </TimelineContent>
 
