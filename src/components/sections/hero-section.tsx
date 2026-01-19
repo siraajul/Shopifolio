@@ -2,6 +2,7 @@
 
 import { useState, useEffect } from "react"
 import { motion, LayoutGroup } from "motion/react"
+import Image from "next/image"
 import { TextRotate } from "@/components/ui/text-rotate"
 import { AvatarCircles } from "@/components/ui/avatar-circles"
 import { SparklesText } from "@/components/ui/sparkles-text"
@@ -38,6 +39,17 @@ export default function HeroSection({ heroData }: HeroProps) {
         {/* Main Content */}
         <div className="relative z-10 w-full text-center flex flex-col items-center justify-center gap-4 sm:gap-8">
           <div className="flex flex-col items-center gap-4">
+{/* Logo */}
+              <div className="relative w-48 h-16 mb-6 sm:w-64 sm:h-20">
+                <Image
+                  src="/shift2dynamic_bg_remove_logo.png"
+                  alt="Shift2Dynamic"
+                  fill
+                  className="object-contain"
+                  priority
+                />
+              </div>
+
                {/* Trust Badge */}
                 <TrustBadge className="mb-4" />
 
