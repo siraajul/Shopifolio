@@ -26,7 +26,7 @@ export default defineType({
                     { title: 'Kids', value: 'kids' },
                     { title: 'Fitness', value: 'fitness' },
                     { title: 'Pet', value: 'pet' },
-                    { title: 'Single Product', value: 'single' },
+                    { title: 'Others', value: 'single' },
                 ],
                 layout: 'radio',
             },

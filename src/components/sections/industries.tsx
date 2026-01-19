@@ -18,7 +18,7 @@ const getIndustryIcon = (name: string) => {
     if (n.includes("fitness") || n.includes("sports")) return <Dumbbell size={24} />;
     if (n.includes("jewelry") || n.includes("luxury")) return <Gem size={24} />;
     if (n.includes("pet")) return <PawPrint size={24} />;
-    if (n.includes("single")) return <Package size={24} />;
+    if (n.includes("others") || n.includes("single")) return <Package size={24} />;
     return <Package size={24} />;
 };
 
@@ -39,7 +39,7 @@ export default function IndustriesSection({ data }: { data?: any[] }) {
     { title: "Fitness & Gym", description: "High-energy performance.", image: "https://images.unsplash.com/photo-1534438327276-14e5300c3a48?auto=format&fit=crop&q=80&w=800", icon: <Dumbbell size={24} /> },
     { title: "Jewelry", description: "Luxurious detail viewing.", image: "https://images.unsplash.com/photo-1515562141207-7a88fb7ce338?auto=format&fit=crop&q=80&w=800", icon: <Gem size={24} /> },
     { title: "Pet Supplies", description: "For our furry friends.", image: "https://images.unsplash.com/photo-1548199973-03cce0bbc87b?auto=format&fit=crop&q=80&w=800", icon: <PawPrint size={24} /> },
-    { title: "Single Product", description: "Focused conversion funnels.", image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=800", icon: <Package size={24} /> },
+    { title: "Others", description: "Specialized niche stores.", image: "https://images.unsplash.com/photo-1542291026-7eec264c27ff?auto=format&fit=crop&q=80&w=800", icon: <Package size={24} /> },
   ];
   
   return (

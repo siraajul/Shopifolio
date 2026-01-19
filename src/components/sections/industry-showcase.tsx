@@ -57,7 +57,7 @@ const INDUSTRIES: IndustryConfig[] = [
   { id: "kids", label: "Kids", icon: <Baby size={20} /> },
   { id: "fitness", label: "Fitness", icon: <Dumbbell size={20} /> },
   { id: "pet", label: "Pet", icon: <PawPrint size={20} /> },
-  { id: "single", label: "Single Product", icon: <Package size={20} /> },
+  { id: "single", label: "Others", icon: <Package size={20} /> },
 ];
 
 // Project Interface
