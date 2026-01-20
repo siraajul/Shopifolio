@@ -26,6 +26,7 @@ Built for speed, scalability, reliability, and "wow" factor.
 *   **Email**: [Resend](https://resend.com/) + React Email
 *   **Monitoring**: [Sentry](https://sentry.io/) (Real-time Crash Reporting)
 *   **Testing**: [Playwright](https://playwright.dev/) (Visual & E2E)
+*   **Code Quality**: Husky + Lint-Staged (Automated Git Hooks)
 *   **Analytics**: Google Analytics 4 + Microsoft Clarity + Contentsquare
 *   **Deployment**: Vercel
 
@@ -60,6 +61,11 @@ A dedicated multi-step form (`/planner`) that adapts to the client:
 *   **Robots.txt**: configured for crawling.
 *   **Rich Metadata**: Unique titles, descriptions, and OpenGraph tags for every page (`/work`, `/planner`, etc.).
 *   **JSON-LD**: `WebSite` and `Organization` schema for Google Graph.
+
+### 6. 🛡️ Hygiene & Standards
+*   **Husky**: Pre-commit hooks to ensure quality.
+*   **Lint-Staged**: Automatically runs `eslint --fix` on staged files.
+*   **Strict Types**: Full TypeScript compliance.
 
 ---
 
@@ -157,6 +163,12 @@ graph TD
     style Page fill:#000,color:#fff,stroke:#333,stroke-width:2px
     style Sentry fill:#362D59,color:#fff,stroke:#333,stroke-width:2px
 ```
+
+---
+
+## 🤝 Contributing
+
+We welcome contributions! Please read our [CONTRIBUTING.md](CONTRIBUTING.md) guide to get started with setting up the project, understanding the architecture, and submitting Pull Requests.
 
 ---
 

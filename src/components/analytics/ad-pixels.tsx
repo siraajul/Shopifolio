@@ -37,7 +37,7 @@ export const AdPixels = () => {
       {process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID && (
         <Script
           id="linkedin-insight"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               _linkedin_partner_id = "${process.env.NEXT_PUBLIC_LINKEDIN_PARTNER_ID}";
@@ -60,7 +60,7 @@ export const AdPixels = () => {
       {process.env.NEXT_PUBLIC_REDDIT_PIXEL_ID && (
         <Script
           id="reddit-pixel"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
             !function(w,d){if(!w.rdt){var p=w.rdt=function(){p.sendEvent?
@@ -78,7 +78,7 @@ export const AdPixels = () => {
       {process.env.NEXT_PUBLIC_TWITTER_PIXEL_ID && (
         <Script
           id="twitter-pixel"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
             !function(e,t,n,s,u,a){e.twq||(s=e.twq=function(){s.exe?s.exe.apply(s,arguments):s.queue.push(arguments);
@@ -118,7 +118,7 @@ export const AdPixels = () => {
       {process.env.NEXT_PUBLIC_PINTEREST_ID && (
         <Script
           id="pinterest-tag"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               !function(e){if(!window.pintrk){window.pintrk = function () {
@@ -138,7 +138,7 @@ export const AdPixels = () => {
       {process.env.NEXT_PUBLIC_BING_ADS_ID && (
         <Script
           id="bing-uet-tag"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
               (function(w,d,t,r,u){var f,n,i;w[u]=w[u]||[],f=function(){
@@ -158,7 +158,7 @@ export const AdPixels = () => {
       {process.env.NEXT_PUBLIC_TIKTOK_PIXEL_ID && (
         <Script
           id="tiktok-pixel"
-          strategy="afterInteractive"
+          strategy="lazyOnload"
           dangerouslySetInnerHTML={{
             __html: `
              !function (w, d, t) {

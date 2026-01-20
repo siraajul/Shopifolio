@@ -2,7 +2,13 @@
   "name": "shopifolio",
   "version": "0.1.0",
   "private": true,
+  "lint-staged": {
+    "*.{js,ts,jsx,tsx}": [
+      "eslint --fix"
+    ]
+  },
   "scripts": {
+    "prepare": "husky",
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
@@ -77,6 +83,8 @@
     "eslint": "^9",
     "eslint-config-next": "16.1.1",
     "eslint-plugin-storybook": "^10.1.11",
+    "husky": "^9.1.7",
+    "lint-staged": "^16.2.7",
     "playwright": "^1.57.0",
     "storybook": "^10.1.11",
     "tailwindcss": "^4",
