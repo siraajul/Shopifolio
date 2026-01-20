@@ -6,6 +6,7 @@ export const SITE_CONFIG = {
         twitter: "https://twitter.com/shift2dynamic",
         github: "https://github.com/shift2dynamic",
         linkedin: "https://linkedin.com/company/shift2dynamic",
+        discord: "https://discord.gg/aMWJHNXcbv",
     },
     contact: {
         email: "hello@shift2dynamic.com",
