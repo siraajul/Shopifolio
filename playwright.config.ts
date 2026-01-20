@@ -7,8 +7,8 @@ dotenv.config({ path: path.resolve(__dirname, '.env.local') });
 
 export default defineConfig({
     testDir: './tests',
-    // Skip visual tests in CI due to Linux/Mac rendering diffs
-    testIgnore: process.env.CI ? ['**/visual.spec.ts'] : undefined,
+    // Skip visual tests in CI (diffs) and performance tests (audit requires special chrome launch)
+    testIgnore: process.env.CI ? ['**/visual.spec.ts', '**/performance.spec.ts'] : ['**/performance.spec.ts'],
     fullyParallel: true,
     forbidOnly: !!process.env.CI,
     retries: process.env.CI ? 2 : 0,
