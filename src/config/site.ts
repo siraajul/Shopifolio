@@ -1,6 +1,6 @@
 export const SITE_CONFIG = {
     name: "Shift2Dynamic",
-    description: "High-performance custom Shopify experiences.",
+    description: "E2E E-Commerce Service Agency. High-performance custom Shopify experiences.",
     url: "https://www.shift2dynamic.com",
     links: {
         twitter: "https://twitter.com/shift2dynamic",

@@ -31,10 +31,10 @@ export const metadata: Metadata = {
     default: "Shift2Dynamic | Shopify Developer & Web Designer",
     template: "%s | Shift2Dynamic"
   },
-  description: "Expert Shopify development and web design services. We build high-converting, beautiful e-commerce experiences and custom websites.",
+  description: "E2E E-Commerce Service Agency. Expert Shopify development and web design services. We build high-converting, beautiful e-commerce experiences and custom websites.",
   keywords: [
     "Shopify Developer", "Web Designer", "E-commerce Expert", "React Developer", "Next.js", 
-    "Agency", "Shift2Dynamic", "UI/UX", "Frontend Developer"
+    "Agency", "Shift2Dynamic", "UI/UX", "Frontend Developer", "E2E E-Commerce", "Full Service Agency"
   ],
   authors: [{ name: "Shift2Dynamic", url: "https://www.shift2dynamic.com" }],
   creator: "Shift2Dynamic",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "/",
     title: "Shift2Dynamic | High-Performance Shopify Agency",
-    description: "We build Shopify giants. High-performance, pixel-perfect, and conversion-focused e-commerce experiences.",
+    description: "E2E ECommerce Service Agency. We build Shopify giants. High-performance, pixel-perfect, and conversion-focused e-commerce experiences.",
     siteName: "Shift2Dynamic",
     images: [
       {
@@ -105,7 +105,7 @@ export default function RootLayout({
               "name": "Shift2Dynamic",
               "url": "https://www.shift2dynamic.com",
               "logo": "https://www.shift2dynamic.com/og-image.jpg",
-              "description": "Expert Shopify development and web design services.",
+              "description": "E2E E-Commerce Service Agency. Expert Shopify development and web design services.",
               "address": {
                 "@type": "PostalAddress",
                 "addressCountry": "US"
