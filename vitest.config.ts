@@ -32,6 +32,14 @@ export default defineConfig({
           setupFiles: ['.storybook/vitest.setup.ts'],
         },
       },
+      {
+        test: {
+          name: 'unit',
+          include: ['src/**/*.test.ts', 'src/**/*.spec.ts'],
+          exclude: ['src/**/*.stories.ts', 'src/**/*.stories.tsx'],
+          environment: 'jsdom', // Use jsdom to simulate browser for utils like getRGBA
+        },
+      },
     ],
   },
 });

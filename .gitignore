@@ -49,3 +49,16 @@ next-env.d.ts
 
 *storybook.log
 storybook-static
+
+# playwright
+test-results/
+playwright-report/
+blob-report/
+playwright/.cache
+junit.xml
+
+# lighthouse
+.lighthouseci/
+
+# logs
+server.log
