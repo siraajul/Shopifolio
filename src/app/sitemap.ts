@@ -20,12 +20,12 @@ export default async function sitemap({ id }: { id: number }): Promise<MetadataR
 
     // Fetch pSEO pages for this chunk
     // Note: 'start' is the offset
+    const end = start + CHUNK_SIZE;
     const pseoPages = await client.fetch(
-        `*[_type == "pseo_page" && defined(slug.current)] | order(slug.current asc) [$start...$end] { 
+        `*[_type == "pseo_page" && defined(slug.current)] | order(slug.current asc) [${start}...${end}] { 
             "slug": slug.current, 
             _updatedAt 
-        }`,
-        { start: Number(start), end: Number(start + CHUNK_SIZE) }
+        }`
     );
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const pseoUrls = pseoPages.map((page: any) => ({
