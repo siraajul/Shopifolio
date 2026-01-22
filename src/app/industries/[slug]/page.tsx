@@ -24,14 +24,23 @@ interface IndustryData {
   description: string;
   image: SanityImageSource;
   projects: Project[];
+  seo?: {
+    meta_title?: string;
+    meta_description?: string;
+    canonical_url?: string;
+    noindex?: boolean;
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    og_image?: any;
+  };
 }
 
 // --- Data Fetching ---
 async function getIndustryData(slug: string): Promise<IndustryData | null> {
   const query = `*[_type == "industry" && slug.current == $slug][0]{
     name,
-    description,
+      description,
     image,
+    seo,
     "projects": *[_type == "project" && references(^._id)] {
       _id,
       title,
@@ -50,14 +59,21 @@ export async function generateMetadata({ params }: { params: { slug: string } })
   const data = await getIndustryData(params.slug);
   if (!data) return {};
 
+  // Prefer the flexible SEO field if populated, otherwise fallback
+  const seo = data.seo;
+
   return {
-    title: `Best Shopify Sites for ${data.name} | Shift2Dynamic`,
-    description: data.description || `Explore our curated selection of e-commerce projects for the ${data.name} industry.`,
+    title: seo?.meta_title || `Best Shopify Sites for ${data.name} | Shift2Dynamic`,
+    description: seo?.meta_description || data.description || `Explore our curated selection of e-commerce projects for the ${data.name} industry.`,
      openGraph: {
-      title: `Best Shopify Sites for ${data.name}`,
-      description: data.description || `Explore our curated selection of e-commerce projects for the ${data.name} industry.`,
-      images: data.image ? [urlFor(data.image).width(1200).height(630).url()] : [],
+      title: seo?.meta_title || `Best Shopify Sites for ${data.name}`,
+      description: seo?.meta_description || data.description || `Explore our curated selection of e-commerce projects for the ${data.name} industry.`,
+      images: seo?.og_image ? [urlFor(seo.og_image).width(1200).height(630).url()] : (data.image ? [urlFor(data.image).width(1200).height(630).url()] : []),
     },
+    robots: seo?.noindex ? { index: false } : undefined,
+    alternates: {
+        canonical: seo?.canonical_url,
+    }
   };
 }
 

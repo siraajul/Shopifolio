@@ -14,7 +14,10 @@ import footer from './schemas/footer'
 import gallery from './schemas/gallery'
 import showcaseProject from './schemas/showcase-project'
 import impact from './schemas/impact'
+import seoShared from './schemas/seo-shared'
+import pseoTemplate from './schemas/pseo-template'
+import pseoPage from './schemas/pseo-page'
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-    types: [hero, about, marquee, service, process, industry, pricing, project, testimonial, faq, footer, gallery, showcaseProject, impact],
+    types: [hero, about, marquee, service, process, industry, pricing, project, testimonial, faq, footer, gallery, showcaseProject, impact, seoShared, pseoTemplate, pseoPage],
 }
