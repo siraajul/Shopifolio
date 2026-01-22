@@ -59,7 +59,7 @@ const InteractiveSelector = ({
     return () => {
       timers.forEach(timer => clearTimeout(timer));
     };
-  }, [options.length]);
+  }, [options]);
 
   return (
     <div className="relative flex flex-col items-center justify-center bg-transparent font-sans text-foreground py-10 md:py-16 snap-start"> 
@@ -76,7 +76,7 @@ const InteractiveSelector = ({
       <div className="h-8"></div>
 
       {/* Options Container */}
-      <div className="options flex flex-col md:flex-row w-full max-w-[1000px] min-w-[300px] h-[750px] md:h-[600px] mx-auto items-stretch overflow-hidden relative px-4">
+      <div className="options flex flex-col md:flex-row w-full max-w-[1200px] min-w-[300px] h-[750px] md:h-[600px] mx-auto items-stretch overflow-hidden relative px-4">
         {options.map((option, index) => (
           <div
             key={index}
@@ -90,10 +90,10 @@ const InteractiveSelector = ({
               backgroundSize: 'auto 100%',
               backgroundPosition: 'center',
               flex: activeIndex === index ? '7 1 0%' : '1 1 0%',
-              margin: '2px', // Uniform margin
-              borderRadius: '20px',
+              margin: '6px', // Increased margin
+              borderRadius: '24px',
               minWidth: '60px', // For horizontal (desktop)
-              minHeight: '50px', // For vertical (mobile)
+              minHeight: '60px', // For vertical (mobile)
               opacity: animatedOptions.includes(index) ? 1 : 0,
               transform: animatedOptions.includes(index) ? 'translateX(0)' : 'translateX(-60px)',
             }}

@@ -50,7 +50,7 @@ const testimonials = [
   },
 ];
 
-export default function TestimonialsSection({ data }: { data?: any[] }) {
+export default function TestimonialsSection({ data }: { data?: { quote: string; name: string; role: string; company?: string }[] }) {
   // Use Sanity data if available, otherwise fallback to static list
   const testimonialsData = data?.length ? data.map(t => ({
       text: t.quote,
@@ -80,7 +80,7 @@ export default function TestimonialsSection({ data }: { data?: any[] }) {
             Trusted by Growing Brands
           </h2>
           <p className="text-lg text-center text-gray-600 dark:text-gray-400 max-w-2xl leading-relaxed">
-            Real results for real businesses. Here's what founders and CTOs are saying about our collaboration.
+            Real results for real businesses. Here&apos;s what founders and CTOs are saying about our collaboration.
           </p>
         </motion.div>
 

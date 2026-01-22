@@ -1,11 +1,11 @@
 "use client"
 
-import { useState, useEffect } from "react"
+// import { useState, useEffect } from "react"
 import { motion, LayoutGroup } from "motion/react"
 import Image from "next/image"
 import { TextRotate } from "@/components/ui/text-rotate"
-import { AvatarCircles } from "@/components/ui/avatar-circles"
-import { SparklesText } from "@/components/ui/sparkles-text"
+// import { AvatarCircles } from "@/components/ui/avatar-circles"
+// import { SparklesText } from "@/components/ui/sparkles-text"
 import { TrustBadge } from "@/components/ui/trust-badge"
 import { SevenFigureIcon, ProvenIcon, ConvertingIcon, PremiumIcon, ScalableIcon } from "@/components/ui/animated-icons"
 import { ArrowRight } from "lucide-react"
@@ -98,13 +98,9 @@ export default function HeroSection({ heroData }: HeroProps) {
               </div>
 
               <div className="text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mt-4 sm:mt-6 font-medium">
-                <span className="hidden sm:inline">Stop settling for templates. Build high-performance, custom Shopify experiences that crush benchmarks.</span>
-                <div className="mt-2">
-                  <SparklesText 
-                    text="Don't just build. Dominate." 
-                    className="text-foreground font-semibold text-lg md:text-xl inline-block" 
-                    colors={{ first: '#10b981', second: '#14b8a6' }}
-                  />
+                <span className="hidden sm:inline">Stop settling for templates. Build high-performance, custom Shopify experiences that scale.</span>
+                <div className="mt-2 text-foreground font-semibold text-lg md:text-xl inline-block">
+                  Compete with Giants.
                 </div>
               </div>
 
@@ -112,17 +108,17 @@ export default function HeroSection({ heroData }: HeroProps) {
               <div className="flex flex-nowrap items-center justify-center gap-2 md:gap-8 text-[10px] sm:text-xs md:text-base text-gray-400 font-medium mt-2 sm:mt-4 whitespace-nowrap">
                   <div className="flex items-center gap-1">
                     <HyperText className="text-foreground font-bold" text="$10M+" />
-                    <span>Revenue</span>
+                    <span>Revenue Generated</span>
                   </div>
                   <div className="block w-0.5 h-0.5 md:w-1 md:h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
                   <div className="flex items-center gap-1">
                     <HyperText className="text-foreground font-bold" text="45%" />
-                    <span>Uplift</span>
+                    <span>Avg. Uplift</span>
                   </div>
                   <div className="block w-0.5 h-0.5 md:w-1 md:h-1 rounded-full bg-gray-300 dark:bg-gray-600" />
                   <div className="flex items-center gap-1">
                     <HyperText className="text-foreground font-bold" text="0.4s" />
-                    <span>Speed</span>
+                    <span>Avg. Load Time</span>
                   </div>
               </div>
           </div>

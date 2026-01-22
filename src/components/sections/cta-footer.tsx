@@ -1,129 +1,194 @@
 "use client";
-
-import { ChevronRightIcon, InstagramLogoIcon, LinkedInLogoIcon, TwitterLogoIcon } from "@radix-ui/react-icons";
+import React from "react";
+import {
+  Mail,
+  MapPin,
+  Linkedin,
+  Twitter,
+  Github,
+  Globe,
+  Instagram,
+  LucideIcon
+} from "lucide-react";
 import Link from "next/link";
-import React, { useEffect, useState } from "react";
-import { FlickeringGrid } from "@/components/ui/flickering-grid";
+import { FooterBackgroundGradient, TextHoverEffect } from "@/components/sections/hover-footer";
+import { StarButton } from "@/components/ui/star-button";
+// import { useState, useEffect } from "react";
 
-export function useMediaQuery(query: string) {
-  const [value, setValue] = useState(false);
-
-  useEffect(() => {
-    function checkQuery() {
-      const result = window.matchMedia(query);
-      setValue(result.matches);
-    }
-    checkQuery();
-    window.addEventListener("resize", checkQuery);
-    const mediaQuery = window.matchMedia(query);
-    mediaQuery.addEventListener("change", checkQuery);
-    return () => {
-      window.removeEventListener("resize", checkQuery);
-      mediaQuery.removeEventListener("change", checkQuery);
-    };
-  }, [query]);
-
-  return value;
+interface FooterLink {
+  label: string;
+  href: string;
 }
 
-const footerLinks = [
-  {
-    title: "Services",
-    links: [
-      { title: "Shopify Development", url: "#" },
-      { title: "Store Audits", url: "#" },
-      { title: "Custom Themes", url: "#" },
-      { title: "Migration", url: "#" },
-    ],
-  },
-  {
-    title: "Resources",
-    links: [
-      { title: "Blog", url: "#" },
-      { title: "Case Studies", url: "#" },
-      { title: "Shopify Guide", url: "#" },
-    ],
-  },
-  {
-    title: "Connect",
-    links: [
-      { title: "Twitter", url: "https://twitter.com" },
-      { title: "LinkedIn", url: "https://linkedin.com" },
-      { title: "Instagram", url: "https://instagram.com" },
-    ],
-  },
-];
+interface FooterSection {
+  title: string;
+  links: FooterLink[];
+}
 
-export default function CTAFooter() {
-  const tablet = useMediaQuery("(max-width: 1024px)");
+interface SocialLink {
+  platform: string;
+  url: string;
+}
+
+export interface FooterProps {
+  data?: {
+    companyName?: string;
+    tagline?: string;
+    email?: string;
+    location?: string;
+    socialLinks?: SocialLink[];
+    footerLinks?: FooterSection[];
+  };
+}
+
+export function Footer({ data }: FooterProps) {
+  const {
+    companyName = "Shift2Dynamic",
+    tagline = "Transforming Shopify stores into high-performance digital powerhouses.",
+    email = "hello@shift2dynamic.com",
+    location = "Global Remote",
+    socialLinks = [],
+    footerLinks = [],
+  } = data || {};
+
+  // Helper to map platform string to icon
+  const getSocialIcon = (platform: string): LucideIcon => {
+    switch (platform.toLowerCase()) {
+      case 'linkedin': return Linkedin;
+      case 'twitter': return Twitter;
+      case 'github': return Github;
+      case 'instagram': return Instagram;
+      default: return Globe;
+    }
+  };
 
   return (
-    <footer id="footer" className="w-full pb-0 border-t border-gray-100 dark:border-gray-800">
-      <div className="flex flex-col md:flex-row md:justify-between p-10 max-w-7xl mx-auto">
-        <div className="flex flex-col items-start justify-start gap-y-5 max-w-xs mx-0 mb-8 md:mb-0">
-          <Link href="/" className="flex items-center gap-2">
-            <span className="text-2xl font-bold bg-clip-text text-transparent bg-gradient-to-r from-[var(--primary)] to-emerald-500">
-              Shift2Dynamic
-            </span>
-          </Link>
-          <p className="tracking-tight text-gray-500 dark:text-gray-400 font-medium">
-            Building high-performance Shopify stores that drive revenue and growth.
-          </p>
-          <div className="flex items-center gap-4 text-gray-500">
-            <Link href="#" className="hover:text-[var(--primary)] transition-colors">
-                <TwitterLogoIcon className="w-5 h-5" />
-            </Link>
-            <Link href="#" className="hover:text-[var(--primary)] transition-colors">
-                <LinkedInLogoIcon className="w-5 h-5" />
-            </Link>
-            <Link href="#" className="hover:text-[var(--primary)] transition-colors">
-                <InstagramLogoIcon className="w-5 h-5" />
-            </Link>
+    <footer className="bg-secondary/20 dark:bg-[#0F0F11]/30 relative h-fit w-full overflow-hidden border-t border-border pb-10 md:pb-28">
+      {/* ... text effect ... */}
+      <div className="flex h-[6rem] sm:h-[15rem] lg:h-[20rem] items-center justify-center w-full pointer-events-none xl:pointer-events-auto mt-10">
+        <TextHoverEffect text={companyName.toUpperCase()} className="z-50" />
+      </div>
+      <div className="max-w-7xl mx-auto px-6 py-6 md:p-14 z-40 relative">
+
+        
+        {/* Brand Call to Action Section (Full Width) */}
+        <div className="mb-12 md:mb-20">
+             <div className="flex flex-col items-center justify-center text-center p-8 border border-white/10 rounded-3xl bg-white/5 backdrop-blur-sm relative overflow-hidden group">
+                  <div className="absolute inset-0 bg-gradient-to-r from-primary/10 via-purple-500/10 to-blue-500/10 opacity-0 group-hover:opacity-100 transition-opacity duration-500" />
+                  <h3 className="text-3xl md:text-5xl font-bold font-display text-foreground mb-4 relative z-10">
+                    Ready to Dominate?
+                  </h3>
+                  <p className="text-muted-foreground mb-8 text-lg max-w-xl mx-auto relative z-10">
+                    Most agencies build stores. We build empires. Book your 30-minute strategy call and let&apos;s find your first $100k month.
+                  </p>
+                  {/* Call to Action */}
+                  <div className="relative z-10 flex flex-col sm:flex-row items-center justify-center gap-4">
+                     <Link href="/planner">
+                       <StarButton 
+                          className="h-14 px-8 rounded-full text-lg cursor-pointer"
+                       >
+                            Start Your Project
+                       </StarButton>
+                     </Link>
+                  </div>
+              </div>
+        </div>
+
+        {/* Main Footer Content (Flexbox with Space Between) */}
+        <div className="flex flex-col lg:flex-row justify-between gap-12 lg:gap-8 text-center md:text-left">
+          
+          {/* Logo & Tagline */}
+          <div className="lg:max-w-xs flex flex-col space-y-4 items-center md:items-start text-center md:text-left">
+            <div className="flex items-center space-x-2">
+              <span className="text-primary text-3xl font-extrabold">
+                ⚡
+              </span>
+              <span className="text-foreground text-3xl font-bold">{companyName}</span>
+            </div>
+            <p className="text-sm leading-relaxed text-muted-foreground">
+              {tagline}
+            </p>
+          </div>
+
+          {/* Links Section (Centered/Flexible) */}
+          <div className="flex flex-wrap justify-center md:justify-start gap-12 md:gap-24">
+              {footerLinks.map((section) => (
+                <div key={section.title} className="flex flex-col items-center md:items-start text-center md:text-left">
+                  <h4 className="text-foreground text-lg font-semibold mb-6">
+                    {section.title}
+                  </h4>
+                  <ul className="space-y-3">
+                    {section.links.map((link) => (
+                      <li key={link.label}>
+                        <a
+                          href={link.href}
+                          className="text-muted-foreground hover:text-primary transition-colors"
+                        >
+                          {link.label}
+                        </a>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              ))}
+          </div>
+
+          {/* Contact Section (Pushed to Right) */}
+          <div className="flex flex-col items-center md:items-end text-center md:text-right">
+            <h4 className="text-foreground text-lg font-semibold mb-6">
+              Contact Us
+            </h4>
+            <ul className="space-y-4 flex flex-col items-center md:items-end">
+              <li className="flex items-center space-x-3 text-muted-foreground justify-end">
+                <a
+                  href={`mailto:${email}`}
+                  className="hover:text-primary transition-colors order-1 md:order-1"
+                >
+                  {email}
+                </a>
+                 <Mail size={18} className="text-primary order-2 md:order-2" />
+              </li>
+              <li className="flex items-center space-x-3 text-muted-foreground justify-end">
+                <span className="order-1 md:order-1">{location}</span>
+                <MapPin size={18} className="text-primary order-2 md:order-2" />
+              </li>
+            </ul>
           </div>
         </div>
         
-        <div className="pt-5 md:w-1/2">
-          <div className="flex flex-col items-start justify-start md:flex-row md:items-start md:justify-between gap-y-10 lg:pl-10">
-            {footerLinks.map((column, columnIndex) => (
-              <ul key={columnIndex} className="flex flex-col gap-y-3">
-                <li className="mb-2 text-sm font-semibold text-gray-900 dark:text-white tracking-wide uppercase">
-                  {column.title}
-                </li>
-                {column.links.map((link, i) => (
-                  <li
-                    key={i}
-                    className="group inline-flex cursor-pointer items-center justify-start gap-1 text-[15px]/snug text-gray-500 dark:text-gray-400 hover:text-[var(--primary)] transition-colors"
-                  >
-                    <Link href={link.url}>{link.title}</Link>
-                    <div className="flex size-4 items-center justify-center translate-x-0 transform opacity-0 transition-all duration-300 ease-out group-hover:translate-x-1 group-hover:opacity-100">
-                      <ChevronRightIcon className="h-3 w-3" />
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            ))}
+        <hr className="border-t border-border my-8" />
+
+        {/* Footer bottom */}
+        <div className="flex flex-col md:flex-row justify-between items-center text-sm space-y-4 md:space-y-0">
+          {/* Social icons */}
+          <div className="flex space-x-6 text-muted-foreground">
+            {socialLinks.map(({ platform, url }) => {
+              const Icon = getSocialIcon(platform);
+              return (
+                <a
+                  key={platform}
+                  href={url}
+                  aria-label={platform}
+                  className="hover:text-primary transition-colors"
+                >
+                  <Icon size={20} />
+                </a>
+              )
+            })}
           </div>
+
+          {/* Copyright */}
+          <p className="text-center md:text-left text-muted-foreground">
+            &copy; {new Date().getFullYear()} {companyName}. All rights reserved. 
+            <span className="mx-2">|</span>
+            <Link href="/privacy" className="hover:text-primary transition-colors">
+              Privacy Policy
+            </Link>
+          </p>
         </div>
       </div>
-      
-      <Link 
-        href="/planner"
-        className="w-full h-64 md:h-80 relative mt-12 z-0 overflow-hidden cursor-pointer group block"
-      >
-        <div className="absolute inset-0 bg-gradient-to-t from-white via-transparent to-transparent dark:from-black dark:via-transparent dark:to-transparent z-10 h-full" />
-        <div className="absolute inset-0">
-          <FlickeringGrid
-            text={tablet ? "Let's Build" : "Start Project"}
-            fontSize={tablet ? 70 : 120}
-            className="h-full w-full"
-            squareSize={3}
-            gridGap={4}
-            color="#008060"
-            maxOpacity={0.2}
-            flickerChance={0.3}
-          />
-        </div>
-      </Link>
+
+      <FooterBackgroundGradient />
     </footer>
   );
-};
+}
