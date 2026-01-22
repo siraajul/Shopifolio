@@ -25,7 +25,7 @@ export default async function sitemap({ id }: { id: number }): Promise<MetadataR
             "slug": slug.current, 
             _updatedAt 
         }`,
-        { start, end: start + CHUNK_SIZE }
+        { start: Number(start), end: Number(start + CHUNK_SIZE) }
     );
     // eslint-disable-next-line @typescript-eslint/no-explicit-any
     const pseoUrls = pseoPages.map((page: any) => ({
