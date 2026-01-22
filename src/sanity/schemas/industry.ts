@@ -11,6 +11,18 @@ export default defineType({
             type: 'string',
         }),
         defineField({
+            name: 'slug',
+            title: 'Slug',
+            type: 'slug',
+            options: { source: 'name' },
+            validation: (rule) => rule.required(),
+        }),
+        defineField({
+            name: 'description',
+            title: 'Description',
+            type: 'text',
+        }),
+        defineField({
             name: 'image',
             title: 'Image',
             type: 'image',

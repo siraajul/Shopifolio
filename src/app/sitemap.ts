@@ -1,7 +1,18 @@
 import { MetadataRoute } from "next";
+import { client } from "@/sanity/lib/client";
 
-export default function sitemap(): MetadataRoute.Sitemap {
+export default async function sitemap(): Promise<MetadataRoute.Sitemap> {
     const baseUrl = "https://www.shift2dynamic.com";
+
+    // Fetch all industry slugs
+    const industries = await client.fetch(`*[_type == "industry" && defined(slug.current)]{ "slug": slug.current }`);
+
+    const industryUrls = industries.map((ind: { slug: string }) => ({
+        url: `${baseUrl}/industries/${ind.slug}`,
+        lastModified: new Date(),
+        changeFrequency: "weekly" as const,
+        priority: 0.7,
+    }));
 
     return [
         {
@@ -28,5 +39,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
             changeFrequency: "yearly",
             priority: 0.5,
         },
+        ...industryUrls,
     ];
 }

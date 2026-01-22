@@ -32,5 +32,11 @@ export default defineType({
             type: 'array',
             of: [{ type: 'string' }],
         }),
+        defineField({
+            name: 'industry',
+            title: 'Industry',
+            type: 'reference',
+            to: [{ type: 'industry' }],
+        }),
     ],
 })
