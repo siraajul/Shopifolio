@@ -16,7 +16,9 @@ export async function generateSitemaps() {
 }
 
 export default async function sitemap({ id }: { id: number }): Promise<MetadataRoute.Sitemap> {
-    const start = id * CHUNK_SIZE;
+    // Ensure id is a valid number, default to 0
+    const chunkId = Number(id) || 0;
+    const start = chunkId * CHUNK_SIZE;
 
     // Fetch pSEO pages for this chunk
     // Note: 'start' is the offset
@@ -36,7 +38,7 @@ export default async function sitemap({ id }: { id: number }): Promise<MetadataR
     }));
 
     // If it's the first sitemap, include static pages and industries
-    if (id === 0) {
+    if (chunkId === 0) {
         // Fetch industries (assuming < 10k of these)
         const industries = await client.fetch(`*[_type == "industry" && defined(slug.current)]{ "slug": slug.current, _updatedAt }`);
         // eslint-disable-next-line @typescript-eslint/no-explicit-any
