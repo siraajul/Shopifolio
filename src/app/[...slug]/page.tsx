@@ -10,13 +10,14 @@ import { JsonLd } from "@/components/seo/json-ld";
 export const revalidate = 3600;
 
 type Props = {
-  params: { slug: string[] };
+  params: Promise<{ slug: string[] }>;
 };
 
 
 
 export async function generateMetadata({ params }: Props): Promise<Metadata> {
-  const slug = `/${params.slug.join("/")}`;
+  const { slug: slugs } = await params;
+  const slug = `/${slugs.join("/")}`;
   const pageData = await getProgrammaticPage(slug);
 
   if (!pageData) {
@@ -41,7 +42,8 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
 }
 
 export default async function ProgrammaticPage({ params }: Props) {
-  const slug = `/${params.slug.join("/")}`;
+  const { slug: slugs } = await params;
+  const slug = `/${slugs.join("/")}`;
   const pageData = await getProgrammaticPage(slug);
 
   if (!pageData) {

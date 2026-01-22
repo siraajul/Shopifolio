@@ -55,8 +55,9 @@ async function getIndustryData(slug: string): Promise<IndustryData | null> {
 }
 
 // --- Metadata ---
-export async function generateMetadata({ params }: { params: { slug: string } }): Promise<Metadata> {
-  const data = await getIndustryData(params.slug);
+export async function generateMetadata({ params }: { params: Promise<{ slug: string }> }): Promise<Metadata> {
+  const { slug } = await params;
+  const data = await getIndustryData(slug);
   if (!data) return {};
 
   // Prefer the flexible SEO field if populated, otherwise fallback
@@ -80,8 +81,9 @@ export async function generateMetadata({ params }: { params: { slug: string } })
 export const revalidate = 60; // ISR: Revalidate every 60 seconds
 
 // --- Page Component ---
-export default async function IndustryPage({ params }: { params: { slug: string } }) {
-  const data = await getIndustryData(params.slug);
+export default async function IndustryPage({ params }: { params: Promise<{ slug: string }> }) {
+  const { slug } = await params;
+  const data = await getIndustryData(slug);
 
   if (!data) {
     notFound();
