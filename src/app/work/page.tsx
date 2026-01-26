@@ -44,7 +44,7 @@ export default async function WorkPage() {
       </Link>
       <div className="pt-20">
         <Suspense fallback={<div className="h-96 w-full flex items-center justify-center">Loading...</div>}>
-          <IndustryShowcase title="All Projects" />
+          <IndustryShowcase title="All Projects" headingLevel="h1" />
         </Suspense>
       </div>
       

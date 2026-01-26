@@ -59,43 +59,45 @@ export default function HeroSection({ heroData }: HeroProps) {
                {/* Trust Badge */}
                 <TrustBadge className="mb-4" />
 
-              <div className="text-3xl max-[375px]:text-3xl sm:text-6xl md:text-8xl flex flex-col sm:flex-row flex-wrap items-center justify-center text-center font-bold font-sans bg-transparent text-foreground overflow-hidden">
-                <LayoutGroup>
-                  <motion.div className="flex flex-wrap justify-center whitespace-pre-wrap" layout>
-                    <motion.span
-                      className="pt-0.5 sm:pt-1 md:pt-3 text-foreground font-display"
-                      layout
-                      transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                    >
-                      {heroData?.title || "We Engineer"}{" "}
-                    </motion.span>
-                    <TextRotate
-                      texts={
-                        heroData?.rotatingWords?.map((word, i) => (
-                          <span key={i} className="font-bold font-display">{word}</span>
-                        )) || [
-                          <SevenFigureIcon key="7figure" />,
-                          <ProvenIcon key="proven" />,
-                          <ConvertingIcon key="converting" />,
-                          <PremiumIcon key="premium" />,
-                          <ScalableIcon key="scalable" />,
-                        ]}mainClassName="text-white dark:text-black px-3 sm:px-3 md:px-5 bg-primary overflow-hidden py-0.5 sm:py-1 md:py-3 justify-center rounded-xl whitespace-nowrap"
-                      staggerFrom={"last"}
-                      initial={{ y: "100%" }}
-                      animate={{ y: 0 }}
-                      exit={{ y: "-120%" }}
-                      staggerDuration={0.025}
-                      splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
-                      transition={{ type: "spring", damping: 30, stiffness: 400 }}
-                      rotationInterval={2500}
-                    />
-                  </motion.div>
-                </LayoutGroup>
-              </div>
+              <h1 className="flex flex-col items-center justify-center">
+                <div className="text-3xl max-[375px]:text-3xl sm:text-6xl md:text-8xl flex flex-col sm:flex-row flex-wrap items-center justify-center text-center font-bold font-sans bg-transparent text-foreground overflow-hidden">
+                  <LayoutGroup>
+                    <motion.div className="flex flex-wrap justify-center whitespace-pre-wrap" layout>
+                      <motion.span
+                        className="pt-0.5 sm:pt-1 md:pt-3 text-foreground font-display"
+                        layout
+                        transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                      >
+                        {heroData?.title || "We Engineer"}{" "}
+                      </motion.span>
+                      <TextRotate
+                        texts={
+                          heroData?.rotatingWords?.map((word, i) => (
+                            <span key={i} className="font-bold font-display">{word}</span>
+                          )) || [
+                            <SevenFigureIcon key="7figure" />,
+                            <ProvenIcon key="proven" />,
+                            <ConvertingIcon key="converting" />,
+                            <PremiumIcon key="premium" />,
+                            <ScalableIcon key="scalable" />,
+                          ]}mainClassName="text-white dark:text-black px-3 sm:px-3 md:px-5 bg-primary overflow-hidden py-0.5 sm:py-1 md:py-3 justify-center rounded-xl whitespace-nowrap"
+                        staggerFrom={"last"}
+                        initial={{ y: "100%" }}
+                        animate={{ y: 0 }}
+                        exit={{ y: "-120%" }}
+                        staggerDuration={0.025}
+                        splitLevelClassName="overflow-hidden pb-0.5 sm:pb-1 md:pb-1"
+                        transition={{ type: "spring", damping: 30, stiffness: 400 }}
+                        rotationInterval={2500}
+                      />
+                    </motion.div>
+                  </LayoutGroup>
+                </div>
 
-              <div className="text-3xl max-[375px]:text-3xl sm:text-6xl md:text-8xl font-bold font-display text-foreground mt-2">
-                 Shopify Ecosystems
-              </div>
+                <div className="text-3xl max-[375px]:text-3xl sm:text-6xl md:text-8xl font-bold font-display text-foreground mt-2 text-center">
+                   Shopify Ecosystems
+                </div>
+              </h1>
 
               <div className="text-lg md:text-xl text-muted-foreground max-w-4xl mx-auto leading-relaxed mt-4 sm:mt-6 font-medium">
                 <span className="hidden sm:inline">Stop settling for templates. Build high-performance, custom Shopify experiences that scale.</span>

@@ -70,7 +70,7 @@ interface Project {
 }
 
 
-export default function IndustryShowcase({ limit, title }: { limit?: number | null; title?: string }) {
+export default function IndustryShowcase({ limit, title, headingLevel = "h2" }: { limit?: number | null; title?: string; headingLevel?: "h1" | "h2" }) {
   const [activeTab, setActiveTab] = useState<IndustryKey>("fashion");
   const [projects, setProjects] = useState<Project[]>([]);
   const [loading, setLoading] = useState(true);
@@ -161,9 +161,15 @@ export default function IndustryShowcase({ limit, title }: { limit?: number | nu
         
         {/* Header */}
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
-            {title || "Curated Work"}
-          </h2>
+          {headingLevel === "h1" ? (
+             <h1 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+                {title || "Curated Work"}
+             </h1>
+          ) : (
+             <h2 className="text-4xl md:text-5xl font-bold text-foreground mb-4">
+                {title || "Curated Work"}
+             </h2>
+          )}
           <p className="text-muted-foreground text-lg max-w-2xl mx-auto">
             Browse our portfolio by industry. Real live stores, real results.
           </p>
