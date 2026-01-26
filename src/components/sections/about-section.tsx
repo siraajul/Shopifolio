@@ -231,7 +231,7 @@ export default function AboutSection3({ data, onCollaborateClick }: AboutProps) 
         {/* Main Content */}
         <div className="grid md:grid-cols-3 gap-8 md:gap-12">
           <div className="md:col-span-2 space-y-6">
-            <h1 className="text-3xl md:text-5xl !leading-[1.2] font-semibold text-gray-900 dark:text-gray-100 text-center md:text-left">
+            <h2 className="text-3xl md:text-5xl !leading-[1.2] font-semibold text-gray-900 dark:text-gray-100 text-center md:text-left">
               <VerticalCutReveal
                 splitBy="words"
                 staggerDuration={0.05}
@@ -247,7 +247,7 @@ export default function AboutSection3({ data, onCollaborateClick }: AboutProps) 
               >
                 {description}
               </VerticalCutReveal>
-            </h1>
+            </h2>
 
             <TimelineContent
               as="div"
