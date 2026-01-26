@@ -56,11 +56,13 @@ A dedicated multi-step form (`/planner`) that adapts to the client:
 *   **Microsoft Clarity**: Session recordings & heatmaps.
 *   **Contentsquare**: Enterprise UX insights.
 
-### 5. 🔍 SEO Optimized
-*   **Auto-generated Sitemap**: `/sitemap.xml`
-*   **Robots.txt**: configured for crawling.
-*   **Rich Metadata**: Unique titles, descriptions, and OpenGraph tags for every page (`/work`, `/planner`, etc.).
-*   **JSON-LD**: `WebSite` and `Organization` schema for Google Graph.
+### 5. 🤖 GEO & SEO Optimized (Generative Engine Optimization)
+*   **AI-Native Metadata**: Optimized for LLMs (Gemini, ChatGPT, Perplexity) with "Entity-First" keywords and descriptions.
+*   **Rich Schema Markup**: Comprehensive `Organization` and `Service` JSON-LD schema to build a Knowledge Graph.
+*   **Semantic HTML**: Strict `<h1>` hierarchy and semantic tag usage for perfect accessibility and crawlability.
+*   **Auto-generated Sitemap**: Dynamic `/sitemap.xml` with prioritization strategies.
+*   **Robots.txt**: configured for optimal crawler access.
+*   **OpenGraph**: Unique social sharing cards for every page (`/work`, `/planner`, etc.).
 
 ### 6. 🛡️ Hygiene & Standards
 *   **Husky**: Pre-commit hooks to ensure quality.
