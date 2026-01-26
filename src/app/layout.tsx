@@ -34,7 +34,8 @@ export const metadata: Metadata = {
   description: "E2E E-Commerce Service Agency. Expert Shopify development and web design services. We build high-converting, beautiful e-commerce experiences and custom websites.",
   keywords: [
     "Shopify Developer", "Web Designer", "E-commerce Expert", "React Developer", "Next.js", 
-    "Agency", "Shift2Dynamic", "UI/UX", "Frontend Developer", "E2E E-Commerce", "Full Service Agency"
+    "Agency", "Shift2Dynamic", "UI/UX", "Frontend Developer", "E2E E-Commerce", "Full Service Agency",
+    "Shopify Architects", "E-commerce scaling"
   ],
   authors: [{ name: "Shift2Dynamic", url: "https://www.shift2dynamic.com" }],
   creator: "Shift2Dynamic",
@@ -99,23 +100,83 @@ export default function RootLayout({
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
-            __html: JSON.stringify({
+             "__html": JSON.stringify({
               "@context": "https://schema.org",
-              "@type": "Organization",
-              "name": "Shift2Dynamic",
-              "url": "https://www.shift2dynamic.com",
-              "logo": "https://www.shift2dynamic.com/og-image.jpg",
-              "description": "E2E E-Commerce Service Agency. Expert Shopify development and web design services.",
-              "address": {
-                "@type": "PostalAddress",
-                "addressCountry": "US"
-              },
-              "sameAs": [
-                "https://www.linkedin.com/company/shift2dynamic",
-                "https://x.com/shift2dynamic",
-                "https://github.com/shift2dynamic",
-                "https://www.facebook.com/shift2dynamic",
-                "https://www.instagram.com/shift2dynamic"
+              "@graph": [
+                {
+                  "@type": "Organization",
+                  "@id": "https://www.shift2dynamic.com/#organization",
+                  "name": "Shift2Dynamic",
+                  "url": "https://www.shift2dynamic.com",
+                  "logo": {
+                    "@type": "ImageObject",
+                    "url": "https://www.shift2dynamic.com/og-image.jpg"
+                  },
+                  "description": "E2E E-Commerce Service Agency. Expert Shopify development and web design services.",
+                  "address": {
+                    "@type": "PostalAddress",
+                    "addressCountry": "US"
+                  },
+                  "sameAs": [
+                    "https://www.linkedin.com/company/shift2dynamic",
+                    "https://x.com/shift2dynamic",
+                    "https://github.com/shift2dynamic",
+                    "https://www.facebook.com/shift2dynamic",
+                    "https://www.instagram.com/shift2dynamic",
+                    "https://clutch.co/profile/shift2dynamic",
+                    "https://experts.shopify.com/shift2dynamic"
+                  ],
+                  "contactPoint": {
+                    "@type": "ContactPoint",
+                    "contactType": "sales",
+                    "contactOption": "TollFree",
+                    "areaServed": "Global"
+                  }
+                },
+                {
+                  "@type": "Service",
+                  "serviceType": "Shopify Development",
+                  "provider": {
+                    "@id": "https://www.shift2dynamic.com/#organization"
+                  },
+                  "areaServed": "Global",
+                  "hasOfferCatalog": {
+                    "@type": "OfferCatalog",
+                    "name": "E-commerce Services",
+                    "itemListElement": [
+                      {
+                        "@type": "Offer",
+                        "itemOffered": {
+                          "@type": "Service",
+                          "name": "Custom Shopify Theme Development"
+                        }
+                      },
+                      {
+                        "@type": "Offer",
+                        "itemOffered": {
+                          "@type": "Service",
+                          "name": "Headless Commerce Solutions"
+                        }
+                      },
+                      {
+                        "@type": "Offer",
+                        "itemOffered": {
+                          "@type": "Service",
+                          "name": "E-commerce Replatforming"
+                        }
+                      }
+                    ]
+                  }
+                },
+                {
+                  "@type": "Service",
+                  "serviceType": "Web Design",
+                  "provider": {
+                    "@id": "https://www.shift2dynamic.com/#organization"
+                  },
+                  "areaServed": "Global",
+                  "description": "High-performance, pixel-perfect, and conversion-focused web design."
+                }
               ]
             })
           }}

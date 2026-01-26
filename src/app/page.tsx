@@ -75,12 +75,12 @@ export default async function Home() {
           >
             <div className="flex items-center gap-8 sm:gap-16 px-4">
                <span className="text-2xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-primary to-primary/50">
-                 HIGH CONVERSION
+                 SHOPIFY ARCHITECTS
                </span>
                <SiShopify className="text-[#96bf48] drop-shadow-[0_0_10px_rgba(150,191,72,0.8)]" />
 
                <span className="text-2xl md:text-6xl font-black text-transparent bg-clip-text bg-gradient-to-r from-blue-400 to-blue-600">
-                 ROI FOCUSED
+                 E-COMMERCE SCALING
                </span>
                <SiReact className="text-[#61dafb]" />
                
@@ -147,6 +147,8 @@ export default async function Home() {
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "Shift2Dynamic",
+            "alternativeHeadline": "Shopify Architects & E-commerce Scaling Experts",
+            "description": "Shift2Dynamic is a leading agency of Shopify Architects focused on E-commerce scaling and high-performance web design.",
             "url": "https://www.shift2dynamic.com",
             "potentialAction": {
               "@type": "SearchAction",
