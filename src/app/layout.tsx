@@ -15,6 +15,7 @@ import { Contentsquare } from "@/components/analytics/contentsquare";
 import { DynamicLayoutComponents } from "@/components/ui/dynamic-layout-components";
 import { AdPixels } from "@/components/analytics/ad-pixels";
 
+
 const syne = Syne({
   variable: "--font-syne",
   subsets: ["latin"],
@@ -93,10 +94,6 @@ export default function RootLayout({
     <html lang="en" suppressHydrationWarning>
       <head>
         <link rel="preconnect" href="https://nl13gjir.apicdn.sanity.io" />
-      </head>
-      <body
-        className={`${syne.variable} ${manrope.variable} antialiased bg-transparent`}
-      >
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{
@@ -181,6 +178,11 @@ export default function RootLayout({
             })
           }}
         />
+      </head>
+      <body
+        className={`${syne.variable} ${manrope.variable} antialiased bg-transparent`}
+      >
+
         <ThemeProvider
           attribute="class"
           defaultTheme="dark"
@@ -188,21 +190,21 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
-          <CalendlyProvider>
-            <SmoothScroll>
-              <Preloader />
-              <GlobalBackground />
-              {children}
-              <DynamicLayoutComponents />
-              <SpeedInsights />
-            </SmoothScroll>
-            <Analytics />
-            <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ""} />
-            <Clarity />
-            <Contentsquare />
-            <AdPixels />
-          </CalendlyProvider>
-        </ThemeProvider>
+            <CalendlyProvider>
+                <SmoothScroll>
+                  <Preloader />
+                  <GlobalBackground />
+                  {children}
+                  <DynamicLayoutComponents />
+                  <SpeedInsights />
+                </SmoothScroll>
+                <Analytics />
+                <GoogleAnalytics gaId={process.env.NEXT_PUBLIC_GA_ID || ""} />
+                <Clarity />
+                <Contentsquare />
+                <AdPixels />
+              </CalendlyProvider>
+          </ThemeProvider>
       </body>
     </html>
   );
