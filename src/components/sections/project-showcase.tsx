@@ -2,13 +2,24 @@
 
 import React, { useState, useEffect, useMemo, useRef } from "react";
 import Image from "next/image";
+import Link from "next/link";
 import { motion, useTransform, useSpring, useMotionValue, useScroll } from "motion/react";
+import { client } from "@/sanity/lib/client";
+import { urlFor } from "@/sanity/lib/image";
 
 // --- Types ---
 export type AnimationPhase = "scatter" | "line" | "circle" | "bottom-strip";
 
+interface SanityProject {
+    _id: string;
+    title: string;
+    image: any;
+    link: string;
+    industry?: string;
+}
+
 interface FlipCardProps {
-    src: string;
+    project: SanityProject;
     index: number;
     total: number;
     phase: AnimationPhase;
@@ -20,12 +31,14 @@ const IMG_WIDTH = 60;  // Reduced from 100
 const IMG_HEIGHT = 85; // Reduced from 140
 
 function FlipCard({
-    src,
+    project,
     index,
     total,
     phase,
     target,
 }: FlipCardProps) {
+    const imageUrl = project.image ? urlFor(project.image).width(300).url() : "";
+
     return (
         <motion.div
             // Smoothly animate to the coordinates defined by the parent
@@ -49,79 +62,95 @@ function FlipCard({
                 height: IMG_HEIGHT,
                 transformStyle: "preserve-3d", // Essential for the 3D hover effect
                 perspective: "1000px",
+                zIndex: 10 + index, // Ensure visible stacking
             }}
             className="cursor-pointer group"
         >
+            <Link href={project.link || "#"} target="_blank" rel="noopener noreferrer" className="block h-full w-full">
             <motion.div
                 className="relative h-full w-full"
                 style={{ transformStyle: "preserve-3d" }}
                 transition={{ duration: 0.6, type: "spring", stiffness: 260, damping: 20 }}
-                whileHover={{ rotateY: 180 }}
+                whileHover={{ rotateY: 180, scale: 1.2, zIndex: 100 }}
             >
                 {/* Front Face */}
                 <div
-                    className="absolute inset-0 h-full w-full overflow-hidden rounded-xl shadow-lg bg-gray-200"
+                    className="absolute inset-0 h-full w-full overflow-hidden rounded-md shadow-lg bg-gray-200"
                     style={{ backfaceVisibility: "hidden" }}
                 >
-                    <Image
-                        src={src}
-                        alt={`hero-${index}`}
-                        fill
-                        className="object-cover"
-                    />
+                    {imageUrl && (
+                         <Image
+                            src={imageUrl}
+                            alt={project.title || "Project"}
+                            fill
+                            className="object-cover"
+                            sizes="(max-width: 768px) 100px, 150px"
+                        />
+                    )}
                     <div className="absolute inset-0 bg-black/10 transition-colors group-hover:bg-transparent" />
                 </div>
 
                 {/* Back Face */}
                 <div
-                    className="absolute inset-0 h-full w-full overflow-hidden rounded-xl shadow-lg bg-gray-900 flex flex-col items-center justify-center p-4 border border-gray-700"
+                    className="absolute inset-0 h-full w-full overflow-hidden rounded-md shadow-lg bg-gray-900 flex flex-col items-center justify-center p-2 border border-gray-700"
                     style={{ backfaceVisibility: "hidden", transform: "rotateY(180deg)" }}
                 >
                     <div className="text-center">
-                        <p className="text-[8px] font-bold text-blue-400 uppercase tracking-widest mb-1">View</p>
-                        <p className="text-xs font-medium text-white">Details</p>
+                        <p className="text-[6px] font-bold text-blue-400 uppercase tracking-widest mb-0.5">Visit</p>
+                        <p className="text-[8px] font-medium text-white line-clamp-2 leading-tight">{project.title}</p>
                     </div>
                 </div>
             </motion.div>
+            </Link>
         </motion.div>
     );
 }
 
 // --- Main Hero Component ---
-const TOTAL_IMAGES = 20;
-
-// Unsplash Images
-const IMAGES = [
-    "https://images.unsplash.com/photo-1486406146926-c627a92ad1ab?w=300&q=80",
-    "https://images.unsplash.com/photo-1519710164239-da123dc03ef4?w=300&q=80",
-    "https://images.unsplash.com/photo-1497366216548-37526070297c?w=300&q=80",
-    "https://images.unsplash.com/photo-1506744038136-46273834b3fb?w=300&q=80",
-    "https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?w=300&q=80",
-    "https://images.unsplash.com/photo-1506765515384-028b60a970df?w=300&q=80",
-    "https://images.unsplash.com/photo-1441974231531-c6227db76b6e?w=300&q=80",
-    "https://images.unsplash.com/photo-1472214103451-9374bd1c798e?w=300&q=80",
-    "https://images.unsplash.com/photo-1500485035595-cbe6f645feb1?w=300&q=80",
-    "https://images.unsplash.com/photo-1469474968028-56623f02e42e?w=300&q=80",
-    "https://images.unsplash.com/photo-1451187580459-43490279c0fa?w=300&q=80",
-    "https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?w=300&q=80",
-    "https://images.unsplash.com/photo-1465146344425-f00d5f5c8f07?w=300&q=80",
-    "https://images.unsplash.com/photo-1470252649378-9c29740c9fa8?w=300&q=80",
-    "https://images.unsplash.com/photo-1493246507139-91e8fad9978e?w=300&q=80",
-    "https://images.unsplash.com/photo-1494438639946-1ebd1d20bf85?w=300&q=80",
-    "https://images.unsplash.com/photo-1483729558449-99ef09a8c325?w=300&q=80",
-    "https://images.unsplash.com/photo-1518173946687-a4c8892bbd9f?w=300&q=80",
-    "https://images.unsplash.com/photo-1523961131990-5ea7c61b2107?w=300&q=80",
-    "https://images.unsplash.com/photo-1496568816309-51d7c20e3b21?w=300&q=80",
-];
+// const TOTAL_IMAGES = 20; // We'll use the fetched length or a minimum
+const MIN_IMAGES = 15; // Minimum to look good, we can loop data if needed
 
 // Helper for linear interpolation
 const lerp = (start: number, end: number, t: number) => start * (1 - t) + end * t;
 
 export default function ProjectShowcase() {
+    const [projects, setProjects] = useState<SanityProject[]>([]);
     const [introPhase, setIntroPhase] = useState<AnimationPhase>("scatter");
     const [containerSize, setContainerSize] = useState({ width: 0, height: 0 });
     const containerRef = useRef<HTMLDivElement>(null);
     const stickyRef = useRef<HTMLDivElement>(null);
+
+    // --- Fetch Sanity Data ---
+    useEffect(() => {
+        const fetchData = async () => {
+            try {
+                // Fetch projects with valid images
+                const query = `*[_type == "showcaseProject" && defined(image)][0...30] {
+                    _id,
+                    title,
+                    image,
+                    link,
+                    industry
+                }`;
+                const result = await client.fetch(query);
+                
+                // If we don't have enough projects, duplicate them to fill the showcase
+                let data = result || [];
+                if (data.length > 0 && data.length < MIN_IMAGES) {
+                    while (data.length < MIN_IMAGES) {
+                        data = [...data, ...result];
+                    }
+                }
+                // Limit to 30 max to prevent performance kills
+                setProjects(data.slice(0, 30));
+            } catch (err) {
+                console.error("Failed to fetch projects:", err);
+            }
+        };
+        fetchData();
+    }, []);
+
+    const TOTAL_IMAGES = projects.length;
 
     // --- Container Size (Measure the sticky viewport, not the scroll track) ---
     useEffect(() => {
@@ -195,14 +224,17 @@ export default function ProjectShowcase() {
 
     // --- Random Scatter Positions ---
     const scatterPositions = useMemo(() => {
-        return IMAGES.map(() => ({
+        // We need enough positions for the max possible items, or generate efficiently
+        // Safest is to generate for current length or a large number
+        const count = Math.max(TOTAL_IMAGES, 30); 
+        return Array.from({ length: count }).map(() => ({
             x: (Math.random() - 0.5) * 1500,
             y: (Math.random() - 0.5) * 1000,
             rotation: (Math.random() - 0.5) * 180,
             scale: 0.6,
             opacity: 0,
         }));
-    }, []);
+    }, [TOTAL_IMAGES]);
 
     // --- Render Loop (Manual Calculation for Morph) ---
     const [morphValue, setMorphValue] = useState(0);
@@ -224,6 +256,8 @@ export default function ProjectShowcase() {
     // Fade in content when arc is formed (morphValue > 0.8)
     const contentOpacity = useTransform(smoothMorph, [0.8, 1], [0, 1]);
     const contentY = useTransform(smoothMorph, [0.8, 1], [20, 0]);
+
+    if (TOTAL_IMAGES === 0) return null; // Or loading state
 
     return (
         // Height 400vh to allow enough scroll space for the animation
@@ -257,7 +291,7 @@ export default function ProjectShowcase() {
                     className="absolute top-[15%] z-10 flex flex-col items-center justify-center text-center pointer-events-none px-4"
                 >
                     <h2 className="text-3xl md:text-5xl font-bold text-gray-900 dark:text-white tracking-tight mb-4">
-                        Project Showcase
+                        Curated Work
                     </h2>
                     <p className="text-sm md:text-base text-gray-600 dark:text-gray-400 max-w-lg leading-relaxed">
                         A curated collection of high-performance Shopify stores. <br className="hidden md:block" />
@@ -267,12 +301,15 @@ export default function ProjectShowcase() {
 
                 {/* Main Container */}
                 <div className="relative flex items-center justify-center w-full h-full">
-                    {IMAGES.slice(0, TOTAL_IMAGES).map((src, i) => {
+                    {projects.map((project, i) => {
                         let target = { x: 0, y: 0, rotation: 0, scale: 1, opacity: 1 };
+                        
+                        // Use scatterPositions based on index, wrapped safely just in case
+                        const scatterPos = scatterPositions[i % scatterPositions.length];
 
                         // 1. Intro Phases (Scatter -> Line)
                         if (introPhase === "scatter") {
-                            target = scatterPositions[i];
+                            target = scatterPos;
                         } else if (introPhase === "line") {
                             const lineSpacing = 70; // Adjusted for smaller images (60px width + 10px gap)
                             const lineTotalWidth = TOTAL_IMAGES * lineSpacing;
@@ -307,7 +344,7 @@ export default function ProjectShowcase() {
                             // Spread angle:
                             const spreadAngle = isMobile ? 100 : 130;
                             const startAngle = -90 - (spreadAngle / 2);
-                            const step = spreadAngle / (TOTAL_IMAGES - 1);
+                            const step = spreadAngle / Math.max(TOTAL_IMAGES - 1, 1);
 
                             // Apply Scroll Rotation
                             const scrollProgress = Math.min(Math.max(rotateValue / 360, 0), 1);
@@ -336,8 +373,8 @@ export default function ProjectShowcase() {
 
                         return (
                             <FlipCard
-                                key={i}
-                                src={src}
+                                key={`${project._id}-${i}`}
+                                project={project}
                                 index={i}
                                 total={TOTAL_IMAGES}
                                 phase={introPhase} // Pass intro phase for initial animations
