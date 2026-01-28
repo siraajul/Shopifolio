@@ -34,7 +34,7 @@ export function CalendlyProvider({ children }: { children: React.ReactNode }) {
       {children}
       {rootElement && (
         <PopupModal
-          url="https://calendly.com/start-scalling"
+          url="https://calendly.com/shift2dynamic/30min"
           onModalClose={() => setIsOpen(false)}
           open={isOpen}
           rootElement={rootElement}
