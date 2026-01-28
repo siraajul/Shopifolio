@@ -55,7 +55,7 @@ export async function POST(request: Request) {
         }
 
         const data = await resend.emails.send({
-            from: 'Shift2Dynamic Leads <leads@shift2dynamic.com>',
+            from: 'Shift2Dynamic Leads <leads@leads.shift2dynamic.com>',
             to: ['business@shift2dynamic.com'],
             subject: `New Project Inquiry from ${name}`,
             react: await EmailTemplate({ formData: body }),
