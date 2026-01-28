@@ -233,7 +233,7 @@ export default function OnboardingForm() {
         // Optional: Reset form or redirect
       } else {
         console.error("Submission error:", data);
-        errorToast("Something went wrong. Please try again.");
+        errorToast(data.error || "Something went wrong. Please try again.");
       }
     } catch (error) {
       console.error("Network error:", error);
