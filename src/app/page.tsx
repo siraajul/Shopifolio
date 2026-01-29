@@ -62,9 +62,11 @@ export default async function Home() {
       {/* Keep About Section Eager for better flow after Hero, user might scroll fast */}
       <AboutSection3 data={data?.about} />
       
+      {/* 
       <LazyLoad>
         <TeamSection />
-      </LazyLoad>
+      </LazyLoad> 
+      */}
       
       <section className="py-8 bg-transparent text-foreground flex items-center overflow-hidden">
         <LazyLoad rootMargin="200px">
