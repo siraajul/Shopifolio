@@ -19,9 +19,6 @@ const nextConfig: NextConfig = {
       'motion/react',
       'date-fns'
     ],
-    // Allow network access for local testing (e.g. mobile devices)
-    // @ts-ignore
-    allowedDevOrigins: ["localhost:3000", "192.168.0.101:3000"],
   },
   images: {
     remotePatterns: [

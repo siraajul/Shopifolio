@@ -18,9 +18,10 @@ import seoShared from './schemas/seo-shared'
 import pseoTemplate from './schemas/pseo-template'
 import pseoPage from './schemas/pseo-page'
 import team from './schemas/team'
+import job from './schemas/job'
 
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-    types: [hero, about, marquee, service, process, industry, pricing, project, testimonial, faq, footer, gallery, showcaseProject, impact, seoShared, pseoTemplate, pseoPage, team],
+    types: [hero, about, marquee, service, process, industry, pricing, project, testimonial, faq, footer, gallery, showcaseProject, impact, seoShared, pseoTemplate, pseoPage, team, job],
 
 }
