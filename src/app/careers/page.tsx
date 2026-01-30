@@ -1,7 +1,7 @@
 
 import { client } from "@/sanity/lib/client";
 import Link from "next/link";
-import { ArrowRight, MapPin, Clock } from "lucide-react";
+import { ArrowRight, MapPin, Clock, ArrowLeft } from "lucide-react";
 
 export const revalidate = 60;
 
@@ -43,6 +43,13 @@ export default async function CareersPage() {
   return (
     <main className="min-h-screen bg-background text-foreground pt-24 pb-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
+        <Link 
+          href="/"
+          className="inline-flex items-center text-sm text-muted-foreground hover:text-primary mb-8 transition-colors"
+        >
+          <ArrowLeft className="w-4 h-4 mr-2" />
+          Back to Home
+        </Link>
         <div className="text-center mb-16">
           <h1 className="text-4xl md:text-6xl font-bold mb-6 tracking-tight">
             Join Our Team

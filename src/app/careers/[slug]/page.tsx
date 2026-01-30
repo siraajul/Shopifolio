@@ -3,7 +3,8 @@ import { client } from "@/sanity/lib/client";
 import { PortableText } from "@portabletext/react";
 import ApplicationForm from "@/components/careers/application-form";
 import Link from "next/link";
-import { ArrowLeft, Calendar, MapPin, Clock, DollarSign, Brain, Heart, Briefcase, Timer } from "lucide-react";
+import { ArrowLeft, Calendar, MapPin, Clock, Brain, Heart, Briefcase, Timer } from "lucide-react";
+import { TbCurrencyTaka } from "react-icons/tb";
 import { notFound } from "next/navigation";
 
 interface PageProps {
@@ -42,7 +43,7 @@ export default async function JobPage({ params }: PageProps) {
     { 
       label: "Salary", 
       value: job.salary, 
-      icon: DollarSign,
+      icon: TbCurrencyTaka,
       visible: !!job.salary 
     },
     { 

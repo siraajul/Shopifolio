@@ -62,6 +62,26 @@ export function Footer({ data }: FooterProps) {
     }
   };
 
+  // Ensure Careers link exists
+  const enhancedFooterLinks = [...(footerLinks || [])];
+  const companySectionIndex = enhancedFooterLinks.findIndex(section => section.title === "Company");
+  
+  if (companySectionIndex !== -1) {
+    const companySection = enhancedFooterLinks[companySectionIndex];
+    if (!companySection.links.some(link => link.label === "Careers")) {
+      // Create a new object to avoid mutating props directly if they are frozen
+      enhancedFooterLinks[companySectionIndex] = {
+        ...companySection,
+        links: [...companySection.links, { label: "Careers", href: "/careers" }]
+      };
+    }
+  } else {
+    enhancedFooterLinks.unshift({
+      title: "Company",
+      links: [{ label: "Careers", href: "/careers" }]
+    });
+  }
+
   return (
     <footer className="bg-secondary/20 dark:bg-[#0F0F11]/30 relative h-fit w-full overflow-hidden border-t border-border pb-10 md:pb-28">
       {/* ... text effect ... */}
@@ -112,7 +132,7 @@ export function Footer({ data }: FooterProps) {
 
           {/* Links Section (Centered/Flexible) */}
           <div className="flex flex-wrap justify-center md:justify-start gap-12 md:gap-24">
-              {footerLinks.map((section) => (
+              {enhancedFooterLinks.map((section) => (
                 <div key={section.title} className="flex flex-col items-center md:items-start text-center md:text-left">
                   <h4 className="text-foreground text-lg font-semibold mb-6">
                     {section.title}
