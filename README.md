@@ -45,6 +45,14 @@ Built for speed, scalability, reliability, and "wow" factor.
 *   **Real-time Monitoring**: Sentry Integration captures production crashes and performance bottlenecks instantly.
 *   **CI/CD Pipeline**: Automated testing and build verification on every push.
 
+### 3. 💼 Career & Application Portal
+*   **Sanity-Managed Listings**: Jobs are fully managed via CMS with rich text descriptions, salary ranges, and benefits.
+*   **Department Grouping**: Intelligent categorization of open roles.
+*   **Secure Application System**:
+    *   File Upload handling (Resume/CV).
+    *   Rate limiting protection (IP-based).
+    *   **Premium Email Templates**: Automated, branded notifications sent to HR via Resend.
+
 ### 3. 📋 Intelligent Project Planner
 A dedicated multi-step form (`/planner`) that adapts to the client:
 *   **Dynamic Logic**: Questions change based on "Migration", "Redesign", or "Marketing" selection.
@@ -103,13 +111,16 @@ src/
 │   ├── page.tsx         # Home (Sanity Data Fetching)
 │   ├── planner/         # Multi-step Form Page
 │   ├── work/            # Portfolio Grid Page
+│   ├── careers/         # Job Listing & Details
 │   └── privacy/         # Legal Pages
 ├── components/
 │   ├── ui/              # Shadcn Primitives (Forms, Toasts, Cards)
 │   ├── sections/        # Homepage Sections (Hero, Impact, Services)
+│   ├── careers/         # Career specific components (Application Form)
 │   └── analytics/       # Tracking Scripts (Clarity, Contentsquare)
 ├── lib/
 │   ├── email-template.tsx # React Email Component
+│   ├── job-application-template.tsx # Job Application Email
 │   └── utils.ts         # Helpers
 └── sanity/              # Content Schemas
 ```
@@ -122,6 +133,7 @@ graph TD
         Browser[User Browser]
         Page[Next.js App Router]
         Planner[Project Planner Form]
+        Careers[Job Application Form]
     end
 
     subgraph "Data & CMS"
@@ -145,6 +157,7 @@ graph TD
     
     Browser --> |Interacts| Planner
     Planner --> |Submits Form| Resend
+    Careers --> |Uploads Resume| Resend
     Resend --> |Sends Notification| Email
     
     Browser --> |Tracking Events| GA4
