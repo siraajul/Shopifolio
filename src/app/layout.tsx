@@ -180,6 +180,7 @@ export default function RootLayout({
         />
       </head>
       <body
+        suppressHydrationWarning
         className={`${syne.variable} ${manrope.variable} antialiased bg-transparent`}
       >
 
