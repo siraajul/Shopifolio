@@ -78,13 +78,34 @@ export default function FAQSection({ data }: { data?: any[] }) {
     "pricing": data.filter(item => item.category === "pricing").map(i => ({ question: i.question, answer: i.answer })),
   } : faqData;
 
+  const allFaqs = Object.values(finalFaqData).flat() as { question: string, answer: string }[];
+  
+  const faqSchema = {
+    "@context": "https://schema.org",
+    "@type": "FAQPage",
+    "mainEntity": allFaqs.map(faq => ({
+      "@type": "Question",
+      "name": faq.question,
+      "acceptedAnswer": {
+        "@type": "Answer",
+        "text": faq.answer
+      }
+    }))
+  };
+
   return (
-    <FAQ 
-      title="Common Questions"
-      subtitle="Everything you need to know"
-      categories={categories}
-      faqData={finalFaqData}
-      className="bg-transparent"
-    />
+    <>
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+      />
+      <FAQ 
+        title="Common Questions"
+        subtitle="Everything you need to know"
+        categories={categories}
+        faqData={finalFaqData}
+        className="bg-transparent"
+      />
+    </>
   )
 }

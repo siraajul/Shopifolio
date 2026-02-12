@@ -38,6 +38,7 @@ export const metadata: Metadata = {
     "Agency", "Shift2Dynamic", "UI/UX", "Frontend Developer", "E2E E-Commerce", "Full Service Agency",
     "Shopify Architects", "E-commerce scaling"
   ],
+  applicationName: "Shift2Dynamic",
   authors: [{ name: "Shift2Dynamic", url: "https://www.shift2dynamic.com" }],
   creator: "Shift2Dynamic",
   openGraph: {
@@ -191,6 +192,9 @@ export default function RootLayout({
           enableSystem={false}
           disableTransitionOnChange
         >
+            <a href="#main-content" className="sr-only focus:not-sr-only focus:absolute focus:z-50 focus:p-4 focus:bg-background focus:text-foreground">
+              Skip to content
+            </a>
             <CalendlyProvider>
                 <SmoothScroll>
                   <Preloader />

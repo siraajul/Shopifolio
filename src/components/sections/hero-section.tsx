@@ -43,9 +43,10 @@ export default function HeroSection({ heroData }: HeroProps) {
         <div className="relative z-10 w-full text-center flex flex-col items-center justify-center gap-4 sm:gap-8">
           <div className="flex flex-col items-center gap-4">
 {/* Logo */}
-              <div 
-                className="relative w-60 h-20 mb-2 sm:w-80 sm:h-24 cursor-pointer"
-                onClick={() => window.location.reload()}
+              <Link 
+                href="/"
+                className="relative w-60 h-20 mb-2 sm:w-80 sm:h-24 cursor-pointer block"
+                aria-label="Home"
               >
                 <Image
                   src="/shift2dynamic_bg_remove_logo.png"
@@ -54,7 +55,7 @@ export default function HeroSection({ heroData }: HeroProps) {
                   className="object-contain"
                   priority
                 />
-              </div>
+              </Link>
 
                {/* Trust Badge */}
                 <TrustBadge className="mb-4" />

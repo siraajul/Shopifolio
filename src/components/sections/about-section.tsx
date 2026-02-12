@@ -74,7 +74,7 @@ export default function AboutSection3({ data, onCollaborateClick }: AboutProps) 
   };
   return (
     <section className="flex flex-col justify-center py-6 md:py-16 px-4 bg-transparent" ref={heroRef}>
-      <div className="max-w-7xl mx-auto w-full">
+      <div className="max-w-7xl mx-auto w-full" itemScope itemType="https://schema.org/Organization">
         {/* Header with social icons - Mobile optimized */}
         <div className="flex flex-col md:flex-row justify-between items-center mb-4 md:mb-8 gap-4 md:gap-0">
           <div className="flex items-center gap-2 text-xl">
@@ -270,7 +270,7 @@ export default function AboutSection3({ data, onCollaborateClick }: AboutProps) 
                 customVariants={revealVariants}
                 className="text-red-500 text-xl md:text-2xl font-bold"
               >
-                {name.toUpperCase()}
+                <span itemProp="name">{name.toUpperCase()}</span>
               </TimelineContent>
               <TimelineContent
                 as="div"

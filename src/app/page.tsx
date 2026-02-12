@@ -39,7 +39,7 @@ export default async function Home() {
   }
   
   return (
-    <main className="bg-background text-foreground min-h-screen w-full">
+    <main id="main-content" className="bg-background text-foreground min-h-screen w-full">
       <HeroSection heroData={data?.hero} />
 
       <div id="work">
@@ -238,12 +238,17 @@ export default async function Home() {
             "@context": "https://schema.org",
             "@type": "WebSite",
             "name": "Shift2Dynamic",
-            "alternativeHeadline": "Shopify Architects & E-commerce Scaling Experts",
+            "datePublished": "2024-01-01",
+            "dateModified": new Date().toISOString(),
+            "alternateName": ["Shift2Dynamic Agency", "S2D"],
             "description": "Shift2Dynamic is a leading agency of Shopify Architects focused on E-commerce scaling and high-performance web design.",
             "url": "https://www.shift2dynamic.com",
             "potentialAction": {
               "@type": "SearchAction",
-              "target": "https://www.shift2dynamic.com/services?q={search_term_string}",
+              "target": {
+                "@type": "EntryPoint",
+                "urlTemplate": "https://www.shift2dynamic.com/services?q={search_term_string}"
+              },
               "query-input": "required name=search_term_string"
             }
           })

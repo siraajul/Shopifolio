@@ -142,6 +142,8 @@ export function Footer({ data }: FooterProps) {
                       <li key={link.label}>
                         <a
                           href={link.href}
+                          target={link.href.startsWith('http') ? "_blank" : undefined}
+                          rel={link.href.startsWith('http') ? "noopener noreferrer" : undefined}
                           className="text-muted-foreground hover:text-primary transition-colors"
                         >
                           {link.label}
@@ -188,6 +190,8 @@ export function Footer({ data }: FooterProps) {
                 <a
                   key={platform}
                   href={url}
+                  target="_blank"
+                  rel="noopener noreferrer"
                   aria-label={platform}
                   className="hover:text-primary transition-colors"
                 >
