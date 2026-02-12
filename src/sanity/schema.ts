@@ -19,9 +19,10 @@ import pseoTemplate from './schemas/pseo-template'
 import pseoPage from './schemas/pseo-page'
 import team from './schemas/team'
 import job from './schemas/job'
+import caseStudy from './schemas/case-study'
 
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-    types: [hero, about, marquee, service, process, industry, pricing, project, testimonial, faq, footer, gallery, showcaseProject, impact, seoShared, pseoTemplate, pseoPage, team, job],
+    types: [hero, about, marquee, service, process, industry, pricing, project, testimonial, faq, footer, gallery, showcaseProject, impact, seoShared, pseoTemplate, pseoPage, team, job, caseStudy],
 
 }

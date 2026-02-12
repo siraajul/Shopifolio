@@ -81,5 +81,13 @@ export const HOME_QUERY = defineQuery(`{
     title,
     description,
     stats
+  },
+  "caseStudies": *[_type == "caseStudy"] | order(date desc){
+    _id,
+    title,
+    "slug": slug.current,
+    description,
+    image,
+    projectUrl
   }
 }`);
