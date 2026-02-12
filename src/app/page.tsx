@@ -29,6 +29,13 @@ const TeamSection = dynamic(() => import("@/components/sections/team-section"));
 
 export const revalidate = 60; // Revalidate every 60 seconds
 
+export const metadata = {
+  keywords: [
+    "Shift2Dynamic", "shift2dynamic", "Shopify Agency", "Web Design", "E-commerce", 
+    "Shopify Expert", "Custom Theme Development", "Headless Shopify"
+  ]
+};
+
 export default async function Home() {
   let data;
   try {

@@ -62,3 +62,5 @@ junit.xml
 
 # logs
 server.log
+.npm-cache
+.npm-cache

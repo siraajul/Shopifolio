@@ -61,6 +61,7 @@ export default function HeroSection({ heroData }: HeroProps) {
                 <TrustBadge className="mb-4" />
 
               <h1 className="flex flex-col items-center justify-center">
+                <span className="sr-only">Shift2Dynamic: </span>
                 <div className="text-3xl max-[375px]:text-3xl sm:text-6xl md:text-8xl flex flex-col sm:flex-row flex-wrap items-center justify-center text-center font-bold font-sans bg-transparent text-foreground overflow-hidden">
                   <LayoutGroup>
                     <motion.div className="flex flex-wrap justify-center whitespace-pre-wrap" layout>

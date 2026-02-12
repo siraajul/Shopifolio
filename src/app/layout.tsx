@@ -35,7 +35,7 @@ export const metadata: Metadata = {
   description: "E2E E-Commerce Service Agency. Expert Shopify development and web design services. We build high-converting, beautiful e-commerce experiences and custom websites.",
   keywords: [
     "Shopify Developer", "Web Designer", "E-commerce Expert", "React Developer", "Next.js", 
-    "Agency", "Shift2Dynamic", "UI/UX", "Frontend Developer", "E2E E-Commerce", "Full Service Agency",
+    "Agency", "Shift2Dynamic", "shift2dynamic", "Shift 2 Dynamic", "S2D", "UI/UX", "Frontend Developer", "E2E E-Commerce", "Full Service Agency",
     "Shopify Architects", "E-commerce scaling"
   ],
   applicationName: "Shift2Dynamic",
@@ -105,6 +105,7 @@ export default function RootLayout({
                   "@type": "Organization",
                   "@id": "https://www.shift2dynamic.com/#organization",
                   "name": "Shift2Dynamic",
+                  "alternateName": ["shift2dynamic", "Shift 2 Dynamic", "S2D", "Shift2Dynamic Agency"],
                   "url": "https://www.shift2dynamic.com",
                   "logo": {
                     "@type": "ImageObject",
