@@ -1,6 +1,7 @@
 import OnboardingForm from "@/components/ui/multistep-form";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
+import { OG_IMAGE } from "@/config/site";
 
 export const metadata = {
   title: "Start Your Project | Shift2Dynamic",
@@ -12,6 +13,7 @@ export const metadata = {
     siteName: 'Shift2Dynamic',
     locale: 'en_US',
     type: 'website',
+    images: [OG_IMAGE],
   },
 };
 
@@ -38,7 +40,7 @@ export default function PlannerPage() {
                 Start Your Project
             </h1>
             <p className="text-muted-foreground text-lg md:text-xl max-w-2xl mx-auto">
-                Tell us about your vision, goals, and requirements. We'll craft a strategy tailored just for you.
+                Tell us about your vision, goals, and requirements. We&apos;ll craft a strategy tailored just for you.
             </p>
         </div>
 

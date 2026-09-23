@@ -8,6 +8,7 @@ import { ArrowLeft, ExternalLink, ArrowRight } from "lucide-react";
 import { Metadata } from "next";
 
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
+import { OG_IMAGE } from "@/config/site";
 
 // --- Types ---
 interface Project {
@@ -69,7 +70,11 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
      openGraph: {
       title: seo?.meta_title || `Best Shopify Sites for ${data.name}`,
       description: seo?.meta_description || data.description || `Explore our curated selection of e-commerce projects for the ${data.name} industry.`,
-      images: seo?.og_image ? [urlFor(seo.og_image).width(1200).height(630).url()] : (data.image ? [urlFor(data.image).width(1200).height(630).url()] : []),
+      images: seo?.og_image
+        ? [urlFor(seo.og_image).width(1200).height(630).url()]
+        : data.image
+          ? [urlFor(data.image).width(1200).height(630).url()]
+          : [OG_IMAGE],
     },
     robots: seo?.noindex ? { index: false } : undefined,
     alternates: {

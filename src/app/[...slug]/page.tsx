@@ -5,6 +5,7 @@ import { getProgrammaticPage } from "@/lib/sanity-pseo"; // You will typically n
 import { Metadata } from "next";
 import { client } from "@/sanity/lib/client";
 import { JsonLd } from "@/components/seo/json-ld";
+import { OG_IMAGE } from "@/config/site";
 
 // ISR: Revalidate every hour
 export const revalidate = 3600;
@@ -32,7 +33,7 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
     title: seo?.meta_title || pageData.title,
     description: seo?.meta_description,
     openGraph: {
-        images: seo?.og_image ? [seo.og_image] : undefined,
+        images: seo?.og_image ? [seo.og_image] : [OG_IMAGE],
     },
     alternates: {
         canonical: seo?.canonical_url,

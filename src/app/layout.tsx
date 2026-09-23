@@ -50,7 +50,7 @@ export const metadata: Metadata = {
     siteName: "Shift2Dynamic",
     images: [
       {
-        url: "/og-image.jpg", // Ensure you have an og-image.jpg in your public folder
+        url: "/og-image.jpg",
         width: 1200,
         height: 630,
         alt: "Shift2Dynamic Agency Showcase",

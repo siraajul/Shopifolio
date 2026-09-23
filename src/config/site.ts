@@ -1,3 +1,17 @@
+/**
+ * Default social preview image.
+ *
+ * Child routes that declare their own `openGraph` replace the parent object
+ * wholesale rather than merging, so every one of them must spread this in or
+ * it will ship no og:image at all.
+ */
+export const OG_IMAGE = {
+    url: "/og-image.jpg",
+    width: 1200,
+    height: 630,
+    alt: "Shift2Dynamic Agency Showcase",
+} as const;
+
 export const SITE_CONFIG = {
     name: "Shift2Dynamic",
     description: "E2E E-Commerce Service Agency. High-performance custom Shopify experiences.",

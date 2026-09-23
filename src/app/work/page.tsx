@@ -1,5 +1,6 @@
 import { client } from "@/sanity/lib/client";
 import { HOME_QUERY } from "@/sanity/lib/queries";
+import { OG_IMAGE } from "@/config/site";
 import IndustryShowcase from "@/components/sections/industry-showcase";
 import { Footer } from "@/components/sections/footer-section";
 import HomeNavigation from "@/components/home-navigation";
@@ -20,6 +21,7 @@ export const metadata = {
     siteName: 'Shift2Dynamic',
     locale: 'en_US',
     type: 'website',
+    images: [OG_IMAGE],
   },
 };
 
