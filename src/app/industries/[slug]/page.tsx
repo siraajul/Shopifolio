@@ -14,10 +14,8 @@ import { OG_IMAGE } from "@/config/site";
 interface Project {
   _id: string;
   title: string;
-  description: string;
   image: SanityImageSource;
   link: string;
-  tags: string[];
 }
 
 interface IndustryData {
@@ -36,23 +34,38 @@ interface IndustryData {
 }
 
 // --- Data Fetching ---
+
+/**
+ * Industry page slugs are derived from the document name, but showcaseProject
+ * documents key their `industry` field to the shorter identifiers the work
+ * filter uses. Map the three that differ; the rest match already.
+ */
+const INDUSTRY_KEY_BY_SLUG: Record<string, string> = {
+  electronics: "tech",
+  "home-decor": "home",
+  "single-product": "single",
+};
+
 async function getIndustryData(slug: string): Promise<IndustryData | null> {
+  const projectKey = INDUSTRY_KEY_BY_SLUG[slug] ?? slug;
+
+  // Projects live as `showcaseProject`, matched on the industry key. An earlier
+  // query looked for `_type == "project"`, of which there are none, which is why
+  // every industry page rendered the empty "Coming Soon" state.
   const query = `*[_type == "industry" && slug.current == $slug][0]{
     name,
-      description,
+    description,
     image,
     seo,
-    "projects": *[_type == "project" && references(^._id)] {
+    "projects": *[_type == "showcaseProject" && industry == $projectKey] | order(title asc) {
       _id,
       title,
-      description,
       image,
-      link,
-      tags
+      link
     }
   }`;
 
-  return await client.fetch(query, { slug });
+  return await client.fetch(query, { slug, projectKey });
 }
 
 // --- Metadata ---
@@ -164,16 +177,6 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
                     <span className="font-semibold text-sm">View Live Site</span>
                     <ExternalLink size={14} />
                   </div>
-                   {/* Tags */}
-                  {project.tags && (
-                      <div className="flex flex-wrap gap-2 mt-4 translate-y-4 group-hover:translate-y-0 transition-transform duration-500 delay-100">
-                          {project.tags.slice(0, 3).map(tag => (
-                              <span key={tag} className="text-xs text-white/80 bg-white/10 px-2 py-1 rounded-full backdrop-blur-sm">
-                                  {tag}
-                              </span>
-                          ))}
-                      </div>
-                  )}
                 </div>
 
                 {/* Arrow Icon */}
