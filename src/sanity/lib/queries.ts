@@ -46,13 +46,6 @@ export const HOME_QUERY = defineQuery(`{
     features,
     category
   },
-  "projects": *[_type == "project"]{
-    title,
-    description,
-    image,
-    link,
-    tags
-  },
   "testimonials": *[_type == "testimonial"]{
     name,
     role,

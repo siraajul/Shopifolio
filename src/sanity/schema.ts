@@ -7,7 +7,6 @@ import service from './schemas/service'
 import process from './schemas/workflow'
 import industry from './schemas/industry'
 import pricing from './schemas/pricing'
-import project from './schemas/project'
 import testimonial from './schemas/testimonial'
 import faq from './schemas/faq'
 import footer from './schemas/footer'
@@ -23,6 +22,6 @@ import caseStudy from './schemas/case-study'
 
 
 export const schema: { types: SchemaTypeDefinition[] } = {
-    types: [hero, about, marquee, service, process, industry, pricing, project, testimonial, faq, footer, gallery, showcaseProject, impact, seoShared, pseoTemplate, pseoPage, team, job, caseStudy],
+    types: [hero, about, marquee, service, process, industry, pricing, testimonial, faq, footer, gallery, showcaseProject, impact, seoShared, pseoTemplate, pseoPage, team, job, caseStudy],
 
 }

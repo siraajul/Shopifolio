@@ -1,0 +1,173 @@
+{
+ "service": [
+  {
+   "title": "Enterprise Migration Systems",
+   "description": "Zero-downtime re-platforming to Shopify. We preserve your SEO and data while upgrading your infrastructure for scale."
+  },
+  {
+   "title": "High-Performance Design",
+   "description": "Bespoke, lightweight interfaces designed for speed and conversion. No bloat, just pure brand dominance."
+  },
+  {
+   "title": "Custom Functionality Engines",
+   "description": "Proprietary features built on Remix & Node. We engineer logic that standard apps can't handle."
+  },
+  {
+   "title": "Revenue Optimization Architecture",
+   "description": "A scientific approach to increasing AOV and LTV. We turn traffic into repeatable revenue."
+  }
+ ],
+ "faq": [
+  {
+   "question": "Do you work with new stores or only established brands?",
+   "answer": "We work with both! Whether you're launching your first store or scaling an 8-figure brand, we have packages tailored to your growth stage.",
+   "category": "general"
+  },
+  {
+   "question": "Can you help with migration from WooCommerce/Magento?",
+   "answer": "Yes, we specialize in complex data migrations. We ensure all your products, customers, and order history are transferred safely to Shopify without losing SEO rankings.",
+   "category": "general"
+  },
+  {
+   "question": "Do you provide ongoing support after launch?",
+   "answer": "Absolutely. Our 'Growth Partner' retainer is designed exactly for this. We handle updates, new features, and optimization so you can focus on marketing.",
+   "category": "general"
+  },
+  {
+   "question": "Do you use pre-made themes or build from scratch?",
+   "answer": "It depends on your needs. For speed and budget, we customize premium themes (like Dawn or Prestige). For unique brand experiences, we build custom themes from scratch using Liquid and Tailwind.",
+   "category": "technical"
+  },
+  {
+   "question": "Can you build custom private apps?",
+   "answer": "Yes. If an existing app doesn't solve your problem, we build custom private apps using Node.js and React (Remix) to extend Shopify's functionality.",
+   "category": "technical"
+  },
+  {
+   "question": "How do you handle site speed optimization?",
+   "answer": "We follow a strict performance checklist: lazy loading, image compression, code splitting, and minimizing third-party scripts. Our goal is always a sub-2-second load time.",
+   "category": "technical"
+  },
+  {
+   "question": "How long does a typical project take?",
+   "answer": "A standard store setup takes 2-4 weeks. A fully custom theme build typically takes 6-10 weeks depending on complexity and design readiness.",
+   "category": "process"
+  },
+  {
+   "question": "What do you need from me to get started?",
+   "answer": "We'll need your branding assets (logo, fonts), product details, and access to your Shopify store. If you don't have a store yet, we can set up a development store for you.",
+   "category": "process"
+  },
+  {
+   "question": "Do you handle the design as well?",
+   "answer": "We are technical developers first. While we have a good eye for UI/UX, for major rebrands, we prefer to collaborate with dedicated designers. We can recommend some amazing ones if needed.",
+   "category": "process"
+  },
+  {
+   "question": "What is your hourly rate?",
+   "answer": "We primarily work on a project-based or retainer model, which provides more value and predictability than hourly billing. However, for small tweaks, we can discuss an hourly arrangement.",
+   "category": "pricing"
+  },
+  {
+   "question": "Do you offer payment plans?",
+   "answer": "Yes, for larger projects (Custom Builds), payment is typically split: 50% deposit to start, 25% at milestone, and 25% upon launch.",
+   "category": "pricing"
+  },
+  {
+   "question": "Is there a minimum project size?",
+   "answer": "Our minimum engagement for custom work starts at $1,000. For smaller tasks, we recommend grouping them into a 'day rate' sprint.",
+   "category": "pricing"
+  }
+ ],
+ "pricing": [
+  {
+   "name": "Starter",
+   "price": "299",
+   "description": "Essential launchpad for dropshipping & new stores.",
+   "color": "amber",
+   "features": [
+    "Upload 5 Winning Products",
+    "5 Essential Pages Setup",
+    "3 App Integrations",
+    "Premium Theme Installation",
+    "Basic SEO Optimization",
+    "Social Media Integration"
+   ],
+   "popular": false
+  },
+  {
+   "name": "Professional",
+   "price": "599",
+   "description": "Advanced setup for growing brands ready to scale.",
+   "color": "blue",
+   "features": [
+    "Upload 15 Winning Products",
+    "7 Professional Pages Setup",
+    "6 App Integrations",
+    "Advanced Theme Customization",
+    "Complete SEO Service",
+    "Speed Optimization (90+)"
+   ],
+   "popular": true
+  },
+  {
+   "name": "Authority",
+   "price": "999",
+   "description": "Premium ecosystem for market dominance.",
+   "color": "purple",
+   "features": [
+    "Upload 30+ Winning Products",
+    "10 Custom Pages Design",
+    "10+ Advanced Integrations",
+    "CRO & Sales Funnel Setup",
+    "Comprehensive SEO Suite",
+    "30 Days Dedicated Support"
+   ],
+   "popular": false
+  }
+ ],
+ "process": [
+  {
+   "title": "Discovery & Strategy",
+   "description": "We inspect your current setup, understand your goals, and create a roadmap for success. We determine the best tech stack for your needs.",
+   "darkColor": "#581c87"
+  },
+  {
+   "title": "Development & Build",
+   "description": "Custom theme development, app integrations, and performance optimization. We build pixel-perfect interfaces with clean code.",
+   "darkColor": "#14532d"
+  },
+  {
+   "title": "Launch & Scale",
+   "description": "Rigorous testing, SEO setup, and post-launch strategies to grow your revenue. We ensure your store is ready for high traffic.",
+   "darkColor": "#7f1d1d"
+  },
+  {
+   "title": "Optimization & Growth",
+   "description": "Continuous data analysis and A/B testing to improve conversion rates. We help you scale your business to the next level.",
+   "darkColor": "#1e3a8a"
+  }
+ ],
+ "impact": [
+  {
+   "value": "$30M+",
+   "label": "Revenue Generated",
+   "percentage": "+120% YoY"
+  },
+  {
+   "value": "45%",
+   "label": "Avg. Conversion Uplift",
+   "percentage": "vs Industry Avg"
+  },
+  {
+   "value": "0.4s",
+   "label": "Page Load Speed",
+   "percentage": "Google Core Vitals"
+  },
+  {
+   "value": "50+",
+   "label": "Brands Scaled",
+   "percentage": "Global Clients"
+  }
+ ]
+}
