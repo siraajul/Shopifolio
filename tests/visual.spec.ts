@@ -1,9 +1,9 @@
-import { test, expect } from '@playwright/test';
+import { test, expect, type Page } from '@playwright/test';
 
 test.describe('Visual Regression', () => {
 
     // Helper to handle the initial preloader
-    const waitForPageReady = async (page) => {
+    const waitForPageReady = async (page: Page) => {
         const preloader = page.getByText('System Initializing...');
         if (await preloader.isVisible()) {
             await preloader.waitFor({ state: 'detached', timeout: 15000 });

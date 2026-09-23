@@ -21,7 +21,7 @@ test.describe('Performance', () => {
             },
             port: 9222,
             opts: {
-                loglevel: 'info',
+                logLevel: 'info',
             },
         });
 

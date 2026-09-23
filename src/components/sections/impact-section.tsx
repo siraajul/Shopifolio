@@ -4,7 +4,11 @@ import { motion, useScroll, useTransform, useSpring } from "motion/react";
 import { useRef } from "react";
 import { TrendingUp, Users, Zap, ArrowUpRight } from "lucide-react";
 import { BlurTextEffect } from "@/components/ui/blur-text-effect";
-import RuixenStats from "@/components/ui/ruixen-stats";
+import dynamic from "next/dynamic";
+
+// Charts are below the fold and carry no SEO value, so keep recharts out of the
+// server bundle entirely.
+const RuixenStats = dynamic(() => import("@/components/ui/ruixen-stats"), { ssr: false });
 import { SanityImpactStat } from "@/types";
 
 export default function ImpactSection({ data }: { data?: { stats?: SanityImpactStat[] } }) {

@@ -2,7 +2,7 @@
 
 import { useScrollSpy } from "@/hooks/use-scroll-spy"
 import { LimelightNav } from "@/components/ui/limelight-nav"
-import { Briefcase, Lightning, Star, CurrencyDollar, Question, Envelope } from "@phosphor-icons/react"
+import { Briefcase, Zap, Star, DollarSign, CircleHelp, Mail } from "lucide-react"
 import { NAV_ITEMS } from "@/config/site"
 import { ReactNode } from "react"
 
@@ -12,12 +12,12 @@ export default function HomeNavigation() {
 
   // Map icons to config items since functions/components shouldn't be in config
   const iconMap: Record<string, ReactNode> = {
-    work: <Briefcase weight="fill" />,
-    services: <Lightning weight="fill" />,
-    testimonials: <Star weight="fill" />,
-    pricing: <CurrencyDollar weight="fill" />,
-    faq: <Question weight="fill" />,
-    contact: <Envelope weight="fill" />,
+    work: <Briefcase fill="currentColor" />,
+    services: <Zap fill="currentColor" />,
+    testimonials: <Star fill="currentColor" />,
+    pricing: <DollarSign />,
+    faq: <CircleHelp />,
+    contact: <Mail />,
   }
 
   const navItems = NAV_ITEMS.map(item => ({
