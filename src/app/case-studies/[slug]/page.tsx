@@ -480,7 +480,10 @@ async function getCaseStudy(slug: string) {
         }
     }
     
-    return dummyData[slug] || dummyData["dummy-1"];
+    // Return only an exact match. Falling back to dummy-1 meant every
+    // /case-studies/dummy-<anything> URL served a full 200 page, an unbounded
+    // duplicate-content space that anyone could link into.
+    return dummyData[slug] ?? null;
   }
 
   const query = `*[_type == "caseStudy" && slug.current == $slug][0]`;
