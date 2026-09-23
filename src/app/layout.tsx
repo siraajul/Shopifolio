@@ -28,6 +28,11 @@ const manrope = Manrope({
 
 export const metadata: Metadata = {
   metadataBase: new URL('https://www.shift2dynamic.com'),
+  // Resolved per route against metadataBase, so every page declares its own
+  // URL. Without this nothing on the site emitted a canonical at all.
+  alternates: {
+    canonical: './',
+  },
   title: {
     default: "Shift2Dynamic | Shopify Developer & Web Designer",
     template: "%s | Shift2Dynamic"
@@ -118,12 +123,10 @@ export default function RootLayout({
                   },
                   "sameAs": [
                     "https://www.linkedin.com/company/shift2dynamic",
-                    "https://x.com/shift2dynamic",
-                    "https://github.com/shift2dynamic",
                     "https://www.facebook.com/shift2dynamic",
                     "https://www.instagram.com/shift2dynamic",
-                    "https://clutch.co/profile/shift2dynamic",
-                    "https://experts.shopify.com/shift2dynamic"
+                    "https://www.youtube.com/@Shift2Dynamic",
+                    "https://clutch.co/profile/shift2dynamic"
                   ],
                   "contactPoint": {
                     "@type": "ContactPoint",

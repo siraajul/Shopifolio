@@ -36,7 +36,9 @@ export async function generateMetadata({ params }: Props): Promise<Metadata> {
         images: seo?.og_image ? [seo.og_image] : [OG_IMAGE],
     },
     alternates: {
-        canonical: seo?.canonical_url,
+        // Self-referencing unless the CMS overrides it. Passing undefined here
+        // suppresses the canonical inherited from the root layout.
+        canonical: seo?.canonical_url ?? slug,
     },
     robots: seo?.noindex ? { index: false } : undefined,
   };

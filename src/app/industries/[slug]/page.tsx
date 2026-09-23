@@ -91,7 +91,9 @@ export async function generateMetadata({ params }: { params: Promise<{ slug: str
     },
     robots: seo?.noindex ? { index: false } : undefined,
     alternates: {
-        canonical: seo?.canonical_url,
+        // Self-referencing unless the CMS overrides it. Passing undefined here
+        // suppresses the canonical inherited from the root layout.
+        canonical: seo?.canonical_url ?? `/industries/${slug}`,
     }
   };
 }
