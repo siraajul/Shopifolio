@@ -7,6 +7,10 @@
 		"nodejs_compat",
 		"global_fetch_strictly_public"
 	],
+	// Keep the workers.dev URL alive alongside the custom domains: declaring
+	// routes disables it by default, and it is useful for testing a version
+	// before promoting it to the live domain.
+	"workers_dev": true,
 	"routes": [
 		{ "pattern": "shift2dynamic.com", "custom_domain": true },
 		{ "pattern": "www.shift2dynamic.com", "custom_domain": true }

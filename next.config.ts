@@ -69,6 +69,26 @@ const nextConfig: NextConfig = {
     ];
   },
   skipTrailingSlashRedirect: true,
+  async redirects() {
+    // www is canonical. The apex is a Worker Custom Domain, so Cloudflare
+    // Redirect Rules never see these requests and the redirect has to happen
+    // here instead.
+    //
+    // Two rules rather than one `/:path*`: that form leaves the parameter
+    // unbound for the root path and emits a literal ":path*" in the Location
+    // header. `missing` excludes www, because a bare host value also matches
+    // www.shift2dynamic.com as a substring and that self-redirect loops.
+    const apexOnly = {
+      has: [{ type: 'host' as const, value: 'shift2dynamic\\.com' }],
+      missing: [{ type: 'host' as const, value: 'www\\.shift2dynamic\\.com' }],
+      permanent: true,
+    };
+
+    return [
+      { source: '/', destination: 'https://www.shift2dynamic.com/', ...apexOnly },
+      { source: '/:path+', destination: 'https://www.shift2dynamic.com/:path+', ...apexOnly },
+    ];
+  },
   async rewrites() {
     return [
       {
