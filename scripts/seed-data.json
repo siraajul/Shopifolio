@@ -147,27 +147,5 @@
    "description": "Continuous data analysis and A/B testing to improve conversion rates. We help you scale your business to the next level.",
    "darkColor": "#1e3a8a"
   }
- ],
- "impact": [
-  {
-   "value": "$30M+",
-   "label": "Revenue Generated",
-   "percentage": "+120% YoY"
-  },
-  {
-   "value": "45%",
-   "label": "Avg. Conversion Uplift",
-   "percentage": "vs Industry Avg"
-  },
-  {
-   "value": "0.4s",
-   "label": "Page Load Speed",
-   "percentage": "Google Core Vitals"
-  },
-  {
-   "value": "50+",
-   "label": "Brands Scaled",
-   "percentage": "Global Clients"
-  }
  ]
 }

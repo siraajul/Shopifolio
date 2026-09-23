@@ -18,13 +18,10 @@ export default function ImpactSection({ data }: { data?: { stats?: SanityImpactS
     offset: ["start end", "end start"],
   });
 
-  // Use Sanity data or fallback
-  const stats = data?.stats || [
-    { value: "$30M+", label: "Revenue Generated", percentage: "+120% YoY" },
-    { value: "45%", label: "Avg. Conversion Uplift", percentage: "vs Industry Avg" },
-    { value: "0.4s", label: "Page Load Speed", percentage: "Google Core Vitals" },
-    { value: "50+", label: "Brands Scaled", percentage: "Global Clients" },
-  ];
+  // This section renders RuixenStats only; it has no stat list of its own. The
+  // array that used to sit here was never read, and it disagreed with the
+  // figures the page actually shows ($30M+ and 50+ against $10M+ in the hero
+  // and about sections), so it was a contradiction waiting to surface.
   const y1 = useTransform(scrollYProgress, [0, 1], [100, -100]);
   const y2 = useTransform(scrollYProgress, [0, 1], [50, -50]);
 

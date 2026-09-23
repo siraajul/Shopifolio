@@ -109,7 +109,13 @@ const documents = [
     _type: "impact",
     title: "Impact",
     description: "Outcomes we have delivered for the brands we work with.",
-    stats: data.impact.map((s, i) => ({ _key: `stat${i}`, ...s })),
+    // Must match the figures the hero and about sections render. An earlier
+    // set here said $30M+ and 50+, which contradicted the published $10M+.
+    stats: [
+      { _key: "stat0", value: "$10M+", label: "Revenue Generated" },
+      { _key: "stat1", value: "45%", label: "Avg. Conversion Uplift" },
+      { _key: "stat2", value: "0.4s", label: "Avg. Load Time" },
+    ],
   },
   {
     _id: "marquee",
