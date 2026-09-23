@@ -17,6 +17,7 @@
     "test:perf": "playwright test tests/performance.spec.ts --project=chromium --workers=1",
     "storybook": "storybook dev -p 6006",
     "build-storybook": "storybook build",
+    "build:cf": "opennextjs-cloudflare build && opennextjs-cloudflare populateCache remote",
     "preview": "opennextjs-cloudflare build && opennextjs-cloudflare preview",
     "deploy": "opennextjs-cloudflare build && opennextjs-cloudflare deploy",
     "upload": "opennextjs-cloudflare build && opennextjs-cloudflare upload",
