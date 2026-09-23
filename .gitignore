@@ -72,3 +72,6 @@ server.log
 .wrangler
 .dev.vars*
 !.dev.vars.example
+
+# Third-party skills repo cloned into the project root; not part of this app.
+claude-seo/
