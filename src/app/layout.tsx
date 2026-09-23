@@ -32,7 +32,7 @@ export const metadata: Metadata = {
     default: "Shift2Dynamic | Shopify Developer & Web Designer",
     template: "%s | Shift2Dynamic"
   },
-  description: "E2E E-Commerce Service Agency. Expert Shopify development and web design services. We build high-converting, beautiful e-commerce experiences and custom websites.",
+  description: "Expert Shopify development and web design. We build high-converting, high-performance e-commerce storefronts and custom websites that scale.",
   keywords: [
     "Shopify Developer", "Web Designer", "E-commerce Expert", "React Developer", "Next.js", 
     "Agency", "Shift2Dynamic", "shift2dynamic", "Shift 2 Dynamic", "S2D", "UI/UX", "Frontend Developer", "E2E E-Commerce", "Full Service Agency",
@@ -46,7 +46,7 @@ export const metadata: Metadata = {
     locale: "en_US",
     url: "/",
     title: "Shift2Dynamic | High-Performance Shopify Agency",
-    description: "E2E ECommerce Service Agency. We build Shopify giants. High-performance, pixel-perfect, and conversion-focused e-commerce experiences.",
+    description: "We build Shopify giants. High-performance, pixel-perfect storefronts engineered to convert.",
     siteName: "Shift2Dynamic",
     images: [
       {
