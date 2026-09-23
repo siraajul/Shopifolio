@@ -5,6 +5,7 @@ import { PortableText } from "next-sanity";
 import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
+import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 
 export const revalidate = 60; // Revalidate every 60 seconds
 
@@ -518,6 +519,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
 
   return (
     <article className="relative min-h-screen overflow-hidden py-12 md:py-24">
+      <Breadcrumbs crumbs={[{ name: "Case Studies", path: "/case-studies" }, { name: caseStudy.title }]} />
        {/* Ambient Background Glow */}
        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[500px] bg-primary/10 blur-[120px] rounded-full pointer-events-none" />
        

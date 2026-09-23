@@ -8,6 +8,7 @@ import HomeNavigation from "@/components/home-navigation";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { Suspense } from "react";
+import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 
 export const revalidate = 60;
 
@@ -35,6 +36,8 @@ export default async function WorkPage() {
   }
   
   return (
+    <>
+      <Breadcrumbs crumbs={[{ name: "Work" }]} />
     <main className="bg-background text-foreground min-h-screen w-full">
       <Link 
         href="/" 
@@ -56,5 +59,6 @@ export default async function WorkPage() {
 
       <HomeNavigation />
     </main>
+    </>
   );
 }

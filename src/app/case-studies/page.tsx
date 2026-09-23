@@ -2,6 +2,7 @@ import Link from "next/link";
 import Image from "next/image";
 import { ArrowLeft, ArrowUpRight } from "lucide-react";
 import { Button } from "@/components/ui/button";
+import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 
 const allCaseStudies = [
     {
@@ -88,6 +89,8 @@ const allCaseStudies = [
 
 export default function CaseStudiesIndexPage() {
   return (
+    <>
+      <Breadcrumbs crumbs={[{ name: "Case Studies" }]} />
     <div className="relative min-h-screen py-12 md:py-32 overflow-hidden">
       {/* Background Ambience */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1000px] h-[600px] bg-primary/5 blur-[120px] rounded-full pointer-events-none" />
@@ -148,5 +151,6 @@ export default function CaseStudiesIndexPage() {
         </div>
       </div>
     </div>
+    </>
   );
 }

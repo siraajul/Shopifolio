@@ -6,6 +6,7 @@ import Link from "next/link";
 import { ArrowLeft, Calendar, MapPin, Clock, Brain, Heart, Briefcase, Timer } from "lucide-react";
 import { TbCurrencyTaka } from "react-icons/tb";
 import { notFound } from "next/navigation";
+import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 
 interface PageProps {
   params: Promise<{ slug: string }>;
@@ -68,6 +69,7 @@ export default async function JobPage({ params }: PageProps) {
 
   return (
     <main className="min-h-screen bg-background text-foreground pt-24 pb-16 px-4 sm:px-6 lg:px-8">
+      <Breadcrumbs crumbs={[{ name: "Careers", path: "/careers" }, { name: job.title }]} />
       <div className="max-w-6xl mx-auto">
         <Link 
           href="/careers"

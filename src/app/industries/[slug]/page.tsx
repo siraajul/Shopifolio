@@ -9,6 +9,7 @@ import { Metadata } from "next";
 
 import { SanityImageSource } from "@sanity/image-url/lib/types/types";
 import { OG_IMAGE } from "@/config/site";
+import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 
 // --- Types ---
 interface Project {
@@ -111,6 +112,7 @@ export default async function IndustryPage({ params }: { params: Promise<{ slug:
 
   return (
     <main className="min-h-screen bg-background text-foreground">
+      <Breadcrumbs crumbs={[{ name: "Work", path: "/work" }, { name: `${data.name} Projects` }]} />
       {/* Navigation */}
       <Link 
         href="/work" 

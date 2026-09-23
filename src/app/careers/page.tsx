@@ -2,6 +2,7 @@
 import { client } from "@/sanity/lib/client";
 import Link from "next/link";
 import { ArrowRight, MapPin, Clock, ArrowLeft } from "lucide-react";
+import { Breadcrumbs } from "@/components/seo/breadcrumbs";
 
 export const revalidate = 60;
 
@@ -41,6 +42,8 @@ export default async function CareersPage() {
   const departments = Object.keys(jobsByDepartment).sort();
 
   return (
+    <>
+      <Breadcrumbs crumbs={[{ name: "Careers" }]} />
     <main className="min-h-screen bg-background text-foreground pt-24 pb-16 px-4 sm:px-6 lg:px-8">
       <div className="max-w-7xl mx-auto">
         <Link 
@@ -55,7 +58,7 @@ export default async function CareersPage() {
             Join Our Team
           </h1>
           <p className="text-xl text-muted-foreground max-w-2xl mx-auto">
-            We're looking for passionate individuals to help us build the future of e-commerce. 
+            We&apos;re looking for passionate individuals to help us build the future of e-commerce. 
             Check out our open positions below.
           </p>
         </div>
@@ -109,5 +112,6 @@ export default async function CareersPage() {
         )}
       </div>
     </main>
+    </>
   );
 }
