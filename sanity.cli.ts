@@ -4,11 +4,17 @@
 **/
 import { defineCliConfig } from 'sanity/cli'
 
-const projectId = process.env.NEXT_PUBLIC_SANITY_PROJECT_ID
-const dataset = process.env.NEXT_PUBLIC_SANITY_DATASET
+// Falls back to literals so `sanity deploy` works without --env-file.
+// These are public identifiers, not secrets.
+const projectId = process.env.SANITY_STUDIO_PROJECT_ID || 'nl13gjir'
+const dataset = process.env.SANITY_STUDIO_DATASET || 'production'
 
 export default defineCliConfig({
   api: { projectId, dataset },
   // Hostname for the hosted Studio: https://shopifolio.sanity.studio
   studioHost: 'shopifolio',
+  deployment: {
+    // Pinned so `sanity deploy` does not prompt for the application id.
+    appId: 'cnv8rd2us8ohb9xpe8zi9yu3',
+  },
 })
