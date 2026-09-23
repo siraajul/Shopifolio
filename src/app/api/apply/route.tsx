@@ -1,9 +1,16 @@
+/* eslint-disable react-hooks/purity -- This is a route handler, not a component.
+   It needs the .tsx extension because it renders a react-email template, which
+   makes the React Compiler lint rules treat it as one. Date.now() below is used
+   for rate limiting and is correct here. */
 
 import { JobApplicationTemplate } from '@/lib/job-application-template';
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Constructed per request: `new Resend(...)` throws when the key is missing,
+// and at module scope that turns a missing build-time env var into a build
+// failure. The key is only ever needed at runtime.
+const getResend = () => new Resend(process.env.RESEND_API_KEY);
 
 // Simple in-memory rate store: Map<IP, { count: number, resetTime: number }>
 // Note: In a serverless environment (Vercel), this memory is not shared across lambda instances
@@ -58,7 +65,7 @@ export async function POST(request: Request) {
         const arrayBuffer = await file.arrayBuffer();
         const buffer = Buffer.from(arrayBuffer);
 
-        const data = await resend.emails.send({
+        const data = await getResend().emails.send({
             from: 'Shift2Dynamic Careers <careers@leads.shift2dynamic.com>',
             to: ['business@shift2dynamic.com'],
             subject: `Job Application: ${jobTitle} - ${name}`,

@@ -2,7 +2,10 @@ import { EmailTemplate } from '@/lib/email-template';
 import { Resend } from 'resend';
 import { NextResponse } from 'next/server';
 
-const resend = new Resend(process.env.RESEND_API_KEY);
+// Constructed per request: `new Resend(...)` throws when the key is missing,
+// and at module scope that turns a missing build-time env var into a build
+// failure. The key is only ever needed at runtime.
+const getResend = () => new Resend(process.env.RESEND_API_KEY);
 
 // Simple in-memory rate store: Map<IP, { count: number, resetTime: number }>
 const rateLimitMap = new Map<string, { count: number, resetTime: number }>();
@@ -54,7 +57,7 @@ export async function POST(request: Request) {
             );
         }
 
-        const data = await resend.emails.send({
+        const data = await getResend().emails.send({
             from: 'Shift2Dynamic Leads <leads@leads.shift2dynamic.com>',
             to: ['business@shift2dynamic.com'],
             subject: `New Project Inquiry from ${name}`,
