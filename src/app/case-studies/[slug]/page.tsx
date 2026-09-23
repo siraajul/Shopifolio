@@ -8,16 +8,22 @@ import { notFound } from "next/navigation";
 
 export const revalidate = 60; // Revalidate every 60 seconds
 
+type PortableProps = { children?: React.ReactNode };
+
+/** Shape of a case study, whether it comes from Sanity or the placeholder set. */
+// eslint-disable-next-line @typescript-eslint/no-explicit-any
+type CaseStudy = Record<string, any>;
+
 const caseStudyComponents = {
     block: {
-      h2: ({ children }: any) => <h2 className="text-3xl font-bold font-display mt-12 mb-6 text-foreground">{children}</h2>,
-      normal: ({ children }: any) => <p className="text-lg text-muted-foreground leading-relaxed mb-6">{children}</p>,
+      h2: ({ children }: PortableProps) => <h2 className="text-3xl font-bold font-display mt-12 mb-6 text-foreground">{children}</h2>,
+      normal: ({ children }: PortableProps) => <p className="text-lg text-muted-foreground leading-relaxed mb-6">{children}</p>,
     },
     list: {
-      bullet: ({ children }: any) => <ul className="space-y-3 mb-8">{children}</ul>,
+      bullet: ({ children }: PortableProps) => <ul className="space-y-3 mb-8">{children}</ul>,
     },
     listItem: {
-      bullet: ({ children }: any) => (
+      bullet: ({ children }: PortableProps) => (
         <li className="flex items-start text-muted-foreground">
           <span className="mr-3 mt-1.5 h-1.5 w-1.5 flex-shrink-0 rounded-full bg-primary" />
           <span>{children}</span>
@@ -29,7 +35,7 @@ const caseStudyComponents = {
 async function getCaseStudy(slug: string) {
   // Check for dummy slugs
   if (slug.startsWith('dummy-')) {
-    const dummyData: Record<string, any> = {
+    const dummyData: Record<string, CaseStudy> = {
         "dummy-1": {
             title: "Scaling NeonGrade to $10M ARR",
             description: "How a headless Shopify build reduced load times by 3s and boosted mobile conversion by 45%.",
@@ -63,12 +69,6 @@ async function getCaseStudy(slug: string) {
                     style: 'normal',
                 }
             ],
-            testimonial: {
-                quote: "The result exceeded our wildest expectations. Not only did our conversion rate triple, but the site feels instantaneous. It’s the competitive advantage we needed.",
-                author: "Sarah Jenkins",
-                role: "CTO, NeonGrade",
-                avatar: "https://images.unsplash.com/photo-1494790108377-be9c29b29330?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-            },
             content: [
                 {
                     _type: 'block',
@@ -151,12 +151,6 @@ async function getCaseStudy(slug: string) {
                     style: 'normal',
                 }
             ],
-            testimonial: {
-                quote: "We went from bleeding customers to being the industry standard for design. The new UI was directly cited by investors as a key reason for our Series A funding.",
-                author: "Markus Chen",
-                role: "CEO, FlowState",
-                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-            },
              content: [
                 {
                     _type: 'block',
@@ -239,12 +233,6 @@ async function getCaseStudy(slug: string) {
                     style: 'normal',
                 }
             ],
-             testimonial: {
-                quote: "I literally got a job offer from Google 10 minutes after posting this on Twitter. This portfolio didn’t just display my work; it proved my skills.",
-                author: "Alex Rivera",
-                role: "Creative Developer",
-                avatar: "https://images.unsplash.com/photo-1500648767791-00dcc994a43e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-            },
             content: [
                 { _type: 'block', children: [{ _type: 'span', text: 'The Goal', marks: [] }], style: 'h2' },
                 { _type: 'block', children: [{ _type: 'span', text: 'Stand out in a sea of generic grid-based portfolios.', marks: [] }], style: 'normal' },
@@ -281,12 +269,6 @@ async function getCaseStudy(slug: string) {
             howWeBuiltIt: [
                 { _type: 'block', children: [{ _type: 'span', text: 'We leveraged WebXR to provide an app-free AR experience. Using optimized GLTF models, we ensured 3D assets loaded instantly. We also implemented a fallback 360-viewer for unsupported devices.', marks: [] }], style: 'normal' }
             ],
-            testimonial: {
-                quote: "Returns dropped overnight. Customers love playing with the AR feature, and they are buying more confidentially than ever before.",
-                author: "Elena Rossi",
-                role: "Director of E-commerce",
-                avatar: "https://images.unsplash.com/photo-1544005313-94ddf0286df2?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-            },
             content: [
                  { _type: 'block', children: [{ _type: 'span', text: 'The Impact', marks: [] }], style: 'h2' },
                  { _type: 'block', listItem: 'bullet', children: [{ _type: 'span', text: '30% Increase in AOV', marks: [] }], style: 'normal', level: 1 }
@@ -321,12 +303,6 @@ async function getCaseStudy(slug: string) {
             howWeBuiltIt: [
                 { _type: 'block', children: [{ _type: 'span', text: 'Security was paramount. We built a custom WebRTC implementation ensuring peer-to-peer encryption for all video calls. We redesigned the booking flow with big buttons and clear contrast to assist elderly patients.', marks: [] }], style: 'normal' }
             ],
-            testimonial: {
-                quote: "It's not just an app; it's a lifesaver. Our doctors can focus on patients, not paperwork. The no-show reduction alone paid for the development.",
-                author: "Dr. James Wilson",
-                role: "Chief Medical Officer",
-                avatar: "https://images.unsplash.com/photo-1537368910025-700350fe46c7?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-            },
             content: [
                  { _type: 'block', children: [{ _type: 'span', text: 'Results', marks: [] }], style: 'h2' },
                  { _type: 'block', listItem: 'bullet', children: [{ _type: 'span', text: '60% Reduction in No-Shows', marks: [] }], style: 'normal', level: 1 }
@@ -361,12 +337,6 @@ async function getCaseStudy(slug: string) {
             howWeBuiltIt: [
                 { _type: 'block', children: [{ _type: 'span', text: 'We used TensorFlow.js to run PoseNet models directly on the user’s device. This ensured zero latency for coaching feedback and protected user privacy since no video feed was sent to the cloud.', marks: [] }], style: 'normal' }
             ],
-            testimonial: {
-                quote: "The AI features are the main reason people subscribe. It really feels like having a personal trainer in your pocket.",
-                author: "Mike T.",
-                role: "Product Manager",
-                avatar: "https://images.unsplash.com/photo-1506794778202-cad84cf45f1d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-            },
             content: [
                  { _type: 'block', children: [{ _type: 'span', text: 'Outcomes', marks: [] }], style: 'h2' },
                  { _type: 'block', listItem: 'bullet', children: [{ _type: 'span', text: 'Viral growth on TikTok due to AI challenge', marks: [] }], style: 'normal', level: 1 }
@@ -401,12 +371,6 @@ async function getCaseStudy(slug: string) {
              howWeBuiltIt: [
                 { _type: 'block', children: [{ _type: 'span', text: 'We implemented a custom routing engine using Mapbox and OSRM. By batching orders based on kitchen prep time and delivery proximity, we maximized driver efficiency and ensured food stayed hot.', marks: [] }], style: 'normal' }
             ],
-             testimonial: {
-                quote: "Our refund rate dropped to near zero. Drivers are happier because they make more trips, and customers are amazed by the speed.",
-                author: "Sarah Lee",
-                role: "COO, GourmetGo",
-                avatar: "https://images.unsplash.com/photo-1534528741775-53994a69daeb?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-            },
              content: [
                  { _type: 'block', children: [{ _type: 'span', text: 'Success', marks: [] }], style: 'h2' },
                  { _type: 'block', listItem: 'bullet', children: [{ _type: 'span', text: 'Acquired by major food app within 18 months', marks: [] }], style: 'normal', level: 1 }
@@ -441,12 +405,6 @@ async function getCaseStudy(slug: string) {
              howWeBuiltIt: [
                 { _type: 'block', children: [{ _type: 'span', text: 'We rewrote the matching engine in Rust for raw performance. On the frontend, we optimized React re-renders using web workers to handle the data stream without blocking the main UI thread.', marks: [] }], style: 'normal' }
             ],
-             testimonial: {
-                quote: "Finally, a platform that keeps up with the market. It hasn't crashed once, even during the biggest crash of the year.",
-                author: "David Brock",
-                role: "Lead Trader",
-                avatar: "https://images.unsplash.com/photo-1507003211169-0a1dd7228f2d?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-            },
              content: [
                  { _type: 'block', children: [{ _type: 'span', text: 'Outcome', marks: [] }], style: 'h2' },
                  { _type: 'block', listItem: 'bullet', children: [{ _type: 'span', text: '$50M Daily Volume Handled', marks: [] }], style: 'normal', level: 1 }
@@ -481,12 +439,6 @@ async function getCaseStudy(slug: string) {
              howWeBuiltIt: [
                 { _type: 'block', children: [{ _type: 'span', text: 'We gamified the entire experience. Every lesson completed earns XP. We used Framer Motion to add juicy animations for leveling up, triggering a dopamine hit that keeps students coming back.', marks: [] }], style: 'normal' }
             ],
-             testimonial: {
-                quote: "My students are actually competing to do their homework. The engagement stats are off the charts.",
-                author: "Rachel Green",
-                role: "Founder, EduLearn",
-                avatar: "https://images.unsplash.com/photo-1438761681033-6461ffad8d80?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-            },
              content: [
                  { _type: 'block', children: [{ _type: 'span', text: 'Result', marks: [] }], style: 'h2' },
                  { _type: 'block', listItem: 'bullet', children: [{ _type: 'span', text: '200% Increase in DAU', marks: [] }], style: 'normal', level: 1 }
@@ -521,12 +473,6 @@ async function getCaseStudy(slug: string) {
              howWeBuiltIt: [
                 { _type: 'block', children: [{ _type: 'span', text: 'We built a backend service that estimates carbon impact based on shipping distance and product weight. This data is displayed instantly in the cart, with a simple toggle to offset it for a few cents.', marks: [] }], style: 'normal' }
             ],
-             testimonial: {
-                quote: "Customers love seeing the impact of their purchase. It turns shopping into a positive action for the planet.",
-                author: "Tom Hiddleston",
-                role: "Sustainability Lead",
-                avatar: "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-4.0.3&auto=format&fit=crop&w=100&q=80"
-            },
              content: [
                  { _type: 'block', children: [{ _type: 'span', text: 'Impact', marks: [] }], style: 'h2' },
                  { _type: 'block', listItem: 'bullet', children: [{ _type: 'span', text: '500 Tons of CO2 Offset in Year 1', marks: [] }], style: 'normal', level: 1 }
@@ -663,7 +609,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                                 )}
                                 <div className="space-y-4">
                                      <blockquote className="text-xl md:text-2xl font-medium leading-relaxed font-display text-white">
-                                        "{caseStudy.testimonial.quote}"
+                                        &ldquo;{caseStudy.testimonial.quote}&rdquo;
                                     </blockquote>
                                     <div>
                                         <div className="font-bold text-primary text-lg">{caseStudy.testimonial.author}</div>
@@ -715,7 +661,7 @@ export default async function CaseStudyPage({ params }: { params: Promise<{ slug
                     <div className="mt-12 animate-in fade-in slide-in-from-bottom-6 duration-700">
                          <h2 className="text-3xl font-bold font-display mb-8 text-foreground">Business Impact</h2>
                          <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
-                            {caseStudy.stats.map((stat: any, index: number) => (
+                            {caseStudy.stats.map((stat: { label: string; beforeValue: string; afterValue: string }, index: number) => (
                                 <div key={index} className="rounded-xl border border-white/10 bg-white/5 p-6 backdrop-blur-sm">
                                     <div className="text-sm font-medium text-muted-foreground mb-4">{stat.label}</div>
                                     <div className="flex items-end gap-3">

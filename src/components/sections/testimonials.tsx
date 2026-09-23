@@ -2,61 +2,19 @@
 import { TestimonialsColumn } from "@/components/sections/testimonials-columns";
 import { motion } from "motion/react";
 
-const testimonials = [
-  {
-    text: "The team transformed our sluggish store into a high-speed sales machine. Conversion rates jumped by 40% in just two weeks.",
-    name: "Antoine Dubois",
-    role: "Founder, Maison Dubois 🇫🇷",
-  },
-  {
-    text: "The custom theme dev was flawless. They understood our brand aesthetic perfectly and delivered a pixel-perfect site.",
-    name: "Klaus Weber",
-    role: "Head of Digital, Weber Stahl 🇩🇪",
-  },
-  {
-    text: "We needed a complex migration from Magento to Shopify Plus. Shift2Dynamic handled the data transfer without a single hiccup.",
-    name: "Amir Al-Fayed",
-    role: "COO, Oasis Ventures 🇦🇪",
-  },
-  {
-    text: "Best technical partners we've worked with. They solved a Liquid cart issue that three other developers couldn't fix.",
-    name: "Lachlan O'Connor",
-    role: "Director, Bond Creek 🇦🇺",
-  },
-  {
-    text: "The private app they built saved our warehouse team 20 hours a week. Incredible ROI.",
-    name: "Elena Sokolov",
-    role: "Founder, Kinetik Labs 🇷🇺",
-  },
-  {
-    text: "Professional, communicative, and extremely skilled. The site speed optimization brought our load time under 2 seconds.",
-    name: "Camila Rodriguez",
-    role: "Marketing Lead, Sol & Luna 🇲🇽",
-  },
-  {
-    text: "Our AOV increased significantly after they implemented the custom upsell features. Highly recommended.",
-    name: "Hiroshi Tanaka",
-    role: "Owner, Zen Living 🇯🇵",
-  },
-  {
-    text: "Not just developers, but Shopify architects. They structured our entire headless build for scalability.",
-    name: "Sofia Rossi",
-    role: "CTO, Milano Mode 🇮🇹",
-  },
-  {
-    text: "Reliable and fast. Whenever we have a launch day emergency, Shift2Dynamic is the first team we call.",
-    name: "Magnus Jensen",
-    role: "Brand Manager, Nord 🇩🇰",
-  },
-];
 
 export default function TestimonialsSection({ data }: { data?: { quote: string; name: string; role: string; company?: string }[] }) {
-  // Use Sanity data if available, otherwise fallback to static list
-  const testimonialsData = data?.length ? data.map(t => ({
+  // Renders only real, attributable testimonials from the CMS. There is no
+  // placeholder fallback on purpose: inventing endorsements attributed to named
+  // people is prohibited by the FTC rule on consumer reviews and testimonials
+  // (16 CFR Part 465), quite apart from what it does to trust signals.
+  if (!data?.length) return null;
+
+  const testimonialsData = data.map(t => ({
       text: t.quote,
       name: t.name,
-      role: `${t.role}${t.company ? `, ${t.company}` : ''}`, // formatting role
-  })) : testimonials;
+      role: `${t.role}${t.company ? `, ${t.company}` : ''}`,
+  }));
 
   const firstColumn = testimonialsData.slice(0, 3);
   const secondColumn = testimonialsData.slice(3, 6);

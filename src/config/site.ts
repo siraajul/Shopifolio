@@ -30,7 +30,6 @@ export const SITE_CONFIG = {
 export const NAV_ITEMS = [
     { id: "work", label: "Work", href: "#work" },
     { id: "services", label: "Services", href: "#services" },
-    { id: "testimonials", label: "Reviews", href: "#testimonials" },
     { id: "pricing", label: "Pricing", href: "#pricing" },
     { id: "faq", label: "FAQ", href: "#faq" },
     { id: "contact", label: "Contact", href: "#contact" },
